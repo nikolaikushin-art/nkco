@@ -1,0 +1,378 @@
+/* v159 · Mega menu, institutional layout ("D").
+   Left rail = dark pinstripe · main = tabs + title + service rows + action bar · right = curved photo + insight
+   · foot = partner in charge. Dark header (same as the rail) while the menu is open.
+   Everything is scoped to .nk-md-* (the old .nk-mr-* rules no longer apply to the menu). */
+
+/* ---- shell: the panel is a bit taller than before so five services + the partner strip fit ---- */
+.nk-mega:has(.nk-md) {
+  /* v177: the panel height follows its content (min / max below) instead of a fixed 720px */
+  --md-max: min(720px, calc(100vh - var(--nk-header-h, 64px) - 16px));
+  height: auto !important; min-height: min(612px, var(--md-max)); max-height: var(--md-max);
+  background: #fff !important;
+  border-bottom: 1px solid #d9dbde !important;
+  box-shadow: 0 26px 60px -22px rgba(10, 11, 13, .35);
+}
+.nk-mega:has(.nk-md) .nk-mega-content { height: auto; max-height: var(--md-max); }
+
+.nk-md {
+  --md-ink: #121316; --md-body: #5a5f66; --md-mute: #8a8f96; --md-hair: #d9dbde; --md-night: #1b1d21;
+  display: grid; width: 100%; height: auto; max-height: var(--md-max); min-height: 0; overflow: hidden;
+  /* v182: the left rail takes only the spare white space on the right of the middle column (list stays 640px wide): 236px up to 272px as the screen gets wider */
+  --md-rail: clamp(236px, calc(100vw - 1180px), 272px);
+  grid-template-columns: var(--md-rail) minmax(0, 1fr) 466px;
+  grid-template-rows: minmax(0, 1fr) auto;
+  background-color: #fff;
+  background-image: repeating-linear-gradient(90deg, transparent 0 6px, rgba(18, 19, 22, .028) 6px 7px);
+  color: var(--md-ink); font-family: var(--nk-text, 'Inter', sans-serif);
+}
+:where(.nk-md) a, :where(.nk-md) button { color: inherit; text-decoration: none; font: inherit; }
+:where(.nk-md) button { background: none; border: 0; cursor: pointer; text-align: left; padding: 0; }
+.nk-md :focus-visible { outline: 2px solid var(--md-ink); outline-offset: 2px; }
+.nk-md-eyebrow { font: 500 10.5px/1.2 var(--nk-text, sans-serif); letter-spacing: .22em; text-transform: uppercase; color: var(--md-mute); }
+.nk-md-rule { display: block; width: 44px; height: 1px; background: #8a8f96; margin: 0 0 14px; }
+.nk-md-rule--short { width: 34px; margin: 10px 0 16px; }
+
+/* ---- left rail ---- */
+.nk-md-rail {
+  grid-column: 1; grid-row: 1; min-height: 0; overflow-y: auto; padding: 26px 0 0;
+  background-color: var(--md-night);
+  background-image: repeating-linear-gradient(90deg, transparent 0 6px, rgba(255, 255, 255, .07) 6px 7px);
+  color: #c9ccd1; scrollbar-width: thin; scrollbar-color: rgba(255,255,255,.2) transparent;
+}
+.nk-md-rail { display: flex; flex-direction: column; }
+.nk-md-secs, .nk-md-cats { list-style: none; margin: 0; padding: 0; }
+/* v177: quiet contact line pinned to the bottom of the rail (replaces the empty dark space) */
+.nk-md-rail-contact { margin-top: auto; flex: none; display: flex; flex-direction: column; gap: 5px; padding: 18px 24px 22px; border-top: 1px solid rgba(255, 255, 255, .08); color: #fff; }
+.nk-md-rail-contact-label { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; }
+.nk-md-rail-contact-label svg { transition: transform 200ms ease; }
+.nk-md-rail-contact:hover .nk-md-rail-contact-label svg { transform: translate(3px, -3px); }
+.nk-md-rail-contact-mail { font-size: 12.5px; color: #9da2a9; }
+.nk-md-rail-contact:hover .nk-md-rail-contact-mail { color: #c9ccd1; }
+.nk-md-sec-btn {
+  display: flex; width: 100%; align-items: center; justify-content: space-between; padding: 14px 24px;
+  font-size: 14px; color: #fff; border-top: 1px solid rgba(255, 255, 255, .07);
+}
+.nk-md-sec-chev { opacity: .55; transition: transform 220ms ease; }
+.nk-md-sec[data-open="true"] > .nk-md-sec-btn .nk-md-sec-chev { transform: rotate(180deg); }
+/* opened from the top navigation: the single section is a quiet label, not a button */
+.nk-md-secs--solo .nk-md-sec-btn { border-top: 0; padding: 0 24px 14px; pointer-events: none; cursor: default;
+  font: 500 10.5px/1.2 var(--nk-text, sans-serif); letter-spacing: .22em; text-transform: uppercase; color: #8a8f96; }
+.nk-md-secs--solo .nk-md-sec-chev { display: none; }
+.nk-md-sub { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 260ms cubic-bezier(.2, .7, .2, 1); }
+.nk-md-sub.is-open { grid-template-rows: 1fr; }
+.nk-md-sub-inner { overflow: hidden; min-height: 0; }
+.nk-md-cat {
+  display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 0 24px; min-height: 48px; font-size: 14px; color: #c9ccd1; border-top: 1px solid rgba(255, 255, 255, .07);
+  transition: background-color 160ms ease, color 160ms ease;
+}
+.nk-md-cat > span { min-width: 0; padding: 12px 0; line-height: 1.3; }
+.nk-md-cat svg { flex: none; opacity: .45; }
+.nk-md-cat:hover { background: rgba(255, 255, 255, .04); color: #fff; }
+.nk-md-cat[data-active="true"] { background: rgba(255, 255, 255, .07); color: #fff; box-shadow: inset 2px 0 0 #fff; }
+.nk-md-explore-li { border-top: 1px solid rgba(255, 255, 255, .07); }
+.nk-md-explore { display: flex; align-items: center; gap: 10px; padding: 20px 24px; font: 500 11px/1.2 var(--nk-text, sans-serif); letter-spacing: .13em; text-transform: uppercase; color: #fff; white-space: nowrap; }
+.nk-md-explore:hover svg { transform: translateX(4px); }
+.nk-md-explore svg { transition: transform 200ms ease; }
+/* Header + left rail: textured (pinstripe) by default, same dark as the open header so they read as one "L". The open hamburger dropdown stays on the same texture; only its selected item is lighter (same as the top-menu rail).
+   Burger accordion: sections separated by one hairline; no flat block; only the selected item is lighter; items are plain indented text, no per-row lines.
+   Active = white text + thin white bar; hover = text brightens. Section buttons / top-menu rail keep their sizes. */
+.nk-md-rail { background-color: #1b1d21; background-image: repeating-linear-gradient(90deg, transparent 0 6px, rgba(255, 255, 255, .07) 6px 7px); }
+.nk-md-secs--burger .nk-md-sec-btn { border-top-color: rgba(255, 255, 255, .08); }
+.nk-md-secs--burger .nk-md-sub { background: none; border: 0; }
+.nk-md-secs--burger .nk-md-cats { padding-bottom: 6px; }
+.nk-md-secs--burger .nk-md-cat { padding: 0 24px 0 32px; min-height: 34px; font-size: 14px; letter-spacing: 0; font-weight: 400; color: #9da2a9; border-top: 0; background: none; }
+.nk-md-secs--burger .nk-md-cat > span { padding: 6px 0; line-height: 1.25; }
+.nk-md-secs--burger .nk-md-cat svg { display: none; }
+.nk-md-secs--burger .nk-md-cat:hover { background: none; color: #fff; }
+.nk-md-secs--burger .nk-md-cat[data-active="true"] { background: rgba(255, 255, 255, .07); color: #fff; box-shadow: inset 2px 0 0 #fff; }
+.nk-md-secs--burger .nk-md-explore-li { border-top: 0; }
+.nk-md-secs--burger .nk-md-explore { padding: 14px 24px 8px 32px; color: #c9ccd1; }
+.nk-md .nk-md-rail :focus-visible { outline-color: #fff; outline-offset: -2px; }
+
+/* ---- main ---- */
+.nk-md-main { grid-column: 2; grid-row: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; padding: 0 18px 0 48px; overflow-y: auto; scrollbar-width: thin; }
+.nk-md-tabs-wrap { position: relative; flex: none; max-width: 640px; border-bottom: 1px solid #e3e5e8; padding-top: 22px; }
+.nk-md-tabs { display: flex; flex-wrap: nowrap; gap: 0 34px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; -ms-overflow-style: none; }
+.nk-md-tabs::-webkit-scrollbar { display: none; }
+.nk-md-tab { flex: none; white-space: nowrap; }
+.nk-md-tabs-nav { position: absolute; top: 22px; bottom: 0; width: 44px; display: flex; align-items: flex-start; padding-top: 2px; color: var(--md-ink); z-index: 2; }
+.nk-md-tabs-nav--r { right: 0; justify-content: flex-end; background: linear-gradient(90deg, rgba(255,255,255,0), #fff 62%); }
+.nk-md-tabs-nav--l { left: 0; justify-content: flex-start; background: linear-gradient(270deg, rgba(255,255,255,0), #fff 62%); }
+.nk-md-tabs-nav:hover { color: #000; }
+.nk-md-tab { padding: 0 0 14px; margin-bottom: -1px; font-size: 14px; color: var(--md-mute); border-bottom: 2px solid transparent; transition: color 160ms ease, border-color 160ms ease; }
+.nk-md-tab:hover { color: var(--md-ink); }
+/* v177: the active tab is quieter (regular weight, 1px line) so the big title below carries the emphasis */
+.nk-md-tab[data-active="true"] { color: var(--md-body); font-weight: 400; border-bottom-color: var(--md-body); }
+.nk-md-body { display: flex; flex-direction: column; flex: none; max-width: 640px; animation: nkMdIn 260ms ease both; }
+@keyframes nkMdIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.nk-md-title { display: block; margin: 18px 0 10px; font-size: clamp(40px, 4.2vw, 60px); font-weight: 500; line-height: 1.02; letter-spacing: -.005em; color: var(--md-ink); }
+.nk-md-title[data-len="l"] { font-size: clamp(32px, 3.2vw, 44px); }
+.nk-md-title[data-len="xl"] { font-size: clamp(28px, 2.7vw, 36px); }
+.nk-md-title:hover { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 8px; }
+.nk-md-lines { border-bottom: 1px solid var(--md-hair); }
+.nk-md-line { display: flex; align-items: center; gap: 24px; padding: 7px 0; border-top: 1px solid var(--md-hair); }
+.nk-md-line-img { flex: none; display: block; width: 104px; aspect-ratio: 5 / 3; overflow: hidden; background: #d9dbde; }
+.nk-md-line-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.6) contrast(1.03) brightness(.9); transition: transform 500ms ease; }
+.nk-md-line:hover .nk-md-line-img img { transform: scale(1.05); }
+.nk-md-line-text { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.nk-md-line-name { font-size: 22px; font-weight: 500; line-height: 1.2; color: var(--md-ink); }
+.nk-md-line:hover .nk-md-line-name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.nk-md-line-desc { font-size: 13px; line-height: 1.45; color: var(--md-body); max-width: 380px; }
+/* v177: the row arrow appears on hover / keyboard focus only (always visible on touch screens) */
+.nk-md-line-arrow { flex: none; margin-right: 6px; opacity: 0; transform: translateX(-6px); transition: transform 200ms ease, opacity 200ms ease; }
+.nk-md-line:hover .nk-md-line-arrow, .nk-md-line:focus-visible .nk-md-line-arrow { opacity: 1; transform: translateX(0); }
+@media (hover: none) { .nk-md-line-arrow { opacity: .8; transform: none; } }
+
+/* action bar: dark night colour + pinstripe, silver hairline */
+.nk-md-bar {
+  display: flex; align-items: center; justify-content: space-between; gap: 18px; align-self: flex-start; width: min(330px, 100%);
+  margin: 18px 0 20px; padding: 13px 20px; box-sizing: border-box; color: #eef0f2 !important;
+  background-color: var(--md-night); background-image: repeating-linear-gradient(90deg, transparent 0 6px, rgba(255, 255, 255, .075) 6px 7px);
+  border: 1px solid rgba(196, 200, 206, .45); transition: border-color 160ms ease;
+}
+.nk-md-bar span { font-size: 17px; font-weight: 500; color: #eef0f2; }
+.nk-md-bar svg { flex: none; color: #eef0f2; transition: transform 200ms ease; }
+.nk-md-bar:hover { border-color: rgba(238, 240, 242, .85); }
+.nk-md-bar:hover svg { transform: translate(3px, -3px); }
+
+/* ---- right: curved photo + insight ---- */
+/* v177: contain:size = the column fills the row but never stretches it, so the panel height is set by the service list; the photo gives way if the insight text is long */
+.nk-md-feat { contain: size; grid-column: 3; grid-row: 1; min-width: 0; min-height: 0; display: flex; flex-direction: column; overflow: hidden; padding: 12px 12px 0 0; box-sizing: border-box; }
+.nk-md-feat-img { flex: 0 1 auto; aspect-ratio: 1.3 / 1; min-height: 0; position: relative; overflow: hidden; background: #d9dbde; }
+.nk-md-feat-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 40%; filter: saturate(.6) contrast(1.03) brightness(.9); }
+.nk-md-feat-body { flex: 1 0 auto; min-height: 0; display: flex; flex-direction: column; padding: 20px 40px 24px 0; background: rgba(255, 255, 255, .7); overflow: hidden; }
+.nk-md[data-feat="text"] .nk-md-feat-body { padding-top: 34px; }
+.nk-md-feat-title { font-size: 28px; font-weight: 500; line-height: 1.12; color: var(--md-ink); margin-bottom: 10px; }
+.nk-md-feat-desc { font-size: 13.5px; line-height: 1.55; color: var(--md-body); margin-bottom: 12px; }
+.nk-md-feat-cta { display: inline-flex; align-self: flex-start; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; padding-bottom: 3px; border-bottom: 1px solid var(--md-ink); }
+.nk-md-feat-body:hover .nk-md-feat-title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+
+/* ---- foot: partner in charge ---- */
+.nk-md-foot { grid-column: 1 / -1; grid-row: 2; display: flex; align-items: center; gap: 44px; padding: 10px 56px 10px 24px; min-height: 64px; border-top: 1px solid var(--md-hair); background: #fff; }
+.nk-md-foot > .nk-md-eyebrow { width: 188px; flex: none; white-space: nowrap; }
+.nk-md-partner { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.nk-md-partner-av { flex: none; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--md-ink); display: inline-flex; align-items: center; justify-content: center; font: 600 14px/1 var(--nk-display, serif); letter-spacing: .06em; }
+.nk-md-partner-name { font-size: 19px; font-weight: 500; line-height: 1.2; }
+.nk-md-partner-meta { font-size: 12px; color: var(--md-body); }
+.nk-md-foot-cta { margin-left: auto; display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; font-weight: 500; white-space: nowrap; }
+.nk-md-foot-cta svg { transition: transform 200ms ease; }
+.nk-md-foot-cta:hover svg { transform: translate(3px, -3px); }
+.nk-md[data-partner="false"] { grid-template-rows: minmax(0, 1fr); }
+
+/* ---- no featured card at all: main takes the space ---- */
+.nk-md[data-feat="none"] { grid-template-columns: var(--md-rail) minmax(0, 1fr); }
+
+/* ---- sizes ---- */
+@media (min-width: 1700px) { .nk-md { grid-template-columns: 288px minmax(0, 1fr) 556px; } .nk-md[data-feat="none"] { grid-template-columns: 288px minmax(0, 1fr); } .nk-md-main { padding-left: 64px; } }
+@media (max-width: 1360px) {
+  .nk-md { grid-template-columns: 232px minmax(0, 1fr) 376px; }
+  .nk-md[data-feat="none"] { grid-template-columns: 232px minmax(0, 1fr); }
+  .nk-md-main { padding-left: 36px; padding-right: 20px; }
+  .nk-md-title { font-size: clamp(36px, 3.9vw, 50px); }
+  .nk-md-feat-body { padding: 22px 28px 24px 0; }
+  .nk-md-feat-title { font-size: 26px; }
+  .nk-mega:has(.nk-md) { min-height: min(548px, var(--md-max)); }
+}
+@media (max-width: 1180px) { .nk-md { grid-template-columns: 220px minmax(0, 1fr); } .nk-md-feat { display: none; } .nk-md-foot > .nk-md-eyebrow { width: auto; } }
+/* short laptop screens: tighten so five services still fit without clipping */
+@media (max-height: 800px) {
+  .nk-md-tabs-wrap { padding-top: 16px; } .nk-md-tabs-nav { top: 16px; } .nk-md-title { margin: 12px 0 8px; font-size: clamp(34px, 3.6vw, 48px); }
+  .nk-md-line { padding: 5px 0; gap: 20px; } .nk-md-line-img { width: 88px; } .nk-md-line-name { font-size: 20px; }
+  .nk-md-bar { margin: 14px 0 14px; padding: 11px 18px; } .nk-md-foot { min-height: 56px; padding-top: 6px; padding-bottom: 6px; }
+}
+@media (max-height: 700px) { .nk-md-line-img { width: 72px; } .nk-md-foot { display: none; } .nk-md { grid-template-rows: minmax(0, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .nk-md *, .nk-md-body { transition: none !important; animation: none !important; } }
+
+/* =========================================================================================
+   DARK HEADER while a mega menu is open (set by Header.jsx: data-mega="open")
+   Same colour + pinstripe as the left rail, so the top bar and the rail read as one dark "L".
+   No colour swap on open: logo, links and Contact button keep their normal dark-header look.
+   ========================================================================================= */
+/* Resting header + right-hand slide panel = the footer colour (--nk-night + --nk-pin).
+   The lighter #1b1d21 appears only while a mega menu is open (rule below). */
+header.fixed {
+  background-color: var(--nk-night, #121316) !important;
+  background-image: repeating-linear-gradient(90deg, transparent 0 6px, rgba(255, 255, 255, .055) 6px 7px) !important;
+  transition: background-color 200ms ease, border-color 200ms ease;
+}
+.nk-slide-panel { background-color: var(--nk-night, #121316) !important; background-image: var(--nk-pin) !important; }
+header.fixed[data-mega="open"] {
+  background-color: #1b1d21 !important; color: #fff !important; border-bottom-color: rgba(255, 255, 255, .07) !important;
+  background-image: repeating-linear-gradient(90deg, transparent 0 6px, rgba(255, 255, 255, .07) 6px 7px) !important;
+}
+
+/* ---- v184: right column previews the page a hovered / focused service row opens ---- */
+.nk-md-line[data-previewing] .nk-md-line-name { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
+.nk-md-line[data-previewing] .nk-md-line-arrow { opacity: 1; transform: translateX(0); }
+.nk-md-prev { contain: size; grid-column: 3; grid-row: 1; min-width: 0; min-height: 0; display: flex; padding: 12px 12px 12px 0; box-sizing: border-box; }
+.nk-md-prev-card { flex: 1; min-height: 0; display: flex; flex-direction: column; overflow: hidden; background: var(--md-night); color: #fff; animation: nkMdPrevIn 220ms ease both; }
+@keyframes nkMdPrevIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.nk-md-prev-bar { flex: none; display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 11px 22px; border-bottom: 1px solid rgba(255, 255, 255, .1); }
+.nk-md-prev-bar .nk-md-eyebrow { color: #9da2a9; white-space: nowrap; }
+.nk-md-prev-path { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 11px; color: #6f747b; text-align: right; }
+.nk-md-prev-hero { position: relative; flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; justify-content: center; padding: 22px 28px 22px 28px; overflow: hidden; color: #fff !important;
+  background-image: repeating-linear-gradient(90deg, transparent 0 6px, rgba(255, 255, 255, .06) 6px 7px); }
+.nk-md-prev-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .24; }
+.nk-md-prev-shade { position: absolute; inset: 0; background: linear-gradient(90deg, var(--md-night) 0%, rgba(27, 29, 33, .9) 45%, rgba(27, 29, 33, .55) 100%); }
+.nk-md-prev-hero > .nk-md-prev-img { position: relative; }
+.nk-md-prev-crumbs { font: 500 10.5px/1.5 var(--nk-text, sans-serif); letter-spacing: .2em; text-transform: uppercase; color: rgba(255, 255, 255, .55); margin-bottom: 14px; }
+.nk-md-prev-title { font-size: 38px; font-weight: 500; line-height: 1.04; letter-spacing: -.005em; margin-bottom: 16px; }
+.nk-md-prev-title[data-len="l"] { font-size: 32px; }
+.nk-md-prev-lead { font-size: 13.5px; line-height: 1.65; color: rgba(255, 255, 255, .8); display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 20px; }
+.nk-md-prev-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; }
+.nk-md-prev-cta { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 500; padding-bottom: 3px; border-bottom: 1px solid rgba(255, 255, 255, .5); }
+.nk-md-prev-cta--quiet { border-bottom-color: transparent; color: rgba(255, 255, 255, .6); font-weight: 400; }
+.nk-md-prev-hero:hover .nk-md-prev-cta:not(.nk-md-prev-cta--quiet) { border-bottom-color: #fff; }
+.nk-md-prev-rel { flex: none; padding: 14px 28px 12px; border-top: 1px solid rgba(255, 255, 255, .1); background: rgba(255, 255, 255, .03); }
+.nk-md-prev-rel .nk-md-eyebrow { color: #8a8f96; }
+.nk-md-prev-rel ul { list-style: none; margin: 8px 0 0; padding: 0; }
+.nk-md-prev-rel li + li { border-top: 1px solid rgba(255, 255, 255, .08); }
+.nk-md-prev-rel a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 7px 0; font-size: 16px; color: #c9ccd1; }
+.nk-md-prev-rel a:hover { color: #fff; }
+.nk-md-prev-rel a svg { flex: none; opacity: .5; }
+@media (max-width: 1360px) { .nk-md-prev-title { font-size: 32px; } .nk-md-prev-title[data-len="l"] { font-size: 28px; } .nk-md-prev-hero, .nk-md-prev-bar { padding-left: 22px; padding-right: 22px; } .nk-md-prev-rel { padding-left: 22px; padding-right: 22px; } }
+@media (min-width: 1700px) { .nk-md-prev-title { font-size: 44px; } }
+@media (max-width: 1180px) { .nk-md-prev { display: none; } }
+@media (max-height: 800px) { .nk-md-prev-lead { -webkit-line-clamp: 3; } }
+@media (prefers-reduced-motion: reduce) { .nk-md-prev-card { animation: none !important; } }
+.nk-md-prev .font-serif-display { color: #fff; }
+.nk-md-prev-rel a .font-serif-display { color: inherit; }
+.nk-md-prev-rel .nk-md-eyebrow { display: block; line-height: 1.2; }
+
+/* v184b: photo on top, copy below (same type sizes); the photo takes whatever height is left */
+.nk-md-prev-hero { padding: 0; justify-content: flex-start; background-image: none; }
+.nk-md-prev-img { position: relative; flex: 1 1 0; min-height: 96px; overflow: hidden; background: #2a2d32; }
+.nk-md-prev-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; filter: none; }
+.nk-md-prev-copy { position: relative; flex: none; display: flex; flex-direction: column; padding: 22px 28px 24px;
+  background-image: repeating-linear-gradient(90deg, transparent 0 6px, rgba(255, 255, 255, .06) 6px 7px); }
+.nk-md-prev-bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: .24; }
+.nk-md-prev-shade { display: block; position: absolute; inset: 0; background: linear-gradient(90deg, var(--md-night) 0%, rgba(27, 29, 33, .9) 45%, rgba(27, 29, 33, .55) 100%); }
+.nk-md-prev-copy > :not(.nk-md-prev-bg):not(.nk-md-prev-shade) { position: relative; }
+.nk-md-prev-lead { margin-bottom: 18px; }
+@media (max-width: 1360px) { .nk-md-prev-copy { padding-left: 22px; padding-right: 22px; } }
+
+/* v184c: photo + copy + related pages always together; compact spacing so the photo keeps real height */
+.nk-md-prev-img { min-height: 120px; }
+.nk-md-prev-copy { padding-top: 18px; padding-bottom: 18px; }
+.nk-md-prev-crumbs { margin-bottom: 10px; }
+.nk-md-prev-title { margin-bottom: 12px; }
+.nk-md-prev-lead { -webkit-line-clamp: 4; margin-bottom: 14px; }
+.nk-md-prev-rel { padding-top: 12px; padding-bottom: 8px; }
+.nk-md-prev-rel ul { margin-top: 4px; }
+.nk-md-prev-rel a { padding: 5px 0; }
+@media (max-height: 800px) {
+  .nk-md-prev-img { min-height: 56px; }
+  .nk-md-prev-copy { padding-top: 14px; padding-bottom: 14px; }
+  .nk-md-prev-lead { margin-bottom: 10px; }
+  .nk-md-prev-rel { padding-top: 9px; padding-bottom: 4px; }
+  .nk-md-prev-rel a { padding: 3px 0; font-size: 15px; }
+}
+
+/* v184i: the previewed row stays marked until another one is clicked */
+.nk-md-line[data-previewing] { background: linear-gradient(90deg, rgba(18, 19, 22, .035), rgba(18, 19, 22, 0) 80%); }
+
+/* v184j: service rows — no underline; hover / selected = soft grey fill with a dark bar on the left, before the image */
+.nk-md-line { position: relative; }
+.nk-md-line::before, .nk-md-line::after { content: ''; position: absolute; top: -1px; bottom: 0; left: -16px; opacity: 0; pointer-events: none; transition: opacity 160ms ease; }
+.nk-md-line::before { right: 0; background-color: #f0f1f3; }
+.nk-md-line::after { width: 3px; background: var(--md-ink); }
+.nk-md-line > * { position: relative; z-index: 1; }
+.nk-md-line:hover::before, .nk-md-line:hover::after,
+.nk-md-line:focus-visible::before, .nk-md-line:focus-visible::after,
+.nk-md-line[data-previewing]::before, .nk-md-line[data-previewing]::after { opacity: 1; }
+.nk-md-line:hover .nk-md-line-name, .nk-md-line[data-previewing] .nk-md-line-name { text-decoration: none; }
+.nk-md-line[data-previewing] { background: none; }
+.nk-md-line:focus-visible { outline: none; }
+
+/* v184k: light service rows get the same pinstripe textile as the dark rail's selected row (stripe 1px / 7px pitch, in ink instead of white) */
+.nk-md-line::before {
+  background-color: #eff0f2;
+  background-image: repeating-linear-gradient(90deg, transparent 0 6px, rgba(18, 19, 22, .05) 6px 7px);
+}
+
+/* v184l: the left line on light service rows is pure black, a little thicker, with crisp edges */
+.nk-md-line::after { width: 4px; background: #000; }
+
+/* v184m: the left line on light service rows is a soft dark grey instead of pure black */
+.nk-md-line::after { background: #44474d; }
+
+/* v184n: the left line on light service rows is a little thinner (3px) */
+.nk-md-line::after { width: 3px; }
+
+/* v185: "Plates" rows (proposal B): monochrome same-size thumbnails with a plate number, descriptor line, boxed arrow that fills on hover/selection, full-width footer bar */
+.nk-md-line { gap: 28px; padding: 10px 0; }
+.nk-md-line-img { position: relative; width: 112px; aspect-ratio: 8 / 5; outline: 1px solid rgba(18, 19, 22, .12); outline-offset: -1px; }
+.nk-md-line-img img { filter: grayscale(1) contrast(1.05) brightness(.92); }
+.nk-md-line-desc { max-width: none; }
+.nk-md-line-arrow { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; margin-right: 0; box-sizing: border-box; border: 1px solid rgba(18, 19, 22, .28); background: transparent; color: var(--md-ink); opacity: 1; transform: none; transition: background-color 180ms ease, color 180ms ease, border-color 180ms ease; }
+.nk-md-line:hover .nk-md-line-arrow, .nk-md-line:focus-visible .nk-md-line-arrow, .nk-md-line[data-previewing] .nk-md-line-arrow { opacity: 1; transform: none; background: var(--md-night, #1c1d21); border-color: var(--md-night, #1c1d21); color: #fff; background-color: var(--md-night); background-image: repeating-linear-gradient(90deg, transparent 0 6px, rgba(255, 255, 255, .075) 6px 7px); }
+.nk-md-line > .nk-md-line-arrow { margin-right: 0; }
+.nk-md-line::before, .nk-md-line::after { left: -16px; }
+.nk-md-bar { width: 100%; align-self: stretch; }
+@media (hover: none) { .nk-md-line-arrow { opacity: 1; } }
+@media (max-height: 800px) { .nk-md-line { padding: 7px 0; gap: 22px; } .nk-md-line-img { width: 96px; } .nk-md-line-arrow { width: 32px; height: 32px; } }
+@media (max-height: 700px) { .nk-md-line-img { width: 76px; } }
+/* v186: line under the service title removed; plate numbers removed; filled arrow button carries the same pinstripe textile as the dark bar */
+.nk-md-body > .nk-md-rule { display: none; }
+
+/* v187: the service list fills the whole panel. The rows share the free height equally (few rows = taller rows, bigger photo, bigger title; many rows = they shrink),
+   and the dark footer bar always sits at the bottom, level with the bottom of the right-hand card. Row content scales with the row's own height (container units). */
+.nk-md-body { flex: 1 1 auto; min-height: 0; }
+.nk-md-lines { flex: 1 1 auto; min-height: 0; display: flex; flex-direction: column; }
+.nk-md-bar { flex: none; margin-bottom: 12px; }
+@supports (height: 1cqh) {
+  .nk-md-line { flex: 1 1 0; min-height: 30px; padding: 0; container-type: size; }
+  .nk-md-line-img { width: auto; height: clamp(14px, calc(100cqh - 12px), 150px); aspect-ratio: 8 / 5; }
+  .nk-md-line-name { font-size: 22px; line-height: 1.15; }
+  .nk-md-line-desc { font-size: 13px; }
+  .nk-md-line-arrow { width: clamp(16px, calc(100cqh * .4), 56px); height: clamp(16px, calc(100cqh * .4), 56px); }
+}
+
+/* v188: FIXED panel height. The menu never grows or scrolls: 612px (548px on narrower laptop screens, never more than the window allows).
+   The service rows share the free height (they shrink as services are added); the left list shrinks its rows when a section has many entries. */
+.nk-mega:has(.nk-md) { --md-panel: min(612px, var(--md-max)); height: var(--md-panel) !important; min-height: var(--md-panel); max-height: var(--md-panel); }
+@media (max-width: 1360px) { .nk-mega:has(.nk-md) { --md-panel: min(548px, var(--md-max)); } }
+.nk-md { height: 100%; max-height: none; }
+.nk-md-main { overflow: hidden; }
+.nk-md-body { animation-name: nkMdFade; }
+@keyframes nkMdFade { from { opacity: 0; } to { opacity: 1; } }
+.nk-md-secs--solo .nk-md-cats { --n: 1; }
+.nk-md-secs--solo .nk-md-cats:has(> li:nth-child(6):last-child) { --n: 6; }
+.nk-md-secs--solo .nk-md-cats:has(> li:nth-child(7):last-child) { --n: 7; }
+.nk-md-secs--solo .nk-md-cats:has(> li:nth-child(8):last-child) { --n: 8; }
+.nk-md-secs--solo .nk-md-cats:has(> li:nth-child(9):last-child) { --n: 9; }
+.nk-md-secs--solo .nk-md-cats:has(> li:nth-child(10):last-child) { --n: 10; }
+.nk-md-secs--solo .nk-md-cats:has(> li:nth-child(11):last-child) { --n: 11; }
+.nk-md-secs--solo .nk-md-cats:has(> li:nth-child(12):last-child) { --n: 12; }
+.nk-md-secs--solo .nk-md-cats:has(> li:nth-child(13):last-child) { --n: 13; }
+.nk-md-secs--solo .nk-md-cats:has(> li:nth-child(14):last-child) { --n: 14; }
+.nk-md-secs--solo .nk-md-cat { min-height: clamp(26px, calc((var(--md-panel) - 205px) / var(--n)), 48px); }
+.nk-md-secs--solo .nk-md-cats:has(> li:nth-child(7)) .nk-md-cat > span { padding: 4px 0; }
+
+/* v192: service titles (and descriptors) are ALWAYS the same size, whatever the number of rows or the screen. Only the photo and the arrow button scale with the row. */
+.nk-md-line .nk-md-line-name { font-size: 20px !important; line-height: 1.15 !important; }
+.nk-md-line .nk-md-line-desc { font-size: 13px !important; }
+
+/* v193: descriptors are always shown (4 to 8 rows). Line spacing is tight so title (22px) + descriptor (13px) fit in the shortest rows. */
+.nk-md-line .nk-md-line-text { gap: 0 !important; }
+.nk-md-line .nk-md-line-name { line-height: 1.1 !important; }
+.nk-md-line .nk-md-line-desc { display: block !important; line-height: 1.22 !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* v194: title 20px (descriptor 13px) in every section; a small gap between them so the descriptor has air. */
+.nk-md-line .nk-md-line-name { font-size: 20px !important; line-height: 1.1 !important; }
+.nk-md-line .nk-md-line-text { gap: 2px !important; }
+.nk-md-line .nk-md-line-desc { line-height: 1.2 !important; }
+/* v194: sections with 7+ rows get a slightly more compact heading block, which gives every row a few more pixels of air. */
+.nk-md-body:has(.nk-md-line:nth-child(7)) .nk-md-title { margin: 10px 0 6px; font-size: clamp(32px, 3.4vw, 46px); line-height: 1; }
+.nk-md-body:has(.nk-md-line:nth-child(7)) .nk-md-title[data-len="l"], .nk-md-body:has(.nk-md-line:nth-child(7)) .nk-md-title[data-len="xl"] { font-size: clamp(28px, 2.8vw, 38px); }
+@media (max-width: 1360px) { .nk-md-body:has(.nk-md-line:nth-child(7)) .nk-md-title { margin: 8px 0 4px; font-size: clamp(28px, 3vw, 38px); } .nk-md-body:has(.nk-md-line:nth-child(7)) .nk-md-title[data-len="l"], .nk-md-body:has(.nk-md-line:nth-child(7)) .nk-md-title[data-len="xl"] { font-size: clamp(26px, 2.6vw, 32px); } }
+
+/* v195: title back to 22px. The gap between title and descriptor grows with the row height (roomy rows get real air; tight rows keep 2px). */
+.nk-md-line .nk-md-line-name { font-size: 22px !important; line-height: 1.12 !important; }
+.nk-md-line .nk-md-line-text { gap: 2px !important; }
+.nk-md-line .nk-md-line-desc { line-height: 1.25 !important; }
+@container (min-height: 48px) { .nk-md-line .nk-md-line-text { gap: 4px !important; } }
+@container (min-height: 58px) { .nk-md-line .nk-md-line-text { gap: 7px !important; } }
+@container (min-height: 70px) { .nk-md-line .nk-md-line-text { gap: 10px !important; } }
+@container (max-height: 44px) { .nk-md-line .nk-md-line-name { line-height: 1.05 !important; } .nk-md-line .nk-md-line-desc { line-height: 1.15 !important; } .nk-md-line .nk-md-line-text { gap: 1px !important; } }

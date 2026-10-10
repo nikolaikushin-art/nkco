@@ -1,0 +1,1042 @@
+/* NK&CO — mega menu plate (v57) + hamburger panel / header actions (v59) */
+/* v57 · mega menu: larger featured plate — wider column, full-bleed 4:3 image */
+@media (min-width: 1181px) {
+  .nk-mr { grid-template-columns: 270px 330px minmax(0, 1fr) 430px; }
+}
+@media (min-width: 1181px) and (max-width: 1360px) { .nk-mr { grid-template-columns: 260px 300px minmax(0, 1fr) 370px; } }
+@media (min-width: 1700px) { .nk-mr { grid-template-columns: 280px 380px minmax(0, 1fr) 560px; } }
+.nk-mr-feat { gap: 20px; }
+.nk-mr-feat .nk-mr-card-img { margin: -34px -32px 22px -28px; width: auto; aspect-ratio: 3 / 2; border: 0 !important; padding: 0 !important; }
+.nk-mr-feat .nk-mr-card-img img { width: 100%; height: 100%; aspect-ratio: auto; object-fit: cover; }
+.nk-mr-feat .nk-mr-card h4 { font-size: 26px; line-height: 1.14; }
+.nk-mr-feat .nk-mr-card:hover .nk-mr-card-img img { transform: scale(1.03); }
+@media (max-height: 720px) { .nk-mr-feat .nk-mr-card-img { aspect-ratio: 16 / 10; } }
+
+
+/* ==========================================================================
+ * v59 · HAMBURGER PANEL — one clean, flat definition (desktop + mobile)
+ * Supersedes the older panel overrides in App / oldmoney / institutional / final.
+ * Flat graphite, hairline rows, serif labels, no pinstripe, no stacked buttons.
+ * ========================================================================== */
+aside.nk-slide-panel {
+  --pn-bg: #121316; --pn-line: rgba(196,200,206,.14); --pn-text: #e9e8e4; --pn-mute: #8d9299;
+  position: fixed; top: var(--nk-header-h, 64px); right: 0; bottom: 0; left: auto;
+  width: 440px; max-width: 100vw; height: auto !important;
+  display: flex; flex-direction: column; overflow: hidden; min-height: 0;
+  background: var(--pn-bg) !important; background-image: var(--nk-pin) !important;
+  border-top: 1px solid var(--pn-line); border-left: 1px solid var(--pn-line);
+  box-shadow: none !important; z-index: 30;
+  transform: translateX(100%); visibility: hidden;
+  transition: transform 320ms cubic-bezier(.22,.61,.36,1), visibility 0s linear 320ms;
+}
+aside.nk-slide-panel[data-open="true"] {
+  transform: none; visibility: visible; transition: transform 320ms cubic-bezier(.22,.61,.36,1), visibility 0s;
+  box-shadow: -24px 0 60px rgba(0,0,0,.38) !important;
+}
+@media (max-width: 1023px) {
+  aside.nk-slide-panel { width: 100vw; border-left: 0; }
+}
+.nk-backdrop { top: var(--nk-header-h, 64px) !important; background: rgba(8,9,11,.6) !important; z-index: 25 !important; }
+
+/* scrolling area */
+aside.nk-slide-panel .nk-slide-body {
+  flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch;
+  padding: 28px 32px 36px !important; background: transparent !important;
+}
+@media (max-width: 1023px) { aside.nk-slide-panel .nk-slide-body { padding: 24px 24px 32px !important; } }
+
+aside.nk-slide-panel .nk-panel-label {
+  padding: 0; margin: 0 0 8px; font: 500 11px/1 var(--nk-text); letter-spacing: .24em; text-transform: uppercase; color: var(--pn-mute);
+}
+
+/* top-level accordion rows */
+aside.nk-slide-panel .nk-acc-trigger {
+  width: 100%; padding: 17px 0 !important; font: 400 22px/1.2 var(--nk-display) !important; letter-spacing: .005em;
+  color: var(--pn-text); background: transparent !important; border: 0 !important; border-bottom: 1px solid var(--pn-line) !important;
+}
+aside.nk-slide-panel .nk-slide-body > div:nth-of-type(2) .nk-acc-trigger { border-top: 1px solid var(--pn-line) !important; }
+aside.nk-slide-panel .nk-acc-trigger::before { display: none !important; }
+aside.nk-slide-panel .nk-acc-trigger:hover,
+aside.nk-slide-panel .nk-acc-trigger[data-open="true"] { background: transparent !important; color: #fff; }
+aside.nk-slide-panel .nk-acc-trigger .plus { width: 14px; height: 14px; }
+aside.nk-slide-panel .nk-acc-trigger .plus::before { top: 6.5px; height: 1px; background: var(--pn-mute); }
+aside.nk-slide-panel .nk-acc-trigger .plus::after { left: 6.5px; width: 1px; background: var(--pn-mute); }
+aside.nk-slide-panel .nk-acc-trigger:hover .plus::before,
+aside.nk-slide-panel .nk-acc-trigger:hover .plus::after { background: #fff; }
+
+/* opened content: flat, same surface, indented by a single hairline */
+aside.nk-slide-panel .nk-acc-body { background: transparent !important; background-image: none !important; }
+aside.nk-slide-panel .nk-acc-body > div { padding: 8px 0 20px !important; }
+aside.nk-slide-panel .nk-acc-body .nk-panel-label { margin: 14px 0 0; }
+aside.nk-slide-panel .nk-acc-body a[class*="--nk-red"] { color: var(--pn-mute) !important; font: 500 11px var(--nk-text) !important; letter-spacing: .14em; text-transform: uppercase; font-variant-caps: normal; }
+aside.nk-slide-panel .nk-acc-body a[class*="--nk-red"]:hover { color: #fff !important; }
+aside.nk-slide-panel .nk-side-sub { border-bottom: 1px solid var(--pn-line); }
+aside.nk-slide-panel .nk-side-sub-trigger { padding: 12px 0 !important; font: 400 18px/1.25 var(--nk-display); color: #cfcec9; background: transparent; }
+aside.nk-slide-panel .nk-side-sub-trigger:hover,
+aside.nk-slide-panel .nk-side-sub-trigger[data-open="true"] { color: #fff; }
+aside.nk-slide-panel .nk-side-sub-trigger .chev { color: var(--pn-mute); }
+aside.nk-slide-panel .nk-side-sub-body ul { border-left: 1px solid var(--pn-line); margin: 0 0 10px; }
+aside.nk-slide-panel .nk-side-sub-body a { color: var(--pn-mute); font: 400 15px/1.3 var(--nk-text); }
+aside.nk-slide-panel .nk-side-sub-body a:hover { color: #fff; transform: none; }
+
+/* quick links / contact / follow */
+aside.nk-slide-panel .nk-slide-body > div.nk-panel-sec { padding: 0 !important; margin: 44px 0 0 !important; }
+aside.nk-slide-panel .nk-panel-sec .nk-panel-label { margin-bottom: 14px; }
+aside.nk-slide-panel .nk-slide-body li > a { font: 400 18px/1.25 var(--nk-display) !important; color: #cfcec9; }
+aside.nk-slide-panel .nk-slide-body li > a:hover { color: #fff; }
+aside.nk-slide-panel .nk-panel-sec ul.grid { border-top: 1px solid var(--pn-line); gap: 0 28px; }
+aside.nk-slide-panel .nk-panel-sec ul.grid li { border: 0; border-bottom: 1px solid var(--pn-line); padding: 12px 0; }
+aside.nk-slide-panel .nk-panel-follow ul { padding-top: 12px; border-top: 1px solid var(--pn-line); }
+
+/* footer bar: ONE solid button, always visible, never overlapped */
+aside.nk-slide-panel > .nk-slide-foot {
+  flex: 0 0 auto; padding: 16px 32px calc(16px + env(safe-area-inset-bottom, 0px)) !important;
+  background: var(--pn-bg) !important; background-image: var(--nk-pin) !important; border-top: 1px solid var(--pn-line) !important;
+}
+@media (max-width: 1023px) { aside.nk-slide-panel > .nk-slide-foot { padding-left: 24px !important; padding-right: 24px !important; } }
+aside.nk-slide-panel .nk-panel-cta {
+  display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; min-height: 52px; box-sizing: border-box; padding: 0 20px !important;
+  background: #fff !important; background-image: none !important; color: #121316 !important; border: 1px solid #fff !important; border-radius: 0;
+  font: 500 13px/1 var(--nk-text) !important; letter-spacing: .18em; text-transform: uppercase; text-decoration: none;
+  transition: background-color 160ms ease, color 160ms ease;
+}
+aside.nk-slide-panel .nk-panel-cta:hover { background: transparent !important; color: #fff !important; }
+aside.nk-slide-panel .nk-panel-cta svg { stroke: currentColor; }
+
+/* the back-to-top button must never sit on top of the open panel */
+body.nk-nav-open .nk-totop { opacity: 0 !important; pointer-events: none !important; visibility: hidden; }
+
+
+/* ==========================================================================
+ * v63 · HEADER ACTIONS — clean: plain nav, white "Contact Us" box, bare 3-line menu.
+ * Graphite + pinstripe header kept; no borders, no caps, no boxes around the menu.
+ * ========================================================================== */
+header .nk-header-actions { gap: 28px; }
+header .nk-header-actions .nk-contact-btn {
+  height: 44px; padding: 0 24px !important; display: inline-flex; align-items: center; border-radius: 0 !important; box-shadow: none !important;
+  background-color: #ffffff !important; background-image: none !important; color: #121316 !important; border: 0 !important;
+  font: 500 13px/1 var(--nk-text) !important; letter-spacing: 0 !important; text-transform: none !important; font-variant-caps: normal !important; white-space: nowrap;
+  transition: background-color 160ms ease;
+}
+header .nk-header-actions .nk-contact-btn:hover { background-color: #c4c8ce !important; color: #121316 !important; }
+header .nk-header-actions .nk-square-hamburger {
+  width: 44px; height: 44px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 0 !important;
+  background: transparent !important; background-image: none !important; border: 0 !important; box-shadow: none !important; color: #ffffff !important;
+  transition: opacity 160ms ease;
+}
+header .nk-header-actions .nk-square-hamburger:hover,
+header .nk-header-actions .nk-square-hamburger[aria-expanded="true"] { background: transparent !important; color: #fff !important; opacity: .7; }
+header .nk-header-actions .nk-square-hamburger:active { transform: none; }
+header .nk-header-actions .nk-contact-btn:focus-visible,
+header .nk-header-actions .nk-square-hamburger:focus-visible { outline: 1px solid #c4c8ce; outline-offset: 3px; }
+
+/* ==========================================================================
+ * v64 · PRIMARY NAV — six items, one font, one size, one baseline, even spacing
+ * ========================================================================== */
+header nav[aria-label="Primary"] { display: none; align-items: center; gap: clamp(18px, 2.3vw, 38px); height: 64px; margin-left: auto; }
+header nav[aria-label="Primary"] .nk-nav-link {
+  position: relative; display: inline-flex; align-items: center; height: 64px; padding: 0 !important; margin: 0;
+  font: 400 13.5px/1 var(--nk-text) !important; letter-spacing: 0 !important; text-transform: none !important; font-variant-caps: normal !important;
+  color: rgba(255,255,255,.88) !important; background: transparent !important; background-image: none !important; border: 0 !important; border-radius: 0; white-space: nowrap;
+  transition: color 160ms ease;
+}
+header nav[aria-label="Primary"] .nk-nav-link:hover,
+header nav[aria-label="Primary"] .nk-nav-link[data-active="true"] { color: #fff !important; background: transparent !important; }
+header nav[aria-label="Primary"] .nk-nav-link::before { content: none !important; display: none !important; }
+header nav[aria-label="Primary"] .nk-nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 14px; height: 1px; background: transparent; }
+header nav[aria-label="Primary"] .nk-nav-link:hover::after { background: rgba(196,200,206,.5); }
+header nav[aria-label="Primary"] .nk-nav-link[data-active="true"]::after { background: #fff; }
+header nav[aria-label="Primary"] .nk-nav-caret { display: none; }
+header .nk-header-actions { margin-left: clamp(24px, 2.6vw, 44px); }
+
+/* v68 · right cluster: nav → Contact Us → menu all separated by the SAME gap */
+header { --nk-hgap: clamp(18px, 1.9vw, 28px); }
+header > .nk-container { gap: 0 !important; }
+header nav[aria-label="Primary"] { gap: clamp(15px, 1.7vw, 25px); }
+header .nk-header-actions { margin-left: var(--nk-hgap) !important; gap: var(--nk-hgap); }
+header .nk-header-actions .nk-contact-btn { height: 46px; padding: 0 16px !important; }
+header .nk-header-actions .nk-square-hamburger { width: 40px; height: 46px; margin: 0; }
+
+/* v68 · responsive: full nav only where it fits (≥1180px); Contact Us from 768px; below that the menu key carries everything */
+@media (min-width: 1180px) { header nav[aria-label="Primary"] { display: flex; } }
+header .nk-header-actions .nk-contact-btn { display: none !important; }
+@media (min-width: 768px) { header .nk-header-actions .nk-contact-btn { display: inline-flex !important; } }
+header .nk-header-actions { margin-left: auto !important; }
+@media (min-width: 1180px) { header .nk-header-actions { margin-left: var(--nk-hgap) !important; } }
+
+/* v69 · panel: the Navigate list fills the first screen; Quick links / Contact / Follow sit below the fold (scroll to reach them) */
+aside.nk-slide-panel .nk-panel-nav { min-height: calc(100vh - var(--nk-header-h, 64px) - 125px); min-height: calc(100dvh - var(--nk-header-h, 64px) - 125px); }
+
+/* v81 · hamburger moved to the LEFT, before the logo (same button, same styling; only its position changed) */
+header .nk-header-actions.nk-header-actions-left { margin-left: 0 !important; margin-right: clamp(16px, 1.6vw, 24px) !important; flex-shrink: 0; }
+
+/* v83 · hamburger icon is exactly as tall as the logo glyphs: top line on the logo's top edge, bottom line on its baseline */
+header .nk-square-hamburger svg { transform: translateY(.5px); }
+
+/* v86 · mega menu featured image: full-bleed — touches the column's top, left and right edges, no frame.
+   (Padding was 38/32/30/30 while the image's negative margins assumed 34/32/28, leaving 3-4px gaps;
+   and the colour-grade overlay was inset 7px, which drew a pale frame around the photo.) */
+.nk-mr-feat { padding: 0 32px 30px 32px !important; border-left: 0 !important; box-shadow: none !important; }
+.nk-mr-feat:not(:has(.nk-mr-card-img)) { padding-top: 38px !important; }
+.nk-mr-feat::before { display: none !important; }
+.nk-mr-feat .nk-mr-card-img { margin: 0 -32px 22px -32px !important; width: auto; border: 0 !important; padding: 0 !important; box-shadow: none !important; }
+.nk-mr-feat .nk-mr-card-img::before { display: none !important; }
+.nk-mr-card-img[data-art]::after { inset: 0 !important; }
+@media (max-width: 1359px) { .nk-mr-feat { padding: 0 24px 26px 24px !important; } .nk-mr-feat .nk-mr-card-img { margin: 0 -24px 22px -24px !important; } .nk-mr-feat:not(:has(.nk-mr-card-img)) { padding-top: 38px !important; } }
+
+/* v87 · mega menu active-row bar: it sat INSIDE the row's 1px hairlines (top:0 / bottom:0), so the dark bar looked
+   shorter than the grey band and the borders ran past it, leaving a stepped notch against the dark rail.
+   Now the bar covers the hairlines too (-1px each side) and uses the rail's exact colour, so rail + bar read as one edge. */
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"]::before {
+  top: -1px !important; bottom: -1px !important; left: 0 !important; width: 2px !important; background: var(--nk-night, #121316) !important;
+}
+
+/* v87 · hamburger on the RIGHT, mobile/tablet only (below 1180px, where the slide-in panel is the navigation).
+   Desktop (>=1180px) is untouched: hamburger stays on the left, before the logo. */
+@media (max-width: 1179px) {
+  header > .nk-container > a[aria-label="NK&CO home"] { order: 1; }
+  header > .nk-container > .nk-header-actions:not(.nk-header-actions-left) { order: 2; }
+  header > .nk-container > .nk-header-actions.nk-header-actions-left {
+    order: 3; margin-left: var(--nk-hgap, 20px) !important; margin-right: 0 !important;
+  }
+}
+/* phones: Contact Us is hidden, so the hamburger alone sits at the far right */
+@media (max-width: 767px) {
+  header > .nk-container > .nk-header-actions.nk-header-actions-left { margin-left: auto !important; }
+}
+
+/* v87 · no vertical divider between the items column and the detail column */
+.nk-mr .nk-mr-items { border-right: 0 !important; box-shadow: none !important; }
+.nk-mr .nk-mr-detail { border-left: 0 !important; box-shadow: none !important; }
+.nk-mr .nk-mr-detail::before, .nk-mr .nk-mr-detail::after { display: none !important; }
+
+/* ==========================================================================
+ * v88 · INSTITUTIONAL MEGA MENU — flat, ruled, numbered.
+ * No stripe texture, no rounded rail buttons, no gradients; one hairline colour; a black rule above each list;
+ * numbered rail (01–04); only the featured column keeps a vertical line; greyscale imagery.
+ * ========================================================================== */
+header.fixed, .nk-mr-cats, .nk-mr-items, .nk-mr-detail, .nk-mr-feat { background-image: none !important; }
+.nk-mr .nk-mr-items, .nk-mr .nk-mr-detail, .nk-mr .nk-mr-feat, .nk-mr { background-color: #ffffff !important; }
+.nk-mr .nk-mr-cats { background-color: #121316 !important; }
+
+/* rail: flat rows, hairlines, numerals */
+.nk-mr .nk-mr-cats ul { padding: 0 !important; counter-reset: nkcat; }
+.nk-mr .nk-mr-cats li { position: relative; margin: 0 !important; border-top: 1px solid rgba(255,255,255,.09) !important; border-bottom: 0 !important; counter-increment: nkcat; }
+.nk-mr .nk-mr-cats li:last-child { border-bottom: 1px solid rgba(255,255,255,.09) !important; }
+.nk-mr .nk-mr-cats li::before {
+  content: counter(nkcat, decimal-leading-zero); position: absolute; left: 28px; top: 50%; transform: translateY(-50%);
+  font: 600 10.5px/1 var(--nk-text, sans-serif); letter-spacing: .08em; color: #6f747b; pointer-events: none; z-index: 1;
+}
+.nk-mr .nk-mr-cats li:has(.nk-mr-cat[data-active="true"])::before { color: #c4c8ce; }
+.nk-mr .nk-mr-cats .nk-mr-cat {
+  border: 0 !important; border-radius: 0 !important; box-shadow: none !important; background: transparent !important; background-image: none !important;
+  padding: 18px 20px 18px 64px !important; color: #cfd1d4 !important;
+}
+.nk-mr .nk-mr-cats .nk-mr-cat:hover { background: rgba(255,255,255,.04) !important; color: #fff !important; }
+.nk-mr .nk-mr-cats .nk-mr-cat[data-active="true"] { background: rgba(255,255,255,.06) !important; color: #fff !important; }
+.nk-mr .nk-mr-cats .nk-mr-cat[data-active="true"]::before { top: -1px !important; bottom: -1px !important; left: 0 !important; width: 2px !important; border-radius: 0 !important; background: #fff !important; }
+
+/* items column: white, ruled rows, no vertical divider */
+.nk-mr .nk-mr-items { padding-top: 0 !important; border-right: 0 !important; }
+.nk-mr .nk-mr-items .nk-mr-label { display: block !important; padding: 28px 30px 14px !important; }
+.nk-mr .nk-mr-items li { border-top: 1px solid #dcdbd7 !important; border-bottom: 0 !important; }
+.nk-mr .nk-mr-items li:last-child { border-bottom: 1px solid #dcdbd7 !important; }
+.nk-mr .nk-mr-items .nk-mr-item { padding-left: 30px !important; }
+.nk-mr .nk-mr-items .nk-mr-item:hover { background-color: #f6f5f2 !important; }
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"] { background-color: #f6f5f2 !important; }
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"]::before { background: #121316 !important; }
+
+/* detail: black rule above the numbered list, hairlines between rows */
+.nk-mr .nk-mr-links { border-top: 1px solid #121316 !important; }
+.nk-mr .nk-mr-links li, .nk-mr .nk-mr-links a { border-color: #dcdbd7 !important; }
+
+/* featured column: the only vertical line, greyscale photo, ruled "more" list */
+.nk-mr .nk-mr-feat { border-left: 1px solid #dcdbd7 !important; }
+.nk-mr .nk-mr-card-img { filter: grayscale(1) contrast(1.02); }
+.nk-mr .nk-mr-more { border-top: 1px solid #121316; margin-top: 24px; }
+.nk-mr .nk-mr-row { border-bottom: 1px solid #dcdbd7; }
+
+/* panel closes with one black rule */
+.nk-mega { border-bottom: 1px solid #121316 !important; }
+
+/* v89 · partner-in-charge line under each mega-menu service */
+.nk-mr-partner { display: flex; align-items: center; gap: 16px; margin-top: 24px; padding: 16px 0; border-top: 1px solid #dcdbd7; border-bottom: 1px solid #dcdbd7; }
+.nk-mr-partner-av { flex: 0 0 46px; height: 46px; border-radius: 50%; background: #121316; color: #fff; display: inline-flex; align-items: center; justify-content: center; font: 600 13px/1 var(--nk-text, sans-serif); letter-spacing: .08em; }
+.nk-mr-partner-lab { font: 600 10.5px/1 var(--nk-text, sans-serif); letter-spacing: .2em; text-transform: uppercase; color: #6b6f76; margin-bottom: 6px; }
+.nk-mr-partner-name { font-size: 17px; line-height: 1.25; color: #121316; }
+.nk-mr-partner-contact { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 3px; font: 400 12px/1.4 var(--nk-text, sans-serif); color: #6b6f76; }
+.nk-mr-partner-contact a { color: inherit; text-decoration: none; }
+.nk-mr-partner-contact a:hover { color: #121316; text-decoration: underline; }
+@media (max-width: 1180px) { .nk-mr-partner { margin-top: 18px; } }
+
+/* v90 · mega menu: left rail and items column are the SAME width, wide enough for the full category names.
+   Category / item labels wrap instead of ending in "…" so no information is cut off. */
+@media (min-width: 1181px) { .nk-mr { grid-template-columns: 360px 360px minmax(0, 1fr) 400px; } }
+@media (min-width: 1181px) and (max-width: 1360px) { .nk-mr { grid-template-columns: 320px 320px minmax(0, 1fr) 280px; } }
+@media (min-width: 1700px) { .nk-mr { grid-template-columns: 400px 400px minmax(0, 1fr) 520px; } }
+.nk-mr .nk-mr-cats .nk-mr-cat span,
+.nk-mr .nk-mr-items .nk-mr-item span { white-space: normal !important; overflow: visible !important; text-overflow: clip !important; }
+.nk-mr .nk-mr-cats .nk-mr-cat span { line-height: 1.3; }
+
+/* v91 · featured column is white since v88 — its text was still styled for the old dark ground (near-invisible).
+   Dark, readable text throughout the column. */
+.nk-mr .nk-mr-feat .nk-mr-card,
+.nk-mr .nk-mr-feat .nk-mr-card:hover { color: #1b1d21 !important; }
+.nk-mr .nk-mr-feat .nk-mr-tag { color: #6b6f76 !important; }
+.nk-mr .nk-mr-feat .nk-mr-card h4,
+.nk-mr .nk-mr-feat .nk-mr-card h4.font-serif-display,
+.nk-mr .nk-mr-feat .nk-mr-card:hover h4 { color: #121316 !important; }
+.nk-mr .nk-mr-feat .nk-mr-card p { color: #4b5057 !important; font-style: normal !important; font-weight: 400 !important; font-size: 14.5px !important; line-height: 1.6 !important; }
+.nk-mr .nk-mr-feat .nk-mr-card-cta,
+.nk-mr .nk-mr-feat .nk-mr-card:hover .nk-mr-card-cta { color: #121316 !important; border-bottom: 1px solid #121316 !important; }
+.nk-mr .nk-mr-feat .nk-mr-row-tag { color: #6b6f76 !important; }
+.nk-mr .nk-mr-feat .nk-mr-row-title { color: #121316 !important; }
+.nk-mr .nk-mr-feat .nk-mr-row:hover .nk-mr-row-title { color: #121316 !important; text-decoration: underline; }
+.nk-mr .nk-mr-feat .nk-mr-row-img { background: #e9e8e5 !important; border-color: #dcdbd7 !important; }
+.nk-mr .nk-mr-feat :focus-visible { outline-color: #121316; }
+
+/* v92 · "Featured reports" list at the foot of the right-hand column — text rows, as many as fit the screen height */
+.nk-mr .nk-mr-reports { border-top: 0; margin-top: 22px; padding-top: 0; }
+.nk-mr .nk-mr-reports-label { font: 600 10.5px/1 var(--nk-text, sans-serif); letter-spacing: .2em; text-transform: uppercase; color: #6b6f76; padding-bottom: 12px; border-bottom: 1px solid #121316; }
+.nk-mr .nk-mr-report { display: block; padding: 13px 0; border-bottom: 1px solid #dcdbd7; }
+.nk-mr .nk-mr-report:last-child { border-bottom: 1px solid #dcdbd7; }
+.nk-mr .nk-mr-report .nk-mr-row-title { font-size: 16px; line-height: 1.3; margin-top: 4px; }
+/* how many rows show is decided in MegaRail.jsx (only rows that fully fit) */
+
+/* v93 · both sidebars slimmer (still equal width) with slightly tighter rows; long names still wrap rather than truncate */
+@media (min-width: 1181px) { .nk-mr { grid-template-columns: 300px 300px minmax(0, 1fr) 400px; } }
+@media (min-width: 1181px) and (max-width: 1360px) { .nk-mr { grid-template-columns: 270px 270px minmax(0, 1fr) 300px; } }
+@media (min-width: 1700px) { .nk-mr { grid-template-columns: 320px 320px minmax(0, 1fr) 520px; } }
+.nk-mr .nk-mr-cats .nk-mr-cat { padding: 14px 16px 14px 56px !important; font-size: 15.5px !important; }
+.nk-mr .nk-mr-cats li::before { left: 22px; }
+.nk-mr .nk-mr-items .nk-mr-item { padding: 14px 18px 14px 24px !important; font-size: 15.5px !important; }
+.nk-mr .nk-mr-items .nk-mr-label { padding: 24px 24px 12px !important; }
+
+/* v94 · mega menu runs longer: up to 720px tall (was 600px), leaving a 48px strip of page visible beneath it
+   (was 96px) so nothing at the bottom — "Start business setup", the partner line — is clipped. */
+.nk-mega {
+  --nk-mega-gap: 48px;
+  height: min(720px, calc(100vh - var(--nk-header-h, 64px) - var(--nk-mega-gap))) !important;
+}
+.nk-mr .nk-mr-detail { padding-bottom: 20px; }
+
+/* v95 · mega menu is FIXED, nothing scrolls: the panel never shows a scrollbar and the detail column is compacted
+   so title, list, partner line and "Start …" link all sit inside the panel at every desktop height. */
+.nk-mr, .nk-mr-cats, .nk-mr-items, .nk-mr-detail, .nk-mr-feat { overflow: hidden !important; }
+.nk-mr .nk-mr-detail { padding: 26px 40px 20px !important; }
+.nk-mr .nk-mr-eyebrow { margin-bottom: 8px; }
+.nk-mr .nk-mr-title { font-size: clamp(30px, 2.4vw, 36px) !important; line-height: 1.06 !important; }
+.nk-mr .nk-mr-orn { margin: 14px 0 12px !important; }
+.nk-mr .nk-mr-desc { font-size: 14.5px !important; line-height: 1.5 !important; }
+.nk-mr .nk-mr-links { margin-top: 16px !important; }
+.nk-mr-detail .nk-mr-links a, .nk-mr-detail .nk-mr-links a span { font-size: 18px !important; }
+.nk-mr .nk-mr-links a { padding-top: 10px !important; padding-bottom: 10px !important; }
+.nk-mr .nk-mr-partner { margin-top: 16px; padding: 12px 0; gap: 14px; }
+.nk-mr .nk-mr-partner-av { flex-basis: 40px; height: 40px; font-size: 12px; }
+.nk-mr .nk-mr-partner-name { font-size: 16px; }
+.nk-mr .nk-mr-viewall { margin-top: 14px !important; }
+/* safety: on short windows drop the optional partner line before anything could clip */
+@media (max-height: 760px) { .nk-mr .nk-mr-partner { display: none; } }
+
+/* v96 · no repeated section label: the left rail already names the section, so the items column and the detail
+   column drop their "SUSTAINABILITY & EXPANSION"-style captions. The items list starts at the very top, row-for-row
+   level with the rail (no blank band above it). */
+.nk-mr .nk-mr-items .nk-mr-label,
+.nk-mr .nk-mr-eyebrow { display: none !important; }
+.nk-mr .nk-mr-items { padding-top: 0 !important; }
+.nk-mr .nk-mr-items ul { margin-top: 0 !important; }
+.nk-mr .nk-mr-items li:first-child { border-top: 0 !important; }
+.nk-mr .nk-mr-cats { padding-top: 0 !important; }
+.nk-mr .nk-mr-cats li:first-child { border-top: 0 !important; }
+.nk-mr .nk-mr-detail { padding-top: 34px !important; }
+
+/* v97 · featured image a little shorter (16:9) so more "Featured reports" rows fit under the card */
+.nk-mr .nk-mr-feat .nk-mr-card-img { aspect-ratio: 16 / 9 !important; }
+
+/* v97 · cool grey instead of cream: hover/active rows, dividers and image placeholders are neutral grey;
+   the faint vertical stripe texture is removed from the light columns (an older rule was still re-adding it). */
+.nk-mr .nk-mr-items .nk-mr-item:hover,
+.nk-mr .nk-mr-items .nk-mr-item:focus-visible { background-color: #f1f2f3 !important; }
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"],
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"]:hover { background-color: #e8e9eb !important; }
+.nk-mr .nk-mr-items li { border-color: #d9dbde !important; }
+.nk-mr .nk-mr-items li:last-child { border-bottom-color: #d9dbde !important; }
+.nk-mr .nk-mr-links li, .nk-mr .nk-mr-links a { border-color: #d9dbde !important; }
+.nk-mr .nk-mr-feat { border-left-color: #d9dbde !important; }
+.nk-mr .nk-mr-row, .nk-mr .nk-mr-report, .nk-mr .nk-mr-partner { border-color: #d9dbde !important; }
+.nk-mr .nk-mr-feat .nk-mr-row-img { background: #e8e9eb !important; border-color: #d9dbde !important; }
+.nk-mega, .nk-mr { background-color: #ffffff !important; }
+.nk-mr .nk-mr-items, .nk-mr .nk-mr-detail, .nk-mr .nk-mr-feat { background-image: none !important; }
+
+/* ==========================================================================
+ * v98 · clean: pinstripe textile back on header + rail, white gap with one hairline under the navigation
+ * ========================================================================== */
+:root {
+  --nk-pin-d: repeating-linear-gradient(90deg, transparent 0 6px, rgba(255,255,255,.04) 6px 7px);
+  --nk-pin-l: repeating-linear-gradient(90deg, transparent 0 5px, rgba(18,19,22,.02) 5px 6px);
+}
+header.fixed, header { background-color: #1b1d21 !important; background-image: var(--nk-pin-d) !important; }
+.nk-mr .nk-mr-cats { background-color: #121316 !important; background-image: var(--nk-pin-d) !important; background-attachment: local; }
+.nk-slide-panel { background-image: var(--nk-pin-d) !important; }
+.nk-mr .nk-mr-items, .nk-mr .nk-mr-detail, .nk-mr .nk-mr-feat { background-image: var(--nk-pin-l) !important; }
+
+/* distance from the navigation: a dark strip in the header's own textile (reads as the header, dropped slightly), then one hairline, then the menu (same total height as before) */
+.nk-mega {
+  --nk-mega-gap: 48px;
+  top: var(--nk-header-h, 64px) !important;
+  box-sizing: border-box; padding-top: 24px; background-color: #1b1d21 !important; background-image: var(--nk-pin-d) !important;
+  height: min(720px, calc(100vh - var(--nk-header-h, 64px) - var(--nk-mega-gap))) !important;
+}
+.nk-mega .nk-mega-content { box-sizing: border-box; border-top: 1px solid rgba(196,200,206,.3); }
+
+/* v99 · third column built like the two sidebars: same row height, same serif, same left edge, hairline rows */
+.nk-mr .nk-mr-detail { padding: 0 !important; }
+.nk-mr .nk-mr-body { padding: 0 !important; }
+.nk-mr .nk-mr-detail .nk-mr-title {
+  display: flex; align-items: center; justify-content: space-between; gap: 16px; box-sizing: border-box; max-width: none;
+  padding: 14px 24px 14px 24px !important; font-size: 15.5px !important; line-height: 1.3 !important; font-weight: 500;
+  background: #e8e9eb; border-bottom: 1px solid #d9dbde; position: relative;
+}
+.nk-mr .nk-mr-detail .nk-mr-title::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 2px; background: #121316; }
+.nk-mr .nk-mr-detail .nk-mr-title span { font-size: inherit !important; }
+.nk-mr .nk-mr-detail .nk-mr-title svg { width: 14px !important; height: 14px !important; margin: 0 !important; flex: none; opacity: .8; }
+.nk-mr .nk-mr-orn { display: none !important; }
+.nk-mr .nk-mr-desc { margin: 0 !important; max-width: none !important; padding: 18px 24px 20px; font-size: 14px !important; line-height: 1.55 !important; border-bottom: 1px solid #d9dbde; }
+.nk-mr .nk-mr-links { margin: 0 !important; max-width: none !important; border-top: 0 !important; grid-template-columns: minmax(0,1fr) !important; }
+.nk-mr .nk-mr-links li { border-bottom: 1px solid #d9dbde !important; }
+.nk-mr .nk-mr-links a, .nk-mr-detail .nk-mr-links a span {
+  font-size: 15.5px !important; font-weight: 500 !important;
+}
+.nk-mr .nk-mr-links a { padding: 14px 18px 14px 24px !important; gap: 14px; }
+.nk-mr .nk-mr-links a svg { opacity: .35; width: 14px; height: 14px; }
+.nk-mr .nk-mr-links a:hover { background: #f1f2f3; }
+.nk-mr .nk-mr-links a .nk-mr-num { flex: 0 0 26px; width: 26px; }
+.nk-mr .nk-mr-partner { margin: 0 !important; padding: 16px 24px !important; border-top: 0; }
+.nk-mr .nk-mr-viewall { margin: 18px 24px 0 !important; }
+
+/* v100 · label band above each of the three columns: CAPABILITIES | BUSINESS DEPLOYMENT  I / III | OVERVIEW — same height, one hairline across */
+.nk-mr .nk-mr-cats .nk-mr-label, .nk-mr .nk-mr-items .nk-mr-label, .nk-mr .nk-mr-eyebrow {
+  display: flex !important; align-items: center; justify-content: space-between; box-sizing: border-box;
+  height: 56px; margin: 0 !important; padding: 0 24px !important;
+  font: 600 11px/1 var(--nk-text, sans-serif) !important; letter-spacing: .2em !important; text-transform: uppercase !important;
+  border-bottom: 1px solid #d9dbde; color: #4f545b !important;
+}
+.nk-mr .nk-mr-cats .nk-mr-label { color: #c4c8ce !important; border-bottom-color: rgba(196,200,206,.22); }
+.nk-mr .nk-mr-label em, .nk-mr .nk-mr-eyebrow em { font: 500 12px var(--nk-text, sans-serif); font-style: normal; letter-spacing: .12em; color: #868b93; }
+.nk-mr .nk-mr-eyebrow i { display: none !important; }
+.nk-mr .nk-mr-label span, .nk-mr .nk-mr-eyebrow span { font: inherit !important; white-space: nowrap; }
+.nk-mr .nk-mr-cats, .nk-mr .nk-mr-items { padding-top: 0 !important; }
+
+/* v101 · third column = only the pages, built exactly like the two sidebars (same serif, size, row height, chevron, hairlines) */
+.nk-mr .nk-mr-desc, .nk-mr .nk-mr-partner, .nk-mr .nk-mr-viewall, .nk-mr .nk-mr-num { display: none !important; }
+.nk-mr .nk-mr-body:has(.nk-mr-links) .nk-mr-title { display: none !important; }
+.nk-mr .nk-mr-eyebrow span { overflow: hidden; text-overflow: ellipsis; }
+.nk-mr .nk-mr-links { list-style: none; padding: 0 !important; }
+.nk-mr .nk-mr-links li { margin: 0 !important; border-bottom: 1px solid #d9dbde !important; }
+.nk-mr .nk-mr-links a, .nk-mr .nk-mr-links a span {
+  font-family: var(--nk-display, var(--om-serif, serif)) !important; font-size: 15.5px !important; font-weight: 500 !important; line-height: 1.3 !important;
+  letter-spacing: normal !important; color: #1b1d21 !important;
+}
+.nk-mr .nk-mr-links a { display: flex; align-items: center; justify-content: space-between; padding: 14px 18px 14px 24px !important; border: 0 !important; }
+.nk-mr .nk-mr-links a svg { width: 13px !important; height: 13px !important; opacity: .8 !important; color: #7c8187 !important; transform: none !important; }
+.nk-mr .nk-mr-links a:hover { background: #f1f2f3; }
+
+/* v102 · the free space belongs to the mega menu itself: panel meets the navigation, each column carries 24px of its own colour above its header */
+.nk-mega { padding-top: 0 !important; }
+.nk-mega .nk-mega-content { border-top: 0 !important; }
+.nk-mr .nk-mr-cats, .nk-mr .nk-mr-items, .nk-mr .nk-mr-detail, .nk-mr .nk-mr-feat { padding-top: 24px !important; }
+.nk-mr .nk-mr-feat:not(:has(.nk-mr-card-img)) { padding-top: 24px !important; }
+
+/* v103 · all four columns open on the same line: a silver hairline across the very top of the panel, 24px of free space under it in every column (featured photo included) */
+.nk-mega .nk-mega-content { border-top: 1px solid rgba(196,200,206,.5) !important; }
+.nk-mr .nk-mr-feat, .nk-mr .nk-mr-feat:has(.nk-mr-card-img) { padding-top: 24px !important; }
+/* v104 · top hairline removed: the header already ends the nav, and on the dark rail the line only read as a stray stripe */
+.nk-mega .nk-mega-content { border-top: 0 !important; }
+/* v105 · rail = header colour exactly (was #121316 under a #1b1d21 header), so the nav flows into the rail with no step */
+.nk-mr .nk-mr-cats { background-color: #1b1d21 !important; }
+/* v106 · selected / hover rows are solid in both sidebars (no see-through stripes in one and flat in the other) */
+.nk-mr .nk-mr-cats .nk-mr-cat[data-active="true"], .nk-mr .nk-mr-cats .nk-mr-cat[data-active="true"]:hover, .nk-mr .nk-mr-cats .nk-mr-cat[data-active="true"]:focus-visible {
+  background-color: #2b2e34 !important; background-image: none !important;
+}
+.nk-mr .nk-mr-cats .nk-mr-cat:hover:not([data-active="true"]) { background-color: #24272c !important; background-image: none !important; }
+/* v107 · breathing room between the second and third columns: rows stop short of the shared edge */
+.nk-mr .nk-mr-items { padding-right: 14px !important; }
+.nk-mr .nk-mr-detail { padding-left: 14px !important; }
+.nk-mr .nk-mr-items .nk-mr-label { margin-right: -14px !important; }
+.nk-mr .nk-mr-detail .nk-mr-eyebrow { margin-left: -14px !important; }
+/* v107 · identical fixed row height in all three lists so hairlines line up across the columns */
+.nk-mr .nk-mr-cats li, .nk-mr .nk-mr-items li, .nk-mr .nk-mr-links li { height: 48px; box-sizing: border-box; }
+.nk-mr .nk-mr-cats .nk-mr-cat, .nk-mr .nk-mr-items .nk-mr-item, .nk-mr .nk-mr-links a { height: 100%; box-sizing: border-box; padding-top: 0 !important; padding-bottom: 0 !important; display: flex; align-items: center; }
+
+/* v108 · one small, equal gap (8px) before every column edge: rail | sidebar 2 | sidebar 3 | featured.
+   Band lines and row lines now start and stop at the same x, so no line runs into another. */
+:root { --nk-colgap: 8px; }
+.nk-mr .nk-mr-cats { padding-right: var(--nk-colgap) !important; }
+.nk-mr .nk-mr-items { padding-right: var(--nk-colgap) !important; }
+.nk-mr .nk-mr-detail { padding-left: 0 !important; padding-right: var(--nk-colgap) !important; }
+.nk-mr .nk-mr-items .nk-mr-label { margin-right: 0 !important; }
+.nk-mr .nk-mr-detail .nk-mr-eyebrow { margin-left: 0 !important; }
+
+/* v109 · gap 12px (between 8 and the 14 that felt too big); the active-row markers are thin hairlines */
+:root { --nk-colgap: 12px; }
+.nk-mr .nk-mr-cats .nk-mr-cat[data-active="true"]::before,
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"]::before { width: 1px !important; }
+
+/* v109 · gap a little wider (12px — between the 8px and 14px tried), hairlines thinner/lighter */
+:root { --nk-colgap: 12px; }
+.nk-mr .nk-mr-items li, .nk-mr .nk-mr-links li, .nk-mr .nk-mr-items li:last-child { border-color: #e4e5e8 !important; }
+.nk-mr .nk-mr-items .nk-mr-label, .nk-mr .nk-mr-detail .nk-mr-eyebrow { border-bottom-color: #e4e5e8 !important; }
+.nk-mr .nk-mr-cats li, .nk-mr .nk-mr-cats li:last-child { border-color: rgba(255,255,255,.06) !important; }
+
+/* v110 · the three sidebars are exactly the same width; the featured column takes a little more */
+@media (min-width: 1181px) { .nk-mr { grid-template-columns: minmax(0,1fr) minmax(0,1fr) minmax(0,1fr) minmax(0,1.25fr) !important; } }
+@media (max-width: 1180px) { .nk-mr { grid-template-columns: repeat(3, minmax(0,1fr)) !important; } }
+
+/* v111 · rail rows start inset from the left screen edge (were flush to x=0) */
+.nk-mr .nk-mr-cats { padding-left: 24px !important; }
+.nk-mr .nk-mr-cats .nk-mr-label { padding-left: 0 !important; }
+.nk-mr .nk-mr-cats .nk-mr-explore { margin-left: 0 !important; }
+
+/* v112 · sidebars 2 and 3 also start inset from their left edge (same 12px) — gaps stay 12px everywhere */
+.nk-mr .nk-mr-cats { padding-right: 0 !important; }
+.nk-mr .nk-mr-items { padding-left: var(--nk-colgap) !important; padding-right: 0 !important; }
+.nk-mr .nk-mr-detail { padding-left: var(--nk-colgap) !important; }
+.nk-mr .nk-mr-items .nk-mr-label, .nk-mr .nk-mr-detail .nk-mr-eyebrow { padding-left: 0 !important; }
+
+/* v113 · rail framed (12px dark margin each side), sidebar 2 flush to the gap, sidebar 3 keeps one 12px gap */
+.nk-mr .nk-mr-cats { padding-left: var(--nk-colgap) !important; padding-right: var(--nk-colgap) !important; }
+.nk-mr .nk-mr-items { padding-left: 0 !important; padding-right: 0 !important; }
+.nk-mr .nk-mr-items .nk-mr-label { padding-left: 24px !important; }
+.nk-mr .nk-mr-detail { padding-left: var(--nk-colgap) !important; }
+
+/* v114 · rail: no numerals, and the whole rail sits a little further left (12px -> 8px frame on the left);
+   labels start 24px in from the row edge now that the number column is gone. Header / top area untouched. */
+.nk-mr .nk-mr-cats li::before { content: none !important; display: none !important; }
+.nk-mr .nk-mr-cats { padding-left: 8px !important; }
+.nk-mr .nk-mr-cats .nk-mr-cat { padding-left: 24px !important; }
+.nk-mr .nk-mr-cats .nk-mr-label { padding-left: 24px !important; }
+.nk-mr .nk-mr-cats .nk-mr-explore { margin-left: 24px !important; }
+
+/* v115 · no vertical line on the left edge of the featured column */
+.nk-mr .nk-mr-feat { border-left: 0 !important; box-shadow: none !important; }
+.nk-mr .nk-mr-feat::before, .nk-mr .nk-mr-feat::after { display: none !important; }
+
+/* v116 · sidebar text a little larger: rail, items and detail lists 15.5px -> 17px (rows stay 48px) */
+.nk-mr .nk-mr-cats .nk-mr-cat, .nk-mr .nk-mr-cats .nk-mr-cat span,
+.nk-mr .nk-mr-items .nk-mr-item, .nk-mr .nk-mr-items .nk-mr-item span,
+.nk-mr .nk-mr-detail .nk-mr-links a, .nk-mr .nk-mr-detail .nk-mr-links a span { font-size: 17px !important; }
+
+/* v117 · less dead area under the header: column top padding 24px -> 10px, label band 56px -> 38px
+   (all four columns and the three header labels stay level with each other) */
+.nk-mr .nk-mr-cats, .nk-mr .nk-mr-items, .nk-mr .nk-mr-detail,
+.nk-mr .nk-mr-feat, .nk-mr .nk-mr-feat:has(.nk-mr-card-img), .nk-mr .nk-mr-feat:not(:has(.nk-mr-card-img)) { padding-top: 10px !important; }
+.nk-mr .nk-mr-cats .nk-mr-label, .nk-mr .nk-mr-items .nk-mr-label, .nk-mr .nk-mr-detail .nk-mr-eyebrow {
+  box-sizing: border-box !important; height: 38px !important; min-height: 0 !important;
+  display: flex !important; align-items: flex-end !important; padding-top: 0 !important; padding-bottom: 12px !important; margin-bottom: 0 !important;
+}
+
+/* v117 · less dead space above the three left columns: headings start on the same line as the featured image
+   (tall line box removed), list rows follow right after. */
+.nk-mr .nk-mr-cats .nk-mr-label,
+.nk-mr .nk-mr-items .nk-mr-label,
+.nk-mr .nk-mr-detail .nk-mr-eyebrow { line-height: 1 !important; height: auto !important; min-height: 0 !important; padding-top: 0 !important; padding-bottom: 14px !important; margin-top: 0 !important; box-sizing: border-box; display: flex; align-items: flex-start; }
+.nk-mr .nk-mr-cats .nk-mr-label { padding-bottom: 14px !important; }
+
+/* v118 · v117 cut too much: put half of the space back (headings ~7px lower, rows start 6px below v117, 6px above the original) */
+.nk-mr .nk-mr-cats .nk-mr-label,
+.nk-mr .nk-mr-items .nk-mr-label,
+.nk-mr .nk-mr-detail .nk-mr-eyebrow { padding-top: 7px !important; padding-bottom: 13px !important; }
+
+/* v119 · third column = four small cards per service (image, title, "Visit page" button) — no description text.
+   Two-by-two grid; whole card is the link. Rounded image + pill button like the reference; palette stays NKCO ink / grey. */
+.nk-mr .nk-mr-body:has(.nk-mr-cards) .nk-mr-title { display: none !important; }
+.nk-mr .nk-mr-cards { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding: 14px 0 20px; }
+.nk-mr .nk-mr-sc { display: flex; flex-direction: column; gap: 10px; padding: 10px; background: #f2f2f2; border-radius: 14px; color: #121316; text-decoration: none; transition: background-color 160ms ease; }
+.nk-mr .nk-mr-sc:hover, .nk-mr .nk-mr-sc:focus-visible { background: #e8e9eb; }
+.nk-mr .nk-mr-sc-img { display: block; aspect-ratio: 16 / 10; border-radius: 9px; overflow: hidden; background: #d9dbde; }
+.nk-mr .nk-mr-sc-img img { width: 100%; height: 100%; object-fit: cover; display: block; filter: grayscale(1) contrast(1.02); transition: transform 500ms ease; }
+.nk-mr .nk-mr-sc:hover .nk-mr-sc-img img { transform: scale(1.04); }
+.nk-mr .nk-mr-sc-title { font-size: 16px; line-height: 1.2; font-weight: 500; color: #121316; padding: 2px 2px 0; }
+.nk-mr .nk-mr-sc-btn { margin-top: auto; align-self: flex-start; display: inline-flex; align-items: center; gap: 7px; padding: 8px 13px; border-radius: 999px; background: #121316; color: #fff; font: 600 10.5px/1 var(--nk-text, sans-serif); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; transition: background-color 160ms ease; }
+.nk-mr .nk-mr-sc:hover .nk-mr-sc-btn { background: #2b2e34; }
+.nk-mr .nk-mr-sc-btn svg { flex: none; }
+
+/* v120 · cards square like the featured column: no rounded corners on card, image or button */
+.nk-mr .nk-mr-sc, .nk-mr .nk-mr-sc-img, .nk-mr .nk-mr-sc-btn { border-radius: 0 !important; }
+
+/* v121 · third sidebar: bigger cards (taller 4:3 image, larger name, larger button) */
+.nk-mr .nk-mr-cards { gap: 12px !important; padding: 16px 0 20px !important; }
+.nk-mr .nk-mr-sc { padding: 12px !important; gap: 12px !important; }
+.nk-mr .nk-mr-sc-img { aspect-ratio: 4 / 3 !important; }
+.nk-mr .nk-mr-sc-title { font-size: 18px !important; line-height: 1.2 !important; }
+.nk-mr .nk-mr-sc-btn { padding: 11px 16px !important; font-size: 11px !important; gap: 8px !important; }
+
+/* v121 · second sidebar: every service is a square button-card (like the "Contact Us" button, a little bigger and wider),
+   full column width, 10px apart; the open one is solid ink. */
+.nk-mr .nk-mr-items ul { padding: 16px 6px 0 12px !important; margin: 0 !important; }
+.nk-mr .nk-mr-items li, .nk-mr .nk-mr-items li:first-child, .nk-mr .nk-mr-items li:last-child {
+  height: auto !important; margin: 0 0 10px !important; border: 0 !important; padding: 0 !important;
+}
+.nk-mr .nk-mr-items .nk-mr-item {
+  height: 58px !important; padding: 0 22px !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+  background: #f2f2f2 !important; color: #121316 !important; justify-content: space-between !important; transition: background-color 160ms ease, color 160ms ease;
+}
+.nk-mr .nk-mr-items .nk-mr-item::before { display: none !important; }
+.nk-mr .nk-mr-items .nk-mr-item:hover, .nk-mr .nk-mr-items .nk-mr-item:focus-visible { background: #e4e5e8 !important; }
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"], .nk-mr .nk-mr-items .nk-mr-item[data-active="true"]:hover { background: #121316 !important; color: #fff !important; font-weight: 500 !important; }
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"] svg { color: #fff !important; opacity: 1 !important; }
+
+/* v121b · button-cards shrink with the window so even a 10-service list always fits (max 58px, min 40px) */
+.nk-mr .nk-mr-items li, .nk-mr .nk-mr-items li:first-child, .nk-mr .nk-mr-items li:last-child { margin-bottom: 8px !important; }
+.nk-mr .nk-mr-items .nk-mr-item { height: clamp(40px, calc((100vh - 280px) / 10 - 8px), 58px) !important; }
+
+/* v122 · institutional pass.
+   (1) one filled element per column: the "Visit page" buttons become quiet underlined text links, the same
+       language as "Read the insight →" in the featured column. The open service in column 2 stays the one solid ink block.
+   (2) third column no longer ends after the cards: a "View all in <service area>" link under the cards and,
+       pinned to the foot of the column, the partner-in-charge line (text only, no avatar). */
+.nk-mr .nk-mr-sc-btn {
+  background: transparent !important; color: #121316 !important; padding: 0 0 3px !important; border-radius: 0 !important;
+  border-bottom: 1px solid #121316 !important; font: 500 13.5px/1.2 var(--nk-text, sans-serif) !important;
+  letter-spacing: 0 !important; text-transform: none !important; gap: 7px !important; align-self: flex-start;
+}
+.nk-mr .nk-mr-sc:hover .nk-mr-sc-btn { background: transparent !important; gap: 10px !important; }
+.nk-mr .nk-mr-sc-btn svg { width: 13px !important; height: 13px !important; }
+
+.nk-mr .nk-mr-detail { display: flex !important; flex-direction: column; }
+.nk-mr .nk-mr-detail .nk-mr-body { flex: 1 1 auto; display: flex; flex-direction: column; min-height: 0; }
+.nk-mr .nk-mr-detail .nk-mr-cards { order: 1; flex: none; }
+.nk-mr .nk-mr-detail .nk-mr-viewall {
+  order: 2; display: inline-flex !important; align-items: center; gap: 8px; align-self: flex-start; margin: 4px 0 0 !important; padding: 0 0 3px !important;
+  color: #121316 !important; border-bottom: 1px solid #121316 !important; font: 500 13.5px/1.2 var(--nk-text, sans-serif) !important;
+  letter-spacing: 0 !important; text-transform: none !important; text-decoration: none;
+}
+.nk-mr .nk-mr-detail .nk-mr-viewall:hover { gap: 11px; }
+.nk-mr .nk-mr-detail .nk-mr-viewall svg { width: 13px !important; height: 13px !important; }
+@media (min-height: 761px) {
+  .nk-mr .nk-mr-detail .nk-mr-partner {
+    order: 3; display: block !important; margin: auto 0 0 !important; padding: 16px 0 22px !important;
+    border-top: 1px solid #d9dbde !important; border-bottom: 0 !important;
+  }
+  .nk-mr .nk-mr-detail .nk-mr-partner-av { display: none !important; }
+  .nk-mr .nk-mr-detail .nk-mr-partner-lab { margin-bottom: 6px; }
+  .nk-mr .nk-mr-detail .nk-mr-partner-name { font-size: 17px; }
+}
+
+/* v123 · columns 2 and 3 follow the featured column: no repeated heading line, content starts on the same top line as the featured image.
+   (the service-area name is already in the rail, the service name is on the open button) */
+.nk-mr .nk-mr-items .nk-mr-label, .nk-mr .nk-mr-detail .nk-mr-eyebrow { display: none !important; }
+.nk-mr .nk-mr-items ul { padding-top: 0 !important; }
+.nk-mr .nk-mr-detail .nk-mr-cards { padding-top: 0 !important; }
+.nk-mr .nk-mr-items .nk-mr-item { height: clamp(40px, calc((100vh - 210px) / 10 - 8px), 58px) !important; }
+
+/* v124 · featured image keeps 8px from the right screen edge — same margin as the rail has on the left */
+.nk-mr .nk-mr-feat .nk-mr-card-img { margin-right: -24px !important; }
+@media (max-width: 1359px) { .nk-mr .nk-mr-feat .nk-mr-card-img { margin-right: -16px !important; } }
+
+/* v125 · slimmer rail + featured column, three cards per row in column 3, no black fills in columns 2 and 3.
+   Open service in column 2 = darker grey (original grey texture), "Visit page" = quiet underlined text link. */
+@media (min-width: 1181px) { .nk-mr { grid-template-columns: 220px 270px minmax(0, 1fr) 300px !important; } }
+@media (min-width: 1181px) and (max-width: 1360px) { .nk-mr { grid-template-columns: 200px 240px minmax(0, 1fr) 260px !important; } }
+@media (min-width: 1700px) { .nk-mr { grid-template-columns: 240px 300px minmax(0, 1fr) 380px !important; } }
+.nk-mr .nk-mr-cats .nk-mr-cat { padding-left: 20px !important; padding-right: 14px !important; font-size: 16px !important; }
+.nk-mr .nk-mr-cats .nk-mr-cat span { font-size: 16px !important; }
+.nk-mr .nk-mr-feat { padding-left: 22px !important; padding-right: 22px !important; }
+.nk-mr .nk-mr-feat .nk-mr-card-img { margin-left: -22px !important; margin-right: -22px !important; }
+.nk-mr .nk-mr-feat .nk-mr-card h4 { font-size: 22px !important; }
+
+.nk-mr .nk-mr-cards { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; gap: 10px !important; }
+.nk-mr .nk-mr-sc { padding: 10px !important; gap: 10px !important; background: #f2f2f2 !important; }
+.nk-mr .nk-mr-sc-title { font-size: 16px !important; }
+.nk-mr .nk-mr-sc-btn { background: transparent !important; color: #121316 !important; padding: 0 0 3px !important; border: 0 !important; border-bottom: 1px solid #121316 !important; font: 500 12.5px/1.2 var(--nk-text, sans-serif) !important; letter-spacing: 0 !important; text-transform: none !important; }
+.nk-mr .nk-mr-sc:hover .nk-mr-sc-btn { background: transparent !important; }
+
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"], .nk-mr .nk-mr-items .nk-mr-item[data-active="true"]:hover { background: #dedfe2 !important; color: #121316 !important; }
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"] svg { color: #121316 !important; }
+
+/* v126 · featured column a little bigger, third-column cards a little smaller */
+@media (min-width: 1181px) { .nk-mr { grid-template-columns: 220px 270px minmax(0, 1fr) 350px !important; } }
+@media (min-width: 1181px) and (max-width: 1360px) { .nk-mr { grid-template-columns: 200px 240px minmax(0, 1fr) 300px !important; } }
+@media (min-width: 1700px) { .nk-mr { grid-template-columns: 240px 300px minmax(0, 1fr) 440px !important; } }
+.nk-mr .nk-mr-feat .nk-mr-card h4 { font-size: 24px !important; }
+.nk-mr .nk-mr-cards { gap: 8px !important; }
+.nk-mr .nk-mr-sc { padding: 8px !important; gap: 8px !important; }
+.nk-mr .nk-mr-sc-img { aspect-ratio: 16 / 10 !important; }
+.nk-mr .nk-mr-sc-title { font-size: 14.5px !important; }
+.nk-mr .nk-mr-sc-btn { font-size: 11.5px !important; }
+
+/* v127 · second column = same width as the first (rail) */
+@media (min-width: 1181px) { .nk-mr { grid-template-columns: 220px 220px minmax(0, 1fr) 350px !important; } }
+@media (min-width: 1181px) and (max-width: 1360px) { .nk-mr { grid-template-columns: 200px 200px minmax(0, 1fr) 300px !important; } }
+@media (min-width: 1700px) { .nk-mr { grid-template-columns: 240px 240px minmax(0, 1fr) 440px !important; } }
+.nk-mr .nk-mr-items .nk-mr-item { padding: 0 14px 0 16px !important; }
+.nk-mr .nk-mr-items .nk-mr-item, .nk-mr .nk-mr-items .nk-mr-item span { font-size: 16px !important; }
+
+/* v128 · institutional pass (McKinsey / BCG register): only the rail is filled; columns 2-4 are white with hairlines.
+   Column 2 = text rows; column 3 = heading + intro + four hairline-topped items; partner in charge moves to column 4. */
+.nk-mr .nk-mr-items ul { padding: 0 !important; }
+.nk-mr .nk-mr-items li, .nk-mr .nk-mr-items li:first-child, .nk-mr .nk-mr-items li:last-child {
+  margin: 0 !important; border-top: 1px solid #e3e3e0 !important; border-bottom: 0 !important;
+}
+.nk-mr .nk-mr-items li:last-child { border-bottom: 1px solid #e3e3e0 !important; }
+.nk-mr .nk-mr-items .nk-mr-item {
+  position: relative; height: clamp(44px, calc((100vh - 210px) / 10), 56px) !important; padding: 0 20px 0 24px !important;
+  background: transparent !important; color: #4b5057 !important; font-weight: 400 !important;
+}
+.nk-mr .nk-mr-items .nk-mr-item:hover, .nk-mr .nk-mr-items .nk-mr-item:focus-visible { background: #f6f5f2 !important; color: #121316 !important; }
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"], .nk-mr .nk-mr-items .nk-mr-item[data-active="true"]:hover {
+  background: transparent !important; color: #121316 !important; font-weight: 600 !important;
+}
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"] span { font-weight: 600 !important; }
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"]::before {
+  content: "" !important; display: block !important; position: absolute; left: 0; top: -1px; bottom: -1px; width: 2px; background: #121316 !important; border-radius: 0 !important;
+}
+
+.nk-mr .nk-mr-detail { padding-left: 36px !important; padding-right: 32px !important; }
+.nk-mr .nk-mr-body:has(.nk-mr-cards) .nk-mr-title {
+  display: inline-flex !important; align-items: center; gap: 12px; font-size: 34px !important; line-height: 1.1 !important; font-weight: 400 !important; letter-spacing: -.01em; margin: 6px 0 0;
+}
+.nk-mr .nk-mr-body:has(.nk-mr-cards) .nk-mr-title svg { width: 22px !important; height: 22px !important; margin-top: 4px !important; }
+.nk-mr .nk-mr-orn { display: none !important; }
+.nk-mr .nk-mr-detail .nk-mr-desc { display: block !important; margin: 12px 0 0 !important; max-width: 520px; font-family: var(--nk-text, sans-serif) !important; font-style: normal !important; font-size: 15px !important; line-height: 1.6 !important; color: #4b5057 !important; }
+.nk-mr .nk-mr-cards { gap: 28px 24px !important; padding: 28px 0 20px !important; }
+.nk-mr .nk-mr-detail .nk-mr-cards { padding-top: 28px !important; }
+.nk-mr .nk-mr-sc, .nk-mr .nk-mr-sc:hover, .nk-mr .nk-mr-sc:focus-visible { background: transparent !important; padding: 14px 0 0 !important; border-top: 1px solid #121316; gap: 0 !important; }
+.nk-mr .nk-mr-sc-img { aspect-ratio: 3 / 2 !important; }
+.nk-mr .nk-mr-sc-title { font-size: 18px !important; padding: 14px 0 10px !important; line-height: 1.2 !important; }
+.nk-mr .nk-mr-sc-btn { font-size: 12.5px !important; margin-top: 0 !important; }
+
+/* partner in charge, bottom of column 4 */
+.nk-mr .nk-mr-feat { display: flex !important; flex-direction: column; }
+.nk-mr .nk-mr-feat .nk-mr-partner {
+  display: block !important; margin: auto 0 0 !important; padding: 16px 0 6px !important; border-top: 1px solid #e3e3e0 !important; border-bottom: 0 !important; flex: none;
+}
+.nk-mr .nk-mr-feat .nk-mr-partner-av { display: none !important; }
+.nk-mr .nk-mr-feat .nk-mr-partner-name { font-size: 17px; }
+.nk-mr .nk-mr-feat .nk-mr-partner-contact { flex-direction: column; gap: 2px; }
+
+/* v129 · card grid adapts to the number of sub-services: 3 per row by default,
+   2 per row for 1-2 items, and a balanced 2x2 for exactly 4 items. */
+.nk-mr .nk-mr-cards:has(> .nk-mr-sc:nth-child(4):last-child),
+.nk-mr .nk-mr-cards:has(> .nk-mr-sc:last-child:nth-child(-n+2)) {
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+}
+.nk-mr .nk-mr-cards:has(> .nk-mr-sc:nth-child(4):last-child) .nk-mr-sc-img,
+.nk-mr .nk-mr-cards:has(> .nk-mr-sc:last-child:nth-child(-n+2)) .nk-mr-sc-img { aspect-ratio: 16 / 8 !important; }
+
+/* v130 · institutional details: one hairline across the top of the panel, relevant-industries line, quiet motion, visible keyboard focus */
+.nk-mr .nk-mr-items, .nk-mr .nk-mr-detail, .nk-mr .nk-mr-feat { border-top: 1px solid #e3e3e0 !important; }
+.nk-mr .nk-mr-detail .nk-mr-inds { order: 3; display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 18px; margin: 22px 0 0; padding-top: 16px; border-top: 1px solid #e3e3e0; font: 400 13px/1.4 var(--nk-text, sans-serif); }
+.nk-mr .nk-mr-inds-lab { font: 600 10.5px/1 var(--nk-text, sans-serif); letter-spacing: .2em; text-transform: uppercase; color: #6b6f76; margin-right: 4px; }
+.nk-mr .nk-mr-inds a { color: #121316; text-decoration: none; background: linear-gradient(#121316, #121316) 0 100% / 0 1px no-repeat; transition: background-size 220ms ease; padding-bottom: 2px; }
+.nk-mr .nk-mr-inds a:hover, .nk-mr .nk-mr-inds a:focus-visible { background-size: 100% 1px; }
+.nk-mr .nk-mr-detail .nk-mr-viewall { order: 2; }
+
+@keyframes nkMrFade { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+.nk-mr .nk-mr-body { animation: nkMrFade 160ms ease-out both; }
+.nk-mr .nk-mr-items .nk-mr-item { transition: background-color 140ms ease, color 140ms ease; }
+.nk-mr .nk-mr-sc-title { transition: color 140ms ease; }
+.nk-mr .nk-mr-sc:hover .nk-mr-sc-btn, .nk-mr .nk-mr-sc:focus-visible .nk-mr-sc-btn { gap: 11px !important; }
+
+.nk-mr .nk-mr-cat:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
+.nk-mr .nk-mr-item:focus-visible, .nk-mr .nk-mr-sc:focus-visible, .nk-mr .nk-mr-viewall:focus-visible, .nk-mr .nk-mr-title:focus-visible { outline: 2px solid #121316; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) { .nk-mr .nk-mr-body { animation: none; } .nk-mr * { transition: none !important; } }
+
+/* v114 · mega menu featured column: it could scroll sideways (overflow-y:auto makes overflow-x auto too), which shoved the
+   photo/text to the right and clipped the left edge. Lock horizontal scroll and let long text/emails wrap inside the column. */
+.nk-mr .nk-mr-feat { overflow-x: hidden !important; min-width: 0; }
+.nk-mr .nk-mr-feat * { min-width: 0; overflow-wrap: anywhere; white-space: normal; }
+.nk-mr .nk-mr-feat .nk-mr-partner > div { min-width: 0; flex: 1 1 auto; }
+.nk-mr .nk-mr-feat .nk-mr-card { min-width: 0; max-width: 100%; }
+
+/* v115 · second sidebar (items column): hover was a warm cream (#f6f5f2) that clashed with the cool-grey active row.
+   Hover now uses a cool light grey from the same family as the active row (#dedfe2); active row unchanged. */
+.nk-mr .nk-mr-items .nk-mr-item:hover,
+.nk-mr .nk-mr-items .nk-mr-item:focus-visible { background: #eceef0 !important; color: #121316 !important; }
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"],
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"]:hover { background: #dedfe2 !important; }
+
+/* v116 · featured column: photo was full-bleed (touching top and right edge). Give it the same small 12px breathing space the left rail has. */
+.nk-mr .nk-mr-feat { padding-top: 12px !important; }
+.nk-mr .nk-mr-feat .nk-mr-card-img { margin: 0 -20px 22px -20px !important; }
+@media (max-width: 1359px) { .nk-mr .nk-mr-feat .nk-mr-card-img { margin: 0 -12px 22px -12px !important; } }
+.nk-mr .nk-mr-feat:not(:has(.nk-mr-card-img)) { padding-top: 38px !important; }
+.nk-mr .nk-mr-feat .nk-mr-partner-name { color: #121316 !important; }
+.nk-mr .nk-mr-feat .nk-mr-partner-lab, .nk-mr .nk-mr-feat .nk-mr-partner-contact, .nk-mr .nk-mr-feat .nk-mr-partner-contact a { color: #4b5057 !important; }
+
+/* v119 · small gap (8px) between the featured photo and the right edge of the mega menu */
+.nk-mr .nk-mr-feat { padding-right: 22px !important; }
+.nk-mr .nk-mr-feat .nk-mr-card-img { margin-right: -14px !important; }
+
+/* v120 · item description lines removed from all mega menus */
+.nk-mr .nk-mr-detail .nk-mr-desc { display: none !important; }
+
+/* v121 · tighter gap between the grey title bar and the card row (same as the gap above the bar) */
+.nk-mr .nk-mr-cards, .nk-mr .nk-mr-detail .nk-mr-cards { padding-top: 16px !important; }
+
+/* v122 · taller mega menu: up to 820px, only a 24px strip of page left under it, extra room at the bottom of the middle column */
+.nk-mega {
+  --nk-mega-gap: 24px;
+  height: min(820px, calc(100vh - var(--nk-header-h, 64px) - var(--nk-mega-gap))) !important;
+}
+.nk-mr .nk-mr-detail { padding-bottom: 36px !important; }
+
+/* v123 · rail buttons nudged a little to the right: left margin 8px -> 12px, the same as the 12px gap between
+   the buttons and the white items panel, so the dark frame is even on both sides. Panel position is unchanged. */
+.nk-mr .nk-mr-cats { padding-left: var(--nk-colgap, 12px) !important; padding-right: var(--nk-colgap, 12px) !important; }
+
+/* v131 · featured card image: taller (more height, same width) now that column 4 has spare room */
+.nk-mr .nk-mr-feat .nk-mr-card-img { aspect-ratio: 4 / 3 !important; }
+@media (max-height: 720px) { .nk-mr .nk-mr-feat .nk-mr-card-img { aspect-ratio: 3 / 2 !important; } }
+
+/* v132 · second column (sub-service buttons): breathing room from the first column / rail.
+   The buttons and their hairlines are inset 12px (same as the gap under the top navigation) from the white panel's left edge, so the active (grey) button no longer touches the rail side. */
+.nk-mr .nk-mr-items { padding-left: 12px !important; }
+.nk-mr .nk-mr-items .nk-mr-item[data-active="true"]::before { left: 0 !important; }
+
+/* v133 · mega-menu images: back to colour, but dimmed ("a little bit blacked out") instead of greyscale.
+   Tweak --nk-mr-img-dim: lower = darker (0.7 default), 1 = no darkening. */
+.nk-mr { --nk-mr-img-dim: .7; }
+.nk-mr .nk-mr-card-img,
+.nk-mr .nk-mr-card-img[data-art] { filter: saturate(1.1) brightness(var(--nk-mr-img-dim)) contrast(1.06) !important; }
+.nk-mr .nk-mr-card-img img,
+.nk-mr .nk-mr-card-img[data-art] img { filter: none !important; }
+.nk-mr .nk-mr-sc-img img { filter: saturate(1.1) brightness(var(--nk-mr-img-dim)) contrast(1.06) !important; }
+
+/* v135 · second column's first button top gap = the featured image's top gap (about 11px under the navigation).
+   (v134 had moved it up 6px too far; back to 10px padding + 1px hairline = 11px.) */
+.nk-mr .nk-mr-items { padding-top: 10px !important; }
+
+/* v136 · second-column buttons copy the featured photo's spacing: ~11px from the top (10px padding + 1px hairline) and 8px from the right edge of the column
+   (the photo sits 8px from the right edge of the panel; the buttons used to run flush to the edge). */
+.nk-mr .nk-mr-items { padding-top: 9px !important; padding-right: 8px !important; }
+
+/* v137 · ONE TOP LINE: the active sidebar row (column 2), the grey title bar (column 3) and the featured photo (column 4)
+   all start on the same line, 11px under the navigation (1px panel hairline + 10px). Change --nk-mr-top to move all three together.
+   Before: sidebar row sat higher, title bar sat 6px lower (its own 6px top margin) — they now meet on the photo's top line. */
+.nk-mr { --nk-mr-top: 10px; }
+.nk-mr .nk-mr-feat, .nk-mr .nk-mr-feat:has(.nk-mr-card-img) { padding-top: var(--nk-mr-top) !important; }
+.nk-mr .nk-mr-detail { padding-top: var(--nk-mr-top) !important; }
+.nk-mr .nk-mr-body:has(.nk-mr-cards) .nk-mr-title,
+.nk-mr .nk-mr-detail .nk-mr-title { margin-top: 0 !important; }
+/* column 2: padding + the first row's 1px hairline = the same offset as the other two columns */
+.nk-mr .nk-mr-items { padding-top: calc(var(--nk-mr-top) - 1px) !important; }
+.nk-mr .nk-mr-items ul { margin-top: 0 !important; padding-top: 0 !important; }
+.nk-mr .nk-mr-items li:first-child { margin-top: 0 !important; }
+
+/* v133 · mega menu left rail = accordion of the main sections (all collapsed by default) */
+.nk-mr .nk-mr-cats ul.nk-mr-secs { padding: 0 !important; margin: 0 !important; counter-reset: none; }
+.nk-mr .nk-mr-cats li.nk-mr-sec { height: auto !important; border-top: 0 !important; border-bottom: 1px solid rgba(255,255,255,.07) !important; }
+.nk-mr .nk-mr-cats li.nk-mr-sec[data-open="true"] { background: rgba(255,255,255,.025); }
+.nk-mr .nk-mr-cats .nk-mr-sec-btn {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; height: 52px;
+  padding: 0 16px 0 24px; background: transparent; border: 0; cursor: pointer; text-align: left;
+  color: #d9dbdf; font-family: inherit; font-size: 16px; letter-spacing: .005em; transition: background 160ms, color 160ms;
+}
+.nk-mr .nk-mr-cats .nk-mr-sec-btn:hover { background: rgba(255,255,255,.05); color: #fff; }
+.nk-mr .nk-mr-cats li.nk-mr-sec[data-open="true"] > .nk-mr-sec-btn { color: #fff; }
+.nk-mr .nk-mr-cats .nk-mr-sec-btn svg { color: #8b9097; transition: transform 200ms ease; flex-shrink: 0; }
+.nk-mr .nk-mr-cats li.nk-mr-sec[data-open="true"] > .nk-mr-sec-btn svg { transform: rotate(180deg); color: #fff; }
+.nk-mr .nk-mr-cats .nk-mr-sec-btn:focus-visible { outline: 2px solid #fff; outline-offset: -2px; }
+.nk-mr .nk-mr-cats ul.nk-mr-subcats { padding: 0 0 8px !important; margin: 0 !important; }
+.nk-mr .nk-mr-cats ul.nk-mr-subcats li { border-top: 1px solid rgba(255,255,255,.05) !important; border-bottom: 0 !important; }
+.nk-mr .nk-mr-cats ul.nk-mr-subcats .nk-mr-cat { padding-left: 40px !important; font-size: 15px !important; }
+.nk-mr .nk-mr-cats ul.nk-mr-subcats li.nk-mr-sub-explore { height: auto !important; padding: 12px 0 4px 40px; }
+.nk-mr .nk-mr-cats .nk-mr-sub-explore .nk-mr-explore { margin: 0 !important; padding: 0 !important; }
+/* Smooth open/close engine (ported from the CRM sidebar): content stays mounted, the row height animates 0fr -> 1fr. */
+.nk-mr .nk-mr-cats .nk-mr-sub { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .2s cubic-bezier(.4,0,.2,1); }
+.nk-mr .nk-mr-cats .nk-mr-sub.is-open { grid-template-rows: 1fr; }
+.nk-mr .nk-mr-cats .nk-mr-sub-inner { overflow: hidden; min-height: 0; }
+.nk-mr .nk-mr-cats .nk-mr-sec-btn svg.nk-mr-sec-chev { transition: transform .2s cubic-bezier(.4,0,.2,1), color .15s; }
+.nk-mr .nk-mr-cats .nk-mr-sec-btn:active { transform: scale(.985); }
+@media (prefers-reduced-motion: reduce) { .nk-mr .nk-mr-cats .nk-mr-sub, .nk-mr .nk-mr-cats .nk-mr-sec-btn svg { transition: none; } }
+
+/* v134 · CRM interaction engine, applied site-wide to navigation ------------------------------------------- */
+/* 1 · slide-in menu accordions: same 0fr -> 1fr grid engine (replaces the max-height hack that made timing uneven) */
+.nk-acc-body, .nk-side-sub-body { display: grid !important; grid-template-rows: 0fr; max-height: none !important; overflow: visible !important; transition: grid-template-rows .2s cubic-bezier(.4,0,.2,1) !important; }
+.nk-acc-body[data-open="true"], .nk-side-sub-body[data-open="true"] { grid-template-rows: 1fr; max-height: none !important; }
+.nk-acc-inner, .nk-side-sub-inner { overflow: hidden; min-height: 0; }
+aside.nk-slide-panel .nk-acc-body > .nk-acc-inner { padding: 0 !important; }
+aside.nk-slide-panel .nk-acc-inner > div { padding: 8px 0 20px !important; }
+.nk-acc-trigger .plus::before, .nk-acc-trigger .plus::after { transition: transform .2s cubic-bezier(.4,0,.2,1), opacity .2s cubic-bezier(.4,0,.2,1) !important; }
+.nk-side-sub-trigger .chev { transition: transform .2s cubic-bezier(.4,0,.2,1) !important; }
+
+/* 2 · mega panel + backdrop animate OUT as well as in */
+@keyframes nkMegaOut { from { opacity: 1; transform: none; } to { opacity: 0; transform: translateY(-8px); } }
+@keyframes nkFadeOut { from { opacity: 1; } to { opacity: 0; } }
+.nk-mega[data-closing="true"] { animation: nkMegaOut .18s cubic-bezier(.4,0,1,1) both !important; pointer-events: none; }
+.nk-mega-backdrop[data-closing="true"] { animation: nkFadeOut .18s ease both !important; pointer-events: none; }
+
+/* 3 · tactile press feedback on every nav control (CRM: button:active scale) */
+.nk-nav-link, .nk-mr-cat, .nk-mr-item, .nk-mr-sc, .nk-acc-trigger, .nk-side-sub-trigger, .nk-square-hamburger, .nk-contact-btn {
+  transition-property: background-color, color, border-color, opacity, transform; transition-duration: .15s, .15s, .15s, .15s, .1s; transition-timing-function: ease;
+}
+.nk-nav-link:active, .nk-mr-cat:active, .nk-mr-item:active, .nk-acc-trigger:active, .nk-side-sub-trigger:active, .nk-square-hamburger:active, .nk-contact-btn:active { transform: scale(.98); }
+.nk-mr-sc:active { transform: translateY(0) scale(.99); }
+
+/* 4 · calmer, consistent timing for the slide-in panel + its backdrop */
+aside.nk-slide-panel { transition: transform .28s cubic-bezier(.4,0,.2,1) !important; }
+.nk-backdrop { transition: opacity .2s ease !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  .nk-acc-body, .nk-side-sub-body, .nk-mega, .nk-mega-backdrop, aside.nk-slide-panel, .nk-backdrop { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+}
+
+/* v136 · wider 1st (sections) and 2nd (categories) columns of the mega menu */
+@media (min-width: 1181px) { .nk-mr { grid-template-columns: 280px 330px minmax(0, 1fr) 350px !important; } }
+@media (min-width: 1181px) and (max-width: 1360px) { .nk-mr { grid-template-columns: 250px 290px minmax(0, 1fr) 300px !important; } }
+@media (min-width: 1700px) { .nk-mr { grid-template-columns: 320px 380px minmax(0, 1fr) 440px !important; } }
+
+/* v137 · mega menu rows: ONE line, fixed 48px, 16px serif, ellipsis for long labels (full name via title tooltip).
+   Restores the v73 intent that later rules had overridden. Thin accent line + light tint on the active row. */
+@media (min-width: 1001px) {
+  .nk-mr .nk-mr-cats li:not(.nk-mr-sec), .nk-mr .nk-mr-items li { height: 48px !important; margin-bottom: 0 !important; box-sizing: border-box; }
+  .nk-mr .nk-mr-cats .nk-mr-cat, .nk-mr .nk-mr-items .nk-mr-item {
+    height: 100% !important; display: flex !important; align-items: center !important; justify-content: space-between !important;
+    gap: 10px; font-size: 16px !important; line-height: 1.2 !important; letter-spacing: .005em !important; font-weight: 400 !important;
+    padding-top: 0 !important; padding-bottom: 0 !important; text-align: left;
+  }
+  .nk-mr .nk-mr-cats .nk-mr-cat span, .nk-mr .nk-mr-items .nk-mr-item span {
+    white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important;
+    min-width: 0; flex: 1 1 auto; font-size: 16px !important; line-height: 1.2 !important; font-weight: inherit !important;
+  }
+  .nk-mr .nk-mr-cats .nk-mr-cat svg, .nk-mr .nk-mr-items .nk-mr-item svg { flex: 0 0 auto; align-self: center; }
+  /* quiet active state: light tint + thin accent line, no bold */
+  .nk-mr .nk-mr-items .nk-mr-item[data-active="true"], .nk-mr .nk-mr-items .nk-mr-item[data-active="true"]:hover {
+    background: #f1f2f3 !important; color: #121316 !important; font-weight: 400 !important;
+  }
+  .nk-mr .nk-mr-items .nk-mr-item[data-active="true"] span { font-weight: 400 !important; }
+  .nk-mr .nk-mr-items .nk-mr-item[data-active="true"]::before { display: block !important; left: 0 !important; top: 0 !important; bottom: 0 !important; width: 2px !important; background: #121316 !important; }
+  .nk-mr .nk-mr-cats .nk-mr-cat[data-active="true"] { font-weight: 400 !important; }
+  .nk-mr .nk-mr-cats .nk-mr-cat[data-active="true"] span { font-weight: 400 !important; }
+}
+
+/* v138 · one font across every mega-menu list: sections, categories and items all use the same sans as the section rail */
+.nk-mr .nk-mr-cats .nk-mr-cat, .nk-mr .nk-mr-cats .nk-mr-cat span,
+.nk-mr .nk-mr-items .nk-mr-item, .nk-mr .nk-mr-items .nk-mr-item span,
+.nk-mr .nk-mr-cats .nk-mr-sec-btn, .nk-mr .nk-mr-cats .nk-mr-sec-btn span {
+  font-family: var(--nk-text) !important; font-style: normal !important; font-size-adjust: none !important;
+}
+
+/* v139 · ONE font everywhere in the menus: mega menu (all columns, headers, labels, titles, cards) + slide-in sidebar */
+.nk-mr, .nk-mr *, .nk-slide-panel, .nk-slide-panel *, .nk-side-sub-trigger, .nk-acc-trigger {
+  font-family: var(--nk-text) !important; font-style: normal !important; font-size-adjust: none !important;
+}
+.nk-mr .nk-mr-label, .nk-mr .nk-mr-eyebrow, .nk-slide-panel .nk-panel-label {
+  font-size: 11.5px !important; letter-spacing: .14em !important; text-transform: uppercase !important; font-weight: 500 !important;
+}
+.nk-mr .nk-mr-title, .nk-mr .nk-mr-title span { font-weight: 500 !important; letter-spacing: -.005em !important; }
+
+/* sidebar rows: same as mega menu — 16px, one line, fixed 48px, ellipsis, quiet */
+.nk-slide-panel .nk-acc-trigger, .nk-slide-panel .nk-side-sub-trigger {
+  font-size: 16px !important; height: 48px; padding-top: 0 !important; padding-bottom: 0 !important;
+  display: flex; align-items: center; justify-content: space-between; gap: 10px; letter-spacing: .005em; font-weight: 400 !important; text-align: left;
+}
+.nk-slide-panel .nk-acc-trigger > span:not(.plus), .nk-slide-panel .nk-side-sub-trigger > span {
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1 1 auto;
+}
+.nk-slide-panel .nk-slide-body li > a, .nk-slide-panel .nk-side-sub-body a,
+.nk-slide-panel .nk-panel-sec ul.grid li > a, .nk-slide-panel .nk-panel-follow li > a {
+  font-size: 16px !important; line-height: 1.3 !important; font-weight: 400 !important;
+}
+.nk-slide-panel .nk-panel-cta { font-size: 16px !important; }
+
+/* v140 · header top bar: same font as the menus */
+header .nk-nav-link, header .nk-contact-btn, header nav, header nav * {
+  font-family: var(--nk-text) !important; font-style: normal !important; font-size-adjust: none !important;
+}
+
+/* v141 · explicit sans (body is serif, so "inherit" is not enough); subcat rows + section buttons match the 16px / 48px rhythm */
+.nk-mr .nk-mr-cats .nk-mr-sec-btn { height: 48px !important; font-size: 16px !important; }
+.nk-mr .nk-mr-cats ul.nk-mr-subcats .nk-mr-cat, .nk-mr .nk-mr-cats ul.nk-mr-subcats .nk-mr-cat span { font-size: 16px !important; }
+.nk-mr .nk-mr-cats ul.nk-mr-subcats li:not(.nk-mr-sub-explore) { height: 48px !important; }
+
+/* v142 · beat older high-specificity rules (found by rendering the menu in a browser) */
+.nk-mr.nk-mr.nk-mr .nk-mr-cats *, .nk-mr.nk-mr.nk-mr .nk-mr-items *, .nk-mr.nk-mr.nk-mr .nk-mr-detail *, .nk-mr.nk-mr.nk-mr .nk-mr-feat *,
+.nk-slide-panel.nk-slide-panel.nk-slide-panel, .nk-slide-panel.nk-slide-panel.nk-slide-panel * {
+  font-family: var(--nk-text) !important; font-style: normal !important; font-size-adjust: none !important;
+}
+@media (min-width: 1001px) {
+  .nk-mr.nk-mr .nk-mr-items ul > li, .nk-mr.nk-mr .nk-mr-items ul > li:first-child, .nk-mr.nk-mr .nk-mr-items ul > li:last-child,
+  .nk-mr.nk-mr .nk-mr-cats ul.nk-mr-subcats > li:not(.nk-mr-sub-explore) { height: 48px !important; margin-bottom: 0 !important; box-sizing: border-box; }
+  .nk-mr.nk-mr .nk-mr-items ul > li > .nk-mr-item, .nk-mr.nk-mr .nk-mr-cats ul > li > .nk-mr-cat { height: 100% !important; }
+}
+aside.nk-slide-panel.nk-slide-panel .nk-slide-body .nk-acc-trigger,
+aside.nk-slide-panel.nk-slide-panel .nk-slide-body .nk-side-sub-trigger { font-size: 16px !important; font-weight: 400 !important; }
+aside.nk-slide-panel.nk-slide-panel .nk-slide-body li > a,
+aside.nk-slide-panel.nk-slide-panel .nk-slide-body .nk-side-sub-body a,
+aside.nk-slide-panel.nk-slide-panel .nk-slide-body .nk-panel-sec ul li > a { font-size: 16px !important; font-weight: 400 !important; }
+
+/* v143 · give the category column room so one-line labels don't clip */
+.nk-mr.nk-mr .nk-mr-cats ul.nk-mr-subcats .nk-mr-cat { padding-left: 24px !important; }
+@media (min-width: 1181px) { .nk-mr { grid-template-columns: 310px 320px minmax(0, 1fr) 340px !important; } }
+@media (min-width: 1181px) and (max-width: 1360px) { .nk-mr { grid-template-columns: 290px 290px minmax(0, 1fr) 280px !important; } }
+@media (min-width: 1700px) { .nk-mr { grid-template-columns: 340px 380px minmax(0, 1fr) 440px !important; } }
+
+/* v147 · mega rail sizes (loaded last so they win): sidebar rows = top-nav size, column-2 items smaller */
+html body .nk-mr .nk-mr-cats ul.nk-mr-subcats .nk-mr-cat,
+html body .nk-mr .nk-mr-cats ul.nk-mr-subcats .nk-mr-cat span {
+  font-size: 13.5px !important; letter-spacing: .01em !important;
+}
+html body .nk-mr .nk-mr-cats ul.nk-mr-subcats .nk-mr-cat { padding-top: 13px !important; padding-bottom: 13px !important; }
+html body .nk-mr .nk-mr-cats .nk-mr-sec-btn,
+html body .nk-mr .nk-mr-cats .nk-mr-sec-btn span { font-size: 13.5px !important; letter-spacing: .01em !important; }
+html body .nk-mr .nk-mr-items ul .nk-mr-item,
+html body .nk-mr .nk-mr-items ul .nk-mr-item span { font-size: 12.5px !important; letter-spacing: .005em !important; }
+html body .nk-mr .nk-mr-items ul .nk-mr-item { padding-top: 11px !important; padding-bottom: 11px !important; }
+
+/* v148 · opened from the TOP nav: left rail lists only that section's categories (no duplicate section list) */
+html body .nk-mr .nk-mr-cats ul.nk-mr-secs--solo > li.nk-mr-sec > .nk-mr-sec-btn { display: none !important; }
+html body .nk-mr .nk-mr-cats ul.nk-mr-secs--solo .nk-mr-sub { grid-template-rows: 1fr !important; }
+html body .nk-mr .nk-mr-cats ul.nk-mr-secs--solo .nk-mr-sub-inner { overflow: visible; }
+html body .nk-mr .nk-mr-cats ul.nk-mr-secs--solo ul.nk-mr-subcats .nk-mr-cat { padding-left: 24px !important; }
+html body .nk-mr .nk-mr-cats ul.nk-mr-secs--solo ul.nk-mr-subcats li.nk-mr-sub-explore { padding-left: 24px; }
+
+/* v149 · left-rail dropdown items (Business Deployment, Enterprise Consulting, ...) smaller than the section header */
+html body .nk-mr .nk-mr-cats ul.nk-mr-subcats .nk-mr-cat,
+html body .nk-mr .nk-mr-cats ul.nk-mr-subcats .nk-mr-cat span { font-size: 12px !important; letter-spacing: .005em !important; }
+html body .nk-mr .nk-mr-cats ul.nk-mr-subcats .nk-mr-cat { padding-top: 11px !important; padding-bottom: 11px !important; min-height: 0 !important; }
+html body .nk-mr .nk-mr-cats ul.nk-mr-subcats .nk-mr-cat svg { width: 11px !important; height: 11px !important; }
+
+/* v150 · hamburger sidebar only: thinner dropdown rows (Business Deployment, Enterprise Consulting, ...) — 48px -> 36px */
+html body aside.nk-slide-panel .nk-side-sub-trigger {
+  height: 36px !important; min-height: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; box-sizing: border-box;
+}
+
+/* v151 · DESKTOP HAMBURGER accordion ONLY: thinner category rows in the left rail, 48px -> 36px.
+   Scoped to .nk-mr-secs--burger (class set in MegaRail.jsx only when opened via the hamburger),
+   so the menu opened from the TOP navigation (.nk-mr-secs--solo) is untouched. */
+html body .nk-mr.nk-mr .nk-mr-cats ul.nk-mr-secs--burger ul.nk-mr-subcats > li:not(.nk-mr-sub-explore) { height: 36px !important; }
+html body .nk-mr.nk-mr .nk-mr-cats ul.nk-mr-secs--burger ul.nk-mr-subcats > li:not(.nk-mr-sub-explore) > .nk-mr-cat {
+  height: 100% !important; min-height: 0 !important; padding-top: 0 !important; padding-bottom: 0 !important; box-sizing: border-box; align-items: center;
+}
+
+/* ==========================================================================
+ * v154 — mega menu, RIGHT TWO sections only (detail panel + featured panel):
+ * Cormorant Garamond restored, headers bold. Placed LAST in the cascade and
+ * with higher specificity than the v139/v142 "Inter everywhere" rules above,
+ * which is why v153 (in final.css) had no effect. Rail + items list untouched.
+ * Delete this block to revert.
+ * ========================================================================== */
+.nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail *, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat * {
+  font-family: 'Cormorant Garamond', 'EB Garamond', Garamond, Georgia, serif !important;
+  font-style: normal !important; font-size-adjust: none !important;
+}
+/* body copy */
+.nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail .nk-mr-desc, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-card p { font-weight: 500 !important; font-size: 17px !important; line-height: 1.5 !important; }
+/* small tracked labels (eyebrow, FEATURED INSIGHT, PARTNER IN CHARGE, etc.) */
+.nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail .nk-mr-eyebrow, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail .nk-mr-eyebrow *, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail .nk-mr-inds-lab,
+.nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-tag, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-row-tag, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-reports-label, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-partner-lab {
+  font-weight: 700 !important; font-size: 13px !important; letter-spacing: .16em !important;
+}
+/* links: Explore / View all / Read the insight */
+.nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail .nk-mr-sc-btn, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail .nk-mr-sc-btn *, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail .nk-mr-viewall, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail .nk-mr-viewall *,
+.nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-card-cta, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-card-cta * {
+  font-weight: 600 !important; font-size: 17px !important; letter-spacing: .01em !important;
+}
+.nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-partner-contact, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-partner-contact * { font-weight: 500 !important; font-size: 16px !important; }
+/* HEADERS — bold */
+.nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail .nk-mr-title, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail .nk-mr-title *, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-detail .nk-mr-sc-title,
+.nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat h4, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-card h4, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-row-title, .nk-mr.nk-mr.nk-mr.nk-mr.nk-mr .nk-mr-feat .nk-mr-partner-name {
+  font-weight: 700 !important;
+}

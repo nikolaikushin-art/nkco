@@ -1,0 +1,296 @@
+/* ==========================================================================
+ * v43 — RECONCILIATION. Loaded last. Same fonts, same colours, same textile.
+ * ========================================================================== */
+:root { --nk-max: 1560px; --nk-pad: clamp(24px, 4.2vw, 64px); --nk-silver-l: rgba(196,200,206,.24); }
+.nk-container { max-width: var(--nk-max) !important; padding-left: var(--nk-pad) !important; padding-right: var(--nk-pad) !important; }
+:where(h1,h2,h3,h4,h5,h6) { line-height: 1.12; }
+.om-index { max-width: none !important; }
+section[id], div[id="context"], div[id="faq"], div[id="pricing"], div[id="contact"] { scroll-margin-top: 120px; }
+
+/* 1 · READABLE ON DARK: headings/numerals inherit light colour on every dark surface */
+:is(section.text-white, div.text-white, .om-sec-ink, .nk2-sec-ink, .nk2-latest, .nk-stat-band-aubergine, footer, .nk-slide-panel, .nk-mr-feat, .nk-mr-cats)
+  :is(h1,h2,h3,h4,h5,h6,.font-serif-display,dd) { color: #f2f1ed !important; }
+.nk-stat-band-aubergine, .bg-nk-aubergine { background-color: var(--nk-night) !important; background-image: var(--nk-guilloche), var(--nk-pin) !important; }
+footer .om-lede, footer .om-lede-light { color: #c4c8ce !important; }
+.om-roman-light, .om-sec-ink .om-roman { color: #c4c8ce !important; }
+
+/* 2 · FOOTER: roundel removed, full-width grid */
+footer::after { display: none !important; content: none !important; }
+.nk-foot-grid { max-width: none !important; }
+
+/* 3 · SIDE-PANEL SHADOW ONLY WHEN OPEN (no smear on the page edge) */
+.nk-slide-panel { box-shadow: none !important; visibility: hidden; }
+.nk-slide-panel[data-open="true"] { box-shadow: -20px 8px 50px rgba(0,0,0,.35) !important; visibility: visible; }
+.nk-slide-panel .nk-panel-cta { background: var(--nk-night) !important; background-image: var(--nk-pin) !important; color: #eef0f2 !important; border: 1px solid rgba(196,200,206,.45) !important; box-shadow: none !important; font-family: var(--nk-text) !important; font-variant-caps: normal !important; text-transform: uppercase; letter-spacing: .14em !important; font-size: 13px !important; padding: 16px 0 !important; }
+.nk-slide-panel .nk-panel-cta:hover { background-color: var(--nk-night-lift) !important; color: #fff !important; }
+.nk-slide-panel .nk-acc-trigger { padding-top: 12px !important; padding-bottom: 12px !important; font-size: 21px !important; }
+.nk-slide-panel .nk-side-sub-trigger { padding: 9px 0 !important; }
+
+/* 4 · (in-page nav removed in v44) */
+
+/* 5 · SECTION-PAGE HERO */
+section.bg-\[\#1b1d21\].text-white.relative.overflow-hidden h1 { font-size: clamp(40px, 4.8vw, 72px); max-width: 22ch; color: #f2f1ed !important; }
+
+/* 6 · mega menu: reverted to original layers in v44 */
+
+/* ==========================================================================
+ * v44 — buttons in palette, symmetrical mega menu, institutional polish
+ * ========================================================================== */
+/* A · Buttons that sit on dark panels: white pinstripe, ink text, hairline — no stone, no double border */
+a.bg-white[class*="px-"], button.bg-white[class*="px-"] {
+  background-color: #ffffff !important; background-image: var(--nk-pin-light) !important; color: var(--nk-night) !important;
+  border: 1px solid #ffffff !important; box-shadow: none !important; border-radius: 0 !important;
+  font-family: var(--nk-text) !important; font-variant-caps: normal !important; text-transform: uppercase;
+  letter-spacing: .16em !important; font-size: 12.5px !important; font-weight: 500; padding: 17px 30px !important;
+}
+a.bg-white[class*="px-"]:hover, button.bg-white[class*="px-"]:hover {
+  background-color: var(--nk-night) !important; background-image: var(--nk-pin) !important; color: #fff !important;
+  border-color: #c4c8ce !important; box-shadow: none !important;
+}
+/* Dark buttons on white: same flat treatment, no inset double border */
+.nk-btn-primary, .nk-btn-aubergine, .nk2-btn, form button[type="submit"],
+a.bg-\[\#1b1d21\][class*="px-"], button.bg-\[\#1b1d21\][class*="px-"] {
+  box-shadow: none !important; background-color: var(--nk-night) !important; background-image: var(--nk-pin) !important;
+  font-variant-caps: normal !important; font-family: var(--nk-text) !important; text-transform: uppercase;
+  letter-spacing: .16em !important; font-size: 12.5px !important; border: 1px solid var(--nk-night) !important;
+}
+.nk-btn-primary:hover, .nk-btn-aubergine:hover, .nk2-btn:hover, form button[type="submit"]:hover,
+a.bg-\[\#1b1d21\][class*="px-"]:hover, button.bg-\[\#1b1d21\][class*="px-"]:hover {
+  box-shadow: none !important; background-color: #000 !important; border-color: #c4c8ce !important;
+}
+/* Header contact + hamburger: match the dark palette, no stone */
+header .nk-contact-btn, header .nk-square-hamburger {
+  background-color: var(--nk-night) !important; background-image: var(--nk-pin) !important; color: #eef0f2 !important;
+  border: 1px solid rgba(196,200,206,.5) !important; box-shadow: none !important;
+}
+header .nk-contact-btn:hover, header .nk-square-hamburger:hover { background-color: #000 !important; color: #fff !important; border-color: #c4c8ce !important; box-shadow: none !important; }
+
+/* C · Focus + motion */
+:focus-visible { outline: 2px solid #c4c8ce !important; outline-offset: 3px; }
+section.bg-white :focus-visible, .nk2-sec-white :focus-visible, .nk2-sec-tint :focus-visible { outline-color: var(--nk-night) !important; }
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; } }
+
+/* ==========================================================================
+ * v44 · INSTITUTIONAL SYSTEM — one eyebrow, one rhythm, hairlines, numbered sections
+ * ========================================================================== */
+:root { --nk-hair-d: rgba(18,19,22,.16); --nk-hair-l: rgba(196,200,206,.22); --nk-sec-y: clamp(64px, 8vw, 112px); }
+
+/* eyebrow: every small label above a heading */
+.nk-eyebrow, .om-eyebrow, .nk2-eyebrow { display: flex; align-items: center; gap: 14px; font: 600 11px/1 var(--nk-text) !important; letter-spacing: .22em !important; text-transform: uppercase; color: #4f545b; margin: 0 0 22px; }
+.nk-eyebrow::after { content: ""; flex: 0 0 56px; height: 1px; background: currentColor; opacity: .45; }
+.nk-eyebrow-no { font: italic 500 16px var(--nk-display); letter-spacing: 0; text-transform: none; color: #6b7078; }
+:is(section.text-white, div.text-white, .om-sec-ink, .nk2-sec-ink) .nk-eyebrow, :is(section.text-white, .om-sec-ink, .nk2-sec-ink) :is(.om-eyebrow,.nk2-eyebrow) { color: #c4c8ce; }
+
+/* section rhythm */
+.om-sec > .nk-container, .nk2-sec > .nk-container { padding-top: var(--nk-sec-y) !important; padding-bottom: var(--nk-sec-y) !important; }
+.nk-container.py-24 { padding-top: var(--nk-sec-y) !important; padding-bottom: var(--nk-sec-y) !important; }
+
+/* section head: eyebrow · title · count on a hairline */
+.nk-sec-head { display: grid; grid-template-columns: minmax(0,1fr) auto; align-items: end; column-gap: 40px; padding-bottom: 28px; margin-bottom: 0; border-bottom: 1px solid var(--nk-hair-d); }
+.nk-sec-head .nk-eyebrow { grid-column: 1 / -1; }
+.nk-sec-title { font-size: clamp(32px, 3.4vw, 48px); line-height: 1.08; color: var(--nk-night); max-width: 20ch; margin: 0; }
+.nk-sec-count { font: 500 12px var(--nk-text); letter-spacing: .16em; text-transform: uppercase; color: #5a5f66; padding-bottom: 6px; }
+
+/* practice-area frames: ruled table of numbered cells */
+.nk-frames { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-bottom: 1px solid var(--nk-hair-d); }
+.nk-frames-1 { grid-template-columns: minmax(0,1fr); } .nk-frames-2 { grid-template-columns: repeat(2, minmax(0,1fr)); } .nk-frames-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+.nk-frame { position: relative; display: flex; flex-direction: column; padding: 34px 32px 30px; border-left: 1px solid var(--nk-hair-d); text-decoration: none; transition: background-color .2s; min-height: 230px; }
+.nk-frame:first-child { border-left: 0; padding-left: 0; }
+.nk-frame::before { content: ""; position: absolute; left: 0; right: 0; top: -1px; height: 2px; background: var(--nk-night); transform: scaleX(0); transform-origin: left; transition: transform .3s ease; }
+.nk-frame:hover::before, .nk-frame:focus-visible::before { transform: scaleX(1); }
+.nk-frame:hover { background-color: rgba(18,19,22,.025); }
+.nk-frame-no { font: italic 500 18px var(--nk-display); color: #6b7078; margin-bottom: 26px; }
+.nk-frame-title { font-size: 27px; line-height: 1.15; color: var(--nk-night); margin: 0; }
+.nk-frame-desc { margin: 14px 0 0; font: 400 14.5px/1.6 var(--nk-text); color: #4b5057; }
+.nk-frame-cta { margin-top: auto; padding-top: 26px; display: inline-flex; align-items: center; gap: 10px; font: 600 11px var(--nk-text); letter-spacing: .18em; text-transform: uppercase; color: var(--nk-night); }
+.nk-frame:hover .nk-frame-cta { gap: 16px; }
+@media (max-width: 1000px) { .nk-frames, .nk-frames-4 { grid-template-columns: repeat(2, minmax(0,1fr)); } .nk-frame:nth-child(odd) { border-left: 0; padding-left: 0; } .nk-frame:nth-child(n+3) { border-top: 1px solid var(--nk-hair-d); } }
+@media (max-width: 640px) { .nk-frames, .nk-frames-2, .nk-frames-4 { grid-template-columns: minmax(0,1fr); } .nk-frame { border-left: 0 !important; padding-left: 0 !important; min-height: 0; } .nk-frame + .nk-frame { border-top: 1px solid var(--nk-hair-d); } .nk-sec-head { grid-template-columns: 1fr; } }
+
+/* cards / lists / tables: sharp, hairline, no radius, no shadow */
+.rounded, .rounded-sm, .rounded-md, .rounded-lg, .rounded-xl, .rounded-2xl, .rounded-full:not(.nk-dot), [class*="rounded-["] { border-radius: 0 !important; }
+.shadow, .shadow-sm, .shadow-md, .shadow-lg, .shadow-xl, .shadow-2xl { box-shadow: none !important; }
+table { border-collapse: collapse; width: 100%; }
+th { font: 600 11px var(--nk-text); letter-spacing: .16em; text-transform: uppercase; text-align: left; color: #4f545b; padding: 14px 16px; border-bottom: 1px solid var(--nk-night); }
+td { padding: 16px; border-bottom: 1px solid var(--nk-hair-d); font: 400 14.5px/1.55 var(--nk-text); }
+
+/* forms: underline fields, uppercase micro-labels, dark submit */
+form label, label.om-label { font: 600 10.5px var(--nk-text) !important; letter-spacing: .2em !important; text-transform: uppercase; color: #4f545b; }
+form :is(input[type="text"], input[type="email"], input[type="tel"], textarea, select) { border: 0 !important; border-bottom: 1px solid rgba(18,19,22,.45) !important; border-radius: 0 !important; background: transparent !important; box-shadow: none !important; padding: 12px 0 !important; font: 400 16px var(--nk-text); color: var(--nk-night); }
+form :is(input, textarea, select):focus { outline: none !important; border-bottom-color: var(--nk-night) !important; box-shadow: 0 1px 0 0 var(--nk-night) !important; }
+form ::placeholder { color: #6b7078; opacity: 1; }
+
+/* pricing cards: consistent hairline cards, featured one carries the dark top rule */
+[id="pricing"] :is(h3, h4) { color: var(--nk-night); }
+
+/* links in body copy: underlined, not colour-only */
+main p a, .nk-prose a { text-decoration: underline; text-underline-offset: 3px; }
+
+/* hairline footer & section separators */
+footer { border-top: 1px solid var(--nk-hair-l); }
+hr { border: 0; border-top: 1px solid var(--nk-hair-d); }
+/* frames: first cell of each row flush left, later rows ruled */
+.nk-frame { border-left: 1px solid var(--nk-hair-d); padding-left: 32px; }
+.nk-frames-3 .nk-frame:nth-child(3n+1), .nk-frames-4 .nk-frame:nth-child(4n+1), .nk-frames-2 .nk-frame:nth-child(2n+1), .nk-frames-1 .nk-frame { border-left: 0; padding-left: 0; }
+.nk-frames-3 .nk-frame:nth-child(n+4), .nk-frames-4 .nk-frame:nth-child(n+5), .nk-frames-2 .nk-frame:nth-child(n+3) { border-top: 1px solid var(--nk-hair-d); }
+@media (max-width: 1000px) { .nk-frames-3 .nk-frame, .nk-frames-4 .nk-frame { border-left: 1px solid var(--nk-hair-d); padding-left: 32px; border-top: 0; } .nk-frames-3 .nk-frame:nth-child(odd), .nk-frames-4 .nk-frame:nth-child(odd) { border-left: 0; padding-left: 0; } .nk-frames-3 .nk-frame:nth-child(n+3), .nk-frames-4 .nk-frame:nth-child(n+3) { border-top: 1px solid var(--nk-hair-d); } }
+@media (max-width: 640px) { .nk-frame, .nk-frames-3 .nk-frame, .nk-frames-4 .nk-frame { border-left: 0 !important; padding-left: 0 !important; } .nk-frame + .nk-frame { border-top: 1px solid var(--nk-hair-d) !important; } }
+
+/* ==========================================================================
+ * v45 · LINE-LED CALLS TO ACTION + ACCENT RULES (CBRE / McKinsey / BCG vocabulary)
+ * A long hairline leads into the label and extends on hover. Ink on white, silver on dark.
+ * ========================================================================== */
+.nk2-link, .nk-frame-cta, .nk-view-all:not(.nk-mr-viewall), a[href="#overview"].inline-flex, .nk-lcta {
+  --lc: var(--nk-night); display: inline-flex !important; align-items: center; gap: 18px; border: 0 !important; border-bottom: 0 !important;
+  font: 600 11.5px/1 var(--nk-text) !important; letter-spacing: .2em !important; text-transform: uppercase; text-decoration: none !important; color: var(--nk-night);
+  padding: 4px 0 !important; position: relative;
+}
+.nk2-link::before, .nk-frame-cta::before, .nk-view-all:not(.nk-mr-viewall)::before, a[href="#overview"].inline-flex::before, .nk-lcta::before {
+  content: ""; flex: 0 0 56px; width: 56px; height: 2px; background: var(--lc); transition: width .3s ease, flex-basis .3s ease;
+}
+.nk2-link:hover::before, .nk-frame:hover .nk-frame-cta::before, .nk-view-all:not(.nk-mr-viewall):hover::before, a[href="#overview"].inline-flex:hover::before, .nk-lcta:hover::before { width: 88px; flex-basis: 88px; }
+.nk2-link svg, .nk-frame-cta svg, .nk-view-all:not(.nk-mr-viewall) svg { display: none; }       /* the line replaces the arrow */
+.nk-frame:hover .nk-frame-cta { gap: 18px !important; }
+/* on dark surfaces the line is silver and the label is light */
+:is(section.text-white, div.text-white, .om-sec-ink, .nk2-sec-ink, footer) :is(.nk2-link, .nk-frame-cta, .nk-view-all, a[href="#overview"].inline-flex, .nk-lcta) { --lc: #c4c8ce; color: #f2f1ed !important; }
+a[href="#overview"].inline-flex { color: #f2f1ed !important; }
+a[href="#overview"].inline-flex::before { --lc: #c4c8ce; }
+
+/* hero primary text link keeps its underline but gets the same micro-type */
+section.bg-\[\#1b1d21\].text-white a[href="#contact"].inline-flex { font: 600 11.5px/1 var(--nk-text); letter-spacing: .2em; text-transform: uppercase; border-bottom-color: rgba(196,200,206,.6) !important; }
+
+/* accent rule: a short, heavy segment sitting on every section-head hairline (ink on white, silver on dark) */
+.nk-sec-head { position: relative; }
+.nk-sec-head::after { content: ""; position: absolute; left: 0; bottom: -2px; width: 72px; height: 3px; background: var(--nk-night); }
+:is(section.text-white, .om-sec-ink, .nk2-sec-ink) .nk-sec-head { border-bottom-color: var(--nk-hair-l); }
+:is(section.text-white, .om-sec-ink, .nk2-sec-ink) .nk-sec-head::after { background: #c4c8ce; }
+
+/* headings on white sections carry the same short rule above them (home + landing sections) */
+.nk2-sec-white .nk2-h2, .nk2-sec .nk2-h2 { position: relative; padding-top: 28px; }
+.nk2-sec-white .nk2-h2::before, .nk2-sec .nk2-h2::before { content: ""; position: absolute; left: 0; top: 0; width: 56px; height: 3px; background: var(--nk-night); }
+:is(.nk2-sec-ink, .om-sec-ink) .nk2-h2::before { background: #c4c8ce; }
+
+/* cards: corner tick marks (architectural drawing detail) */
+.nk-frame::after { content: ""; position: absolute; right: 14px; top: 14px; width: 9px; height: 9px; border-top: 1px solid var(--nk-hair-d); border-right: 1px solid var(--nk-hair-d); transition: border-color .2s, width .2s, height .2s; }
+.nk-frame:hover::after { border-color: var(--nk-night); width: 14px; height: 14px; }
+
+/* pricing + faq: hairlines carry the structure */
+[id="faq"] details, [id="faq"] [role="button"], [id="faq"] button { border-color: var(--nk-hair-d) !important; }
+@media (max-width: 640px) { .nk2-link::before, .nk-frame-cta::before, .nk-view-all:not(.nk-mr-viewall)::before, a[href="#overview"].inline-flex::before { flex-basis: 36px; width: 36px; } }
+/* v45: home sections keep their own padding (no doubled spacing) */
+.nk2-sec > .nk-container { padding-top: 0 !important; padding-bottom: 0 !important; }
+
+/* ==========================================================================
+ * v47 · SMALL INSTITUTIONAL DETAILS (editorial-consultancy vocabulary)
+ * ========================================================================== */
+/* reading progress hairline under the header */
+.nk-progress { position: fixed; left: 0; right: 0; top: 0; height: 2px; z-index: 70; pointer-events: none; }
+.nk-progress i { display: block; height: 100%; background: #c4c8ce; transform-origin: left; will-change: transform; }
+/* square back-to-top */
+.nk-totop { position: fixed; right: 24px; bottom: 24px; z-index: 60; width: 44px; height: 44px; display: grid; place-items: center; background-color: var(--nk-night); background-image: var(--nk-pin); color: #eef0f2; border: 1px solid rgba(196,200,206,.5); border-radius: 0; opacity: 0; transform: translateY(8px); pointer-events: none; transition: opacity .25s, transform .25s, background-color .2s; cursor: pointer; }
+.nk-totop[data-shown="true"] { opacity: 1; transform: none; pointer-events: auto; }
+.nk-totop:hover { background-color: #000; border-color: #c4c8ce; }
+
+footer { position: relative; }
+footer::before, footer::after { content: none !important; display: none !important; }
+
+/* imagery: slow, slight zoom on hover; frames hold the crop */
+.nk2-hero-img, .nk-mr-card-img, .nk-feature-img, [class*="aspect-"] { overflow: hidden; }
+a:hover > img, .group:hover img { transition: transform 1.2s cubic-bezier(.2,.6,.2,1); }
+.group:hover > img, .group:hover [class*="aspect-"] img, a.nk2-card:hover img { transform: scale(1.035); }
+
+/* typography polish */
+h1, h2, h3, .font-serif-display { text-wrap: balance; font-feature-settings: "kern", "liga", "lnum"; hanging-punctuation: first; }
+p, li, dd { text-wrap: pretty; }
+body { font-variant-numeric: lining-nums; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+td, th, .tabular, [class*="AED"] { font-variant-numeric: tabular-nums lining-nums; }
+::selection { background: var(--nk-night); color: #fff; }
+:is(section.text-white, footer, .om-sec-ink, .nk2-sec-ink) ::selection { background: #c4c8ce; color: var(--nk-night); }
+
+/* fine scrollbar in palette */
+html { scrollbar-width: thin; scrollbar-color: #6b7078 #121316; }
+::-webkit-scrollbar { width: 10px; height: 10px; } ::-webkit-scrollbar-track { background: #121316; } ::-webkit-scrollbar-thumb { background: #4a4e55; border: 2px solid #121316; }
+
+/* body-copy links: underline thickens on hover, never colour alone */
+main p a, main li a:not([class]) { text-decoration-thickness: 1px; transition: text-decoration-thickness .15s; }
+main p a:hover, main li a:not([class]):hover { text-decoration-thickness: 2px; }
+
+/* breadcrumb: slash-separated micro caps */
+nav[aria-label="Breadcrumb"], nav[aria-label="breadcrumb"] { font: 500 11px var(--nk-text); letter-spacing: .16em; text-transform: uppercase; }
+
+/* FAQ: numbered, hairline rows with a heavy rule on the open item */
+[id="faq"] [aria-expanded="true"] { border-top: 2px solid var(--nk-night); }
+
+/* print: a clean institutional paper copy */
+@media print {
+  header, footer, .nk-slide-panel, .nk-progress, .nk-totop, .nk2-skip { display: none !important; }
+  body, .min-h-screen, section { background: #fff !important; background-image: none !important; color: #000 !important; }
+  section.text-white, section.text-white * { color: #000 !important; }
+  a { text-decoration: underline; } a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 10px; }
+  section { break-inside: avoid; }
+}
+@media (prefers-reduced-motion: reduce) { .group:hover img, a:hover > img { transform: none !important; } }
+@media (max-width: 640px) { .nk-totop { right: 14px; bottom: 14px; width: 40px; height: 40px; } }
+
+/* dark sections: stacking context only (wave / line-weave artwork removed in v59) */
+:is(section.text-white, .om-sec-ink, .nk2-sec-ink, .nk-stat-band-aubergine) { position: relative; isolation: isolate; }
+:is(section.text-white, .om-sec-ink, .nk2-sec-ink, .nk-stat-band-aubergine) > .nk-container,
+:is(section.text-white, .om-sec-ink, .nk2-sec-ink, .nk-stat-band-aubergine) > div:not([class*="absolute"]) { position: relative; z-index: 1; }
+
+/* ==========================================================================
+ * v49 · MOBILE SIDE PANEL — docks BELOW the header (never over it), no repeated logo
+ * ========================================================================== */
+.nk-slide-head-label { font: 600 11px var(--nk-text); letter-spacing: .22em; text-transform: uppercase; color: #c4c8ce; }
+@media (max-width: 1023px) {
+  .nk-slide-panel { top: var(--nk-header-h, 64px) !important; height: calc(100vh - var(--nk-header-h, 64px)) !important; height: calc(100dvh - var(--nk-header-h, 64px)) !important; width: 100vw !important; z-index: 30 !important; border-top: 1px solid rgba(196,200,206,.22); }
+  .nk-backdrop { top: var(--nk-header-h, 64px) !important; z-index: 25 !important; }
+  .nk-slide-panel .nk-slide-head-logo { height: 52px !important; padding-left: 24px !important; padding-right: 24px !important; border-bottom: 1px solid rgba(196,200,206,.18) !important; }
+  .nk-slide-panel .nk-slide-body { padding-left: 24px !important; padding-right: 24px !important; }
+}
+/* close button: square, hairline, light X on night — never a white box */
+.nk-slide-panel .nk-slide-head-logo button { width: 36px !important; height: 36px !important; background: transparent !important; color: #eef0f2 !important; border: 1px solid rgba(196,200,206,.5) !important; border-radius: 0 !important; }
+.nk-slide-panel .nk-slide-head-logo button:hover { background: #eef0f2 !important; color: var(--nk-night) !important; }
+/* Contact CTA in the panel: white pinstripe, ink text (matches every other button on a dark surface) */
+.nk-slide-panel .nk-panel-cta { background-color: #ffffff !important; background-image: var(--nk-pin-light) !important; color: var(--nk-night) !important; border: 1px solid #ffffff !important; font-weight: 500; }
+.nk-slide-panel .nk-panel-cta:hover { background-color: var(--nk-night) !important; background-image: var(--nk-pin) !important; color: #fff !important; border-color: #c4c8ce !important; }
+.nk-slide-panel .nk-panel-cta svg { stroke: currentColor; }
+
+/* v50 · panel footer always fully visible: dynamic viewport height + safe-area padding */
+.nk-slide-panel { min-height: 0; overflow: hidden; }
+.nk-slide-panel .nk-slide-body { min-height: 0; flex: 1 1 auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.nk-slide-panel > div:last-child { flex: 0 0 auto; padding: 16px 24px calc(16px + env(safe-area-inset-bottom, 0px)) !important; background-color: var(--nk-night); background-image: var(--nk-pin); border-top: 1px solid rgba(196,200,206,.22) !important; }
+.nk-slide-panel .nk-panel-cta { width: 100%; min-height: 52px; box-sizing: border-box; }
+@media (max-width: 1023px) {
+  .nk-slide-panel { bottom: 0 !important; }
+}
+
+
+/* ==========================================================================
+ * v51 · MORE EDITORIAL-CONSULTANCY ELEMENTS
+ * ========================================================================== */
+
+.nk2-hero { position: relative; isolation: isolate; overflow: hidden; }
+.om-sec-paper { position: relative; isolation: isolate; }
+
+/* C · BCG-style square arrow mark on every practice-area cell (replaces the tick) */
+.nk-frame::after { content: "\2192" !important; display: grid !important; place-items: center; right: 0 !important; top: 28px !important; width: 34px !important; height: 34px !important; border: 1px solid var(--nk-hair-d) !important;
+  font: 400 15px var(--nk-text); color: var(--nk-night); background: transparent; transition: background-color .2s, color .2s, border-color .2s; }
+.nk-frame:hover::after { background: var(--nk-night); color: #fff; border-color: var(--nk-night) !important; width: 34px !important; height: 34px !important; }
+
+/* D · oversized outlined numeral behind section heads (editorial / annual-report device) */
+.nk-sec-head { isolation: isolate; }
+.nk-sec-head::before { content: attr(data-no); position: absolute; right: 0; top: -34px; z-index: -1; font: 500 clamp(120px, 14vw, 220px)/1 var(--nk-display); color: transparent; -webkit-text-stroke: 1px rgba(18,19,22,.12); letter-spacing: -.02em; pointer-events: none; }
+
+/* E · hero & section titles: the McKinsey "big question" scale on the home page */
+.nk2-h1 { font-size: clamp(44px, 5.4vw, 84px) !important; line-height: 1.04 !important; letter-spacing: -.012em; }
+.nk2-h2 { font-size: clamp(34px, 3.6vw, 54px) !important; line-height: 1.08 !important; }
+
+/* F · metadata beside titles: hairline separators between tag and date */
+.nk2-card-meta, .nk2-meta { display: flex; gap: 14px; align-items: center; }
+.nk2-meta > * + *::before, .nk2-card-meta > * + *::before { content: ""; display: inline-block; width: 18px; height: 1px; background: currentColor; opacity: .5; margin-right: 14px; vertical-align: middle; }
+
+/* G · full-bleed hairline ruler under every white→dark junction */
+section.text-white + section, section.text-white + div { border-top: 0; }
+.nk2-h1 { font-size: clamp(40px, 4.3vw, 66px) !important; }
+.nk2-hero-copy { padding-top: 16px; }
+.nk-sec-head::before { top: -96px !important; }

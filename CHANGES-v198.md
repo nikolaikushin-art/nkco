@@ -1,0 +1,10 @@
+# v198 — every image matches its page (no more random photos)
+
+- Problem: the interim images were random Lorem Picsum photos (leaf, dark cave, honey jar for "Dubai Pricing Indices", "Volume Trends", "Sentiment Signals" ...), and the photo fetcher ended its search with generic fallbacks ("abstract texture", "city skyline"), so unrelated pictures could still be picked.
+- New `src/lib/topicPlate.js`: each page and featured card gets a drawn plate whose motif is chosen from the page's own words (title first, then item, category, section). Examples: Sales Transformation = funnel, Pricing Strategy = price tag, Channel Optimisation = branching channels, Customer Experience = heart, Key Account Management = star, Dubai Pricing Indices / Volume Trends = bar chart, Geographic Heatmaps = grid heatmap, Sentiment Signals = gauge, Rental Yield Trackers = rising line, Supply Pipelines = timeline, Cybersecurity = padlock, Warehousing = warehouse, Private Aviation = aircraft. ~60 motifs, ~150 keyword rules, all 1,092 slots covered. Deterministic, no network.
+- `src/lib/leafPhoto.js`: Picsum removed. Order is now (1) a photo from `photoManifest.json` that passed the relevance check, else (2) the topic plate. The Picsum 404 handler in `src/index.js` is gone.
+- `scripts/fetch-photos.mjs` (`npm run photos`): a photo is accepted only if its own description (alt text) contains a word from the page title. Generic fallback queries removed. Pages with no relevant photo keep their plate. Manifest entries carry `match: true`.
+- `scripts/check-photos.mjs` (`npm run check:photos`, `npm run build:strict`): now checks that every slot has a motif or a relevance-checked photo, and that no photo is reused. Current result: 1,092 slots, 0 problems.
+- Hand-picked cards that use named photos from `IMG` (Dubai skyline, meeting rooms etc.) are unchanged.
+- Not verified: `npm run photos` could not be run here (no access to Pexels/Unsplash from the build sandbox), so the relevance filter is untested against the live APIs.
+- To tune a page's picture, edit the keyword rules (`RULES`) in `src/lib/topicPlate.js`; to add a motif, add one entry to `M`.
