@@ -1,0 +1,6 @@
+# v256: white bar on the active menu row, made permanent
+- Problem: the white vertical bar on the left of the selected rail row ("Setup & Conceptualisation", "Data Platforms", ...) kept disappearing after unrelated edits. It lived in an extra rule block appended at the very end of `src/megamenu-d.css` (v250 `::before`; before that an inset box-shadow), which is easy to drop or override when the file is regenerated.
+- Fix: the bar is now the first layer of the row's own `background` in the two base active-row rules (`.nk-md-cat[data-active="true"]` and `.nk-md-secs--burger .nk-md-cat[data-active="true"]`, search "ACTIVE ROW BAR"): `linear-gradient(#fff,#fff) left top / 3px 100% no-repeat` over the .07 white tint. No pseudo-element, no box-shadow, no tail block. The v250 tail block is removed.
+- Guard: `scripts/check-active-bar.mjs` runs as `prebuild` and fails `npm run build` if either declaration is missing.
+- Checked in Chromium (1440x900, 2x): pixel at x=1 and x=4 of the active row is pure white in the top-menu rail, on hover, and in the burger accordion; row tint unchanged. Not checked in Safari/Firefox (not available here).
+- Note: the bar is 3px wide at the very edge of the window. A screenshot cropped even 4px in from the left edge will not show it.

@@ -1,0 +1,15 @@
+# v240: Privileges grows: five more sectors, operator content, more member circles
+- New sector coverage (hospitality, retail, healthcare, education, construction), all in src/data/privileges.js. Nothing else needed wiring: menu, side panel, pages, SEO, pictures and featured cards read from that file.
+- Podcasts: +1 series, Operators Desk Episodes (5 episodes, one per sector).
+- Masterclasses: +3 courses (Hospitality and Retail Operations; Healthcare and Education Operations; Construction and Project Delivery), 12 lessons.
+- Guides & Playbooks: +2 collections, Operator Playbooks (5) and Single-Sector Guides (5).
+- Video & Webinars: +1 library, Operator Briefings (5).
+- Tools & Templates: +1 toolkit, Operator Toolkits (5).
+- Member Access: +2 groups of circles, Sector Circles (5, one per new sector) and Leadership Circles (5: COO, People and Talent, Risk and Compliance, Technology and Data, Next Generation Principals).
+- Depth: items no longer all hold four pieces. 19 now hold six and 13 hold eight (7 stay at four), by appending pieces to the end of existing items, so existing page addresses are unchanged. 81 pieces added on top of the first pass; item blurbs that stated a lesson count were corrected (Eight lessons, Six lessons).
+- Totals: 6 categories, 39 series/courses/libraries (was 29), 246 pieces (was 118), 292 pages (was 154). Podcasts are now six series, masterclasses ten.
+- Count wording updated where it was written out: category descriptions, menu featured cards, PRIV.description, and the menu featured text in mock.js ("Six audio series").
+- Checks run: every motif exists in topicPlate.js, no duplicate piece titles or paths, no piece title collides with an existing key in megaChildDescriptions.js (PRIV_CHILD_DESC is keyed by title and is spread last), 211 distinct accent colours.
+- Accent colours are assigned by page order, so pages after each insertion point have a new accent colour; motifs (the drawn pictures) are unchanged.
+- All new copy is draft. No guests, figures, dates, regulators or claims were invented; please review. Circles and sessions are proposals: confirm format, size and ground rules before they go live.
+- Not run: the production build and the headless page check from v239 (no node_modules in this copy).

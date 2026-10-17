@@ -1,0 +1,12 @@
+/* v325 · navigation: serif headings in a soft grey, sans links. Starts closed (see MegaRail.jsx). */
+.nk-md--acc .nk-acc-title { font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif !important; font-weight: 500 !important; color: #3a4047 !important; letter-spacing: -.01em; }
+.nk-md--acc .nk-acc-btn { color: #7b8791 !important; }
+.nk-md--acc .nk-acc-btn > span { font-family: 'Newsreader', Georgia, 'Times New Roman', serif !important; font-weight: 400 !important; letter-spacing: -.005em; color: #7b8791 !important; }
+.nk-md--acc .nk-acc-btn:hover > span, .nk-md--acc .nk-acc-cat[data-open="true"] > .nk-acc-btn > span { color: #4f5a63 !important; }
+.nk-md--acc .nk-acc-item, .nk-md--acc .nk-acc-item > span { color: #5d6770 !important; }
+.nk-md--acc .nk-acc-item > span { font-family: 'Newsreader', Georgia, 'Times New Roman', serif !important; font-weight: 400 !important; font-size: 19px; letter-spacing: -.005em; }
+.nk-md--acc .nk-acc-item:hover, .nk-md--acc .nk-acc-item:hover > span { color: #2a2f35 !important; }
+.nk-md--acc .nk-acc-kid, .nk-md--acc .nk-acc-kid span { font-family: 'Inter', system-ui, sans-serif !important; font-weight: 400; }
+.nk-md--acc .nk-acc-kid--all, .nk-md--acc .nk-acc-kid--all span { font-weight: 500; }
+.nk-md--acc .nk-acc-feat-title { font-family: 'Cormorant Garamond', Georgia, serif !important; }
+.nk-slide-panel .nk-acc-trigger span, .nk-slide-panel .nk-side-sub-trigger span { font-family: 'Newsreader', Georgia, serif !important; font-weight: 400 !important; }

@@ -1,0 +1,396 @@
+/* v200 inner-page system. Brand tokens: night #121316, graphite #1b1d21, parchment #e9e8e5, paper #f4f3f0, silver #c4c8ce, steel #2b4a6b. */
+.pg-hero,.pg-sec{--night:#121316;--graphite:#1b1d21;--ink:#16171a;--parch:#e9e8e5;--paper:#f4f3f0;--silver:#c4c8ce;--steel:#2b4a6b;--mute:#5d626a;--rule:#cfcecA;font-family:Inter,-apple-system,"Segoe UI",sans-serif;font-weight:300;line-height:1.7}
+.pg-hero *,.pg-sec *{box-sizing:border-box}
+.pg-hero h1,.pg-sec h2,.pg-sec h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:300;letter-spacing:-.02em;line-height:1.1;margin:0}
+.pg-hero p,.pg-sec p{margin:0}.pg-hero img,.pg-sec img{display:block;max-width:100%}
+.pg-wrap{width:min(1360px,92%);margin:0 auto}
+.pg-sec{padding:clamp(3.3rem,6vw,5.8rem) 0}
+.pg-dark{background:var(--night);color:#fff}.pg-graph{background:var(--graphite);color:#fff;border-top:1.5px solid rgba(196,200,206,.16)}
+.pg-dark p,.pg-graph p{color:rgba(255,255,255,.82)}
+.pg-paper{background:var(--paper);color:var(--ink);border-top:1.5px solid var(--rule)}.pg-parch{background:var(--parch);color:var(--ink);border-top:1.5px solid #bdbcb7}.pg-white{background:#fff;color:var(--ink);border-top:1.5px solid var(--rule)}
+.pg-paper p,.pg-white p{color:var(--mute)}.pg-parch p{color:#4a4f56}
+.pg-head{position:relative;padding-left:1.1rem;max-width:980px;margin-bottom:2.2rem}.pg-head::before{content:"";position:absolute;left:0;top:.3rem;bottom:.5rem;width:4px;background:var(--steel)}
+.pg-dark .pg-head::before,.pg-graph .pg-head::before{background:var(--silver)}
+.pg-head h2{font-size:clamp(2rem,4vw,3.3rem);max-width:24ch}
+.pg-rn{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.4rem;color:var(--mute)}.pg-dark .pg-rn,.pg-graph .pg-rn{color:var(--silver)}
+.pg-tag{font-size:.78rem;color:var(--mute)}.pg-dark .pg-tag,.pg-graph .pg-tag{color:var(--silver)}
+.pg-big{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(1.5rem,2.6vw,2.2rem);line-height:1.3;font-weight:300}
+.pg-btn{display:inline-flex;background:var(--graphite);color:#fff;padding:.85rem 1.4rem;text-decoration:none;font-weight:400;font-size:.92rem}.pg-btn:hover{background:#000}
+.pg-dark .pg-btn,.pg-graph .pg-btn,.pg-hero .pg-btn{background:var(--silver);color:var(--night)}.pg-dark .pg-btn:hover,.pg-graph .pg-btn:hover,.pg-hero .pg-btn:hover{background:#fff}
+.pg-lnk{font-size:.92rem;text-decoration:none;border-bottom:1px solid currentColor;opacity:.85}
+.pg-acts{display:flex;gap:1.6rem;flex-wrap:wrap;align-items:center}
+.pg-verbs{display:flex;flex-wrap:wrap;justify-content:flex-end;gap:.2rem .5rem;margin-top:2.4rem;padding-top:.75rem;border-top:1px solid rgba(128,128,128,.3);font-size:.6rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;opacity:.75}
+.pg-verbs i{font-style:normal;opacity:.5}
+/* hero */
+.pg-hero{background:var(--night);color:#fff;padding:5rem 0 clamp(2.4rem,4vw,3.6rem)}
+.pg-copy{display:flex;flex-direction:column;gap:1.5rem;justify-content:center}
+.pg-hero h1{font-size:clamp(2.6rem,5.8vw,5rem);letter-spacing:-.03em;max-width:16ch}
+.pg-lead{font-size:1.12rem;max-width:58ch;color:rgba(255,255,255,.82)}
+.pg-crumbs{font-size:.84rem;color:rgba(255,255,255,.62);display:flex;gap:.5rem;flex-wrap:wrap}.pg-crumbs a{color:inherit;text-decoration:none}.pg-crumbs a:hover{color:#fff}
+.pg-hero .pg-lnk{color:rgba(255,255,255,.85)}
+.pg-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;border-top:1px solid rgba(196,200,206,.22);padding-top:1.1rem}
+.pg-metrics b{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.7rem;font-weight:400;line-height:1.1}.pg-metrics span{font-size:.82rem;color:var(--silver)}
+.pg-tri{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:1.6rem}
+.pg-tri a{position:relative;display:block;min-height:96px;overflow:hidden;color:#fff;text-decoration:none;border:1px solid rgba(196,200,206,.22)}
+.pg-tri img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.pg-tri a::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,19,22,.9),rgba(18,19,22,.3))}
+.pg-tri span{position:absolute;z-index:1;left:.9rem;right:.9rem;bottom:.7rem;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.2rem;line-height:1.2}
+/* modules */
+.pg-card,.pg-tile,.pg-models article,.pg-branches article,.pg-kpi>div{position:relative;background:#fff;border:1px solid #d6d5d0;color:var(--ink)}
+.pg-dark .pg-card,.pg-graph .pg-card,.pg-dark .pg-tile,.pg-graph .pg-tile,.pg-dark .pg-models article,.pg-graph .pg-models article,.pg-dark .pg-branches article,.pg-graph .pg-branches article,.pg-dark .pg-kpi>div,.pg-graph .pg-kpi>div{background:rgba(255,255,255,.045);border-color:rgba(196,200,206,.24);color:#fff}
+.pg-card{padding:2.2rem 1.5rem 1.5rem}.pg-card::before,.pg-models article::before{content:"";position:absolute;top:.9rem;left:1.5rem;right:1.5rem;height:3px;background:var(--ac,var(--steel))}
+.pg-dark .pg-card::before,.pg-graph .pg-card::before{background:var(--silver)}
+.pg-card h3,.pg-models h3,.pg-tile h3{font-size:1.65rem;margin-bottom:.5rem;color:inherit}.pg-card p,.pg-models p,.pg-tile p{font-size:.96rem}
+.pg-paper .pg-card h3,.pg-white .pg-card h3,.pg-parch .pg-card h3{color:var(--graphite)}
+.pg-cards,.pg-models,.pg-branches,.pg-kpi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
+.pg-models article{padding:2.2rem 1.5rem 1.5rem}.pg-models article p,.pg-card p,.pg-tile p,.pg-branches p,.pg-kpi p{color:var(--mute)}
+.pg-dark .pg-models p,.pg-graph .pg-models p,.pg-dark .pg-card p,.pg-graph .pg-card p,.pg-dark .pg-tile p,.pg-graph .pg-tile p,.pg-dark .pg-branches p,.pg-graph .pg-branches p,.pg-dark .pg-kpi p,.pg-graph .pg-kpi p{color:rgba(255,255,255,.82)}
+.pg-tiles{display:grid;gap:1.1rem;grid-template-columns:repeat(2,minmax(0,1fr))}.pg-t3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.pg-tile{display:flex;flex-direction:column;text-decoration:none;color:inherit;overflow:hidden}.pg-tile:hover{border-color:var(--steel)}
+.pg-tile img{width:100%;aspect-ratio:16/9;object-fit:cover}.pg-tile>div{padding:1.1rem 1.3rem 1.4rem;display:flex;flex-direction:column;gap:.15rem;flex:1}
+.pg-go{margin-top:auto;padding-top:.8rem;font-size:.86rem;display:inline-flex;gap:.4rem;align-items:center;color:var(--steel)}.pg-dark .pg-go,.pg-graph .pg-go{color:var(--silver)}
+.pg-exec{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(1.5rem,4vw,4rem);align-items:start}.pg-exec article{display:grid;gap:1.2rem}
+.pg-aside{border:1.5px solid rgba(128,128,128,.35);padding:1.5rem;display:grid;gap:.9rem;align-content:start}.pg-aside h3{font-size:1.5rem}
+.pg-aside ul,.pg-feature ul{margin:0;padding:0;list-style:none}.pg-aside li,.pg-feature li{padding:.6rem 0;border-top:1px solid rgba(128,128,128,.3);font-size:.95rem}
+.pg-spine{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));border:1.5px solid rgba(128,128,128,.35)}
+.pg-spine article{padding:1.5rem 1.3rem 1.7rem;border-left:1.5px solid rgba(128,128,128,.35)}.pg-spine article:first-child{border-left:0}
+.pg-spine h3{font-size:1.7rem;margin:.4rem 0 .5rem}.pg-spine p{font-size:.94rem}
+.pg-spine-1{border:0;gap:0;counter-reset:s}.pg-spine-1 article{border:0;border-top:3px solid var(--steel);margin:0 .5rem 0 0;padding-left:0}.pg-dark .pg-spine-1 article,.pg-graph .pg-spine-1 article{border-top-color:var(--silver)}
+.pg-arch{display:grid;grid-template-columns:1.3fr 1fr;gap:1.1rem}.pg-arch figure{position:relative;margin:0;min-height:380px;overflow:hidden}.pg-arch figure img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pg-arch figcaption{position:absolute;left:0;bottom:0;right:0;padding:.8rem 1rem;color:#fff;font-size:.8rem;background:rgba(18,19,22,.78)}.pg-arch>div{display:grid;gap:1.1rem}
+.pg-table{overflow-x:auto;border:1.5px solid #bdbcb7;background:#fff}.pg-table table{width:100%;min-width:680px;border-collapse:collapse}
+.pg-table th{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;font-size:1.25rem;text-align:left;background:var(--graphite);color:#fff;padding:1rem 1.3rem}
+.pg-table td{padding:1.1rem 1.3rem;vertical-align:top;border-top:1px solid #d6d5d0;font-size:.96rem;color:#3a3e44}.pg-table td:first-child{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.35rem;font-weight:500;color:var(--graphite);width:26%}
+.pg-decide{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2fr);gap:1.1rem}.pg-start{padding:1.6rem;background:var(--steel);color:#fff}.pg-start h3{font-size:1.9rem;margin-bottom:.6rem}.pg-start p{color:rgba(255,255,255,.88)!important}
+.pg-branches article{padding:1.4rem}.pg-if{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.35rem;line-height:1.25;color:inherit!important;margin:.4rem 0 .8rem!important}
+.pg-split{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2fr);gap:clamp(1.5rem,4vw,3.5rem);align-items:start}
+.pg-tl{list-style:none;margin:0;padding:0 0 0 1.6rem;border-left:2px solid var(--steel);display:grid;gap:1.6rem}.pg-dark .pg-tl,.pg-graph .pg-tl{border-color:var(--silver)}
+.pg-tl li{position:relative}.pg-tl li::before{content:"";position:absolute;left:-2.05rem;top:.55rem;width:.6rem;height:.6rem;background:var(--steel)}.pg-dark .pg-tl li::before,.pg-graph .pg-tl li::before{background:var(--silver)}
+.pg-tl h3{font-size:1.7rem}.pg-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2.4rem}
+.pg-proof>div,.pg-metrics>div{display:block}.pg-proof b{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-size:2rem;font-weight:400;line-height:1.1}.pg-proof span{font-size:.85rem;opacity:.8}
+.pg-proof>div{padding:1rem 1.2rem;border:1px solid rgba(128,128,128,.35)}
+.pg-expand{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 2.4rem;align-items:start}
+.pg-expand details{border-top:1px solid rgba(128,128,128,.4)}.pg-expand summary{cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem;padding:1.15rem 0;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.5rem;line-height:1.2}
+.pg-expand summary::-webkit-details-marker{display:none}.pg-expand summary::after{content:"+";font-family:Inter,sans-serif;color:var(--steel)}.pg-dark .pg-expand summary::after,.pg-graph .pg-expand summary::after{color:var(--silver)}
+.pg-expand details[open] summary::after{content:"\2212"}.pg-expand details p{padding:0 0 1.3rem}
+.pg-news{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:1.1rem}.pg-ncard{position:relative;display:block;min-height:320px;overflow:hidden;color:#fff;text-decoration:none}
+.pg-ncard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.pg-ncard::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,19,22,.92),rgba(18,19,22,.1) 70%)}
+.pg-ncard div{position:absolute;z-index:1;left:1.3rem;right:1.3rem;bottom:1.2rem}.pg-ncard h3{font-size:1.7rem;color:#fff;margin-top:.3rem}.pg-ncard .pg-tag{color:var(--silver)}
+.pg-kpi>div{padding:1.5rem}.pg-kpi b{display:block;font-family:"Cormorant Garamond",Georgia,serif;font-size:2.6rem;font-weight:300;line-height:1.05;margin-bottom:.4rem}.pg-kpi h3{font-size:1.3rem;margin-bottom:.4rem}
+.pg-feature{display:grid;grid-template-columns:1.3fr 1fr;gap:1.1rem}.pg-feature article{padding:2rem;border:1.5px solid rgba(128,128,128,.35)}.pg-feature article:first-child{background:var(--steel);color:#fff}.pg-feature article:first-child p{color:#fff}
+.pg-quote{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:2rem;align-items:end}
+.pg-s-quote{border-top:4px solid var(--silver)}
+.pg-hero a:focus-visible,.pg-sec a:focus-visible,.pg-sec summary:focus-visible,.pg-table:focus-visible{outline:2px solid var(--silver);outline-offset:3px}
+@media(max-width:960px){.pg-hero-grid,.pg-h1 .pg-hero-grid,.pg-exec,.pg-arch,.pg-decide,.pg-split,.pg-feature,.pg-quote{grid-template-columns:1fr}.pg-h1 .pg-copy{order:0}
+.pg-cards,.pg-models,.pg-branches,.pg-kpi,.pg-t3,.pg-tiles,.pg-news,.pg-expand,.pg-tri{grid-template-columns:1fr}.pg-fig{min-height:260px}.pg-proof,.pg-metrics{grid-template-columns:1fr}.pg-spine article{border-left:0;border-top:1.5px solid rgba(128,128,128,.35)}}
+
+/* v202: wide image straight under the header, home-style rail below it, headings forced to the right colour */
+.pg-hero-grid{display:grid;grid-template-columns:1fr;gap:1.8rem}
+.pg-fig{order:-1;margin:0;display:flex;flex-direction:column}
+.pg-img{position:relative;height:clamp(300px,42vw,640px);overflow:hidden;background:#000}
+.pg-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pg-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,19,22,.35),transparent 45%);pointer-events:none}
+.pg-fig .nk2-rail{position:static;border-radius:0;border-top:0}
+.pg-fig .nk2-rail nav{justify-content:flex-start}.pg-fig .nk2-rail a{flex:1 1 0;min-width:max-content}
+.pg-sec{scroll-margin-top:80px}
+.pg-hero h1,.pg-dark h2,.pg-graph h2,.pg-dark h3,.pg-graph h3,.pg-ncard h3,.pg-start h3{color:#f2f1ed!important}
+.pg-paper h2,.pg-white h2,.pg-parch h2,.pg-paper h3,.pg-white h3,.pg-parch h3{color:var(--graphite)}
+.pg-ncard h3,.pg-start h3{color:#f2f1ed!important}
+@media(max-width:960px){.pg-img{height:clamp(220px,56vw,360px)}.pg-fig .nk2-rail a{flex:0 0 auto}}
+
+/* v203: title on the image, rail inside the image at the bottom, no dead areas */
+.pg-hero{padding:4.8rem 0 1.6rem}
+.pg-fig{position:relative;order:0;display:block;margin:0;height:clamp(380px,36vw,520px);overflow:hidden;background:#000}
+.pg-fig>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pg-fig::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,19,22,.92) 0%,rgba(18,19,22,.55) 42%,rgba(18,19,22,.1) 75%);pointer-events:none}
+.pg-cap{position:absolute;z-index:2;left:clamp(1.2rem,3vw,2.4rem);right:clamp(1.2rem,3vw,2.4rem);bottom:5.4rem;display:grid;gap:.8rem;max-width:900px}
+.pg-cap h1{font-size:clamp(2.2rem,4.6vw,4rem);max-width:20ch}.pg-cap .pg-lead{font-size:1.02rem;max-width:62ch;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.pg-fig .nk2-rail{position:absolute;top:auto;bottom:14px;left:14px;right:14px;z-index:3;border-radius:2px}
+.pg-fig .nk2-rail a{flex:1 1 0;min-width:max-content}
+.pg-band{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.8fr);gap:1.1rem;margin-top:1.1rem;align-items:stretch}.pg-band-1{grid-template-columns:1fr}
+.pg-band .pg-metrics{border:1px solid rgba(196,200,206,.22);padding:1rem 1.2rem;align-content:center}.pg-band .pg-tri{margin-top:0}.pg-band .pg-tri a{min-height:110px}
+/* section heads fill the row: heading left, short explainer right, four treatments */
+.pg-sec{padding:clamp(2.6rem,4.5vw,4.2rem) 0}
+.pg-head{max-width:none;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:.8rem 3rem;align-items:end;margin-bottom:1.8rem}
+.pg-head h2{max-width:20ch}.pg-sub{font-size:1.02rem;max-width:54ch;justify-self:end;margin:0}
+.pg-head.hv1{grid-template-columns:1fr;text-align:center;padding:1.2rem 0;border-top:1px solid rgba(128,128,128,.4);border-bottom:1px solid rgba(128,128,128,.4)}.pg-head.hv1::before{display:none}.pg-head.hv1 h2{max-width:none}.pg-head.hv1 .pg-sub{justify-self:center}
+.pg-head.hv2{grid-template-columns:5.5rem minmax(0,1fr);padding-left:0;align-items:start}.pg-head.hv2::before{content:attr(data-n);position:static;width:auto;background:none;grid-row:1/3;font-family:"Cormorant Garamond",Georgia,serif;font-size:3.4rem;line-height:1;color:var(--mute)}
+.pg-head.hv2 h2,.pg-head.hv2 .pg-sub{grid-column:2;justify-self:start;max-width:none}
+.pg-head.hv3{grid-template-columns:1fr auto;padding-left:0;border-bottom:3px solid var(--steel);padding-bottom:1rem}.pg-head.hv3::before{display:none}
+.pg-dark .pg-head.hv3,.pg-graph .pg-head.hv3{border-color:var(--silver)}.pg-dark .pg-head.hv2::before,.pg-graph .pg-head.hv2::before{color:var(--silver)}
+/* photo-led modules */
+.pg-card.has-img{padding:0 0 1.5rem}.pg-card.has-img::before{display:none}.pg-card.has-img img{width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:1.1rem}.pg-card.has-img h3,.pg-card.has-img p{padding:0 1.5rem}
+.pg-feature article:first-child{background-color:var(--steel);background-size:cover;background-position:center}
+.pg-mosaic{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:230px 230px;gap:.8rem}
+.pg-mosaic a{position:relative;display:block;overflow:hidden;color:#fff;text-decoration:none}.pg-mosaic .pg-m0{grid-row:1/3}
+.pg-mosaic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.pg-mosaic a::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,19,22,.85),transparent 60%)}
+.pg-mosaic span{position:absolute;z-index:1;left:1rem;right:1rem;bottom:.8rem;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.5rem;line-height:1.15}
+.pg-trow{display:grid;grid-template-columns:4rem minmax(0,1.1fr) minmax(0,1fr);gap:1.5rem;align-items:baseline;padding:1.3rem 0;border-top:1px solid rgba(128,128,128,.4)}.pg-trow:last-child{border-bottom:1px solid rgba(128,128,128,.4)}
+.pg-trow h3{font-size:clamp(1.8rem,3vw,2.6rem)}.pg-trow p{font-size:.98rem}
+.pg-splitp{display:grid;grid-template-columns:1.1fr 1fr;gap:1.5rem;align-items:stretch}.pg-splitp figure{margin:0;position:relative;min-height:340px;overflow:hidden}.pg-splitp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pg-splitp ul{list-style:none;margin:0 0 1.4rem;padding:0}.pg-splitp li{padding:.85rem 0;border-top:1px solid rgba(128,128,128,.4);font-size:1.05rem}.pg-splitp>div{display:flex;flex-direction:column;justify-content:center}
+.pg-s-quote{background-size:cover;background-position:center;color:#fff}.pg-s-quote p{color:rgba(255,255,255,.88)!important}.pg-s-quote h2{color:#f2f1ed!important}.pg-s-quote .pg-btn{background:var(--silver);color:var(--night)}.pg-s-quote .pg-lnk{color:#fff}.pg-s-quote .pg-head::before{background:var(--silver)}.pg-s-quote .pg-head.hv2::before{color:var(--silver)}.pg-s-quote .pg-head.hv3{border-color:var(--silver)}
+@media(max-width:960px){.pg-fig{height:clamp(420px,95vw,520px)}.pg-cap{bottom:5rem}.pg-band,.pg-head,.pg-head.hv3,.pg-splitp,.pg-trow{grid-template-columns:1fr}.pg-head.hv2{grid-template-columns:3.5rem 1fr}.pg-sub{justify-self:start}.pg-mosaic{grid-template-columns:1fr 1fr;grid-template-rows:200px 200px 200px}.pg-mosaic .pg-m0{grid-row:auto;grid-column:1/3}.pg-fig .nk2-rail a{flex:0 0 auto}}
+
+/* v204: six hero compositions */
+.pg-hv1 .pg-fig::after,.pg-hv2 .pg-fig::after,.pg-hv3 .pg-fig::after,.pg-hv4 .pg-fig::after,.pg-hv5 .pg-fig::after{background:linear-gradient(to top,rgba(18,19,22,.6),transparent 28%)}
+.pg-hv3 .pg-fig,.pg-hv5 .pg-fig{height:clamp(320px,30vw,440px)}
+.pg-split-hero{display:grid;gap:1.1rem;align-items:stretch;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+.pg-hv2 .pg-split-hero{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}.pg-hv2 .pg-fig{order:2}
+.pg-hv4 .pg-split-hero{grid-template-columns:minmax(0,1.5fr) minmax(0,1fr)}
+.pg-split-hero .pg-fig{height:auto;min-height:clamp(440px,40vw,620px)}
+.pg-info{display:flex;flex-direction:column;justify-content:space-between;gap:1.1rem;padding:1.5rem 1.4rem;border:1px solid rgba(196,200,206,.2);background:var(--graphite)}
+.pg-info h1{font-size:clamp(2.2rem,3.4vw,3.5rem);max-width:none}.pg-info .pg-metrics{margin-top:auto}
+.pg-info .pg-tri{grid-template-columns:1fr;gap:.6rem;margin-top:0}.pg-info .pg-tri a{min-height:78px}
+.pg-below{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:1rem 3rem;align-items:end;padding:1.4rem 0 .2rem}
+.pg-below h1{font-size:clamp(2.4rem,4.6vw,4.2rem);max-width:18ch;margin-top:.7rem}.pg-lc{display:grid;gap:1rem;align-content:end}
+.pg-top{display:grid;gap:1rem;text-align:center;justify-items:center;padding:.6rem 0 1.4rem}.pg-top .pg-crumbs,.pg-top .pg-acts{justify-content:center}
+.pg-top h1{font-size:clamp(2.6rem,5.6vw,4.8rem);max-width:22ch}.pg-top .pg-lead{max-width:64ch}
+@media(max-width:960px){.pg-split-hero,.pg-hv2 .pg-split-hero,.pg-hv4 .pg-split-hero,.pg-below{grid-template-columns:1fr}.pg-hv2 .pg-fig{order:0}.pg-split-hero .pg-fig{min-height:340px}}
+
+/* v205: stats in line (value beside label), full-width strip with a call-to-action cell, no half-empty boxes */
+.pg-band{grid-template-columns:1fr;gap:1.1rem}
+.pg-metrics{display:grid;grid-template-columns:1fr;gap:0}
+.pg-metrics>div{display:flex;align-items:center;gap:.9rem;padding:.8rem 0;border-top:1px solid rgba(196,200,206,.18)}.pg-metrics>div:first-child{border-top:0}
+.pg-metrics b{flex:0 0 auto;font-size:clamp(1.5rem,2.2vw,2rem);line-height:1.1;white-space:nowrap}
+.pg-metrics b.long{font-size:clamp(1.2rem,1.7vw,1.5rem);white-space:normal;max-width:9rem}
+.pg-metrics span{flex:1;font-size:.86rem;line-height:1.35;color:var(--silver)}
+.pg-band .pg-metrics-band{grid-template-columns:repeat(auto-fit,minmax(230px,1fr));padding:0;align-content:stretch}
+.pg-metrics-band>div{border-top:0;border-left:1px solid rgba(196,200,206,.18);padding:1.1rem 1.3rem}.pg-metrics-band>div:first-child{border-left:0}
+.pg-mcta{display:flex;align-items:center;justify-content:space-between;gap:.8rem;padding:1.1rem 1.3rem;background:var(--silver);color:var(--night);text-decoration:none;font-weight:400}.pg-mcta:hover{background:#fff}
+
+/* v206: more of the reference page's section types, in NK&CO colours */
+.pg-bp{background-color:var(--parch);background-image:linear-gradient(rgba(27,29,33,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(27,29,33,.055) 1px,transparent 1px);background-size:44px 44px;color:var(--ink);border-top:1.5px solid #bdbcb7}
+.pg-bp p{color:#4a4f56}.pg-bp h2,.pg-bp h3{color:var(--graphite)}
+.pg-sticky .pg-head{position:sticky;top:72px;z-index:5;padding:.8rem 1rem .8rem 1.1rem;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.pg-sticky.pg-dark .pg-head{background:rgba(18,19,22,.92)}.pg-sticky.pg-graph .pg-head{background:rgba(27,29,33,.94)}
+.pg-sticky.pg-paper .pg-head,.pg-sticky.pg-white .pg-head,.pg-sticky.pg-parch .pg-head,.pg-sticky.pg-bp .pg-head{background:rgba(244,243,240,.95)}
+.pg-expand-cards{gap:.9rem 1.1rem}.pg-expand-cards details{border:1px solid rgba(128,128,128,.4);padding:0 1.2rem;background:rgba(255,255,255,.05)}.pg-expand-cards summary{font-size:1.35rem}
+.pg-expand-cards details[open]{border-color:var(--steel)}.pg-dark .pg-expand-cards details[open],.pg-graph .pg-expand-cards details[open]{border-color:var(--silver)}
+.pg-kpiw{display:grid;grid-template-columns:2fr 1fr;gap:1.1rem;align-items:stretch}.pg-kpi-2{grid-template-columns:1fr 1fr}
+.pg-score{display:grid;grid-template-columns:1.3fr 1fr;gap:1.1rem;align-items:stretch}
+.pg-score ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:.8rem;align-content:start}
+.pg-score li{display:flex;gap:.7rem;align-items:flex-start;padding:1rem 1.1rem;border:1px solid rgba(128,128,128,.4);background:rgba(255,255,255,.05);font-size:.98rem;line-height:1.45}
+.pg-score li svg{flex:0 0 auto;margin-top:.15rem;color:var(--steel)}.pg-dark .pg-score li svg,.pg-graph .pg-score li svg{color:var(--silver)}
+.pg-score figure{margin:0;position:relative;min-height:320px;overflow:hidden}.pg-score img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pg-score figcaption{position:absolute;left:0;right:0;bottom:0;padding:.8rem 1rem;color:#fff;font-size:.8rem;background:rgba(18,19,22,.78)}
+.pg-go::before{content:"";display:inline-block;width:44px;height:4px;background:var(--steel);margin-right:.7rem}.pg-dark .pg-go::before,.pg-graph .pg-go::before{background:var(--silver)}
+.pg-brief{display:grid;gap:.8rem;padding:1.4rem;border:1.5px solid rgba(196,200,206,.35);background:rgba(18,19,22,.72)}
+.pg-brief h3{font-size:1.6rem;color:#f2f1ed!important}.pg-brief label{display:grid;gap:.25rem;font-size:.82rem;color:var(--silver)}
+.pg-brief input,.pg-brief textarea{font:inherit;font-size:.95rem;color:#fff;background:rgba(255,255,255,.07);border:1px solid rgba(196,200,206,.4);padding:.65rem .8rem;border-radius:0;width:100%}
+.pg-brief input:focus-visible,.pg-brief textarea:focus-visible{outline:2px solid var(--silver);outline-offset:1px}.pg-brief .pg-btn{justify-self:start}
+.pg-quote{align-items:stretch}
+@media(max-width:960px){.pg-kpiw,.pg-score,.pg-score ul,.pg-kpi-2{grid-template-columns:1fr}}
+
+/* v207: most heroes are light, like the home hero (parchment, dark type); 1 in 5 stays dark */
+.pg-hero.pg-hl{background:var(--parch);color:var(--ink);border-bottom:1.5px solid #bdbcb7}
+.pg-hero.pg-hl h1{color:var(--graphite)!important}.pg-hero.pg-hl .pg-lead{color:#4a4f56}
+.pg-hero.pg-hl .pg-crumbs{color:var(--mute)}.pg-hero.pg-hl .pg-crumbs a:hover{color:var(--graphite)}
+.pg-hero.pg-hl .pg-btn{background:var(--graphite);color:#fff}.pg-hero.pg-hl .pg-btn:hover{background:#000}.pg-hero.pg-hl .pg-lnk{color:var(--graphite)}
+.pg-hero.pg-hl .pg-info{background:#fff;border-color:#cfcecA}
+.pg-hero.pg-hl .pg-metrics{border-top-color:#cfcecA}.pg-hero.pg-hl .pg-metrics b{color:var(--graphite)}.pg-hero.pg-hl .pg-metrics span{color:var(--mute)}
+.pg-hero.pg-hl .pg-metrics>div{border-top-color:#d6d5d0}.pg-hero.pg-hl .pg-metrics-band{background:#fff;border-color:#cfcecA}.pg-hero.pg-hl .pg-metrics-band>div{border-left-color:#d6d5d0}
+.pg-hero.pg-hl .pg-mcta{background:var(--graphite);color:#fff}.pg-hero.pg-hl .pg-mcta:hover{background:#000}
+/* title laid over the photo stays light */
+.pg-hero.pg-hl .pg-cap h1{color:#f2f1ed!important}.pg-hero.pg-hl .pg-cap .pg-lead{color:rgba(255,255,255,.86)}.pg-hero.pg-hl .pg-cap .pg-crumbs{color:rgba(255,255,255,.7)}
+.pg-hero.pg-hl .pg-cap .pg-btn{background:var(--silver);color:var(--night)}
+
+/* ==========================================================================
+   v210: eight hero compositions. Which one a page gets is decided in src/lib/heroPlan.js (sibling-aware); the rest is parameters.
+     0 on-photo caption (stats as a band under, or as a column on the photo)   1 split card (photo side, ratio, panel texture vary)
+     6 overlap card   7 framed plate   8 photo with an inset related photo   9 chapter numeral   10 narrow photo column   11 centred plaque
+   Same palette, same type (Cormorant Garamond headings, Inter body), no italics, no new colours. Photo first in the DOM, so on phones the photo leads.
+   Text that sits on a photo always has a scrim or a solid plaque under it. The rail stays inside the photo in every variant.
+   ========================================================================== */
+.pg-hero.pg-hl{--hr:#cfcecA;--surf:#fff;--hac:var(--steel);--mat:var(--paper);--pl:rgba(244,243,240,.965);--sub:#5d626a;--edge:var(--parch)}
+.pg-hero.pg-hd{--hr:rgba(196,200,206,.26);--surf:var(--graphite);--hac:var(--silver);--mat:var(--graphite);--pl:rgba(18,19,22,.95);--sub:var(--silver);--edge:var(--night)}
+.pg-hero .pg-fig>img{object-position:var(--op,center);transform:scale(var(--zm,1));transform-origin:var(--op,center)}
+.pg-hero h1{overflow-wrap:break-word;max-width:none}
+.pg-hero .pg-lead{max-width:60ch}
+.pg-hero .pg-acts{gap:1rem 1.6rem}
+.pg-hero .pg-lnk-cta{display:inline-flex;align-items:center;gap:.55rem;padding:.25rem 0;font-weight:400;opacity:1}
+.pg-crf{padding-top:1rem;border-top:1px solid var(--hr)}
+.pg-hero .pg-fig::after{background:linear-gradient(to top,rgba(18,19,22,.62),transparent 32%)}
+/* rail inside the photo: wraps to a second row instead of cutting tabs off; phones scroll it with a fade at the edge */
+.pg-hero .pg-fig .nk2-rail nav{flex-wrap:wrap;gap:2px 4px}
+.pg-hero .pg-fig .nk2-rail a{flex:1 1 auto;min-width:0;padding:8px 10px;font-size:12px}
+/* stats: inline / ruled table / column / vertical */
+.pg-hero .pg-m-inline{display:flex;flex-wrap:wrap;gap:.5rem 1.8rem;padding-top:1rem;border-top:1px solid var(--hr)}
+.pg-hero .pg-m-inline>div{display:flex;align-items:baseline;gap:.5rem;padding:0;border:0}
+.pg-hero .pg-m-inline b,.pg-hero .pg-m-inline b.long{font-size:1.4rem;white-space:nowrap;max-width:none}.pg-hero .pg-m-inline span{flex:0 1 auto}
+.pg-hero .pg-m-table{display:grid;grid-template-columns:1fr;border-top:1px solid var(--hr);padding-top:0}
+.pg-hero .pg-m-table>div{display:flex;flex-direction:column;align-items:flex-start;gap:.15rem;padding:.9rem 0;border-top:1px solid var(--hr)}.pg-hero .pg-m-table>div:first-child{border-top:0}
+.pg-hero .pg-m-table b{font-size:clamp(1.6rem,2.2vw,2.1rem)}.pg-hero .pg-m-table b.long{white-space:normal;max-width:none;font-size:clamp(1.25rem,1.6vw,1.5rem)}
+.pg-hero .pg-m-col{border-top:1px solid var(--hr)}
+.pg-hero.pg-hl .pg-metrics span{color:var(--sub)}
+
+/* 0. on-photo caption. Desktop: caption laid over a strong bottom scrim, stats as a band beneath (or a column on the photo).
+      Phones: photo first, caption below it on the page colour. */
+.pg-on{display:grid;grid-template-columns:minmax(0,1fr);gap:1.1rem}
+.pg-on .pg-fig{height:clamp(300px,78vw,420px)}
+.pg-ocap{display:grid;gap:.9rem;align-content:start}
+.pg-ocap h1{font-size:clamp(2.2rem,8vw,3rem)}
+.pg-on .pg-metrics-band{margin-top:0}
+.pg-on-v .pg-mvw{margin:0}
+.pg-hero .pg-m-vert{border-top:1px solid var(--hr);padding-top:0}.pg-hero .pg-m-vert>div{padding:.8rem 0}
+.pg-hero .pg-m-vert b,.pg-hero .pg-m-vert b.long{white-space:normal;max-width:none;font-size:1.7rem}
+
+/* 1. split card */
+.pg-split-hero{display:grid;gap:1.1rem;grid-template-columns:minmax(0,1fr)}
+.pg-split-hero .pg-fig{height:clamp(300px,78vw,420px)}
+.pg-pan-pin.pg-hl .pg-info,.pg-hl .pg-pan-pin .pg-info{}
+.pg-hl.pg-hero .pg-pan-pin .pg-info{background-image:repeating-linear-gradient(90deg,transparent 0 4px,rgba(18,19,22,.045) 4px 5px)}
+.pg-hd.pg-hero .pg-pan-pin .pg-info{background-image:repeating-linear-gradient(90deg,transparent 0 6px,rgba(255,255,255,.03) 6px 7px)}
+.pg-hl.pg-hero .pg-pan-ruled .pg-info{background-image:linear-gradient(rgba(27,29,33,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(27,29,33,.05) 1px,transparent 1px);background-size:44px 44px}
+.pg-hd.pg-hero .pg-pan-ruled .pg-info{background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:44px 44px}
+
+/* 6. overlap card */
+.pg-ov{display:grid;gap:0}
+.pg-ov .pg-fig{height:clamp(300px,74vw,400px)}
+.pg-ovcard{display:grid;gap:1.2rem;align-content:start;padding:clamp(1.4rem,2.4vw,2.2rem);background:var(--surf);border:1px solid var(--hr);border-top:0}
+.pg-ovcard h1{font-size:clamp(2.2rem,3.6vw,3.7rem)}
+
+/* 7. framed plate */
+.pg-plate{display:grid;gap:clamp(1.2rem,2.4vw,2.4rem);padding:clamp(1rem,2vw,1.8rem);background:var(--mat);border:1.5px solid var(--hr);box-shadow:inset 0 0 0 7px var(--mat),inset 0 0 0 8px var(--hr)}
+.pg-plate .pg-fig{height:clamp(320px,78vw,420px)}
+.pg-hv7 .pg-fig::before{content:"";position:absolute;inset:12px;border:1px solid rgba(244,243,240,.75);z-index:1;pointer-events:none}
+.pg-hv7 .pg-fig .nk2-rail{left:24px;right:24px;bottom:24px}
+.pg-plate-txt{display:grid;gap:1.2rem;align-content:center;padding:.4rem .5rem}
+.pg-plate h1{font-size:clamp(2.3rem,4.2vw,4.2rem)}
+.pg-plno{font-family:"Cormorant Garamond",Georgia,serif;font-size:1.05rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sub)}
+
+/* 8. photo with an inset related photo (no new images: heroRel) */
+.pg-two{display:grid;gap:1.4rem}
+.pg-two .pg-fig{height:clamp(320px,78vw,430px)}
+.pg-inset{position:absolute;z-index:4;top:14px;right:14px;width:min(38%,250px);aspect-ratio:4/3;overflow:hidden;border:5px solid var(--edge);color:#fff;text-decoration:none;background:#000}
+.pg-two.pg-flip .pg-inset{right:auto;left:14px}
+.pg-inset img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.pg-inset::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(18,19,22,.94),rgba(18,19,22,.5) 55%,rgba(18,19,22,.12));z-index:1}
+.pg-inset span{position:absolute;z-index:2;left:.7rem;right:.7rem;bottom:.55rem;font-family:"Cormorant Garamond",Georgia,serif;font-size:1.05rem;line-height:1.15;color:#f2f1ed}
+.pg-inset i{display:block;font-style:normal;font-family:Inter,sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--silver);margin-bottom:.2rem}
+.pg-two-txt{display:grid;gap:1.2rem;align-content:center;border-top:3px solid var(--hac);padding-top:1.4rem}
+.pg-two h1{font-size:clamp(2.3rem,3.8vw,3.9rem)}
+
+/* 9. chapter numeral: sibling position as a large figure above the title */
+.pg-num{display:grid;gap:1.4rem}.pg-num .pg-fig{height:clamp(300px,74vw,420px)}
+.pg-num-txt{display:grid;gap:1.2rem;align-content:center}
+.pg-bignum{display:flex;align-items:baseline;gap:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--hr)}
+.pg-bignum b{font-family:"Cormorant Garamond",Georgia,serif;font-weight:300;font-variant-numeric:lining-nums;line-height:.8;color:var(--hac);font-size:clamp(5.2rem,24vw,6.6rem);letter-spacing:-.04em}
+.pg-bignum span{font-size:.82rem;letter-spacing:.22em;color:var(--sub)}
+.pg-num h1{font-size:clamp(2.2rem,3.6vw,3.6rem)}
+
+/* 10. narrow photo column, large title across the rest */
+.pg-col{display:grid;gap:1.2rem}.pg-col .pg-fig{height:clamp(280px,70vw,380px)}
+.pg-col-txt{display:flex;flex-direction:column}
+.pg-col-txt>*{padding:1.1rem 0;border-top:1px solid var(--hr)}
+.pg-col-txt>:first-child{border-top:3px solid var(--hac)}
+.pg-col-txt>h1{border-top:0;padding:1.4rem 0 1.2rem}
+.pg-col-txt>.pg-m-table{padding:0}
+.pg-col h1{font-size:clamp(2.5rem,9vw,3.4rem)}
+.pg-col-ld{display:grid;gap:1.2rem;align-items:end}
+
+/* 11. centred plaque on a full-bleed photo */
+.pg-ct{display:grid;gap:0}
+.pg-ct .pg-fig{height:clamp(300px,74vw,400px)}
+.pg-plaque{display:grid;gap:1rem;justify-items:center;text-align:center;padding:1.6rem 1.3rem 1.8rem;background:var(--pl);border:1px solid var(--hr);border-top:0}
+.pg-plaque .pg-crumbs,.pg-plaque .pg-acts,.pg-plaque .pg-m-inline{justify-content:center}
+.pg-plaque h1{font-size:clamp(2.2rem,8vw,3rem)}
+.pg-plaque .pg-lead{max-width:56ch}
+.pg-plaque .pg-m-inline{width:100%}
+
+@media(min-width:961px){
+  .pg-hero .pg-m-table{grid-template-columns:repeat(auto-fit,minmax(0,1fr))}
+  .pg-hero .pg-m-table>div{padding:1rem 1.2rem;border-top:0;border-left:1px solid var(--hr)}.pg-hero .pg-m-table>div:first-child{border-left:0;padding-left:0}
+  /* 0 */
+  .pg-on{gap:1.1rem}
+  .pg-on .pg-fig{grid-area:1/1;height:auto;min-height:clamp(540px,42vw,640px)}
+  .pg-on .pg-fig::after{background:linear-gradient(to top,rgba(18,19,22,.95) 0%,rgba(18,19,22,.9) 42%,rgba(18,19,22,.66) 66%,rgba(18,19,22,.08) 100%)}
+  .pg-on{grid-template-rows:auto auto}
+  .pg-ocap{grid-area:1/1;align-self:end;z-index:3;margin:0 clamp(1.4rem,3vw,2.6rem) 5.8rem;max-width:min(860px,calc(100% - 3rem))}
+  .pg-ocap h1{font-size:clamp(2.3rem,4.4vw,4rem);max-width:20ch}
+  .pg-ocap .pg-lead{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .pg-hero .pg-on .pg-ocap h1,.pg-hero .pg-on .pg-ocap .pg-crumbs a,.pg-hero .pg-on .pg-ocap .pg-crumbs span{color:#f2f1ed!important}
+  .pg-hero .pg-on .pg-ocap .pg-crumbs{color:rgba(255,255,255,.88)}
+  .pg-hero .pg-on .pg-ocap .pg-lead{color:rgba(255,255,255,.94)}
+  .pg-hero .pg-on .pg-ocap .pg-btn{background:var(--silver);color:var(--night)}
+  .pg-hero .pg-on .pg-ocap .pg-lnk{color:#f2f1ed}
+  .pg-on-v .pg-ocap{max-width:calc(100% - clamp(190px,17vw,250px) - 5.2rem)}
+  .pg-on-v .pg-mvw{grid-area:1/1;z-index:4;align-self:start;justify-self:end;width:clamp(190px,17vw,250px);margin:14px 14px 0 0;position:relative}
+  .pg-hero .pg-on-v .pg-m-vert{background:rgba(18,19,22,.9);border:1px solid rgba(255,255,255,.14);padding:.2rem 1.1rem}
+  .pg-hero .pg-on-v .pg-m-vert>div{display:block;padding:1rem 0;border-top:1px solid rgba(255,255,255,.14)}.pg-hero .pg-on-v .pg-m-vert>div:first-child{border-top:0}
+  .pg-hero .pg-on-v .pg-m-vert b{color:#f2f1ed!important}.pg-hero .pg-on-v .pg-m-vert span{display:block;margin-top:.15rem;color:var(--silver)!important}
+  /* 1 */
+  .pg-split-hero{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr)}
+  .pg-split-hero.pg-r1{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}.pg-split-hero.pg-r2{grid-template-columns:minmax(0,1.05fr) minmax(0,1fr)}
+  .pg-split-hero.pg-flip{grid-template-columns:minmax(0,1fr) minmax(0,1.3fr)}.pg-split-hero.pg-flip.pg-r1{grid-template-columns:minmax(0,1fr) minmax(0,1.6fr)}.pg-split-hero.pg-flip.pg-r2{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr)}
+  .pg-split-hero.pg-flip .pg-fig{order:2}
+  .pg-split-hero .pg-fig{height:auto;min-height:clamp(480px,40vw,620px)}
+  /* 6 */
+  .pg-ov{grid-template-columns:repeat(12,minmax(0,1fr))}
+  .pg-ov .pg-fig{grid-column:4/13;grid-row:1;height:auto;min-height:clamp(560px,44vw,660px)}
+  .pg-ovcard{grid-column:1/8;grid-row:1;z-index:4;align-self:start;margin:2.4rem 0 7rem;border-top:1px solid var(--hr)}
+  .pg-ov.pg-flip .pg-fig{grid-column:1/10}.pg-ov.pg-flip .pg-ovcard{grid-column:6/13}
+  /* 7 */
+  .pg-plate{grid-template-columns:minmax(0,1.45fr) minmax(0,1fr)}.pg-plate.pg-flip{grid-template-columns:minmax(0,1fr) minmax(0,1.45fr)}
+  .pg-plate.pg-flip .pg-fig{order:2}.pg-plate .pg-fig{height:auto;min-height:clamp(480px,40vw,600px)}
+  /* 8 */
+  .pg-two{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);gap:clamp(1.6rem,3vw,3rem)}.pg-two.pg-flip{grid-template-columns:minmax(0,1fr) minmax(0,1.25fr)}
+  .pg-two.pg-flip .pg-fig{order:2}.pg-two .pg-fig{height:auto;min-height:clamp(480px,40vw,600px)}
+  /* 9 */
+  .pg-num{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:clamp(1.6rem,3.4vw,3.4rem)}.pg-num.pg-flip{grid-template-columns:minmax(0,1fr) minmax(0,1.1fr)}
+  .pg-num.pg-flip .pg-fig{order:2}.pg-num .pg-fig{height:auto;min-height:clamp(500px,40vw,620px)}
+  .pg-bignum b{font-size:clamp(7rem,11vw,10.5rem)}
+  /* 10 */
+  .pg-col{grid-template-columns:minmax(0,.55fr) minmax(0,2fr);gap:clamp(1.5rem,3vw,3rem)}.pg-col.pg-flip{grid-template-columns:minmax(0,2fr) minmax(0,.55fr)}
+  .pg-col.pg-flip .pg-fig{order:2}.pg-col .pg-fig{height:auto;min-height:clamp(560px,44vw,660px)}
+  .pg-col h1{font-size:clamp(2.8rem,6.2vw,6.2rem);line-height:1.02;margin:auto 0;padding:1.6rem 0}
+  .pg-col-txt>h1{border-top:1px solid var(--hr)}
+  .pg-col-ld{grid-template-columns:minmax(0,1.5fr) auto;gap:2rem}
+  .pg-hv10 .pg-fig .nk2-rail nav{flex-direction:column;flex-wrap:nowrap;align-items:stretch;gap:1px}
+  .pg-hv10 .pg-fig .nk2-rail a{flex:0 0 auto;text-align:left;padding:6px 10px;font-size:11.5px}
+  /* 11 */
+  .pg-ct{display:grid;grid-template-columns:minmax(0,1fr)}
+  .pg-ct .pg-fig{grid-area:1/1;height:auto;min-height:clamp(600px,46vw,700px)}
+  .pg-ct .pg-fig::after{background:linear-gradient(to top,rgba(18,19,22,.5),transparent 35%)}
+  .pg-plaque{grid-area:1/1;z-index:3;align-self:start;justify-self:center;width:min(800px,calc(100% - 3rem));margin:3rem 0 7rem;padding:2.4rem 3.2rem 2.6rem;border-top:1px solid var(--hr);box-shadow:inset 0 0 0 6px var(--pl),inset 0 0 0 7px var(--hr)}
+  .pg-plaque h1{font-size:clamp(2.4rem,4.2vw,4.2rem)}
+}
+@media(max-width:640px){
+  .pg-hero .pg-fig .nk2-rail nav{flex-wrap:nowrap;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 26px),transparent)}
+  .pg-hero .pg-fig .nk2-rail a{flex:0 0 auto;padding:8px 12px}
+  .pg-inset{width:42%}
+}
+
+/* v248: stats strip under page heroes (.pg-metrics-band: "Named partner / UAE / Independent"), institutional finish.
+   Fixes: on short screens a generic rule (.pg-info .pg-metrics>div, padding X 0) took the side padding away, so the 2nd and 3rd
+   figures sat against the divider lines. Now: first cell flush with the content edge, every later cell padded from its divider,
+   equal column rhythm, a short ink rule on the top hairline, the figure in the serif and the caption as a small tracked line. */
+.pg-metrics.pg-metrics-band { position: relative; align-items: stretch; }
+.pg-metrics.pg-metrics-band::before { content: ""; position: absolute; left: 0; top: -1px; width: 56px; height: 2px; background: currentColor; opacity: .85; }
+.pg-metrics.pg-metrics-band > div { display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: .45rem; padding-block: clamp(1.1rem, 2.4vh, 1.7rem) !important; padding-inline: clamp(1.4rem, 2.6vw, 2.6rem) !important; }
+.pg-metrics.pg-metrics-band > div:first-child { padding-inline-start: 0 !important; }
+.pg-metrics.pg-metrics-band b, .pg-metrics.pg-metrics-band b.long { font-size: clamp(1.5rem, 2vw, 1.9rem); line-height: 1.05; letter-spacing: -.012em; white-space: normal; max-width: none; }
+.pg-metrics.pg-metrics-band span { flex: 0 0 auto; font-size: .72rem; line-height: 1.3; letter-spacing: .14em; text-transform: uppercase; }
+@media (max-width: 960px) {
+  .pg-metrics.pg-metrics-band > div { border-left: 0; border-top: 1px solid rgba(196, 200, 206, .35); padding-inline: 0 !important; }
+  .pg-metrics.pg-metrics-band > div:first-child { border-top: 0; }
+}
+
+/* v254: figures strip inside the hero card (.pg-m-table: "5-14 / 10+ / 100%"), institutional finish.
+   Fixes: cells touched their divider lines (a short-window rule removes side padding) and the captions wrapped unevenly.
+   Now: short ink rule on the top hairline, first cell flush with the card text, later cells padded from their divider,
+   serif figure, small even caption (balanced lines), dividers the same height in every column. */
+@media (min-width: 961px) {
+  .pg-hero .pg-info .pg-metrics.pg-m-table { position: relative; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; border-top: 1px solid var(--hr); padding-top: 0; margin-top: auto; }
+  .pg-hero .pg-info .pg-metrics.pg-m-table::before { content: ""; position: absolute; left: 0; top: -1px; width: 56px; height: 2px; background: currentColor; opacity: .85; }
+  .pg-hero .pg-info .pg-metrics.pg-m-table > div { display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: .4rem;
+    padding-block: clamp(.8rem, 2.2vh, 1.3rem) clamp(.8rem, 2.2vh, 1.3rem) !important; padding-inline: clamp(.9rem, 1.3vw, 1.3rem) clamp(.5rem, .8vw, .9rem) !important; border-top: 0; border-left: 1px solid var(--hr); min-width: 0; }
+  .pg-hero .pg-info .pg-metrics.pg-m-table > div:first-child { border-left: 0; padding-inline-start: 0 !important; }
+  .pg-hero .pg-info .pg-metrics.pg-m-table b, .pg-hero .pg-info .pg-metrics.pg-m-table b.long { font-size: clamp(1.45rem, 1.9vw, 1.9rem); line-height: 1.05; letter-spacing: -.01em; white-space: normal; max-width: none; }
+  .pg-hero .pg-info .pg-metrics.pg-m-table span { flex: 0 0 auto; width: 100%; font-size: clamp(.74rem, 1.55vh, .82rem); line-height: 1.4; letter-spacing: .01em; text-wrap: balance; overflow-wrap: anywhere; hyphens: none; }
+}
+
+/* v255: in the page hero card the Related pages block sits at the bottom, just above the figures strip (it used to sit under the button). */
+@media (min-width: 961px) {
+  .pg-hero .pg-info .pg-hrel { margin-top: auto; margin-bottom: clamp(.7rem, 1.8vh, 1.2rem); }
+  .pg-hero .pg-info .pg-metrics.pg-m-table { margin-top: 0; }
+}

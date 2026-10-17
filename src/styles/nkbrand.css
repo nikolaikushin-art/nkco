@@ -1,0 +1,111 @@
+/* ==========================================================================
+ * NK&CO — BRAND ARCHITECTURE LAYER (v264)
+ * Homepage sections added for the Advanced Brand & Business Architecture:
+ * thesis strip, five pillars, lifecycle framework, philosophy, operating model,
+ * regulatory note. Uses the existing institutional tokens (--nk-*); no new colours.
+ * Delete this file and its import in src/index.js to remove the styling.
+ * ========================================================================== */
+
+/* hero additions */
+.nk3-support { font-family: var(--nk-text); font-size: var(--nk-s3); line-height: 1.65; color: var(--nk-mute); margin: 16px 0 0; max-width: 52ch; }
+.nk3-hero-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--nk-sp3) var(--nk-sp4); margin-top: 28px; }
+.nk3-hero-actions .nk2-btn { margin-top: 0; }
+
+/* thesis strip */
+.nk3-thesis-item { cursor: default; }
+.nk3-thesis-item:hover { background: none; }
+.nk3-thesis-item .nk2-latest-title { margin-bottom: 12px; }
+.nk3-thesis-item:hover .nk2-latest-title { text-decoration: none; }
+.nk3-thesis-desc { margin: 0; font-family: var(--nk-text); font-size: var(--nk-s2); line-height: 1.6; color: #b4b8be; max-width: 34ch; }
+
+/* five pillars */
+.nk3-pillars { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--nk-line-strong); }
+.nk3-pillar { display: grid; grid-template-columns: 56px minmax(0, 1fr); gap: var(--nk-sp2); padding: var(--nk-sp3) 0 var(--nk-sp4); border-bottom: 1px solid var(--nk-line); }
+.nk3-pillar-num { font-family: var(--nk-display); font-weight: 500; font-size: 28px; line-height: 1.1; color: var(--nk-mute); }
+.nk3-pillar-title { font-size: 28px; line-height: 1.15; margin: 8px 0 10px; }
+.nk3-pillar p { margin: 0; color: var(--nk-body); max-width: 56ch; }
+.nk3-pillar .nk3-pillar-note { margin-top: 12px; font-size: var(--nk-s2); color: var(--nk-mute); border-left: 2px solid var(--nk-line-strong); padding-left: 12px; }
+
+/* lifecycle */
+.nk3-head-note { margin: 0; max-width: 38ch; color: var(--nk-body); font-size: var(--nk-s3); }
+.nk3-phases { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--nk-line-strong); }
+.nk3-phase { padding: var(--nk-sp3) var(--nk-sp3) var(--nk-sp2) 0; }
+.nk3-phase + .nk3-phase { padding-left: var(--nk-sp3); border-left: 1px solid var(--nk-line); }
+.nk3-phase-title { font-size: 30px; line-height: 1.12; margin: 10px 0 12px; }
+.nk3-phase-lead { margin: 0 0 var(--nk-sp3); color: var(--nk-body); font-size: var(--nk-s3); }
+.nk3-stages { margin: 0; }
+.nk3-stages > div { border-top: 1px solid var(--nk-line); padding: 14px 0; }
+.nk3-stages dt { font-family: var(--nk-text); font-size: 11.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--nk-ink); }
+.nk3-stages dd { margin: 6px 0 0; font-size: var(--nk-s2); line-height: 1.55; color: var(--nk-body); }
+
+/* philosophy */
+.nk3-principle { margin: 0; padding: 0 0 var(--nk-sp4); border-bottom: 1px solid var(--nk-line-strong); font-family: var(--nk-display); font-weight: 500; font-size: clamp(26px, 2.6vw, 36px); line-height: 1.2; letter-spacing: -.012em; color: var(--nk-ink); max-width: 32ch; }
+.nk3-cases { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 var(--nk-sp4); }
+.nk3-case { padding: var(--nk-sp3) 0 var(--nk-sp2); }
+.nk3-case + .nk3-case { padding-left: var(--nk-sp4); border-left: 1px solid var(--nk-line); }
+.nk3-case p { margin: 10px 0 var(--nk-sp2); color: var(--nk-body); }
+.nk3-case-priority { font-size: var(--nk-s2); line-height: 1.55; color: var(--nk-ink); }
+.nk3-case-priority span { display: block; margin-bottom: 4px; font-size: 11.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--nk-mute); }
+.nk3-close { margin: var(--nk-sp2) 0 0; padding-top: var(--nk-sp3); border-top: 1px solid var(--nk-line); color: var(--nk-body); font-size: var(--nk-s3); max-width: 58ch; }
+
+/* operating model */
+.nk3-on-ink-lede { color: #b4b8be; max-width: 66ch; }
+main .nk3-on-ink-lede { max-width: 66ch; }
+.nk3-centre { margin-top: var(--nk-sp5); padding: var(--nk-sp4); border: 1px solid rgba(196, 200, 206, .4); text-align: center; }
+.nk3-centre-name { font-family: var(--nk-display); font-weight: 500; font-size: clamp(34px, 3.4vw, 48px); line-height: 1.05; color: #fff; }
+.nk3-centre-line { margin-top: 10px; font-family: var(--nk-text); font-size: 11.5px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #a7abb2; }
+.nk3-caps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-left: 1px solid rgba(196, 200, 206, .22); border-bottom: 1px solid rgba(196, 200, 206, .22); }
+.nk3-caps li { padding: var(--nk-sp3); border-top: 1px solid rgba(196, 200, 206, .22); border-right: 1px solid rgba(196, 200, 206, .22); }
+.nk3-caps h3 { font-size: 24px; line-height: 1.15; margin: 0 0 8px; color: #fff; }
+.nk3-caps p { margin: 0; font-size: var(--nk-s2); color: #b4b8be; }
+
+/* regulatory note (footer) */
+.nk3-reg-note { max-width: 78ch; margin: 0 auto var(--nk-sp4); padding-top: var(--nk-sp3); border-top: 1px solid rgba(196, 200, 206, .18); text-align: center; font-family: var(--nk-text); font-size: 12.5px; line-height: 1.6; color: rgba(236, 235, 231, .78); }
+
+/* responsive */
+@media (max-width: 1100px) {
+  .nk3-phases { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nk3-phase:nth-child(3) { padding-left: 0; border-left: 0; }
+  .nk3-phase:nth-child(n+3) { border-top: 1px solid var(--nk-line); margin-top: var(--nk-sp2); }
+}
+@media (max-width: 1023px) {
+  .nk3-caps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 640px) {
+  .nk3-phases, .nk3-cases, .nk3-caps { grid-template-columns: minmax(0, 1fr); }
+  .nk3-phase, .nk3-phase + .nk3-phase { padding: var(--nk-sp3) 0 var(--nk-sp2); border-left: 0; }
+  .nk3-phase + .nk3-phase { border-top: 1px solid var(--nk-line); margin-top: 0; }
+  .nk3-case + .nk3-case { padding-left: 0; border-left: 0; border-top: 1px solid var(--nk-line); }
+  .nk3-pillar { grid-template-columns: 40px minmax(0, 1fr); }
+  .nk3-hero-actions .nk2-btn { width: 100%; }
+}
+
+/* v267: framework sections */
+.nk4-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 0; margin: 32px 0 0; border-top: 1px solid var(--nk-line-strong); }
+.nk4-card { padding: 24px 24px 24px 0; border-bottom: 1px solid var(--nk-line); }
+.nk4-card dt { font-family: var(--nk-display); font-size: 22px; line-height: 1.2; margin: 0 0 8px; }
+.nk4-card dd { margin: 0; color: var(--nk-body); max-width: 52ch; }
+.nk4-table { width: 100%; border-collapse: collapse; margin-top: 32px; text-align: left; }
+.nk4-table th, .nk4-table td { padding: 14px 16px 14px 0; border-bottom: 1px solid var(--nk-line); vertical-align: top; }
+.nk4-table thead th { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--nk-mute); border-bottom: 1px solid var(--nk-line-strong); }
+.nk4-table tbody th { font-family: var(--nk-display); font-weight: 500; font-size: 18px; white-space: nowrap; }
+.nk4-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px; margin-top: 48px; }
+.nk4-h3 { font-family: var(--nk-display); font-size: 26px; line-height: 1.15; margin: 0 0 16px; }
+.nk4-list { margin: 0; padding-left: 20px; color: var(--nk-body); }
+.nk4-list li { padding: 4px 0; }
+.nk4-cols { columns: 2 280px; column-gap: 48px; margin-top: 24px; }
+.nk4-note { margin: 24px 0 0; max-width: 72ch; font-size: var(--nk-s2); color: var(--nk-mute); border-left: 2px solid var(--nk-line-strong); padding-left: 12px; }
+@media (max-width: 720px) { .nk4-table thead { display: none; } .nk4-table tr, .nk4-table th, .nk4-table td { display: block; width: auto; } .nk4-table tbody th { white-space: normal; padding-bottom: 2px; border: 0; } }
+.nk4-out { margin-top: 6px; font-size: var(--nk-s2); color: var(--nk-mute); }
+
+/* v276: hero actions — primary button, then one line-led link beside it (wraps beneath on narrow columns) */
+.nk3-hero-actions { gap: 18px 32px; margin-top: 22px; }
+.nk3-hero-actions .nk2-link { gap: 14px; white-space: nowrap; }
+.nk3-hero-actions .nk2-link::before { flex: 0 0 32px; width: 32px; }
+.nk3-hero-actions .nk2-link:hover::before { flex-basis: 52px; width: 52px; }
+.nk2-hero-copy .nk2-lede { margin-top: 18px; }
+.nk2-hero-copy .nk3-support { margin-top: 12px; }
+
+/* v278: three activities (We Structure / We Manage / We Sell) */
+.nk3-phases.nk3-three, .nk2-latest-grid.nk3-three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+@media (max-width: 1100px) { .nk3-phases.nk3-three, .nk2-latest-grid.nk3-three { grid-template-columns: minmax(0, 1fr); } }

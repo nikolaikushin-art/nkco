@@ -1,0 +1,164 @@
+/* ==========================================================================
+   v211: nearly full-width layout, heroes unchanged (v210 design), language + search in the header.
+   Loaded last. Side space is now a thin margin (about 12 to 24px) on the header AND on every page.
+   ========================================================================== */
+:root { --nk-max: none; --nk-pad: clamp(12px, 1.5vw, 24px); }
+.nk-container { max-width: none !important; padding-left: var(--nk-pad) !important; padding-right: var(--nk-pad) !important; }
+@media (max-width: 767px) { .nk-container { padding-left: 14px !important; padding-right: 14px !important; } }
+.pg-hero .pg-wrap, .pg-sec .pg-wrap { width: calc(100% - 2 * var(--nk-pad)); max-width: none; } /* v212: hero uses the same side margin as the header and every section */
+@media (max-width: 767px) { .pg-hero .pg-wrap, .pg-sec .pg-wrap { width: calc(100% - 28px); } }
+.om-index { max-width: none !important; }
+
+/* ---------- header: tools after the Contact Us button ---------- */
+header .nk-header-actions:not(.nk-header-actions-left) { display: flex; align-items: center; gap: clamp(14px, 1.4vw, 22px) !important; }
+.nk-tool { display: inline-flex; align-items: center; justify-content: center; flex: none; height: 46px; min-width: 42px; padding: 0; background: transparent; border: 0; color: #fff; cursor: pointer; transition: opacity .15s, transform .1s; }
+.nk-tool:hover { opacity: .78; }
+.nk-tool:focus-visible { outline: 1px solid #c4c8ce; outline-offset: 4px; }
+.nk-tool:active { transform: scale(.96); }
+.nk-lang-btn svg { filter: drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
+@media (max-width: 479px) { .nk-search-btn svg { width: 24px; height: 24px; } .nk-lang-btn svg { width: 34px; height: 24px; } }
+
+/* ---------- search: drop-down bar, dark like the header ----------
+   Same night colour + pinstripe as the top navigation, and the same height (64px). Field sits inside it. */
+.nk-search { position: fixed; left: 0; right: 0; bottom: 0; top: var(--nk-header-h, 64px); z-index: 100; display: flex; flex-direction: column; }
+.nk-search-drop { position: relative; z-index: 1; flex: none; background-color: var(--nk-night, #121316) !important; background-image: var(--nk-pin, repeating-linear-gradient(90deg, transparent 0 6px, rgba(255,255,255,.03) 6px 7px)) !important; color: #fff; border-top: 1px solid rgba(196,200,206,.16); box-shadow: 0 14px 30px rgba(0,0,0,.35); animation: nk-search-in .22s cubic-bezier(.2,.7,.2,1) both; max-height: calc(100% - 24px); overflow: auto; }
+.nk-search-inner { padding: clamp(14px, 1.5vw, 22px) var(--nk-pad); font-family: inherit; }
+.nk-search-bar { display: flex; align-items: center; gap: clamp(12px, 1.4vw, 22px); }
+.nk-search-field { flex: 1; min-width: 0; display: flex; align-items: center; background: rgba(255,255,255,.07); border-bottom: 2px solid #c4c8ce; height: clamp(44px, 3.7vw, 52px); padding: 0 clamp(12px, 1.2vw, 18px); }
+.nk-search .nk-search-field input, .nk-search .nk-search-field input:focus, .nk-search .nk-search-field input:focus-visible { flex: 1; min-width: 0; height: 100%; background: transparent; border: 0 !important; outline: none !important; box-shadow: none !important; border-radius: 0; color: #fff; caret-color: #fff; font-family: inherit; font-weight: 500; font-size: clamp(14px, 1.1vw, 16px); letter-spacing: .035em; line-height: 1; -webkit-appearance: none; appearance: none; }
+.nk-search-field input::placeholder { color: rgba(236,235,231,.5); opacity: 1; font-weight: 500; letter-spacing: .035em; }
+.nk-search-field input::-webkit-search-cancel-button, .nk-search-field input::-webkit-search-decoration { -webkit-appearance: none; display: none; }
+.nk-search-go { flex: none; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: 0; padding: 2px; margin-left: 10px; color: #fff; cursor: pointer; }
+.nk-search-go svg { width: 22px; height: 22px; }
+.nk-search-x { flex: none; display: inline-flex; align-items: center; justify-content: center; background: transparent; border: 0; padding: 4px; color: #fff; cursor: pointer; transition: opacity .15s; }
+.nk-search-x:hover { opacity: .7; }
+.nk-search-x svg { width: 20px; height: 20px; }
+.nk-search .nk-search-go:focus-visible, .nk-search .nk-search-x:focus-visible { outline: 1px solid #c4c8ce !important; outline-offset: 2px; }
+.nk-search-list { list-style: none; margin: 10px 0 0; padding: 0; }
+.nk-search-list li + li { border-top: 1px solid rgba(196,200,206,.14); }
+.nk-search-list a { display: flex; flex-direction: column; gap: 2px; padding: 10px clamp(12px, 1.2vw, 18px); color: #fff; text-decoration: none; border-left: 3px solid transparent; transition: background .12s; }
+.nk-search-list a[data-sel] { background: rgba(255,255,255,.07); border-left-color: #c4c8ce; }
+.nk-search-t { font-family: inherit; font-weight: 600; font-size: 14px; line-height: 1.3; letter-spacing: .035em; }
+.nk-search-c { font-family: inherit; font-size: 12px; font-weight: 400; line-height: 1.3; color: #9aa0a8; letter-spacing: .02em; }
+.nk-search-hint { padding: 12px clamp(12px, 1.2vw, 18px); color: #9aa0a8; font-family: inherit; font-size: 14px; }
+.nk-search-backdrop { position: relative; flex: 1; background: rgba(12,13,15,.62); animation: nk-search-fade .22s ease both; }
+.nk-search-btn[data-open] { opacity: .78; }
+@keyframes nk-search-in { from { opacity: 0; transform: translateY(-14px); } to { opacity: 1; transform: none; } }
+@keyframes nk-search-fade { from { opacity: 0; } to { opacity: 1; } }
+@media (max-width: 767px) { .nk-search-inner { padding: 12px 14px 14px; } .nk-search-bar { gap: 8px; } }
+@media (prefers-reduced-motion: reduce) { .nk-search-drop, .nk-search-backdrop { animation: none; } }
+
+/* ---------- Arabic / right-to-left ---------- */
+[dir="rtl"] body, [dir="rtl"] button, [dir="rtl"] input { font-family: "IBM Plex Sans Arabic", Inter, sans-serif; }
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3 { font-family: "Noto Naskh Arabic", "Cormorant Garamond", serif; letter-spacing: 0; }
+[dir="rtl"] .nk-search-list a { border-left: 0; border-right: 3px solid transparent; }
+[dir="rtl"] .nk-search-list a[data-sel] { border-right-color: #c4c8ce; }
+[dir="rtl"] .nk-search-go { margin-left: 0; margin-right: 12px; }
+[dir="rtl"] .nk-nav-link, [dir="rtl"] .nk-contact-btn { letter-spacing: 0 !important; }
+
+/* v211b: tools sit closer together and closer to the right edge; nav + Contact Us shift right with them */
+header .nk-header-actions:not(.nk-header-actions-left) { gap: 12px !important; }
+header .nk-header-actions .nk-contact-btn { margin-right: 4px; }
+.nk-search-btn { min-width: 34px; }
+.nk-lang-btn { min-width: 38px; }
+header .nk-header-actions:not(.nk-header-actions-left) { margin-left: clamp(14px, 1.4vw, 22px) !important; }
+
+/* v211e: split-card hero ratio measured from the approved screenshot (photo 700 : card 466 at 1288px = 1.5 : 1) */
+@media (min-width: 961px) {
+  .pg-split-hero.pg-r1 { grid-template-columns: minmax(0,1.5fr) minmax(0,1fr); }
+  .pg-split-hero.pg-flip.pg-r1 { grid-template-columns: minmax(0,1fr) minmax(0,1.5fr); }
+}
+
+/* ==========================================================================
+   v211g: hero 11 redesigned. Full-bleed photo stays. The text card sits to the LEFT (or RIGHT when flipped), left-aligned,
+   and a second photo (the related page) fills the opposite side. Rail stays inside the photo at the bottom.
+   ========================================================================== */
+.pg-ct-img { position: relative; display: block; overflow: hidden; background: #000; color: #fff; text-decoration: none; border: 5px solid var(--edge); height: clamp(200px, 52vw, 280px); margin-top: .9rem; }
+.pg-ct-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+.pg-ct-img:hover img { transform: scale(1.03); }
+.pg-ct-img::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(18,19,22,.9), rgba(18,19,22,.35) 45%, transparent); z-index: 1; }
+.pg-ct-img span { position: absolute; z-index: 2; left: 1rem; right: 1rem; bottom: .9rem; font-family: "Cormorant Garamond", Georgia, serif; font-size: 1.5rem; line-height: 1.15; color: #f2f1ed; }
+.pg-ct-img i { display: block; font-style: normal; font-family: Inter, sans-serif; font-size: .62rem; letter-spacing: .2em; text-transform: uppercase; color: var(--silver); margin-bottom: .3rem; }
+.pg-ct .pg-plaque { justify-items: start; text-align: left; }
+.pg-ct .pg-plaque .pg-crumbs, .pg-ct .pg-plaque .pg-acts, .pg-ct .pg-plaque .pg-m-inline { justify-content: flex-start; }
+@media (min-width: 961px) {
+  .pg-ct .pg-fig { grid-area: 1/1; min-height: clamp(520px, 40vw, 600px); }
+  .pg-ct .pg-fig::after { background: linear-gradient(to top, rgba(18,19,22,.45), transparent 35%); }
+  .pg-ct .pg-plaque { grid-area: 1/1; z-index: 3; align-self: start; justify-self: start; width: min(660px, 52%); margin: 1.4rem 0 5.6rem 1.4rem; padding: 2rem 2.4rem 2.2rem; border: 1px solid var(--hr); border-top: 3px solid var(--hac); box-shadow: none; }
+  .pg-ct .pg-plaque h1 { font-size: clamp(2.3rem, 3.8vw, 3.8rem); }
+  .pg-ct .pg-ct-img { grid-area: 1/1; z-index: 3; align-self: stretch; justify-self: end; width: min(34%, 470px); height: auto; margin: 1.4rem 1.4rem 5.6rem 0; }
+  .pg-ct.pg-flip .pg-plaque { justify-self: end; margin: 1.4rem 1.4rem 5.6rem 0; }
+  .pg-ct.pg-flip .pg-ct-img { justify-self: start; margin: 1.4rem 0 5.6rem 1.4rem; }
+}
+
+/* ==========================================================================
+   v211h: page-hero titles (e.g. "Cash-Generative SMEs") in a sturdier serif, close to the one CBRE uses (Newsreader, regular).
+   Only the h1 inside the page hero changes; section headings and the home hero keep their fonts.
+   Navigation labels are bolder.
+   ========================================================================== */
+.pg-hero h1 { font-family: "Newsreader", Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.012em; line-height: 1.08; font-optical-sizing: auto; }
+[dir="rtl"] .pg-hero h1 { font-family: "Noto Naskh Arabic", "Newsreader", serif; letter-spacing: 0; }
+header nav[aria-label="Primary"] .nk-nav-link { font-weight: 600 !important; }
+
+/* ==========================================================================
+   v213/v214: hero 11 rebuilt from the same parts as the other heroes.
+   - ONE photo (the page photo) with the page rail inside it, like every other hero. The big second portrait photo is gone.
+   - The related page photo (.pg-inset, same markup/label style as hero 8) is BIG in v214: about 46% of the width, full height down to the rail, opposite the text panel.
+   - The text panel is flush with the photo edge (like the split card, hero 1): same 14px gutter as the rail on top, side and bottom,
+     stretched to the rail, 3px accent line on top (as hero 8), stats pinned to the bottom edge.
+   ========================================================================== */
+.pg-ct .pg-ct-img { display: none; }
+.pg-ct.pg-flip .pg-inset { right: auto; left: 14px; }
+@media (min-width: 961px) {
+  .pg-ct .pg-fig { grid-area: 1/1; min-height: clamp(560px, 42vw, 640px); }
+  .pg-ct .pg-fig::after { background: linear-gradient(to top, rgba(18,19,22,.5), transparent 30%); }
+  .pg-ct .pg-inset { top: 14px; bottom: 74px; right: 14px; width: min(46%, 660px); aspect-ratio: auto; height: auto; border-width: 6px; }
+  .pg-ct.pg-flip .pg-inset { right: auto; left: 14px; }
+  .pg-ct .pg-inset span { left: 1.6rem; right: 1.6rem; bottom: 1.3rem; font-size: clamp(1.7rem, 2.4vw, 2.3rem); }
+  .pg-ct .pg-inset i { font-size: .68rem; margin-bottom: .4rem; }
+  .pg-ct .pg-plaque {
+    grid-area: 1/1; z-index: 3; align-self: stretch; justify-self: start;
+    display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-start; gap: 1.1rem; text-align: left;
+    width: min(560px, 40%); margin: 14px 0 74px 14px; padding: 2.1rem 2.4rem 1.8rem;
+    border: 1px solid var(--hr); border-top: 3px solid var(--hac); box-shadow: none;
+  }
+  .pg-ct.pg-flip .pg-plaque { justify-self: end; margin: 14px 14px 74px 0; }
+  .pg-ct .pg-plaque h1 { font-size: clamp(2.3rem, 3.5vw, 3.6rem); }
+  .pg-ct .pg-plaque .pg-m-inline { margin-top: auto; width: 100%; justify-content: flex-start; }
+}
+@media (min-width: 961px) and (max-width: 1180px) {
+  .pg-ct .pg-plaque, .pg-ct .pg-inset { margin-bottom: 7.4rem; } /* the rail can wrap to two rows here */
+  .pg-ct .pg-inset { bottom: 7.4rem; margin-bottom: 0; }
+  .pg-ct.pg-flip .pg-plaque { margin-bottom: 7.4rem; }
+}
+
+@media (max-width: 960px) { .pg-ct .pg-inset { width: 58%; aspect-ratio: 4/3; } } /* v214: bigger related photo on tablet/phone too */
+
+/* ---------- v229: Arabic / RTL header ----------
+   The header spacing rules above use physical left/right margins, so in RTL the gaps ended up on the wrong
+   side (logo touching the hamburger, nav not pushed toward the tools, dividers on the wrong edge). Mirrored here. */
+[dir="rtl"] header .nk-header-actions.nk-header-actions-left { margin-left: clamp(16px, 1.6vw, 24px) !important; margin-right: 0 !important; }
+[dir="rtl"] header nav[aria-label="Primary"] { margin-left: 0 !important; margin-right: auto !important; }
+/* tools sit right next to the logo / nav (the mirror of the English layout), never floating in the middle */
+[dir="rtl"] header .nk-header-actions:not(.nk-header-actions-left) { margin-left: 0 !important; margin-right: clamp(14px, 1.4vw, 22px) !important; }
+[dir="rtl"] header .nk-header-actions .nk-contact-btn { margin-right: 0; margin-left: 4px; }
+[dir="rtl"] header nav[aria-label="Primary"] .nk-nav-link + .nk-nav-link::before { left: auto; right: -14px; }
+@media (max-width: 1179px) {
+  [dir="rtl"] header > .nk-container > .nk-header-actions.nk-header-actions-left { margin-left: 0 !important; margin-right: var(--nk-hgap, 20px) !important; }
+}
+@media (max-width: 767px) {
+  [dir="rtl"] header > .nk-container > .nk-header-actions.nk-header-actions-left { margin-left: 0 !important; margin-right: auto !important; }
+}
+[dir="rtl"] header .nk-nav-link { font-size: 15px; }
+
+/* v245 · header nav: a touch more space between items on wide screens (was 28px). Dividers stay centred in the gap. */
+@media (min-width: 1366px) {
+  header nav[aria-label="Primary"] { column-gap: 30px; }
+  header nav[aria-label="Primary"] .nk-nav-link + .nk-nav-link::before { left: -15px; }
+  [dir="rtl"] header nav[aria-label="Primary"] .nk-nav-link + .nk-nav-link::before { left: auto; right: -15px; }
+}
+@media (min-width: 1500px) {
+  header nav[aria-label="Primary"] { column-gap: 34px; }
+  header nav[aria-label="Primary"] .nk-nav-link + .nk-nav-link::before { left: -17px; }
+  [dir="rtl"] header nav[aria-label="Primary"] .nk-nav-link + .nk-nav-link::before { left: auto; right: -17px; }
+}

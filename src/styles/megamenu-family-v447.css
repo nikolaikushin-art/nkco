@@ -1,0 +1,165 @@
+/* v447 · Hamburger mega menu, same family as the desktop mega menu.
+   The sidebar (dark rail, selected-row bar, contact line) is unchanged. What changes is the right-hand side, so it speaks the
+   same language as the top menus (.nk-cx):
+     - NO boxes and NO filled dark buttons. The boxed arrow buttons and the dark pinstripe action bar are gone.
+     - ONE call-to-action style everywhere: [short line] Label, and on hover the line slides away while a line + arrowhead
+       draws out to the right of the label (same anatomy and timing as .nk-cx-go / .nk-cx-all, v373).
+     - Row hover / selected = the same 2px guide line (--nk-nav-line-*) with a very light fill, not a boxed button.
+     - Hairlines, thin 1.5px arrows, no outlines on thumbnails, no pinstripe on the light side.
+   Tune in one place: --fam-ink (text / line colour on light), --fam-line (hairlines), --fam-fill (hover fill). */
+
+.nk-md { --fam-ink: #121316; --fam-body: #5a5f66; --fam-line: #dcdee1; --fam-fill: #f5f6f7; --fam-ease: cubic-bezier(.2, .7, .2, 1); }
+
+/* ---------- 1 · the shared call-to-action link ---------- */
+.nk-md .nk-md-go { display: inline-flex; align-items: center; gap: 0; max-width: 100%; box-sizing: border-box; align-self: flex-start;
+  font: 600 15px/1.2 var(--nk-text, 'Inter', system-ui, sans-serif); letter-spacing: 0; color: var(--fam-ink) !important; background: none; border: 0; text-decoration: none; cursor: pointer; }
+.nk-md .nk-md-go > i { display: block; flex: none; width: 40px; height: 2px; margin-right: 10px; background: currentColor;
+  transition: width 320ms var(--fam-ease), margin 320ms var(--fam-ease), opacity 240ms ease; }
+.nk-md .nk-md-go > span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-weight: 600; font-family: inherit; color: inherit; }
+.nk-md .nk-md-ar { position: relative; display: block; flex: none; width: 0; height: 16px; margin-left: 0; overflow: hidden; opacity: 0;
+  transition: width 320ms var(--fam-ease), margin 320ms var(--fam-ease), opacity 240ms ease; }
+.nk-md .nk-md-ar::before { content: ""; position: absolute; left: 0; right: 2px; top: 50%; height: 2px; margin-top: -1px; background: currentColor; }
+.nk-md .nk-md-ar::after { content: ""; position: absolute; right: 3px; top: 50%; box-sizing: border-box; width: 8px; height: 8px; margin-top: -4px;
+  border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); }
+/* hover / focus: the link itself, or (for the static copies inside a card) the card */
+.nk-md .nk-md-go:hover > i, .nk-md .nk-md-go:focus-visible > i,
+.nk-md-feat-body:hover .nk-md-go > i, .nk-md-prev-hero:hover .nk-md-go > i { width: 0; margin-right: 0; opacity: 0; }
+.nk-md .nk-md-go:hover .nk-md-ar, .nk-md .nk-md-go:focus-visible .nk-md-ar,
+.nk-md-feat-body:hover .nk-md-go .nk-md-ar, .nk-md-prev-hero:hover .nk-md-go .nk-md-ar { width: 44px; margin-left: 12px; opacity: 1; }
+
+/* on the dark rail and on the dark preview card */
+.nk-md .nk-md-go--dark { color: #fff !important; }
+
+/* ---------- 2 · placement ---------- */
+/* footer link under the service rows (was the dark action bar) */
+.nk-md .nk-md-go--foot { flex: none; align-self: flex-start; width: auto; margin: 18px 0 20px; padding: 0; }
+@media (max-height: 800px) { .nk-md .nk-md-go--foot { margin: 14px 0 14px; } }
+/* rail: the "Explore ..." link under the categories */
+.nk-md-secs--burger .nk-md-explore-li { border-top: 0; }
+.nk-md .nk-md-go--rail { display: flex; align-self: auto; margin: 0; padding: 14px 24px 10px 32px; font-size: 14px; }
+.nk-md .nk-md-go--rail > i { width: 28px; margin-right: 10px; }
+/* featured insight (right column) */
+.nk-md .nk-md-go--feat { margin-top: 2px; font-size: 14px; }
+.nk-md .nk-md-go--feat > i { width: 32px; }
+/* preview card (dark) */
+.nk-md-prev-ctas .nk-md-go { font-size: 14px; }
+.nk-md-prev-ctas .nk-md-go > i { width: 32px; }
+
+/* ---------- 3 · service rows: no boxed arrow, no outline ---------- */
+.nk-md-lines { border-bottom-color: var(--fam-line); }
+.nk-md-line { border-top-color: var(--fam-line); }
+.nk-md-line-img { outline: 0; }
+/* the arrow: a bare thin arrow, quiet at rest, nudges to the right and darkens on hover / selection */
+.nk-md .nk-md-line .nk-md-line-arrow, .nk-md .nk-md-line:hover .nk-md-line-arrow, .nk-md .nk-md-line:focus-visible .nk-md-line-arrow, .nk-md .nk-md-line[data-previewing] .nk-md-line-arrow {
+  width: auto; height: auto; margin: 0 6px 0 0; border: 0; background: none; background-image: none; background-color: transparent; box-shadow: none;
+  color: var(--fam-ink); transition: transform 240ms var(--fam-ease), opacity 200ms ease; }
+.nk-md .nk-md-line .nk-md-line-arrow { opacity: .4; transform: none; }
+.nk-md .nk-md-line:hover .nk-md-line-arrow, .nk-md .nk-md-line:focus-visible .nk-md-line-arrow, .nk-md .nk-md-line[data-previewing] .nk-md-line-arrow { opacity: 1; transform: translateX(5px); }
+.nk-md .nk-md-line-arrow svg { display: block; width: 20px; height: 20px; }
+@media (hover: none) { .nk-md .nk-md-line .nk-md-line-arrow { opacity: .7; } }
+/* hover / selected: the same 2px guide line as the sidebar and the top menus, very light fill */
+.nk-md-line::before { background-color: var(--fam-fill); background-image: none; }
+.nk-md-line::after { width: var(--nk-nav-line-w, 2px); background: var(--nk-nav-line-light, #121316); }
+.nk-md-line:hover::after { background: var(--nk-nav-line-light-hover, rgba(18, 19, 22, .55)); }
+.nk-md-line[data-previewing]::after { background: var(--nk-nav-line-light, #121316); }
+
+/* ---------- 4 · tabs: same 2px line as the rest ---------- */
+.nk-md-tabs-wrap { border-bottom-color: var(--fam-line); }
+.nk-md-tab[data-active="true"] { color: var(--fam-ink); border-bottom: var(--nk-nav-line-w, 2px) solid var(--fam-ink); }
+
+/* ---------- 5 · right column ---------- */
+.nk-md-feat-body { background: none; }
+.nk-md-feat-img::after { content: none; }
+.nk-md-feat-body .nk-md-rule { background: var(--fam-ink); opacity: .35; }
+/* preview card: no pinstripe texture, flat night colour like the sidebar and the desktop menu */
+.nk-md-prev-hero, .nk-md-prev-copy { background-image: none; }
+.nk-md-prev-rel { background: none; }
+
+@media (prefers-reduced-motion: reduce) { .nk-md .nk-md-go > i, .nk-md .nk-md-ar, .nk-md .nk-md-line-arrow { transition: none !important; } }
+
+/* =========================================================================================
+   v447b · Hamburger menu, DARK theme (default; switch with BURGER_DARK in MegaRail.jsx).
+   Content area = the desktop mega menu colour (--nk-hero-bg). The sidebar is a shade darker so the two halves stay distinct.
+   Only the hamburger menu (.nk-md--dark). The narrow-screen top accordion (.nk-md--acc) stays light.
+   Tune: --dk-bg (content), --dk-rail (sidebar), --dk-line (hairlines), --dk-dim (secondary text), --dk-photo (thumbnail dimming).
+   ========================================================================================= */
+.nk-md--dark { --dk-bg: var(--nk-hero-bg, #272b30); --dk-rail: #1f2226; --dk-line: rgba(196, 200, 206, .24); --dk-dim: #b4b8be; --dk-mute: #8a8f96; --dk-photo: brightness(.84) saturate(.88);
+  --md-ink: #fff; --md-body: var(--dk-dim); --md-mute: var(--dk-mute); --md-hair: var(--dk-line);
+  --fam-ink: #fff; --fam-body: var(--dk-dim); --fam-line: var(--dk-line); --fam-fill: rgba(255, 255, 255, .05);
+  --nk-nav-line-light: #fff; --nk-nav-line-light-hover: rgba(255, 255, 255, .6);
+  background-color: var(--dk-bg); color: #fff; }
+.nk-mega:has(.nk-md--dark), .nk-mega:has(.nk-md--dark) .nk-mega-content { background: var(--dk-bg, #272b30) !important; border-bottom-color: rgba(255, 255, 255, .07) !important; }
+.nk-md--dark .nk-md-main, .nk-md--dark .nk-md-feat, .nk-md--dark .nk-md-feat-body { background: var(--dk-bg); }
+.nk-md--dark .nk-md-rail { background-color: var(--dk-rail); border-right: 1px solid rgba(255, 255, 255, .06); }
+
+.nk-md--dark .nk-md-tab { color: var(--dk-mute); }
+.nk-md--dark .nk-md-tab:hover { color: #fff; }
+.nk-md--dark .nk-md-tab[data-active="true"] { color: #fff; border-bottom-color: #fff; }
+.nk-md--dark .nk-md-tabs-nav { color: #fff; }
+.nk-md--dark .nk-md-tabs-nav--r { background: linear-gradient(90deg, rgba(39, 43, 48, 0), var(--dk-bg) 62%); }
+.nk-md--dark .nk-md-tabs-nav--l { background: linear-gradient(270deg, rgba(39, 43, 48, 0), var(--dk-bg) 62%); }
+.nk-md--dark .nk-md-title, .nk-md--dark .nk-md-line-name, .nk-md--dark .nk-md-feat-title { color: #fff; }
+.nk-md--dark .nk-md-line-desc, .nk-md--dark .nk-md-feat-desc { color: var(--dk-dim); }
+.nk-md--dark .nk-md-eyebrow { color: var(--dk-mute); }
+.nk-md--dark .nk-md-feat-body .nk-md-rule { background: #fff; opacity: .5; }
+
+/* thumbnails and the featured photo sit a little quieter on dark; the hovered / selected row brings its photo back */
+.nk-md--dark .nk-md-line-img { background: #1f2226; }
+.nk-md--dark .nk-md-line-img img, .nk-md--dark .nk-md-feat-img img { filter: var(--dk-photo) !important; transition: filter 240ms ease, transform 500ms ease; }
+.nk-md--dark .nk-md-line:hover .nk-md-line-img img, .nk-md--dark .nk-md-line[data-previewing] .nk-md-line-img img { filter: none !important; }
+
+/* preview card: a shade darker than the content so it still reads as a card */
+.nk-md--dark .nk-md-prev-card { background: var(--dk-rail); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .06); }
+.nk-md--dark .nk-md-prev-shade { background: linear-gradient(90deg, var(--dk-rail) 0%, rgba(31, 34, 38, .9) 45%, rgba(31, 34, 38, .55) 100%); }
+.nk-md--dark :focus-visible { outline-color: #fff; }
+
+/* =========================================================================================
+   v448 · Hamburger menu fixes
+   1 · COLOUR: the sidebar is now exactly the colour of the content area and of the desktop top menu (--nk-hero-bg), no darker block,
+       no pinstripe. The two halves are separated by one hairline only (same as the top menu's dividers).
+   2 · FONT: the headings in the sidebar (Service Lines / Market Needs / Sector Expertise) use the same serif and silver as the
+       column headings of the top menu (.nk-cx-sh); body text stays Inter.
+   3 · POSITION: the content (tabs, title, rows) starts closer to the sidebar.
+   ========================================================================================= */
+.nk-md--dark { --dk-rail: var(--dk-bg); --dk-card: #1f2226; }
+.nk-md--dark .nk-md-rail { background-color: var(--dk-bg); background-image: none; border-right: 1px solid var(--dk-line); }
+.nk-md--dark .nk-md-prev-card { background: var(--dk-card); }
+.nk-md--dark .nk-md-prev-shade { background: linear-gradient(90deg, var(--dk-card) 0%, rgba(31, 34, 38, .9) 45%, rgba(31, 34, 38, .55) 100%); }
+.nk-md--dark .nk-md-secs--burger .nk-md-sec-btn { border-top-color: var(--dk-line); font-family: var(--nk-text, 'Inter', system-ui, sans-serif); font-weight: 400; }
+.nk-md--dark .nk-md-rail-contact { border-top-color: var(--dk-line); }
+
+.nk-md--dark .nk-md-secs--burger .nk-md-cat { min-height: 44px; }
+.nk-md--dark .nk-md-secs--burger .nk-md-cat > span { padding: 7px 0; font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif !important; font-weight: 500; font-size: 24px; line-height: 1.1; letter-spacing: -.005em; color: var(--nk-silver, #c4c8ce); }
+.nk-md--dark .nk-md-secs--burger .nk-md-cat:hover > span,
+.nk-md--dark .nk-md-secs--burger .nk-md-cat[data-active="true"] > span { color: #fff; }
+.nk-md--dark .nk-md-secs--burger .nk-md-cat[data-active="true"] { background: linear-gradient(#fff, #fff) left top / var(--nk-nav-line-w, 2px) 100% no-repeat, rgba(255, 255, 255, .05); }
+
+.nk-md--dark .nk-md-main { padding-left: 28px; }
+@media (min-width: 1700px) { .nk-md--dark .nk-md-main { padding-left: 36px; } }
+@media (max-width: 1360px) { .nk-md--dark .nk-md-main { padding-left: 24px; } }
+
+/* v448b · sections with many categories (Expertise: 8) get a slightly tighter sidebar list so everything fits without scrolling */
+.nk-md--dark[data-section="expertise"] .nk-md-secs--burger .nk-md-cat { min-height: 34px; }
+.nk-md--dark[data-section="expertise"] .nk-md-secs--burger .nk-md-cat > span { padding: 4px 0; font-size: 21px; }
+
+/* v450 · hamburger sidebar matched to the approved reference: darker sidebar, Newsreader headings (22px), blue-grey when idle, white when active, lighter row for the active one. */
+.nk-md--dark .nk-md-rail { background-color: #1f2226; }
+.nk-md--dark .nk-md-secs--burger .nk-md-cat > span { font-family: 'Newsreader', Georgia, 'Times New Roman', serif !important; font-weight: 400; font-size: 22px; letter-spacing: -.005em; color: #a9b4c0; }
+.nk-md--dark .nk-md-secs--burger .nk-md-cat:hover > span,
+.nk-md--dark .nk-md-secs--burger .nk-md-cat[data-active="true"] > span { color: #fff; }
+.nk-md--dark .nk-md-secs--burger .nk-md-cat[data-active="true"] { background: linear-gradient(#fff, #fff) left top / var(--nk-nav-line-w, 2px) 100% no-repeat, #2e3135; }
+.nk-md--dark[data-section="expertise"] .nk-md-secs--burger .nk-md-cat > span { font-size: 20px; }
+
+/* v451 · smaller, one-line sidebar headings in every section (Infrastructure is now grouped like the top menu: Plan & Design, Set Up & Operate, ...) */
+.nk-md--dark .nk-md-secs--burger .nk-md-cat > span { font-size: 19px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nk-md--dark .nk-md-secs--burger .nk-md-cat { min-height: 36px; }
+.nk-md--dark[data-section="expertise"] .nk-md-secs--burger .nk-md-cat > span { font-size: 18px; }
+
+/* v453 · sidebar link ("Explore all ...") never truncates on hover: no ellipsis, shorter arrow, less right padding, so the full label always shows */
+.nk-md .nk-md-go--rail { padding-right: 12px; max-width: 100%; }
+.nk-md .nk-md-go--rail > span { overflow: visible; text-overflow: clip; flex: none; }
+.nk-md .nk-md-go--rail:hover .nk-md-ar, .nk-md .nk-md-go--rail:focus-visible .nk-md-ar { width: 26px; margin-left: 8px; }
+
+/* v454 · the header strip above the hamburger sidebar uses the sidebar colour (same dark column from the top of the screen to the bottom of the panel).
+   Only while the hamburger menu is open (the panel sets --nk-rail-w). To go back to one flat colour, delete this block. */
+header.fixed[data-mega="open"]:has(.nk-md--dark) { background-image: linear-gradient(90deg, #1f2226 0, #1f2226 var(--nk-rail-w, 0px), transparent var(--nk-rail-w, 0px)) !important; }

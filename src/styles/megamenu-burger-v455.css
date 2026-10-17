@@ -1,0 +1,180 @@
+/* v455 · Hamburger menu, "Design D".
+   Layout (desktop, >= 1180px; smaller screens use the slide-in panel):
+     [ Capabilities  Infrastructure  Opportunities  Expertise  Overview ........ — Explore all Capabilities ]
+     [ Service Lines   Market Needs   Sector Expertise ]                 large serif tabs
+     [ Market Entry & Expansion  Commercial ... ]  ---------------      small tabs        |  featured photo
+     [ Market Entry & Expansion ]                                                         |  FEATURED INSIGHT
+     [ photo  Service name / one line ........................ -> ]                      |  title, text, link
+     [ Contact the office ↗   info@nkco.ae ]
+   Everything is scoped to .nk-bm-* so none of the older .nk-md-* / .nk-mega rules can change it.
+   Tune the look with the variables on .nk-bm. */
+
+/* ---------- panel shell (overrides the generic .nk-mega rules, which are !important) ---------- */
+.nk-mega:has(.nk-bm) {
+  height: auto !important; min-height: 0 !important;
+  max-height: calc(100vh - var(--nk-header-h, 64px) - 48px) !important;
+  max-height: calc(100dvh - var(--nk-header-h, 64px) - 48px) !important;
+  padding: 0 !important; display: block !important;
+  background: var(--nk-hero-bg, #272b30) !important; background-image: none !important;
+  border: 0 !important; border-bottom: 1px solid rgba(255, 255, 255, .08) !important;
+  box-shadow: 0 26px 60px -22px rgba(10, 11, 13, .55) !important;
+  overflow-x: hidden !important; overflow-y: auto !important;
+}
+.nk-mega:has(.nk-bm) .nk-mega-content {
+  display: block !important; height: auto !important; max-height: none !important; min-height: 0 !important;
+  border: 0 !important; background: transparent !important; background-image: none !important;
+}
+
+.nk-bm {
+  --bm-pad: var(--nk-pad, 36px);
+  --bm-ink: #fff;
+  --bm-dim: #b4b8be;
+  --bm-mute: #8a8f96;
+  --bm-line: rgba(196, 200, 206, .24);
+  --bm-fill: rgba(255, 255, 255, .045);
+  --bm-ease: cubic-bezier(.2, .7, .2, 1);
+  --bm-serif: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+  --bm-sans: var(--nk-text, 'Inter', system-ui, sans-serif);
+  box-sizing: border-box; width: 100%;
+  padding: 0 var(--bm-pad);
+  background: var(--nk-hero-bg, #272b30); color: var(--bm-ink);
+  font-family: var(--bm-sans);
+}
+.nk-bm *, .nk-bm *::before, .nk-bm *::after { box-sizing: border-box; }
+:where(.nk-bm) a, :where(.nk-bm) button { color: inherit; text-decoration: none; font: inherit; background: none; border: 0; padding: 0; cursor: pointer; text-align: left; }
+.nk-bm :focus-visible { outline: 2px solid #fff; outline-offset: 3px; border-radius: 1px; }
+
+/* ---------- 1 · section tabs + "Explore all" ---------- */
+.nk-bm-top { display: flex; align-items: stretch; justify-content: space-between; gap: 32px; height: 57px; border-bottom: 1px solid var(--bm-line); }
+.nk-bm-secs { display: flex; align-items: stretch; gap: 42px; min-width: 0; overflow-x: auto; scrollbar-width: none; }
+.nk-bm-secs::-webkit-scrollbar { display: none; }
+.nk-bm-sec {
+  position: relative; display: inline-flex; align-items: center; flex: none; white-space: nowrap;
+  font-size: 15px; font-weight: 400; letter-spacing: 0; color: var(--bm-dim);
+  transition: color 160ms ease;
+}
+.nk-bm-sec::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: #fff; transform: scaleX(0); transform-origin: left; transition: transform 260ms var(--bm-ease); }
+.nk-bm-sec:hover { color: #fff; }
+.nk-bm-sec[data-active="true"] { color: #fff; font-weight: 500; }
+.nk-bm-sec[data-active="true"]::after { transform: scaleX(1); }
+.nk-bm-sec:hover::after { transform: scaleX(1); opacity: .5; }
+.nk-bm-sec[data-active="true"]:hover::after { opacity: 1; }
+
+/* the one call-to-action style of this menu: [line] Label  ->  on hover the line slides away and a line + arrowhead draws out to the right */
+.nk-bm-go { display: inline-flex; align-items: center; flex: none; align-self: center; white-space: nowrap; color: #fff; font-size: 15px; font-weight: 600; }
+.nk-bm-go > i { display: block; flex: none; width: 30px; height: 2px; margin-right: 10px; background: currentColor; transition: width 260ms var(--bm-ease), margin 260ms var(--bm-ease), opacity 200ms ease; }
+.nk-bm-go > b { position: relative; display: block; flex: none; width: 0; height: 2px; margin-left: 0; background: currentColor; opacity: 0; transition: width 260ms var(--bm-ease), margin 260ms var(--bm-ease), opacity 200ms ease; }
+.nk-bm-go > b::after { content: ""; position: absolute; right: 1px; top: -3px; width: 8px; height: 8px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); }
+.nk-bm-go:hover > i, .nk-bm-go:focus-visible > i, .nk-bm-feat-link:hover .nk-bm-go > i { width: 0; margin-right: 0; opacity: 0; }
+.nk-bm-go:hover > b, .nk-bm-go:focus-visible > b, .nk-bm-feat-link:hover .nk-bm-go > b { width: 28px; margin-left: 12px; opacity: 1; }
+
+/* ---------- 2 · headings of the section: large serif tabs ---------- */
+.nk-bm-heads { display: flex; align-items: flex-end; gap: 40px; margin: 0 0 5px; padding-top: 18px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
+.nk-bm-heads::-webkit-scrollbar { display: none; }
+.nk-bm-head {
+  position: relative; flex: none; white-space: nowrap; padding: 0 0 4px;
+  font-family: var(--bm-serif); font-weight: 500; font-size: 32px; line-height: 1.15; letter-spacing: -.005em;
+  color: var(--bm-mute); transition: color 160ms ease;
+}
+.nk-bm-head::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: #fff; transform: scaleX(0); transform-origin: left; transition: transform 260ms var(--bm-ease); }
+.nk-bm-head:hover { color: #fff; }
+.nk-bm-head[data-active="true"] { color: #fff; font-size: 36px; }
+.nk-bm-head[data-active="true"]::after { transform: scaleX(1); }
+/* sections with many headings (Infrastructure 6, Expertise 8) get a smaller scale so they stay on one line */
+.nk-bm-heads[data-n="4"] .nk-bm-head, .nk-bm-heads[data-n="5"] .nk-bm-head { font-size: 26px; }
+.nk-bm-heads[data-n="4"] .nk-bm-head[data-active="true"], .nk-bm-heads[data-n="5"] .nk-bm-head[data-active="true"] { font-size: 29px; }
+.nk-bm-heads[data-n="6"] .nk-bm-head, .nk-bm-heads[data-n="7"] .nk-bm-head, .nk-bm-heads[data-n="8"] .nk-bm-head { font-size: 22px; }
+.nk-bm-heads[data-n="6"] .nk-bm-head[data-active="true"], .nk-bm-heads[data-n="7"] .nk-bm-head[data-active="true"], .nk-bm-heads[data-n="8"] .nk-bm-head[data-active="true"] { font-size: 24px; }
+.nk-bm-heads[data-n="6"], .nk-bm-heads[data-n="7"], .nk-bm-heads[data-n="8"], .nk-bm-heads[data-n="4"], .nk-bm-heads[data-n="5"] { gap: 30px; }
+
+/* ---------- 3 · body: items + rows on the left, featured insight on the right ---------- */
+.nk-bm-body { display: grid; grid-template-columns: minmax(0, 1fr) clamp(300px, 26.4vw, 380px); column-gap: 34px; align-items: start; }
+.nk-bm-main { min-width: 0; }
+
+.nk-bm-tabs-wrap { position: relative; border-bottom: 1px solid var(--bm-line); }
+.nk-bm-tabs { display: flex; align-items: stretch; gap: 34px; height: 45px; overflow-x: auto; scrollbar-width: none; scroll-behavior: smooth; }
+.nk-bm-tabs::-webkit-scrollbar { display: none; }
+.nk-bm-tab { position: relative; display: inline-flex; align-items: center; flex: none; white-space: nowrap; font-size: 14px; font-weight: 400; color: var(--bm-mute); transition: color 160ms ease; }
+.nk-bm-tab::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: #fff; transform: scaleX(0); transform-origin: left; transition: transform 260ms var(--bm-ease); }
+.nk-bm-tab:hover { color: #fff; }
+.nk-bm-tab[data-active="true"] { color: #fff; font-weight: 500; }
+.nk-bm-tab[data-active="true"]::after { transform: scaleX(1); }
+.nk-bm-tabs-nav { position: absolute; top: 0; bottom: 1px; width: 56px; display: flex; align-items: center; color: #fff; z-index: 2; }
+.nk-bm-tabs-nav--l { left: 0; justify-content: flex-start; background: linear-gradient(270deg, rgba(39, 43, 48, 0), var(--nk-hero-bg, #272b30) 62%); }
+.nk-bm-tabs-nav--r { right: 0; justify-content: flex-end; background: linear-gradient(90deg, rgba(39, 43, 48, 0), var(--nk-hero-bg, #272b30) 62%); }
+
+.nk-bm-pane { animation: nkFadeIn 200ms ease both; }
+.nk-bm-title {
+  display: block; padding: 10px 0 11px; border-bottom: 1px solid var(--bm-line);
+  font-family: var(--bm-serif); font-weight: 500; font-size: 52px; line-height: 1.08; letter-spacing: -.01em; color: #fff;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.nk-bm-title[data-len="l"] { font-size: 46px; }
+.nk-bm-title[data-len="xl"] { font-size: 40px; }
+
+.nk-bm-rows { display: block; margin-bottom: 12px; }
+.nk-bm-row {
+  position: relative; display: grid; grid-template-columns: 128px minmax(0, 1fr) 40px; column-gap: 28px; align-items: center;
+  min-height: 84px; padding: 5px 0; border-bottom: 1px solid var(--bm-line);
+  transition: background-color 180ms ease;
+}
+.nk-bm-row:last-child { border-bottom-color: transparent; }
+.nk-bm-row:hover, .nk-bm-row:focus-visible { background: var(--bm-fill); }
+.nk-bm-row-img { display: block; width: 128px; height: 73px; overflow: hidden; background: #1f2226; }
+.nk-bm-row-img img { display: block; width: 100%; height: 100%; object-fit: cover; filter: brightness(.84) saturate(.88); transition: filter 240ms ease, transform 500ms ease; }
+.nk-bm-row:hover .nk-bm-row-img img, .nk-bm-row:focus-visible .nk-bm-row-img img { filter: none; transform: scale(1.04); }
+.nk-bm-row-text { display: flex; flex-direction: column; gap: 5px; min-width: 0; }
+.nk-bm-row-name { font-family: var(--bm-serif); font-weight: 500; font-size: 28px; line-height: 1.08; letter-spacing: -.005em; color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nk-bm-row-desc { font-size: 14px; line-height: 1.35; color: var(--bm-dim); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nk-bm-row-arrow { display: flex; justify-content: flex-end; padding-right: 8px; color: var(--bm-dim); transition: transform 220ms var(--bm-ease), color 160ms ease; }
+.nk-bm-row:hover .nk-bm-row-arrow, .nk-bm-row:focus-visible .nk-bm-row-arrow { transform: translateX(5px); color: #fff; }
+
+/* ---------- featured insight ---------- */
+.nk-bm-feat { margin-top: 12px; min-width: 0; animation: nkFadeIn 220ms ease both; }
+.nk-bm-feat-link { display: flex; flex-direction: column; align-items: flex-start; }
+.nk-bm-feat-img { display: block; width: 100%; aspect-ratio: 2 / 1; overflow: hidden; background: #1f2226; }
+.nk-bm-feat-img img { display: block; width: 100%; height: 100%; object-fit: cover; filter: brightness(.84) saturate(.88); transition: filter 240ms ease, transform 600ms ease; }
+.nk-bm-feat-link:hover .nk-bm-feat-img img { filter: none; transform: scale(1.03); }
+.nk-bm-feat-tag { margin-top: 22px; font-size: 11px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--bm-mute); }
+.nk-bm-feat-title { display: block; margin-top: 14px; font-family: var(--bm-serif); font-weight: 500; font-size: 30px; line-height: 1.1; letter-spacing: -.005em; color: #fff; }
+.nk-bm-feat-desc { display: block; margin-top: 14px; font-size: 14.5px; line-height: 1.45; color: var(--bm-dim); }
+.nk-bm-feat .nk-bm-go { align-self: flex-start; margin-top: 18px; font-size: 15px; }
+
+/* ---------- 4 · contact line ---------- */
+.nk-bm-foot { display: flex; align-items: center; gap: 28px; margin-top: 4px; padding: 14px 0 15px; border-top: 1px solid var(--bm-line); font-size: 15px; }
+.nk-bm-contact { display: inline-flex; align-items: center; gap: 6px; color: #fff; }
+.nk-bm-contact:hover { text-decoration: underline; text-underline-offset: 4px; }
+.nk-bm-mail { color: var(--bm-mute); }
+.nk-bm-mail:hover { color: #fff; }
+
+/* ---------- tighter laptops: keep the whole menu inside a 768px-high window ---------- */
+@media (max-height: 780px) {
+  .nk-bm-title { font-size: 44px; padding: 6px 0 8px; }
+  .nk-bm-row { min-height: 76px; }
+  .nk-bm-feat-tag { margin-top: 16px; }
+}
+@media (max-width: 1360px) {
+  .nk-bm-head[data-active="true"] { font-size: 34px; }
+  .nk-bm-row-name { font-size: 26px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .nk-bm *, .nk-bm *::before, .nk-bm *::after { transition: none !important; animation: none !important; }
+}
+
+/* ---------- v456 · contact line also at the bottom of the desktop top-navigation menus (.nk-cx) ---------- */
+.nk-cx[data-section] { grid-template-rows: auto auto; row-gap: 0 !important; padding-bottom: 0; }
+.nk-cx[data-section] .nk-cx-acc { align-self: stretch; }
+.nk-cx-foot { grid-column: 1 / -1; display: flex; align-items: center; gap: 28px; margin-top: 16px; padding: 14px 0 15px; border-top: 1px solid rgba(196, 200, 206, .24); font-size: 15px; }
+.nk-cx-contact { display: inline-flex; align-items: center; gap: 6px; color: #fff !important; text-decoration: none; }
+.nk-cx-contact:hover { text-decoration: underline; text-underline-offset: 4px; }
+.nk-cx-mail { color: #8a8f96 !important; text-decoration: none; }
+.nk-cx-mail:hover { color: #fff !important; }
+
+/* ---------- v457 · page preview (click a service row once: the right column shows that page; click again or "Open the page" to go there) ---------- */
+.nk-bm-row[data-previewing] { background: var(--bm-fill); box-shadow: inset 2px 0 0 #fff; }
+.nk-bm-row[data-previewing] .nk-bm-row-img img { filter: none; }
+.nk-bm-row[data-previewing] .nk-bm-row-arrow { color: #fff; transform: translateX(5px); }
+.nk-bm-prev { animation: nkFadeIn 220ms ease both; }
+.nk-bm-prev .nk-bm-feat-title { font-size: 28px; }
+.nk-bm-prev-lead { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }

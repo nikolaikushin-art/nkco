@@ -1,0 +1,16 @@
+# v238: new navigation item "Perspectives" (podcasts and instructional material), after Opportunities
+- Main bar, mega menu (rail, tabs, rows, featured card), side panel, search, footer (new column, grid is now 6 columns) and Arabic label all pick it up. NAV_ITEMS order: ... Opportunities, Perspectives, Intelligence ...
+- Content: 5 categories (Podcasts, Masterclasses, Guides & Playbooks, Video & Webinars, Tools & Templates), 19 series/courses/libraries, 78 pieces. ALL of it lives in `src/data/perspectives.js` (menu, descriptions, featured cards, page copy). Edit there.
+- Pages (`src/pages/PerspectivePage.jsx`, `src/perspectives.css`, branch in `SectionPage.jsx`): /perspectives, /perspectives/<format>, /perspectives/<format>/<series>, /perspectives/<format>/<series>/<piece>. Same hero and section system as the other pages. SEO metadata and the 1,511-page prerender include them.
+- Media: no real audio, video or files exist. A piece page shows "Request the recording / the guide" (mailto) until you add an entry to `MEDIA` in perspectives.js: `{ kind: 'audio'|'video'|'file', src, poster? }` keyed by page path.
+- NK&CO Briefing under Intelligence is unchanged. Podcasts links to it, and 9 episodes link across to their existing episode pages.
+- Fixed `scripts/prerender.js`: it failed silently on `import X from 'x.json'`, so no per-page HTML or sitemap was being written. It now supports it.
+- All copy is draft: no guests, figures or claims were invented, but please review it.
+- Home page: the three featured stories now link to matching Perspectives episodes (were dead `#` links).
+- Full check (headless Chromium): all 103 Perspectives pages at 1440px and 390px load with a title, no page errors, no sideways scroll, every internal link resolves; side panel, mobile and Arabic (RTL) layouts checked.
+- Earlier note, superseded: mobile and Arabic are now checked.
+- Checked in headless Chromium: header fits at 1180-1600px (hamburger below 1180 as before), menu, landing, category and piece pages render. Not checked: mobile widths, Arabic layout.
+- Known, not mine: with default settings the build stops on the lint rule `react-hooks/exhaustive-deps` in Header.jsx and MegaRail.jsx (plugin not found here). I built with DISABLE_ESLINT_PLUGIN=true.
+- Uniqueness pass: all 103 Perspectives pages have their own title, meta description, h1, lead and picture (checked on the rendered pages). Each page has its own drawn plate: 103 different colours, and no two pages share motif and colour.
+- The four podcast series lists were renamed so they no longer repeat the names of the NK&CO Briefing series in Intelligence: Dubai Briefing Episodes, Capital Conversations Episodes, Real Assets Room Episodes, Founders & Family Offices Episodes. Addresses changed to match (e.g. /perspectives/podcasts/dubai-briefing-episodes).
+- Piece pages no longer repeat the hero sentence, and captions under headings are specific to the page.
