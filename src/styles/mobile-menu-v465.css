@@ -1,0 +1,79 @@
+/* v465 · Mobile / tablet menu refresh. CSS only, loaded last.
+   - no black: header and panel use the charcoal of the desktop menu
+   - hamburger / close / search: thin, rounded, same weight and size; search sits right next to the hamburger
+   - accordion "+" replaced by a small thin chevron (rotates up when open)
+   - flag keeps its original look and size
+   Header re-order applies below 768px; panel colours apply below 1180px (where the slide-in panel is used). */
+:root { --m465-bg: #25282d; --m465-bg2: #2d3036; --m465-line: rgba(255,255,255,.14); --m465-mut: #8b8f97; }
+
+@media (max-width: 1179px) {
+  /* closed: dark, like the desktop header. open: same charcoal as the panel and the desktop mega menu */
+  html body header.fixed { background: #32353a !important; background-image: none !important; transition: background-color 200ms ease; }
+  html body.nk-nav-open header.fixed { background: var(--m465-bg) !important; }
+
+  html body aside.nk-slide-panel { background: var(--m465-bg) !important; background-image: none !important; }
+  html body aside.nk-slide-panel .nk-slide-body,
+  html body aside.nk-slide-panel .nk-slide-head-logo { background: transparent !important; background-image: none !important; }
+  html body aside.nk-slide-panel > div:last-child { background: var(--m465-bg) !important; background-image: none !important; border-top: 1px solid var(--m465-line); }
+  html body aside.nk-slide-panel .nk-panel-label { color: var(--m465-mut) !important; letter-spacing: .18em; }
+
+  /* rows */
+  html body aside.nk-slide-panel .nk-acc-trigger { background: transparent !important; background-image: none !important; color: #f4f1ea !important; border-bottom: 1px solid var(--m465-line) !important; }
+  html body aside.nk-slide-panel .nk-acc-trigger:hover,
+  html body aside.nk-slide-panel .nk-acc-trigger[data-open="true"] { background: transparent !important; color: #fff !important; }
+  html body aside.nk-slide-panel .nk-acc-trigger[data-open="true"]::before { display: none !important; }
+  html body aside.nk-slide-panel .nk-acc-body { background: var(--m465-bg2) !important; background-image: none !important; }
+
+  /* "+" -> small thin chevron. One glyph (inline SVG), rotated 180deg when open,
+     so the up and down chevrons are identical in weight and shape. */
+  html body aside.nk-slide-panel .nk-acc-trigger .plus {
+    width: 12px !important; height: 12px !important; flex: none; position: relative; margin-right: 2px;
+    border: 0 !important;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M2.5 4.25 6 7.75l3.5-3.5'/%3E%3C/svg%3E") center / 12px 12px no-repeat !important;
+    transform: none; transition: transform 200ms ease;
+  }
+  html body aside.nk-slide-panel .nk-acc-trigger .plus::before,
+  html body aside.nk-slide-panel .nk-acc-trigger .plus::after { display: none !important; }
+  html body aside.nk-slide-panel .nk-acc-trigger[data-open="true"] .plus { transform: rotate(180deg); }
+
+  /* Contact Us button: white, dark text, arrow */
+  html body aside.nk-slide-panel .nk-panel-cta { background: #fff !important; background-image: none !important; color: var(--m465-bg) !important; border-color: #fff !important; }
+}
+
+@media (max-width: 767px) {
+  /* header order: logo, flag ........ search, hamburger / close */
+  html body header .nk-container { gap: 0 !important; }
+  html body header .nk-container > a[aria-label="NK&CO home"] { order: 1; }
+  html body header .nk-container > .nk-header-actions:not(.nk-header-actions-left) { display: contents !important; }
+  html body header .nk-container .nk-lang-btn { order: 2; margin-left: 10px; min-width: 0 !important; width: auto !important; padding: 0 !important; }
+  html body header > .nk-container .nk-search-btn { order: 4 !important; margin-left: auto !important; min-width: 34px !important; }
+  html body header > .nk-container > .nk-header-actions.nk-header-actions-left { order: 5 !important; margin: 0 !important; }
+
+  /* hamburger + close: thin, rounded, no box */
+  html body header .nk-square-hamburger { width: 48px !important; height: 48px !important; border: 0 !important; background: transparent !important; }
+  html body header .nk-square-hamburger svg { width: 32px !important; height: auto !important; stroke-width: 2.5px !important; stroke-linecap: round !important; }
+
+  /* search: thin outline, same weight as the hamburger */
+  html body header .nk-search-btn svg { width: 28px !important; height: 28px !important; stroke-width: 1.9px !important; stroke-linecap: round !important; }
+}
+
+/* v466 · Featured card in the slide panel: text always readable, whatever the photo / illustration.
+   A strong dark scrim from the bottom (the earlier Tailwind gradient was being removed by the
+   "no background-image" rules), white text, soft shadow. */
+html body aside.nk-slide-panel .nk-sidefeat .nk-sidefeat-scrim {
+  background-image: linear-gradient(to top, rgba(18,20,24,.94) 0%, rgba(18,20,24,.84) 38%, rgba(18,20,24,.45) 68%, rgba(18,20,24,.12) 100%) !important;
+  background-color: transparent !important;
+}
+html body aside.nk-slide-panel .nk-sidefeat .nk-sidefeat-text { color: #fff !important; text-shadow: 0 1px 10px rgba(0,0,0,.55); }
+html body aside.nk-slide-panel .nk-sidefeat .nk-sidefeat-text > div { color: #fff !important; opacity: 1 !important; }
+
+/* v467 · breathing room: text inside an opened section no longer touches the edge of its lighter background */
+@media (max-width: 1179px) {
+  html body aside.nk-slide-panel .nk-acc-body .nk-acc-inner { padding-left: 20px !important; padding-right: 20px !important; }
+}
+
+/* v468 · service items a little smaller (16px -> 15px) */
+@media (max-width: 1179px) {
+  html body aside.nk-slide-panel.nk-slide-panel .nk-slide-body .nk-side-sub-trigger,
+  html body aside.nk-slide-panel.nk-slide-panel .nk-slide-body .nk-side-sub-trigger span { font-size: 15px !important; }
+}

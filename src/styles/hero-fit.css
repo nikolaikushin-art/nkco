@@ -1,0 +1,67 @@
+/* v484 · The hero is exactly one window tall again (v482 made it only as tall as its content, so a strip of the next section showed under the three boxes in every taller window).
+   Hero.jsx finds the largest --hf that fits the window height (and never exceeds the width limit) and writes the few px or more left over to --hf-rem: the picture takes all of it, the text block shares
+   up to a third of it between its gaps. Without JavaScript the formula below is the fallback and the hero is still min 100dvh.
+   v482 · The hero is exactly as tall as its content: no forced full-window height, so no empty band above the text or below the player.
+   The picture is as tall as the text block and the three teaser boxes follow directly under it; sized so hero + boxes still fit inside one window.
+   --hf is the hero's scale unit: 1px on a 1440x900 screen, smaller on shorter or narrower windows (so everything shrinks together instead of spilling below the fold),
+   larger on bigger windows (limited by both the width and the available height). Nothing is stretched to fill the window, so there are no empty bands.
+   The header is fixed, so it is taken out of the height first. Desktop / laptop only (>= 1024px); the stacked mobile layout is unchanged. */
+@media (min-width: 1024px) {
+  .nk4-hero {
+    --hf: min(calc(100vw / 1440), calc((100vh - var(--nk-header-h, 64px)) / 836));
+    --hf: min(calc(100vw / 1440), calc((100dvh - var(--nk-header-h, 64px)) / 836));
+    height: auto; min-height: 100vh; min-height: 100svh; min-height: 100dvh; max-height: none; overflow: hidden;
+  }
+  /* while Hero.jsx measures the natural height */
+  html body .nk4-hero.is-fitting { min-height: 0; }
+  html body .nk4-hero.is-fitting .nk4-grid { flex: 0 0 auto; }
+  html body .nk4-hero .nk4-grid { flex: 1 1 auto; align-items: stretch; min-height: 0; padding-top: calc(18 * var(--hf)); padding-bottom: calc(24 * var(--hf)); gap: clamp(28px, 4.5vw, calc(84 * var(--hf))); }
+  html body .nk4-hero .nk4-media { min-height: 0; }
+  html body .nk4-hero .nk4-frame { min-height: calc(400 * var(--hf)); }
+  html body .nk4-hero .nk4-copy { min-height: 0; justify-content: center; padding-top: 0; }
+  html body .nk4-hero .nk4-eyebrow { font-size: max(12px, calc(15 * var(--hf))); }
+  html body .nk4-hero .nk4-h1 { font-size: min(3.3vw, calc(54 * var(--hf))); margin-top: calc(14 * var(--hf)); }
+  html body .nk4-hero .nk4-sub { font-size: max(13px, min(1.35vw, calc(20 * var(--hf)))); margin-top: calc(20 * var(--hf)); }
+  html body .nk4-hero .nk4-actions { margin-top: calc(26 * var(--hf)); }
+  html body .nk4-hero .nk4-read { font-size: max(13px, calc(16 * var(--hf))); }
+  html body .nk4-hero .nk4-actions .nk4-strap-btn { font-size: max(11px, calc(13 * var(--hf))); padding: calc(13 * var(--hf)) calc(20 * var(--hf)); }
+  html body .nk4-hero .nk4-slide { margin-bottom: calc(26 * var(--hf) + min(var(--hf-rem, 0px) / 3, 40 * var(--hf))); }
+  html body .nk4-hero .nk4-pod { margin-top: 0; }
+
+  /* podcast player */
+  html body .nk4-hero .nk4-pod { --u: var(--hf); padding-top: calc(14 * var(--hf)); }
+  html body .nk4-hero .nk4-pod-top { grid-template-columns: calc(132 * var(--hf)) minmax(0, 1fr); gap: calc(24 * var(--hf)); }
+  html body .nk4-hero .nk4-pod-thumb { min-height: calc(120 * var(--hf)); }
+  html body .nk4-hero .nk4-pod-kicker { font-size: max(9px, calc(11 * var(--hf))); }
+  html body .nk4-hero .nk4-pod-title { font-size: max(16px, calc(26 * var(--hf))); margin-top: calc(8 * var(--hf)); }
+  html body .nk4-hero .nk4-pod-meta { font-size: max(11px, calc(14 * var(--hf))); padding-top: calc(8 * var(--hf)); }
+  html body .nk4-hero .nk4-pod-bar { margin-top: calc(16 * var(--hf)); }
+  html body .nk4-hero .nk4-pod-play { width: max(26px, calc(32 * var(--hf))); height: max(26px, calc(32 * var(--hf))); }
+  html body .nk4-hero .nk4-pod-time { font-size: max(10px, calc(11 * var(--hf))); }
+
+  /* three teaser boxes: part of the hero screen, compact */
+  html body .nk4-teasers-grid { padding-top: calc(20 * var(--hf)); padding-bottom: calc(20 * var(--hf)); }
+  html body .nk4-teaser { gap: calc(8 * var(--hf)); }
+  html body .nk4-teaser-eyebrow { font-size: max(12px, calc(15 * var(--hf))); }
+  html body .nk4-teaser-title { font-size: max(18px, min(2.1vw, calc(32 * var(--hf)))); }
+  html body .nk4-teaser-link { font-size: max(9px, calc(10 * var(--hf))); }
+}
+
+/* v484 · stacked layout (phones, tablets in portrait): the hero is at least one window tall; the picture takes the spare height */
+@media (max-width: 1023px) {
+  html body .nk4-hero { min-height: 100vh; min-height: 100svh; min-height: 100dvh; }
+  html body .nk4-hero .nk4-grid { flex: 1 1 auto; grid-template-rows: minmax(min-content, 1fr) auto; align-items: stretch; }
+  html body .nk4-hero .nk4-media { display: flex; flex-direction: column; min-height: 0; }
+  html body .nk4-hero .nk4-frame { flex: 1 0 auto; }
+}
+
+/* v484 · tall, narrow windows (>= 1024px wide, Hero.jsx adds .is-stack when more than 20% of the height would be spare): stacked layout, no dead areas.
+   Wide picture on top (takes all the spare height), text + player below, then the three boxes. */
+@media (min-width: 1024px) {
+  html:not([dir="rtl"]) body .nk4-hero.is-stack .nk4-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: minmax(min-content, 1fr) auto; gap: calc(26 * var(--hf)); align-items: stretch; }
+  html body .nk4-hero.is-stack .nk4-media { order: 0; display: flex; flex-direction: column; }
+  html body .nk4-hero.is-stack .nk4-frame { flex: 1 0 auto; aspect-ratio: auto; height: auto; min-height: calc(220 * var(--hf)); }
+  html body .nk4-hero.is-stack .nk4-copy { order: 1; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(28px, 5vw, calc(84 * var(--hf))); align-items: end; max-width: none; }
+  html body .nk4-hero.is-stack .nk4-slide { margin-bottom: 0; }
+  html body .nk4-hero.is-stack .nk4-pod { margin-top: 0; }
+}

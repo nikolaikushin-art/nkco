@@ -1,0 +1,131 @@
+/* v473 · Header + hero at every width below the desktop nav (< 1180px). CSS only, loaded last.
+
+   HEADER (tablet 768-1179 and phone)
+   Cause: ribbons.css pushes the tools right with margin-left:auto, but fullwidth.css (more specific, also !important) reset it to a small
+   margin, so logo + Contact Us + flag + search + hamburger were bunched at the left with a dead area on the right.
+   Now: logo on the start side, then ONE right-hand group  [Contact Us] [flag] [search] [hamburger]  pinned to the end edge.
+   Logical margins, so Arabic (RTL) mirrors correctly. Phones (< 768) keep the v465 order: logo, flag ... search, hamburger. */
+@media (max-width: 1179px) {
+  html body header > .nk-container { display: flex; align-items: center; gap: 0 !important; }
+  html body header > .nk-container > a[aria-label="NK&CO home"] { order: 1; flex: 0 0 auto; }
+  html body header > .nk-container > .nk-header-actions:not(.nk-header-actions-left) {
+    order: 2; display: flex; align-items: center; gap: 16px !important;
+    margin-inline-start: auto !important; margin-inline-end: 0 !important;
+  }
+  html body header > .nk-container > .nk-header-actions.nk-header-actions-left {
+    order: 3; flex: 0 0 auto; margin-inline-start: 14px !important; margin-inline-end: 0 !important;
+  }
+  html body header .nk-header-actions .nk-contact-btn { margin: 0 !important; white-space: nowrap; }
+  html body header .nk-header-actions .nk-lang-btn,
+  html body header .nk-header-actions .nk-search-btn { min-width: 0; }
+  html body header .nk-header-actions .nk-lang-btn { width: 42px; }
+  html body header .nk-header-actions .nk-search-btn { width: 34px; }
+  /* hamburger: same box height as the other tools, flush with the right container edge */
+  html body header .nk-square-hamburger { width: 44px; height: 46px; padding: 0; margin: 0; justify-content: center; }
+}
+@media (max-width: 767px) {
+  /* phone: Contact Us is hidden; flag next to the logo, search + hamburger together on the right */
+  html body header > .nk-container > .nk-header-actions:not(.nk-header-actions-left) { display: contents !important; }
+  html body header .nk-container .nk-lang-btn { order: 2; margin-inline-start: 12px; width: auto !important; }
+  html body header > .nk-container .nk-search-btn { order: 4 !important; margin-inline-start: auto !important; }
+  html body header > .nk-container > .nk-header-actions.nk-header-actions-left { order: 5 !important; margin-inline-start: 4px !important; }
+}
+@media (max-width: 359px) {
+  html body header .nk-container .nk-lang-btn { margin-inline-start: 8px; }
+  html body header .nk-container .nk-lang-btn svg { width: 30px; height: 21px; }
+}
+
+/* HERO buttons
+   Cause: "Read the corporate profile" + "Discuss your business" were forced onto ONE line (nowrap, fixed size), and below 1024px the button
+   was also width:100%, so it ran off the right edge (phone/tablet) or slid under the picture (narrow laptop 1024-1279). Also the
+   two-line description was forced nowrap and touched the picture.
+   Now: the row wraps naturally, the button never exceeds its column, and on phones it becomes a full-width button under the link. */
+@media (max-width: 1279px) {
+  html body .nk4-hero .nk4-actions { flex-wrap: wrap !important; align-items: center; gap: 16px 28px; max-width: 100%; }
+  html body .nk4-hero .nk4-actions .nk4-read { flex: 0 0 auto; }
+  html body .nk4-hero .nk4-actions .nk4-strap-btn {
+    flex: 0 1 auto; width: auto; max-width: 100%; box-sizing: border-box; white-space: normal; justify-content: center; text-align: center;
+  }
+  html body .nk4-hero .nk4-sub .nk4-ln { white-space: normal !important; display: inline; }
+  html body .nk4-hero .nk4-sub { max-width: 100%; }
+}
+/* stacked layout (picture on top): text uses the whole width, no clipping */
+@media (max-width: 1023px) {
+  html body .nk4-hero .nk4-copy { width: 100%; }
+  html body .nk4-hero .nk4-sub { max-width: 60ch; }
+}
+@media (max-width: 600px) {
+  html body .nk4-hero .nk4-actions { flex-direction: column; align-items: stretch; gap: 18px; }
+  html body .nk4-hero .nk4-actions .nk4-read { justify-content: flex-start; }
+  html body .nk4-hero .nk4-actions .nk4-strap-btn { width: 100%; flex: 0 0 auto; padding: 16px 18px; letter-spacing: .1em; }
+}
+@media (max-width: 359px) {
+  html body .nk4-hero .nk4-actions .nk4-strap-btn { letter-spacing: .06em; padding: 15px 12px; }
+}
+
+/* PAGE RAIL over the hero picture (two-column layout, 1024-1439px)
+   Cause: seven tabs in a rail that scrolls sideways, so on narrow laptops / landscape tablets the last tabs ("The Firm", "Briefing")
+   were cut off. Now the tabs share the rail width evenly and shrink their type and padding until all seven fit. */
+@media (min-width: 1024px) and (max-width: 1439px) {
+  html body .nk4-frame .nk2-rail { left: 10px; right: 10px; top: 10px; padding: 4px; }
+  html body .nk4-frame .nk2-rail nav { gap: 0; overflow-x: hidden; justify-content: space-between; }
+  html body .nk4-frame .nk2-rail a { flex: 1 1 auto; text-align: center; white-space: nowrap; padding: 9px 4px; font-size: clamp(10.5px, 1vw, 13px); }
+}
+
+/* v473b · FLAG NEXT TO THE LOGO on every phone and tablet (< 1180px).
+   Order: [logo][flag] ............ [Contact Us] [search] [hamburger]   (Contact Us appears from 768px up). Arabic mirrors. */
+@media (max-width: 1179px) {
+  html body header > .nk-container > .nk-header-actions:not(.nk-header-actions-left) { display: contents !important; }
+  html body header > .nk-container .nk-lang-btn { order: 2 !important; flex: 0 0 auto; margin: 0 !important; margin-inline-start: 14px !important; width: auto !important; padding: 0 !important; }
+  html body header > .nk-container .nk-contact-btn { order: 3 !important; margin: 0 !important; margin-inline-start: auto !important; }
+  html body header > .nk-container .nk-search-btn { order: 4 !important; flex: 0 0 auto; margin: 0 !important; margin-inline-start: 18px !important; }
+  html body header > .nk-container > .nk-header-actions.nk-header-actions-left { order: 5 !important; margin: 0 !important; margin-inline-start: 8px !important; }
+}
+@media (max-width: 767px) {
+  /* no Contact Us on phones: search carries the push to the right edge */
+  html body header > .nk-container .nk-search-btn { margin-inline-start: auto !important; }
+  html body header > .nk-container > .nk-header-actions.nk-header-actions-left { margin-inline-start: 4px !important; }
+}
+
+/* v473c · tablets in portrait (601-1023px): the text sat small on the left under a very wide picture. Bigger type fills the width. */
+@media (min-width: 601px) and (max-width: 1023px) {
+  html body .nk4-hero .nk4-h1 { font-size: clamp(38px, 6vw, 56px); }
+  html body .nk4-hero .nk4-sub { font-size: clamp(17px, 2.3vw, 21px); max-width: 52ch; }
+  html body .nk4-hero .nk4-eyebrow { font-size: 16px; }
+  html body .nk4-hero .nk4-read { font-size: 17px; }
+  html body .nk4-hero .nk4-actions .nk4-strap-btn { padding: 16px 26px; }
+}
+
+/* v473d · Arabic (RTL): the hidden "skip to content" link was parked at left:-9999px, which in a right-to-left page created a
+   10,000px sideways scroll area. It is now hidden with a clip and appears in place when focused (works in both directions). */
+.nk2-skip { left: 8px !important; clip-path: inset(50%); width: 1px; height: 1px; overflow: hidden; padding: 0 !important; border: 0 !important; white-space: nowrap; }
+.nk2-skip:focus { clip-path: none; width: auto; height: auto; overflow: visible; padding: 10px 16px !important; border: 1px solid var(--nk-ink) !important; }
+
+/* v474b · Arabic (RTL) phone + tablet: hamburger and search sit together at the left edge with the same spacing as in English.
+   Cause of the big gap: fullwidth.css has an RTL-only rule (margin-right: 20px on the hamburger group, !important, more specific than ours). */
+@media (max-width: 1179px) {
+  html[dir="rtl"] body header > .nk-container > .nk-header-actions.nk-header-actions-left { margin-left: 0 !important; margin-right: 8px !important; }
+  html[dir="rtl"] body header > .nk-container .nk-search-btn { margin-right: 0 !important; margin-left: 0 !important; }
+  html[dir="rtl"] body header > .nk-container .nk-contact-btn { margin-left: 0 !important; margin-right: auto !important; }
+}
+@media (min-width: 768px) and (max-width: 1179px) {
+  html[dir="rtl"] body header > .nk-container .nk-search-btn { margin-right: 18px !important; }
+}
+@media (max-width: 767px) {
+  html[dir="rtl"] body header > .nk-container .nk-search-btn { margin-right: auto !important; }
+}
+
+/* v475 · Arabic (RTL) desktop (>= 1180px).
+   Reading order, right to left:  [NK&CO] [flag]  [menu items ...]            [Contact Us] [search] [hamburger]
+   i.e. the flag sits next to the logo and the hamburger moves to the far LEFT edge, search right beside it
+   (the same arrangement as the Arabic phone / tablet header). English desktop is untouched. */
+@media (min-width: 1180px) {
+  html[dir="rtl"] body header > .nk-container { display: flex; align-items: center; gap: 0 !important; }
+  html[dir="rtl"] body header > .nk-container > .nk-header-actions:not(.nk-header-actions-left) { display: contents !important; }
+  html[dir="rtl"] body header > .nk-container > a[aria-label="NK&CO home"] { order: 1; flex: 0 0 auto; }
+  html[dir="rtl"] body header > .nk-container .nk-lang-btn { order: 2; flex: 0 0 auto; margin: 0 !important; margin-right: 16px !important; width: auto !important; padding: 0 !important; }
+  html[dir="rtl"] body header > .nk-container > nav[aria-label="Primary"] { order: 3; margin: 0 !important; margin-right: clamp(24px, 3vw, 48px) !important; }
+  html[dir="rtl"] body header > .nk-container .nk-contact-btn { order: 4; margin: 0 !important; margin-right: auto !important; }
+  html[dir="rtl"] body header > .nk-container .nk-search-btn { order: 5; flex: 0 0 auto; margin: 0 !important; margin-right: 22px !important; }
+  html[dir="rtl"] body header > .nk-container > .nk-header-actions.nk-header-actions-left { order: 6; flex: 0 0 auto; margin: 0 !important; margin-right: 14px !important; }
+}

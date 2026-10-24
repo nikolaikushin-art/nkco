@@ -1,0 +1,13 @@
+# v242: Privileges expanded: 3 new top categories, 5 new series, 73 new pieces
+- New content lives in `src/data/privilegesMore.js` (merged into PRIV in `privileges.js`). Menu, side panel, pages, SEO, pictures and featured cards read from it, so nothing else needed wiring. Edit copy there.
+- 3 NEW TOP CATEGORIES (placed before Member Access):
+  - Research & Reports (format `report`): Market Reports, Sector Outlooks, Data Notes, Regulatory Updates (4 series, 16 pieces).
+  - Meetings & Events (format `event`): Breakfast Briefings, Conferences and Summits, Workshops and Clinics, Site Visits and Tours, Virtual Sessions (5 series, 20 pieces).
+  - Programmes & Cohorts (format `event`): Founder Programme, Executive Learning, Next Generation (3 series, 12 pieces).
+- 5 NEW SERIES added to existing categories (5 pieces each): Policy Desk Episodes (Podcasts), Sales, Marketing and Growth (Masterclasses), Compliance Playbooks (Guides & Playbooks), Money and Markets Explained (Video & Webinars), Finance Toolkits (Tools & Templates).
+- Totals: 9 categories (was 6), 56 series/courses/libraries (was 39), 319 pieces (was 246), 385 pages (was 292). Every new piece has a hand-written one-line menu description (max 61 characters, no ellipsis).
+- Two new formats in `PRIV_FORMATS`: `report` ("Get the report", sent on request) and `event` ("Request a place", invitation by request, like Member Access). `PrivilegePage.jsx` handles them (labels, "How it works" cards, request e-mail). Podcasts, masterclasses, guides, video, tools and member access behave as before.
+- Count wording updated: "Seven audio series", "eleven masterclasses" (category text, menu featured cards, mock.js), landing text now mentions research, meetings and programmes, and the "ways to learn" heading counts up to twelve.
+- Accent colours: the first 360 pages keep their colour; pages beyond that vary saturation and lightness so all 385 stay distinct.
+- Checked (node): no duplicate titles or addresses, every drawing motif exists in topicPlate.js, every piece has 3 points, every category has a featured card, no title clashes with another menu entry, edited files parse. Not run: production build and a browser check (no node_modules in this copy).
+- All copy is draft. No guests, dates, venues, prices, figures or regulators are named. Events, programmes and cohorts are proposals: confirm format, size, timing and who runs them before they go live.

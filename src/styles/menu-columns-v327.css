@@ -1,0 +1,107 @@
+/* v330 · Desktop top menu: dark, clean. Intro (title, picture, text) on the left, closed accordion rows on the right.
+   The panel ends above the light teaser strip of the hero (height measured in MegaRail.jsx -> --cx-h). */
+.nk-mega:has(.nk-cx) { height: auto !important; min-height: 0 !important; max-height: var(--cx-h, calc(100dvh - var(--nk-header-h, 64px) - 170px)) !important; background: var(--nk-hero-bg, #32353a) !important; border: 0 !important; overflow: hidden; }
+.nk-mega:has(.nk-cx) .nk-mega-content { height: auto; max-height: inherit; min-height: 0; }
+.nk-cx { --cx-line: rgba(196,200,206,.24); --cx-dim: #b4b8be;
+  display: grid; grid-template-columns: minmax(280px, 26%) minmax(0, 1fr); gap: clamp(40px, 5vw, 96px); height: auto; max-height: inherit; min-height: 0; box-sizing: border-box;
+  padding: clamp(14px, 2.4vh, 30px) var(--nk-pad, 48px) clamp(16px, 2.6vh, 32px); background: var(--nk-hero-bg, #32353a); color: #fff; font-family: var(--nk-text, 'Inter', system-ui, sans-serif); animation: nkCxIn 240ms ease both; }
+@keyframes nkCxIn { from { opacity: 0; } to { opacity: 1; } }
+.nk-cx-intro { display: flex; flex-direction: column; min-height: 0; overflow: hidden; }
+.nk-cx-h { margin: 0; font-size: clamp(40px, 3.6vw, 58px); line-height: 1; font-weight: 400; letter-spacing: -.012em; color: #fff; }
+.nk-cx-tag { margin: 12px 0 0; font-size: 15px; font-weight: 500; line-height: 1.35; color: #fff; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.nk-cx-img { margin-top: 18px; width: 100%; aspect-ratio: 1.7 / 1; flex: 0 1 auto; min-height: 90px; object-fit: cover; filter: saturate(.7); }
+.nk-cx-lead { margin: 16px 0 0; font-size: 14px; line-height: 1.6; color: var(--cx-dim); display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.nk-cx-go, .nk-cx-all { display: inline-flex; align-items: center; gap: 18px; margin-top: 16px; font-size: 15px; color: #fff !important; text-decoration: none; }
+.nk-cx-go i, .nk-cx-all i { display: block; width: 44px; height: 2px; background: #fff; transition: width 220ms ease; }
+.nk-cx-go:hover i, .nk-cx-all:hover i { width: 64px; }
+.nk-cx-acc { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(32px, 3.4vw, 72px); min-height: 0; overflow-y: auto; scrollbar-width: none; align-content: start; }
+.nk-cx-acc::-webkit-scrollbar { display: none; }
+.nk-cx-colm { min-width: 0; display: flex; flex-direction: column; }
+.nk-cx-sh { margin: 0 0 clamp(14px, 2.2vh, 26px); font-size: clamp(26px, 2.3vw, 36px); line-height: 1.05; font-weight: 400; letter-spacing: -.005em; color: var(--nk-silver, #c4c8ce); }
+.nk-cx-rows { border-top: 1px solid var(--cx-line); }
+.nk-cx-row { border-bottom: 1px solid var(--cx-line); }
+.nk-cx-btn { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 16px; padding: clamp(11px, 1.6vh, 14px) 0; text-align: left; font-size: clamp(15px, 1.15vw, 17px); font-weight: 400; color: #fff !important; background: none; border: 0; cursor: pointer; }
+.nk-cx-btn svg { flex: none; transition: transform 220ms ease; }
+.nk-cx-row[data-open="true"] .nk-cx-btn svg { transform: rotate(180deg); }
+.nk-cx-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 260ms cubic-bezier(.2,.7,.2,1); }
+.nk-cx-row[data-open="true"] .nk-cx-panel { grid-template-rows: 1fr; }
+.nk-cx-panel-in { overflow: hidden; min-height: 0; }
+.nk-cx-panel ul { list-style: none; margin: 0; padding: 0 0 18px 28px; }
+.nk-cx-panel li a { display: block; padding: 7px 0; font-size: 15px; color: rgba(255,255,255,.88) !important; text-decoration: none; transition: color 160ms ease, padding-left 200ms ease; }
+.nk-cx-panel li a:hover { color: #fff !important; padding-left: 6px; }
+.nk-cx-viewall { color: rgba(255,255,255,.6) !important; }
+.nk-cx-all { margin: 22px 0 0; font-size: 16px; align-self: flex-start; }
+header.fixed[data-mega="open"]:has(.nk-cx) { background-color: var(--nk-hero-bg, #32353a) !important; }
+@media (prefers-reduced-motion: reduce) { .nk-cx, .nk-cx * { animation: none !important; transition: none !important; } }
+
+/* v337 · every menu text stays on one line */
+.nk-cx-sh, .nk-cx-tag, .nk-cx-btn span, .nk-cx-panel li a, .nk-cx-all span, .nk-cx-go span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.nk-cx-tag { display: block; -webkit-line-clamp: unset; }
+.nk-cx-btn span { flex: 1 1 auto; }
+.nk-cx-all, .nk-cx-go { max-width: 100%; }
+.nk-cx-all i, .nk-cx-go i { flex: none; }
+.nk-cx-sh { font-size: clamp(24px, 2vw, 34px); }
+
+/* v339 · accordion rows are closed (and their content hidden) until clicked */
+.nk-cx-row[data-open="false"] .nk-cx-panel-in { visibility: hidden; transition: visibility 0s linear 260ms; }
+.nk-cx-row[data-open="true"] .nk-cx-panel-in { visibility: visible; }
+
+/* v342 · quieter picture + discreet office line */
+.nk-cx-img { filter: grayscale(.45) saturate(.7) contrast(1.02); }
+.nk-cx-office { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--cx-line); display: flex; flex-direction: column; gap: 6px; font-size: 12.5px; line-height: 1.4; color: var(--cx-dim); }
+.nk-cx-office a { color: #fff !important; text-decoration: none; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.nk-cx-office a:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+
+/* v344 · clean intro text: short copy, 3-line block, aligned to the picture width, no mid-sentence cut */
+.nk-cx-lead { max-width: 100%; font-size: 14px; line-height: 1.6; text-wrap: pretty; -webkit-line-clamp: 4; }
+
+/* v345 · compact accordion rows (headings keep their original size and grey) */
+.nk-cx-btn { font-size: 15px; line-height: 20px; padding: 11px 0; }
+.nk-cx-panel li a { font-size: 14px; padding: 6px 0; }
+.nk-cx-all, .nk-cx-go { font-size: 15px; gap: 24px; margin-top: 16px; }
+.nk-cx-all i, .nk-cx-go i { width: 41px; height: 3px; }
+.nk-cx-all:hover i, .nk-cx-go:hover i { width: 41px; }
+.nk-cx-btn svg { width: 16px; height: 16px; }
+
+/* v348 · aligned bottoms, no dead area, brighter headings */
+.nk-cx { align-items: stretch; padding-bottom: clamp(18px, 2.6vh, 28px); }
+.nk-cx-img { aspect-ratio: 2.3 / 1; }
+.nk-cx-lead { margin-top: 14px; }
+.nk-cx-go { margin-top: auto; padding-top: 18px; }
+.nk-cx-acc { align-content: stretch; }
+.nk-cx-colm { height: 100%; }
+.nk-cx-all { margin-top: auto; padding-top: 18px; align-self: flex-start; }
+.nk-cx-all, .nk-cx-go { gap: 16px; }
+.nk-cx-sh { color: #e6e8eb; font-size: clamp(26px, 2vw, 32px); }
+.nk-cx-btn { color: #e9ebee !important; }
+
+/* v349 · one intro text only (title size is back to the original clamp(40px, 3.6vw, 58px)) */
+.nk-cx-img { margin-top: 20px; }
+
+/* v351 · same serif headings; clean, tight open accordion */
+.nk-cx-sh { font-size: clamp(28px, 2.3vw, 34px); line-height: 1.1; color: #e6e8eb; margin: 0 0 16px; }
+.nk-cx-panel ul { padding: 2px 0 10px 30px; }
+.nk-cx-panel li a { font-size: 14px; line-height: 1.3; padding: 7px 0; color: rgba(255,255,255,.82) !important; }
+.nk-cx-panel li:last-child a { padding-bottom: 2px; }
+.nk-cx-row[data-open="true"] .nk-cx-btn { padding-bottom: 8px; }
+.nk-cx-colm { height: auto; }
+.nk-cx-all { margin-top: 18px; padding-top: 0; }
+
+/* v352 · exact reference proportions (headings, rows, open list, bottom links) */
+.nk-cx-sh { font-size: clamp(22px, 1.77vw, 28px); line-height: 1.1; font-weight: 400; letter-spacing: 0; color: var(--nk-silver, #c4c8ce); margin: 0 0 14px; }
+.nk-cx-btn { font-size: clamp(12.5px, .92vw, 15px); line-height: 18px; padding: 11.5px 0; font-weight: 400; letter-spacing: -.005em; color: #fff !important; }
+.nk-cx-btn svg { width: 14px; height: 14px; stroke-width: 1.5; }
+.nk-cx-panel ul { padding: 0 0 8px 15px; }
+.nk-cx-panel li a { font-size: clamp(12px, .85vw, 14px); line-height: 13px; padding: 6px 0; color: #fff !important; }
+.nk-cx-panel li:last-child a { padding-bottom: 6px; }
+.nk-cx-all, .nk-cx-go { font-size: clamp(12.5px, .92vw, 15px); gap: 27px; margin-top: 16px; font-weight: 400; }
+.nk-cx-all i, .nk-cx-go i { width: 39px; height: 4px; }
+.nk-cx-all:hover i, .nk-cx-go:hover i { width: 39px; }
+
+/* v353 · picture fills the free height of the intro column (grows when an accordion row opens) */
+.nk-cx-intro { min-height: 0; }
+.nk-cx-img { flex: 1 1 0; height: 0; min-height: 140px; aspect-ratio: auto; object-fit: cover; }
+.nk-cx-go { margin-top: 18px; }
+
+/* v357 · "N focus areas" lines are removed for good (hidden even if an old build still renders them) */
+.nk-cx-sub { display: none !important; }

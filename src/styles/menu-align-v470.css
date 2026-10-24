@@ -1,0 +1,10 @@
+/* v470 · Desktop menus: the bottom link of every column ("Explore ...", "Prepare a Sale" ...) sits on the same line,
+   even when one row is opened and that column grows. Columns stretch to the tallest one and the link is pinned to the bottom. */
+@media (min-width: 1180px) {
+  .nk-cx[data-section="capabilities"] .nk-cx-colm,
+  .nk-cx[data-section="opportunities"] .nk-cx-colm,
+  .nk-cx[data-section="overview"] .nk-cx-colm { align-self: stretch; height: auto; }
+  .nk-cx[data-section="capabilities"] .nk-cx-all,
+  .nk-cx[data-section="opportunities"] .nk-cx-all,
+  .nk-cx[data-section="overview"] .nk-cx-all { margin-top: auto !important; padding-top: 18px !important; }
+}

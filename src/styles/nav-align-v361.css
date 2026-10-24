@@ -1,0 +1,41 @@
+/* v361 · The top navigation starts where the hero image starts.
+   The first item's text ("Capabilities") sits exactly on the left edge of the hero picture, on every desktop width (>= 1180px).
+   Below 1180px the navigation is the slide-in panel, so nothing changes there. Arabic (RTL) keeps its own mirrored layout.
+
+   How it works
+   - The hero is a 5fr : 7fr grid with a gap, so the image's left edge is known in pure CSS:
+       pad + (100% - 2*pad - gap) * 5/12 + gap
+     The nav is placed at that x (minus the link padding, so the TEXT lines up, not the hover box).
+   - Header.jsx measures whether nav + Contact Us still fit side by side. If not, it sets --nk-nav-shift (how far the nav had
+     to move left) and --nk-hero-shift (the same amount, capped), and the hero image column grows by that much,
+     so image and nav stay aligned. --nk-nav-inset is the measured padding of the first link. */
+:root { --nk-item-gap: 28px; --nk4-gap: clamp(32px, 5vw, 84px); }
+.nk4-hero .nk4-grid { gap: var(--nk4-gap); }
+
+@media (min-width: 1366px) { :root { --nk-item-gap: 30px; } }
+@media (min-width: 1500px) { :root { --nk-item-gap: 34px; } }
+
+@media (min-width: 1180px) {
+  /* ONE spacing value for the whole bar: between the menu items AND between Contact Us, the flag and search.
+     The flag and search buttons are cut down to their visible icon, so the gap you see is the gap set here. */
+  html:not([dir="rtl"]) header nav[aria-label="Primary"] { column-gap: var(--nk-nav-gap, var(--nk-item-gap)) !important; }
+  html:not([dir="rtl"]) header .nk-header-actions:not(.nk-header-actions-left) { gap: var(--nk-nav-gap, var(--nk-item-gap)) !important; }
+  html:not([dir="rtl"]) header .nk-header-actions .nk-contact-btn { margin: 0 !important; }
+  html:not([dir="rtl"]) header .nk-header-actions .nk-lang-btn { min-width: 0; width: 40px; }
+  html:not([dir="rtl"]) header .nk-header-actions .nk-lang-btn svg { margin: 0 -1px; flex: none; }
+  html:not([dir="rtl"]) header .nk-header-actions .nk-search-btn { min-width: 0; width: 27px; }
+  html:not([dir="rtl"]) header .nk-header-actions .nk-search-btn svg { margin: 0 -1.5px; flex: none; }
+  html:not([dir="rtl"]) header nav[aria-label="Primary"] {
+    position: absolute; top: 0; height: var(--nk-header-h, 64px); width: max-content; margin: 0 !important;
+    left: calc(var(--nk-pad) + (100% - 2 * var(--nk-pad) - var(--nk4-gap)) * 5 / 12 + var(--nk4-gap) - var(--nk-nav-inset, 0px) - var(--nk-nav-shift, 0px));
+  }
+  /* tight mode (set by Header.jsx only when nav + Contact Us would otherwise crowd each other): narrower spacing between items, dividers stay centred */
+  html[data-nk-tight]:not([dir="rtl"]) header nav[aria-label="Primary"] { column-gap: var(--nk-nav-gap) !important; }
+  html[data-nk-tight]:not([dir="rtl"]) header nav[aria-label="Primary"] .nk-nav-link + .nk-nav-link::before { left: calc(var(--nk-nav-gap) / -2) !important; }
+  /* the nav no longer takes part in the flex row, so the tools cluster (Contact Us, language, search) is pushed to the right edge */
+  html:not([dir="rtl"]) header .nk-header-actions:not(.nk-header-actions-left) { margin-left: auto !important; }
+  /* same 5 : 7 split as before; the image column only changes when the header needs the room (--nk-hero-shift) */
+  html:not([dir="rtl"]) .nk4-hero .nk4-grid {
+    grid-template-columns: minmax(0, calc((100% - var(--nk4-gap)) * 5 / 12 - var(--nk-hero-shift, 0px))) minmax(0, 1fr);
+  }
+}

@@ -1,0 +1,2 @@
+# v288
+- Every Overview > Our Practices page now carries its own document-derived scope (PracticeScope): the three practice pages show the full A-I / A-H service lists, boundary notes, examples and "What this activity could mean for NK&CO"; each of the 25 leaf pages shows the matching service groups (expanded). Regulatory Boundaries shows the transaction-types table and the services-not-assumed table; Management Mandate and Interim pages show the higher-risk interpretations and the four authority levels.
