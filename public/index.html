@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#1b1d21" />
+        <meta name="description" content="NK&amp;CO — Advisory, Consultancy &amp; Business Brokerage. An independent business advisory firm advising owners, shareholders and executive leadership on strategy, organisation, performance and transactions." />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Hanken+Grotesk:wght@300;400;500&family=Inter:wght@400;500;600&display=swap" onload="this.rel='stylesheet'" />
+        <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500&family=Noto+Naskh+Arabic:wght@400;500&display=swap" onload="this.rel='stylesheet'" />
+        <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Hanken+Grotesk:wght@300;400;500&family=Inter:wght@400;500;600&display=swap" /></noscript>
+        <link rel="preload" as="image" href="%PUBLIC_URL%/brand/logo.png" />
+        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1531586024505-b040066c2d5b?auto=format&fit=crop&w=1200&q=70" fetchpriority="high" />
+        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=70" fetchpriority="high" />
+        <link rel="preload" as="image" href="https://images.unsplash.com/photo-1562595410-4859d718375e?auto=format&fit=crop&w=1200&q=70" fetchpriority="high" />
+        <script>
+        (function(){var d=document.documentElement;try{if(location.pathname!=="/"||(sessionStorage.getItem("nk_entered")==="1"&&localStorage.getItem("nk_consent_v1")))d.className+=" nk-skip"}catch(e){if(location.pathname!=="/")d.className+=" nk-skip"}})();
+        </script>
+        <noscript><style>#nk-splash,#nk-consent{display:none!important}</style></noscript>
+        <style>
+:root{--pw:min(29vw,470px);--gap:clamp(24px,3.2vw,56px);--nk-bg:#1f2328;--nk-ink:#fff;--nk-mute:rgba(255,255,255,.76)}
+.nk-skip #nk-splash{display:none!important}
+#nk-splash{padding-bottom:var(--cc,0px);transition:opacity .7s ease,visibility .7s,padding .4s ease;--pw:min(29vw,470px);--gap:clamp(24px,3.2vw,56px);position:fixed;inset:0;z-index:2147483000;background:var(--nk-bg);color:var(--nk-ink);display:flex;flex-direction:column;align-items:center;font-family:Inter,Arial,sans-serif;transition:opacity .7s ease,visibility .7s;-webkit-font-smoothing:antialiased;overflow:hidden}
+#nk-splash,#nk-splash *{-webkit-user-select:none;user-select:none;-webkit-tap-highlight-color:transparent}
+#nk-splash ::selection,#nk-splash::selection{background:transparent;color:inherit}
+#nk-splash .nk-s-t,#nk-splash .nk-s-t h2,#nk-splash .nk-s-t p{background:transparent}
+#nk-splash .nk-s-t h2{color:#fffffd}
+#nk-splash.nk-off{opacity:0;visibility:hidden;pointer-events:none}
+/* phase 1: loading (wordmark + line) */
+#nk-load{position:absolute;inset:0;z-index:3;background:#14161a;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;transition:opacity .8s ease .1s,visibility .8s .1s}
+.nk-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+#nk-load img{height:40px;width:auto;opacity:0;animation:nkFade 1s ease .15s forwards}
+#nk-load i{display:block;width:min(220px,50vw);height:1px;background:rgba(255,255,255,.16);position:relative;overflow:hidden}
+#nk-load i:after{content:"";position:absolute;left:0;top:0;height:100%;width:100%;background:#fff;transform:scaleX(var(--p,0));transform-origin:left;transition:transform .5s ease}
+#nk-splash.nk-in #nk-load{opacity:0;visibility:hidden;pointer-events:none}
+/* phase 2: panels */
+#nk-splash .nk-s-logo{flex:none;text-align:center;padding:max(20px,env(safe-area-inset-top)) 16px 0}
+#nk-splash .nk-s-logo img{height:34px;width:auto;display:block;margin:0 auto}
+#nk-splash .nk-s-grid{flex:1;min-height:0;width:100%;display:flex;align-items:center;justify-content:center;gap:var(--gap);padding:20px 24px 14px}
+#nk-splash .nk-s-p{width:var(--pw);height:min(100%,780px);display:flex;flex-direction:column;opacity:0;transform:translateY(18px)}
+#nk-splash .nk-s-t{flex:none;text-align:center}
+#nk-splash .nk-s-t h2{margin:0;font:500 clamp(22px,2.2vw,34px)/1.1 'Cormorant Garamond',Georgia,serif;white-space:nowrap}
+#nk-splash .nk-s-t p{margin:8px auto 14px;max-width:none;white-space:nowrap;font-size:clamp(12px,.95vw,14px);line-height:1.55;color:var(--nk-mute)}
+#nk-splash .nk-s-im{flex:1;min-height:0;border:1px solid rgba(255,255,255,.35);padding:8px;background-color:#2a2d33;background-clip:content-box;background-origin:content-box;background-size:cover,100% 66%,cover;background-position:center 30%,center bottom,center;background-repeat:no-repeat}
+#nk-splash .nk-s-im.a{--g:linear-gradient(#7390b8,#2f4466 75%,#34425c);--bars:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 310 270%22 preserveAspectRatio=%22none%22%3E%3Crect x=%2221%22 y=%2256%22 width=%2231%22 height=%22214%22 fill=%22%2304142b%22/%3E%3Crect x=%2267%22 y=%2246%22 width=%2231%22 height=%22224%22 fill=%22%2304142b%22/%3E%3Crect x=%22113%22 y=%2236%22 width=%2231%22 height=%22234%22 fill=%22%2304142b%22/%3E%3Crect x=%22159%22 y=%2226%22 width=%2231%22 height=%22244%22 fill=%22%2304142b%22/%3E%3Crect x=%22205%22 y=%2215%22 width=%2231%22 height=%22255%22 fill=%22%2304142b%22/%3E%3Crect x=%22251%22 y=%225%22 width=%2231%22 height=%22265%22 fill=%22%2304142b%22/%3E%3Crect x=%22297%22 y=%2267%22 width=%2231%22 height=%22203%22 fill=%22%2304142b%22/%3E%3C/svg%3E")}
+#nk-splash .nk-s-im.b{--g:linear-gradient(#8fa0b3,#52647a 75%,#33425a);--bars:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 310 270%22 preserveAspectRatio=%22none%22%3E%3Crect x=%2221%22 y=%2256%22 width=%2231%22 height=%22214%22 fill=%22%2310192b%22/%3E%3Crect x=%2267%22 y=%2246%22 width=%2231%22 height=%22224%22 fill=%22%2310192b%22/%3E%3Crect x=%22113%22 y=%2236%22 width=%2231%22 height=%22234%22 fill=%22%2310192b%22/%3E%3Crect x=%22159%22 y=%2226%22 width=%2231%22 height=%22244%22 fill=%22%2310192b%22/%3E%3Crect x=%22205%22 y=%2215%22 width=%2231%22 height=%22255%22 fill=%22%2310192b%22/%3E%3Crect x=%22251%22 y=%225%22 width=%2231%22 height=%22265%22 fill=%22%2310192b%22/%3E%3Crect x=%22297%22 y=%2267%22 width=%2231%22 height=%22203%22 fill=%22%2310192b%22/%3E%3C/svg%3E")}
+#nk-splash .nk-s-im.c{--g:linear-gradient(#72a592,#3f6a58 75%,#2c4a3d);--bars:url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 310 270%22 preserveAspectRatio=%22none%22%3E%3Crect x=%2221%22 y=%2256%22 width=%2231%22 height=%22214%22 fill=%22%23021a10%22/%3E%3Crect x=%2267%22 y=%2246%22 width=%2231%22 height=%22224%22 fill=%22%23021a10%22/%3E%3Crect x=%22113%22 y=%2236%22 width=%2231%22 height=%22234%22 fill=%22%23021a10%22/%3E%3Crect x=%22159%22 y=%2226%22 width=%2231%22 height=%22244%22 fill=%22%23021a10%22/%3E%3Crect x=%22205%22 y=%2215%22 width=%2231%22 height=%22255%22 fill=%22%23021a10%22/%3E%3Crect x=%22251%22 y=%225%22 width=%2231%22 height=%22265%22 fill=%22%23021a10%22/%3E%3Crect x=%22297%22 y=%2267%22 width=%2231%22 height=%22203%22 fill=%22%23021a10%22/%3E%3C/svg%3E")}
+.nk-s-im{background-image:var(--ph),var(--bars),var(--g)}
+/* v529: hover / focus reveals a description over the lower half of each panel image */
+#nk-splash .nk-s-im{position:relative;overflow:hidden;outline:0}
+#nk-splash .nk-s-d{position:absolute;left:8px;right:8px;bottom:8px;height:52%;box-sizing:border-box;display:flex;flex-direction:column;justify-content:flex-start;padding:clamp(16px,1.6vw,26px) clamp(16px,1.8vw,28px) clamp(14px,1.4vw,22px);background:linear-gradient(180deg,rgba(28,31,36,.84),rgba(28,31,36,.95));border-top:1px solid rgba(255,255,255,.28);color:#fffffd;text-align:left;transform:translateY(101%);opacity:0;transition:transform .5s cubic-bezier(.2,.7,.2,1),opacity .35s ease;pointer-events:none}
+#nk-splash .nk-s-dk{font:500 10.5px/1 Inter,Arial,sans-serif;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,253,.62);margin-bottom:8px}
+#nk-splash .nk-s-d strong{font:500 clamp(18px,1.7vw,26px)/1.15 'Cormorant Garamond',Georgia,serif;margin-bottom:10px}
+#nk-splash .nk-s-d p{margin:0 0 16px;font:400 clamp(12px,.95vw,14px)/1.6 Inter,Arial,sans-serif;color:rgba(255,255,253,.86)}
+#nk-splash .nk-s-im:hover .nk-s-d,#nk-splash .nk-s-im:focus .nk-s-d,#nk-splash .nk-s-im:focus-within .nk-s-d{transform:none;opacity:1;pointer-events:auto}
+#nk-splash .nk-s-go{white-space:nowrap;align-self:flex-start;margin-top:auto;display:inline-flex;align-items:center;gap:10px;padding:0 0 5px;color:#fffffd;text-decoration:none;font:500 11.5px/1 Inter,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;border-bottom:1px solid rgba(255,255,253,.55);transition:border-color .25s ease,gap .25s ease}
+#nk-splash .nk-s-go i{display:block;width:22px;height:1px;background:currentColor;position:relative;transition:width .25s ease}
+#nk-splash .nk-s-go i:after{content:"";position:absolute;right:0;top:-3px;width:6px;height:6px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+#nk-splash .nk-s-go:hover,#nk-splash .nk-s-go:focus-visible{border-color:#fffffd;gap:14px;outline:0}#nk-splash .nk-s-go:hover i{width:30px}
+#nk-consent.nk-shake{animation:nkShake .55s cubic-bezier(.36,.07,.19,.97) both}
+@keyframes nkShake{10%,90%{transform:translateX(-2px)}20%,80%{transform:translateX(4px)}30%,50%,70%{transform:translateX(-7px)}40%,60%{transform:translateX(7px)}}
+
+@media (prefers-reduced-motion:reduce){#nk-splash .nk-s-d{transition-duration:.01ms}#nk-consent.nk-shake{animation:none;outline:2px solid #fffffd}}
+#nk-splash.nk-in .nk-s-p{animation:nkRise .9s cubic-bezier(.2,.7,.2,1) forwards}
+#nk-splash.nk-in .nk-s-p:nth-child(2){animation-delay:.14s}#nk-splash.nk-in .nk-s-p:nth-child(3){animation-delay:.28s}
+/* cookie card */
+#nk-consent,#nk-consent *{box-sizing:border-box}
+#nk-consent{position:fixed;left:max(24px,calc((100vw - var(--pw)*3 - var(--gap)*2)/2));bottom:max(18px,env(safe-area-inset-bottom));z-index:2147483100;width:min(calc(var(--pw)*3 + var(--gap)*2),calc(100vw - 48px));display:grid;grid-template-columns:1fr auto;grid-template-areas:"h r" "p r" "f f";column-gap:28px;align-items:center;max-height:calc(100vh - 36px);overflow:auto;background:#30353d;color:#fff;border:1px solid rgba(255,255,255,.22);padding:12px 18px;font:400 12.5px/1.45 Inter,Arial,sans-serif;box-shadow:0 18px 50px rgba(0,0,0,.45);transform:translateY(16px);opacity:0;visibility:hidden;transition:opacity .5s ease,transform .5s ease,visibility .5s}
+#nk-consent.nk-show{opacity:1;visibility:visible;transform:none}
+#nk-consent h2{color:#fff!important;grid-area:h;margin:0 0 2px;font:500 17px/1.15 'Cormorant Garamond',Georgia,serif}
+#nk-consent p{grid-area:p;margin:0;color:rgba(255,255,255,.78)}
+#nk-consent a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+#nk-consent .nk-c-row{grid-area:r;display:flex;flex-wrap:wrap;gap:8px}
+#nk-consent button{appearance:none;font:500 11.5px/1 Inter,Arial,sans-serif;letter-spacing:.05em;padding:9px 12px;cursor:pointer;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;transition:background .25s,color .25s}
+#nk-consent button:hover{background:rgba(255,255,255,.12)}
+#nk-consent button.pri{background:#fff;color:#14161a;border-color:#fff}
+#nk-consent button.pri:hover{background:#e8e8e8}
+#nk-consent button:focus-visible,#nk-consent a:focus-visible{outline:2px solid #fff;outline-offset:2px}
+#nk-consent .nk-c-pref{grid-area:f;display:none;margin:10px 0 2px;border-top:1px solid rgba(255,255,255,.16)}
+#nk-consent.nk-open .nk-c-pref{display:grid;grid-template-columns:repeat(3,1fr);column-gap:28px}
+#nk-consent label{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;padding:11px 0;border-bottom:1px solid rgba(255,255,255,.12);cursor:pointer}
+#nk-consent label span b{display:block;font-weight:500}
+#nk-consent label span em{font-style:normal;color:rgba(255,255,255,.62);font-size:12px}
+#nk-consent input{accent-color:#fff;width:16px;height:16px;margin-top:3px;flex:none}
+@keyframes nkRise{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes nkFade{from{opacity:0}to{opacity:1}}
+@media (max-width:820px){
+#nk-splash .nk-s-logo img{height:26px}
+#nk-splash .nk-s-grid{box-sizing:border-box;flex-direction:row;align-items:stretch;justify-content:center;gap:8px;padding:38px 10px 12px}
+#nk-splash .nk-s-p{flex:1 1 0;min-width:0;width:auto;max-width:none;height:auto}
+#nk-splash .nk-s-t{padding:0 2px}
+#nk-splash .nk-s-t h2{font-size:clamp(15px,4.7vw,20px);line-height:1.1;white-space:normal;min-height:2.2em;margin-bottom:12px;display:block;text-align:center}
+#nk-splash .nk-l{display:block}
+#nk-splash .nk-s-t p{display:none}
+#nk-splash .nk-s-im{padding:4px;flex:1;height:auto;min-height:0}
+#nk-consent{display:block;left:0;right:0;bottom:0;width:100%;border-left:0;border-right:0;border-bottom:0;padding:14px 16px max(14px,env(safe-area-inset-bottom));font-size:12px;line-height:1.5}
+#nk-consent h2{display:none}#nk-consent p{margin-bottom:9px}#nk-consent.nk-open .nk-c-pref{display:block;margin:0 0 12px}
+#nk-consent .nk-c-row{flex-wrap:nowrap}#nk-consent button{flex:1;padding:11px 6px;font-size:11.5px;letter-spacing:.02em;white-space:nowrap}
+
+}
+@media (prefers-reduced-motion:reduce){#nk-splash *,#nk-splash *:after,#nk-consent{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+        @media (max-width:820px){@keyframes nkRiseM{from{opacity:0;transform:translateY(18px)}}#nk-splash.nk-in .nk-s-p{animation-name:nkRiseM;animation-fill-mode:backwards;opacity:1;transform:none}#nk-splash .nk-s-im{position:static;overflow:visible}#nk-splash .nk-s-im:focus-within{border-color:rgba(255,255,255,.85)}#nk-splash .nk-s-d{position:fixed;left:10px;right:10px;bottom:calc(var(--cc,0px) + 8px);top:auto;height:auto;max-height:55vh;overflow:auto;padding:16px 18px 18px;justify-content:flex-start;transform:translateY(14px);background:rgba(28,31,36,.97);border:1px solid rgba(255,255,255,.3)}#nk-splash .nk-s-dk{display:block;margin-bottom:8px}#nk-splash .nk-s-d strong{display:block;font-size:22px;margin-bottom:8px}#nk-splash .nk-s-d p{font-size:15px;line-height:1.55;margin-bottom:16px}#nk-splash .nk-s-go{font-size:11px;letter-spacing:.14em;line-height:1.7;padding-bottom:3px}#nk-splash .nk-s-grid{gap:18px;padding-left:16px;padding-right:16px}}
+@media (min-width:821px) and (max-width:1100px){#nk-splash .nk-s-go{font-size:10.5px;letter-spacing:.1em;gap:8px}}
+
+/* v545 · splash built like the hero: dark logo bar on top, white page, three columns (label, serif title, line, flush photo, Explore link). Desktop + phone. */
+@media (min-width:821px){
+:root{--sp-pad:clamp(20px,2.6vw,48px);--gap:clamp(28px,3vw,44px);--pw:calc((100vw - var(--sp-pad)*2 - var(--gap)*2)/3)}
+#nk-splash{background:#fff;color:#16181b}
+#nk-splash .nk-s-logo{width:100%;box-sizing:border-box;height:64px;display:flex;align-items:center;justify-content:center;background:#1f2328;padding:0}
+#nk-splash .nk-s-logo img{height:30px}
+#nk-splash .nk-s-grid{box-sizing:border-box;align-items:stretch;justify-content:flex-start;gap:var(--gap);padding:26px var(--sp-pad) 14px;max-width:1760px}
+#nk-splash .nk-s-p{width:auto;flex:1 1 0;min-width:0;height:100%}
+#nk-splash .nk-s-t{text-align:left}
+#nk-splash .nk-s-t h2{font:500 clamp(26px,2.7vw,38px)/1.08 'Cormorant Garamond',Georgia,serif;letter-spacing:-.012em;color:#16181b;white-space:normal}
+#nk-splash .nk-s-t p{margin:10px 0 16px;font:400 clamp(14px,1.1vw,15.5px)/1.5 Inter,Arial,sans-serif;color:#2c3036;white-space:normal}
+#nk-splash .nk-s-im{border:0;padding:0;background-clip:border-box;background-origin:border-box}
+#nk-splash .nk-s-d{left:0;right:0;bottom:0}
+#nk-splash .nk-s-p:after{content:"Explore the practice  \2192";flex:none;margin-top:14px;padding-top:12px;border-top:1px solid #d9dadc;font:500 11px/1 Inter,Arial,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#16181b}
+#nk-consent{left:var(--sp-pad);width:calc(100vw - var(--sp-pad)*2)}
+}
+@media (max-width:820px){
+#nk-splash{background:#fff;color:#16181b}
+#nk-splash .nk-s-logo{width:100%;box-sizing:border-box;height:56px;display:flex;align-items:center;justify-content:center;background:#1f2328;padding:0}
+#nk-splash .nk-s-logo img{height:24px}
+#nk-splash .nk-s-grid{padding:22px 16px 12px;gap:18px}
+#nk-splash .nk-s-t{padding:0;text-align:left}
+#nk-splash .nk-s-t h2{color:#16181b;text-align:left;font-size:clamp(16px,4.9vw,21px);margin-bottom:12px}
+#nk-splash .nk-s-im{border:0;padding:0;background-clip:border-box;background-origin:border-box}
+#nk-splash .nk-s-im:focus-within{border-color:transparent;outline:2px solid #1f2328;outline-offset:2px}
+#nk-splash .nk-s-p:after{content:"Explore  \2192";flex:none;margin-top:12px;padding-top:10px;border-top:1px solid #d9dadc;font:500 10px/1 Inter,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#16181b}
+}
+
+/* v558 · entry page: the three dark practice panels stay open (desktop / tablet landscape); the white "Explore the practice" row is replaced by the hero's dark services band. */
+.nk-s-band{display:none}
+@media (min-width:821px){
+#nk-splash .nk-s-p:after{content:none!important;display:none!important;border:0!important}
+#nk-splash .nk-s-d{transform:none;opacity:1;pointer-events:auto}
+#nk-splash .nk-s-d{height:52%}
+#nk-splash{padding-bottom:0}
+#nk-splash .nk-s-grid{padding-bottom:22px}
+#nk-splash .nk-s-band{display:block;flex:none;width:100%;box-sizing:border-box;background:#30353d;color:#fffffd;padding:clamp(14px,2.4vh,26px) 0 calc(clamp(14px,2.4vh,26px) + var(--cc,0px))}
+#nk-splash .nk-s-bi{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));column-gap:var(--gap);max-width:1760px;box-sizing:border-box;padding:0 var(--sp-pad);margin:0 auto}
+#nk-splash .nk-s-bc{display:flex;flex-direction:column;gap:7px;min-width:0;position:relative}
+#nk-splash .nk-s-bc+.nk-s-bc:before{content:"";position:absolute;left:calc(var(--gap)/-2);top:0;bottom:0;width:1px;background:rgba(250,249,246,.28)}
+#nk-splash .nk-s-be{font:400 clamp(12px,.95vw,14px)/1.3 Inter,Arial,sans-serif;color:#c4c8ce}
+#nk-splash .nk-s-bc ul{list-style:none;margin:0;padding:0}
+#nk-splash .nk-s-bc li{border-top:1px solid rgba(250,249,246,.16)}
+#nk-splash .nk-s-bc li:last-child{border-bottom:1px solid rgba(250,249,246,.16)}
+#nk-splash .nk-s-sv{display:block;padding:5px 0;font:500 clamp(15px,1.2vw,19px)/1.2 'Cormorant Garamond',Georgia,serif;letter-spacing:-.005em;color:#fffffd;text-decoration:none;transition:color .2s ease,padding-left .2s ease}
+#nk-splash .nk-s-sv:hover,#nk-splash .nk-s-sv:focus-visible{padding-left:8px;outline:0;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+#nk-splash .nk-s-ex{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;font:500 10px/1 Inter,Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#9a9fa6;text-decoration:none}
+#nk-splash .nk-s-ex i{display:block;width:11px;height:1px;background:currentColor;position:relative}
+#nk-splash .nk-s-ex i:after{content:"";position:absolute;right:0;top:-2.5px;width:5px;height:5px;border-top:1px solid currentColor;border-right:1px solid currentColor;transform:rotate(45deg)}
+#nk-splash .nk-s-ex:hover,#nk-splash .nk-s-ex:focus-visible,#nk-splash .nk-s-bc:hover .nk-s-ex{color:#fffffd;outline:0}
+}
+@media (min-width:821px) and (max-height:820px){
+#nk-splash .nk-s-t p{display:none}
+#nk-splash .nk-s-t h2{margin-bottom:12px}
+#nk-splash .nk-s-grid{padding-top:18px;padding-bottom:16px}
+#nk-splash .nk-s-d{padding:14px 20px 12px;height:auto;max-height:100%}
+#nk-splash .nk-s-dk{margin-bottom:6px}
+#nk-splash .nk-s-d strong{margin-bottom:6px}
+#nk-splash .nk-s-d p{margin-bottom:10px;line-height:1.5}
+#nk-splash .nk-s-band{padding-top:14px;padding-bottom:calc(14px + var(--cc,0px))}
+#nk-splash .nk-s-bc{gap:7px}
+#nk-splash .nk-s-sv{padding:3px 0}
+}
+@media (max-width:820px){
+#nk-splash .nk-s-p:after{content:none!important;display:none!important;border:0!important}
+}
+/* v570 · starting page: no titles above the photos (kept for screen readers); the labels live in the bottom band instead. */
+#nk-splash .nk-s-t{position:absolute!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+/* v570 · bottom band: practice label on top of each column, band colour matches the homepage band */
+#nk-splash .nk-s-band{background:#3d444e!important}
+#nk-splash .nk-s-eb{display:block;font:400 clamp(12px,.95vw,14px)/1.3 Inter,Arial,sans-serif;color:#c4c8ce}
+#nk-splash .nk-s-ex{color:#b3b8bf}
+#nk-splash .nk-s-ex:hover,#nk-splash .nk-s-ex:focus-visible,#nk-splash .nk-s-bc:hover .nk-s-ex{color:#fffffd}
+</style>
+        <!--
+        manifest.json provides metadata used when your web app is installed on a
+        user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
+        -->
+        <!--
+        Notice the use of %PUBLIC_URL% in the tags above.
+        It will be replaced with the URL of the `public` folder during the build.
+        Only files inside the `public` folder can be referenced from the HTML.
+
+        Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
+        work correctly both with client-side routing and a non-root public URL.
+        Learn how to configure a non-root public URL by running `npm run build`.
+        -->
+        <title>NK&amp;CO — Advisory, Consultancy &amp; Business Brokerage</title>
+  </head>
+    <body>
+        <noscript>You need to enable JavaScript to run this app.</noscript>
+        <div id="nk-splash" role="dialog" aria-modal="true" aria-label="Welcome to NK&amp;CO">
+            <div id="nk-load" role="status" aria-live="polite"><img src="%PUBLIC_URL%/brand/logo.png" alt="NK&amp;CO" /><i aria-hidden="true"></i><span class="nk-sr">Loading</span></div>
+            <div class="nk-s-logo"><img src="%PUBLIC_URL%/brand/logo.png" alt="NK&amp;CO" /></div>
+            <div class="nk-s-grid"><div class="nk-s-p"><div class="nk-s-t"><h2><span class="nk-l">Advisory &amp;</span>&#32;<span class="nk-l">Consultancy</span></h2><p>Strategy, organisation and operating models.</p></div><div class="nk-s-im a" tabindex="0" style="--ph:url('https://images.unsplash.com/photo-1531586024505-b040066c2d5b?auto=format&fit=crop&w=1200&q=70')"><div class="nk-s-d"><span class="nk-s-dk">Practice</span><strong>Advisory &amp; Consultancy</strong><p>Business strategy, organisation, operating models and commercial performance, defined within a clear scope, with independent judgement.</p><a class="nk-s-go" href="/overview/our-practices/management-consultancy" tabindex="-1">Explore the practice<i aria-hidden="true"></i></a></div></div></div><div class="nk-s-p"><div class="nk-s-t"><h2><span class="nk-l">Enterprise</span>&#32;<span class="nk-l">Management</span></h2><p>Implementation, control and reporting.</p></div><div class="nk-s-im b" tabindex="0" style="--ph:url('https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=70')"><div class="nk-s-d"><span class="nk-s-dk">Practice</span><strong>Enterprise Management</strong><p>Implementation, performance control and reporting, carried out within an agreed scope of work and mandate, with clear accountability.</p><a class="nk-s-go" href="/overview/our-practices/enterprise-management" tabindex="-1">Explore the practice<i aria-hidden="true"></i></a></div></div></div><div class="nk-s-p"><div class="nk-s-t"><h2><span class="nk-l">Business</span>&#32;<span class="nk-l">Brokerage</span></h2><p>The sale and acquisition of businesses.</p></div><div class="nk-s-im c" tabindex="0" style="--ph:url('https://images.unsplash.com/photo-1562595410-4859d718375e?auto=format&fit=crop&w=1200&q=70')"><div class="nk-s-d"><span class="nk-s-dk">Practice</span><strong>Business Brokerage</strong><p>Sell-side and buy-side assignments for established businesses, conducted in confidence under a clear written mandate.</p><a class="nk-s-go" href="/overview/our-practices/business-brokerage" tabindex="-1">Explore the practice<i aria-hidden="true"></i></a></div></div></div></div>
+            <div class="nk-s-band"><div class="nk-s-bi"><div class="nk-s-bc"><span class="nk-s-eb">Advisory &amp; Consultancy</span><ul><li><a class="nk-s-sv" href="/overview/our-practices/management-consultancy/strategy-and-corporate-direction" tabindex="-1">Strategy &amp; Corporate Direction</a></li><li><a class="nk-s-sv" href="/overview/our-practices/management-consultancy/operating-models-and-processes" tabindex="-1">Operating Models &amp; Processes</a></li><li><a class="nk-s-sv" href="/overview/our-practices/management-consultancy/transformation-and-restructuring" tabindex="-1">Transformation &amp; Restructuring</a></li></ul><a class="nk-s-ex" href="/overview/our-practices/management-consultancy" tabindex="-1" aria-label="Explore Advisory &amp; Consultancy">Explore <i aria-hidden="true"></i></a></div><div class="nk-s-bc"><span class="nk-s-eb">Enterprise Management</span><ul><li><a class="nk-s-sv" href="/overview/our-practices/enterprise-management/general-business-management" tabindex="-1">General Business Management</a></li><li><a class="nk-s-sv" href="/overview/our-practices/enterprise-management/financial-management-and-control" tabindex="-1">Financial Management &amp; Control</a></li><li><a class="nk-s-sv" href="/overview/our-practices/enterprise-management/executive-management-and-owner-reporting" tabindex="-1">Executive Management &amp; Reporting</a></li></ul><a class="nk-s-ex" href="/overview/our-practices/enterprise-management" tabindex="-1" aria-label="Explore Enterprise Management">Explore <i aria-hidden="true"></i></a></div><div class="nk-s-bc"><span class="nk-s-eb">Business Brokerage</span><ul><li><a class="nk-s-sv" href="/overview/our-practices/business-brokerage/seller-representation" tabindex="-1">Seller Representation</a></li><li><a class="nk-s-sv" href="/overview/our-practices/business-brokerage/buyer-identification" tabindex="-1">Buyer Identification</a></li><li><a class="nk-s-sv" href="/overview/our-practices/business-brokerage/transaction-coordination" tabindex="-1">Transaction Coordination</a></li></ul><a class="nk-s-ex" href="/overview/our-practices/business-brokerage" tabindex="-1" aria-label="Explore Business Brokerage">Explore <i aria-hidden="true"></i></a></div></div></div>
+        </div>
+        <section id="nk-consent" role="region" aria-labelledby="nk-c-h" aria-live="polite">
+            <h2 id="nk-c-h">Cookies</h2>
+            <p>Essential cookies run this site; analytics only with your consent. <a href="/privacy">Privacy policy</a></p>
+            <div class="nk-c-pref">
+                <label><span><b>Essential</b><em>Required for the site to work. Always on.</em></span><input type="checkbox" checked disabled /></label>
+                <label><span><b>Analytics</b><em>Anonymous usage statistics.</em></span><input type="checkbox" id="nk-c-an" /></label>
+                <label><span><b>Marketing</b><em>Measures campaigns. Currently unused.</em></span><input type="checkbox" id="nk-c-mk" /></label>
+            </div>
+            <div class="nk-c-row"><button type="button" class="pri" data-c="all">Accept all</button><button type="button" data-c="ess">Essential only</button><button type="button" data-c="pref" aria-expanded="false">Preferences</button></div>
+        </section>
+        <div id="root"></div>
+        <script>
+        (function(){
+        var d=document,h=d.documentElement,root=d.getElementById('root'),sp=d.getElementById('nk-splash'),cc=d.getElementById('nk-consent');
+        var KEY='nk_consent_v1',cons=null;
+        function get(){try{return JSON.parse(localStorage.getItem(KEY))}catch(e){return null}}
+        function fire(){try{window.dispatchEvent(new CustomEvent('nk:consent',{detail:cons}))}catch(e){}}
+        function save(a,m){cons={essential:true,analytics:!!a,marketing:!!m,ts:Date.now()};try{localStorage.setItem(KEY,JSON.stringify(cons))}catch(e){}hideC();fire()}
+        function pad(){h.style.setProperty('--cc',(sp&&cc.classList.contains('nk-show')?cc.offsetHeight+(innerWidth>820?34:10):0)+'px')}
+        if(window.ResizeObserver){new ResizeObserver(pad).observe(cc)}
+        if(d.fonts&&d.fonts.ready)d.fonts.ready.then(pad);
+        window.addEventListener('orientationchange',function(){setTimeout(pad,200)});
+        function showC(){cc.classList.add('nk-show');pad()}
+        function hideC(){cc.classList.remove('nk-show','nk-open');pad()}
+        window.addEventListener('resize',pad);cc.addEventListener('click',function(){setTimeout(pad,60)});
+        cons=get();
+        window.nkConsent={get:function(){return cons},open:function(){var c=cons||{};d.getElementById('nk-c-an').checked=!!c.analytics;d.getElementById('nk-c-mk').checked=!!c.marketing;cc.classList.add('nk-open');showC()},allowed:function(k){return !!(cons&&cons[k])}};
+        cc.addEventListener('click',function(e){var b=e.target.closest('button');if(!b)return;var c=b.getAttribute('data-c');
+          if(c==='all')save(1,1);else if(c==='ess')save(0,0);
+          else if(c==='pref'){if(cc.classList.contains('nk-open')){save(d.getElementById('nk-c-an').checked,d.getElementById('nk-c-mk').checked)}else{cc.classList.add('nk-open');b.textContent='Save choices';b.classList.add('pri');b.setAttribute('aria-expanded','true')}}});
+        /* footer / any element with data-nk-cookies reopens the card */
+        d.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('[data-nk-cookies]')){e.preventDefault();window.nkConsent.open()}});
+        // Analytics hook: load tracking scripts only after consent, e.g.
+        // function boot(){ if(nkConsent.allowed('analytics')){ /* inject tag */ } }
+        // boot(); window.addEventListener('nk:consent', boot);
+        if(!cons&&h.classList.contains('nk-skip'))setTimeout(showC,1500);
+        if(h.classList.contains('nk-skip')||!sp){return}
+
+        /* ---- gate: loader -> panels -> cookie choice opens the site ---- */
+        var t0=Date.now(),bar=d.querySelector('#nk-load i'),p=0,loaded=false,entered=false;
+        root.setAttribute('inert','');root.setAttribute('aria-hidden','true');
+        function prog(v){p=Math.max(p,v);bar.style.setProperty('--p',Math.min(p,1))}
+        prog(.12);var tick=setInterval(function(){prog(p+(0.8-p)*.08)},250);
+        function appReady(){for(var i=0;i<root.children.length;i++){if(!root.children[i].hasAttribute('data-prerender'))return true}return false}
+        function enter(){if(entered)return;entered=true;try{sessionStorage.setItem('nk_entered','1')}catch(e){}
+          root.removeAttribute('inert');root.removeAttribute('aria-hidden');sp.classList.add('nk-off');
+          setTimeout(function(){sp.parentNode&&sp.parentNode.removeChild(sp);h.className+=' nk-skip'},800)}
+        /* any cookie choice (Accept all / Essential only / Save choices) opens the site */
+        var dest=null;
+        window.addEventListener('nk:consent',function(){if(!loaded)return;if(dest){var u=dest;dest=null;try{sessionStorage.setItem('nk_entered','1')}catch(e){}setTimeout(function(){location.assign(u)},350)}else setTimeout(enter,350)});
+        /* Explore link on a panel: opens that practice page; with no cookie choice yet the card shakes and the page opens right after the choice */
+        sp.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('.nk-s-go,.nk-s-sv,.nk-s-ex');if(!a)return;e.preventDefault();var u=a.getAttribute('href');
+          if(cons){try{sessionStorage.setItem('nk_entered','1')}catch(x){}location.assign(u);return}
+          dest=u;showC();cc.classList.remove('nk-shake');void cc.offsetWidth;cc.classList.add('nk-shake');var f=cc.querySelector('button.pri');try{f&&f.focus({preventScroll:true})}catch(x){}});
+        cc.addEventListener('animationend',function(){cc.classList.remove('nk-shake')});
+        function done(){if(loaded)return;loaded=true;clearInterval(tick);prog(1);
+          setTimeout(function(){sp.classList.add('nk-in');
+            if(cons){setTimeout(enter,2600)}            /* returning visitor: already chose, open automatically */
+            else{setTimeout(function(){showC();var f=cc.querySelector('button.pri');try{f&&f.focus({preventScroll:true})}catch(e){}},1500)}
+          },Math.max(500,1600-(Date.now()-t0)))}
+        if(window.MutationObserver){var mo=new MutationObserver(function(){if(appReady()){mo.disconnect();done()}});mo.observe(root,{childList:true});if(appReady()){mo.disconnect();done()}}
+        setTimeout(done,8000);
+        })();
+        </script>
+        <!--
+      This HTML file is a template.
+      If you open it directly in the browser, you will see an empty page.
+
+      You can add webfonts, meta tags, or analytics to this file.
+      The build step will place the bundled scripts into the <body> tag.
+
+      To begin the development, run `npm start` or `yarn start`.
+      To create a production bundle, use `npm run build` or `yarn build`.
+    -->
+    </body>
+</html>

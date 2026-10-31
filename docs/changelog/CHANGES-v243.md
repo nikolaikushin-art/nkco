@@ -1,0 +1,14 @@
+# v243: Privileges: institutional tier (advanced, committee-grade content)
+- New file `src/data/privilegesInstitutional.js`, merged in `privileges.js` after v242. Menu, side panel, pages, SEO, pictures and featured cards pick it up. Edit copy there.
+- 8 new series, 44 new pieces, written for allocators, trustees, committees and investment teams:
+  - Podcasts: Allocator Conversations Episodes (5): investment policy, allocation, manager selection, liquidity and pacing, reporting to committees.
+  - Masterclasses: Advanced Private Markets and Alternatives (6) and Advanced Fiduciary Governance and Stewardship (6).
+  - Guides & Playbooks: Institutional Frameworks (6): policy, manager due diligence, risk appetite, counterparty and credit, reporting pack, stewardship.
+  - Video & Webinars: Institutional Briefings (5).
+  - Tools & Templates: Institutional Toolkits (6): policy statement, committee paper, due diligence questionnaire, risk register, committee charter, annual governance checklist.
+  - Research & Reports: Institutional Research (5): technical studies with methods and limits stated.
+  - Member Access: Institutional Services (5): committee briefing, analyst access, bespoke research request, due diligence support session, annual relationship review.
+- Totals now: 9 categories, 64 series/courses/libraries (was 56), 363 pieces (was 319), 437 pages (was 385). Every new piece has a one-line menu description (max 61 characters, no ellipsis).
+- Count wording updated: "Eight audio series", "thirteen masterclasses" (category text, menu featured cards, mock.js).
+- Checked (node): no duplicate titles or addresses, all motifs exist, every piece has 3 points, every category has a featured card, all 437 accent colours distinct, edited files parse. Not run: production build and browser check (no node_modules in this copy).
+- All copy is draft. No firms, guests, dates, fees, figures or regulators are named. Institutional Services are proposals: confirm scope, pricing and who delivers them before they go live. Nothing here is investment, legal or regulatory advice.

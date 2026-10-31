@@ -1,0 +1,85 @@
+/* v608 · home sections (below the hero) sized to the screen: each block fits in roughly one laptop viewport.
+   Loaded after home-clean-v602.css. Heights follow the viewport height (vh) so tall visuals no longer overflow short screens. */
+.hv { padding: clamp(40px, 7vh, 64px) 0; }
+.hv-head { margin-bottom: clamp(20px, 3.5vh, 30px); }
+.hv-head h2 { font-size: clamp(26px, 2.8vw, 40px); margin-top: 12px; }
+.hv-foot { margin-top: 24px; }
+.hv-chips, .hv-pills { margin-top: 20px; }
+
+/* 1 · profile */
+.hv-big { height: clamp(260px, 44vh, 400px); }
+.hv-facts { padding: 0 28px 24px; gap: 24px; }
+.hv-facts b { font-size: clamp(30px, 3vw, 46px); }
+
+/* 2 · practices */
+.hv-stage { height: clamp(280px, 46vh, 400px); }
+.hv-stage-t { left: 32px; bottom: 88px; font-size: clamp(28px, 3.4vw, 48px); }
+.hv-stage-f { left: 32px; right: 32px; bottom: 24px; gap: 28px; }
+.hv-stage > .hv-btn { right: 32px; bottom: 24px; }
+.hv-tabs button { padding: 10px 18px; }
+
+/* 3 · compare */
+.hv-cmp-grid { grid-template-columns: 260px 1fr; gap: 24px; }
+.hv-qlist button { padding: 12px 0; font-size: 15px; }
+.hv-card3 { min-height: 220px; padding: 22px 20px; }
+.hv-card3 p { font-size: clamp(18px, 1.5vw, 22px); margin: 14px 0 18px; }
+
+/* 4 · explore */
+.hv-tile { height: clamp(200px, 30vh, 260px); }
+.hv-tile-in h3 { font-size: clamp(22px, 2vw, 30px); }
+
+/* 5 · OMS */
+.hv-nums { gap: 48px; margin-bottom: 28px; }
+.hv-nums b { font-size: clamp(40px, 4.6vw, 64px); }
+.hv-mods li { min-height: 136px; padding: 20px; }
+.hv-mods strong { font-size: clamp(22px, 2vw, 30px); }
+
+/* 6 · scope (cards removed in v607) */
+.hv-seg { margin-top: 0; margin-bottom: 14px; }
+.hv-reg li { padding: 12px 0; }
+.hv-reg strong { font-size: 18px; }
+
+/* 7 · method */
+.hv-steps button { gap: 12px; padding: 14px 14px 16px; }
+.hv-steps i { font-size: clamp(24px, 2.2vw, 34px); }
+.hv-meth-grid { margin-top: 14px; }
+.hv-meth-grid figure { min-height: 260px; }
+.hv-meth-card { padding: 26px 26px; gap: 10px; }
+.hv-meth-card b { font-size: clamp(38px, 4vw, 58px); }
+.hv-meth-card h3 { font-size: clamp(20px, 1.8vw, 28px); }
+
+/* 8 · engagement */
+.hv-eng-grid { gap: 36px; }
+.hv-paper { padding: 26px 28px 30px; }
+.hv-paper h3 { font-size: 22px; margin-bottom: 14px; padding-bottom: 10px; }
+.hv-paper ol { gap: 6px; font-size: 14px; }
+.hv-eng-side .hv-chips { margin-bottom: 20px; }
+.hv-docs li { padding: 10px 14px; font-size: 13.5px; }
+
+/* 9 · spotlight */
+.hv-feature { height: clamp(260px, 42vh, 360px); }
+.hv-feature-in { left: 32px; right: 32px; bottom: 26px; gap: 12px; }
+.hv-feature-in h3 { font-size: clamp(24px, 2.6vw, 38px); }
+.hv-playbtn { width: 52px; height: 52px; right: 24px; top: 24px; }
+.hv-thumbs button { padding: 14px 14px 16px; }
+
+/* 10 · insights */
+.hv-mag { grid-auto-rows: clamp(150px, 20vh, 190px); }
+.hv-mag li:first-child .hv-mtxt strong { font-size: clamp(20px, 1.8vw, 28px); }
+.hv-mtxt strong { font-size: 16px; }
+
+/* 11 · governing standard */
+.hv-std { min-height: min(440px, 62vh); padding: clamp(44px, 8vh, 64px) 0; }
+.hv-std-in { gap: 20px; }
+.hv-std-in h2 { font-size: clamp(26px, 2.8vw, 40px); }
+
+/* closing contact block */
+.hx-contact .hx-h1 { font-size: clamp(28px, 3vw, 42px); }
+.hx-contact-grid { gap: 36px; }
+
+@media (max-width: 1000px) {
+  .hv { padding: 40px 0; }
+  .hv-cmp-grid, .hv-meth-grid, .hv-eng-grid { grid-template-columns: 1fr; }
+  .hv-big { height: 280px; } .hv-stage { height: 380px; } .hv-feature { height: 300px; }
+  .hv-stage-t { bottom: 180px; }
+}

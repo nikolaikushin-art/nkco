@@ -1,0 +1,71 @@
+/* v471 · Large screens (27" iMac 2560x1440, 4K, ultrawide): the header and the hero now scale with the screen.
+
+   Problem: header, hero text and page rail were drawn in fixed pixels (13px menu, 54px headline, 64px bar) while the
+   layout itself is full width, so on 2560px and up everything stayed laptop-sized: tiny menu, a small block of text
+   and a huge empty dark area under it.
+
+   Fix: ONE scale unit, --nk-u, equal to 1px up to 1600x900 and growing from there. It follows the smaller of
+   width/1600 and height/900, so a very wide but short screen (3440x1440) is not scaled by its width alone.
+       1440x900 -> 1.00   1728x1117 -> 1.08   1920x1080 -> 1.20   2560x1440 -> 1.60   3440x1440 -> 1.60   3840x2160 -> 2.40
+   Every size below is "N * var(--nk-u)", where N is the size the design already had at 1600px. Nothing changes below 1600px
+   and the mobile / tablet layout (< 1180px) is not touched. Header.jsx reads the same formula for the menu spacing. */
+
+@media (min-width: 1600px) {
+  :root {
+    --nk-u: max(1px, min(.0625vw, .11111vh));
+    --nk-header-h: calc(64 * var(--nk-u));
+    --nk-pad: calc(43 * var(--nk-u));
+    --nk4-gap: calc(80 * var(--nk-u));
+    --nk-item-gap: calc(34 * var(--nk-u));
+    --nk-logo-h: calc(27 * var(--nk-u));
+  }
+
+  /* ---------- header bar ---------- */
+  html body header > .nk-container { height: var(--nk-header-h) !important; }
+  html:not([dir="rtl"]) body header nav[aria-label="Primary"] { height: var(--nk-header-h) !important; }
+  html body header nav[aria-label="Primary"] .nk-nav-link { height: var(--nk-header-h) !important; font-size: calc(13.5 * var(--nk-u)) !important; }
+  html body header .nk-nav-caret { width: calc(14 * var(--nk-u)); height: calc(14 * var(--nk-u)); }
+
+  html body header .nk-header-actions .nk-square-hamburger, html body header .nk-square-hamburger { width: calc(40 * var(--nk-u)) !important; height: calc(46 * var(--nk-u)) !important; }
+  html body header .nk-square-hamburger svg { width: calc(40 * var(--nk-u)); height: calc(25.5 * var(--nk-u)); stroke-width: calc(2 * var(--nk-u)); }
+
+  html body header .nk-header-actions .nk-contact-btn { height: calc(46 * var(--nk-u)); padding: 0 calc(16 * var(--nk-u)) !important; font-size: calc(13 * var(--nk-u)) !important; display: inline-flex; align-items: center; }
+  html:not([dir="rtl"]) body header .nk-header-actions .nk-lang-btn { width: calc(40 * var(--nk-u)); height: calc(46 * var(--nk-u)); }
+  html:not([dir="rtl"]) body header .nk-header-actions .nk-lang-btn svg { width: calc(42 * var(--nk-u)); height: calc(30 * var(--nk-u)); }
+  html:not([dir="rtl"]) body header .nk-header-actions .nk-search-btn { width: calc(27 * var(--nk-u)); height: calc(46 * var(--nk-u)); }
+  html:not([dir="rtl"]) body header .nk-header-actions .nk-search-btn svg { width: calc(30 * var(--nk-u)); height: calc(30 * var(--nk-u)); }
+
+  /* ---------- hero ---------- */
+  .nk4-hero { padding-top: calc(var(--nk-header-h) + 14 * var(--nk-u)); }
+  .nk4-hero .nk4-grid { padding-top: calc(12 * var(--nk-u)); padding-bottom: clamp(calc(24 * var(--nk-u)), 4vh, calc(44 * var(--nk-u))); }
+  .nk4-hero .nk4-copy { padding-top: clamp(calc(8 * var(--nk-u)), 3vh, calc(36 * var(--nk-u))); }
+  .nk4-eyebrow { font-size: calc(15 * var(--nk-u)); }
+  .nk4-hero .nk4-h1 { font-size: calc(54 * var(--nk-u)); margin-top: calc(18 * var(--nk-u)); }
+  .nk4-hero .nk4-sub { font-size: calc(20 * var(--nk-u)); margin-top: calc(26 * var(--nk-u)); }
+  .nk4-hero .nk4-actions { margin-top: calc(34 * var(--nk-u)); gap: calc(18 * var(--nk-u)) calc(40 * var(--nk-u)); }
+  .nk4-hero .nk4-read { font-size: calc(16 * var(--nk-u)); gap: calc(16 * var(--nk-u)); }
+  .nk4-hero .nk4-actions .nk4-strap-btn { font-size: calc(13 * var(--nk-u)); padding: calc(14 * var(--nk-u)) calc(22 * var(--nk-u)); gap: calc(12 * var(--nk-u)); }
+  .nk4-hero .nk4-actions .nk4-strap-btn svg { width: calc(16 * var(--nk-u)); height: calc(16 * var(--nk-u)); }
+  .nk4-dots { gap: calc(10 * var(--nk-u)); margin-top: calc(40 * var(--nk-u)); }
+  .nk4-dots button { width: calc(34 * var(--nk-u)); height: calc(3 * var(--nk-u)); }
+
+  /* page rail laid over the picture */
+  .nk4-frame .nk2-rail { top: calc(16 * var(--nk-u)); left: calc(16 * var(--nk-u)); right: calc(16 * var(--nk-u)); padding: calc(6 * var(--nk-u)) calc(8 * var(--nk-u)); }
+  .nk4-frame .nk2-rail nav { gap: calc(4 * var(--nk-u)); }
+  .nk4-frame .nk2-rail a { font-size: calc(13 * var(--nk-u)); padding: calc(10 * var(--nk-u)) calc(10 * var(--nk-u)); border-bottom-width: calc(2 * var(--nk-u)); }
+
+  /* three teasers under the hero */
+  .nk4-teasers-grid { padding-top: clamp(calc(22 * var(--nk-u)), 3.4vh, calc(38 * var(--nk-u))); padding-bottom: clamp(calc(22 * var(--nk-u)), 3.4vh, calc(38 * var(--nk-u))); }
+  .nk4-teaser { gap: calc(10 * var(--nk-u)); padding: 0 clamp(20px, 2.6vw, calc(44 * var(--nk-u))); }
+  .nk4-teaser:first-child { padding-left: 0; }
+  .nk4-teaser:last-child { padding-right: 0; }
+  .nk4-teaser-eyebrow { font-size: calc(15 * var(--nk-u)); }
+  .nk4-teaser-title { font-size: calc(34 * var(--nk-u)); }
+  .nk4-teaser-link { font-size: calc(10 * var(--nk-u)); gap: calc(7 * var(--nk-u)); }
+  .nk4-teaser-link svg { width: calc(11 * var(--nk-u)); height: calc(11 * var(--nk-u)); }
+
+  /* inner pages whose hero used a hard-coded 64px header: follow the taller bar so nothing slides under it */
+  .nk2-hero { padding-top: calc(var(--nk-header-h) + var(--nk-sp3)); }
+  .nk2-hero-img img { max-height: calc(100vh - var(--nk-header-h) - 24px - 56px); }
+  .pg-sec, section[id], div[id="context"], div[id="faq"], div[id="pricing"], div[id="contact"] { scroll-margin-top: calc(var(--nk-header-h) + 16px); }
+}

@@ -1,0 +1,13 @@
+/* v472 · Desktop top menus: the panel GROWS when an accordion row opens, in all five menus.
+   Before, Capabilities / Opportunities / Overview were capped at the distance to the hero's teaser strip (--cx-h) and their rows
+   scrolled inside the panel (or the bottom of the panel was cut), while Infrastructure and Expertise already grew.
+   Now every menu may grow down to the bottom of the screen (100dvh minus the header bar); only if the content is taller than the whole
+   screen does the panel get a thin scrollbar as a last resort. The columns never scroll on their own any more. */
+@media (min-width: 1100px) {
+  .nk-mega:has(.nk-cx) { max-height: calc(100dvh - var(--nk-header-h, 64px)) !important; }
+  .nk-mega:has(.nk-cx) .nk-mega-content { max-height: inherit; }
+  .nk-cx { max-height: inherit; overflow-y: auto; overflow-x: hidden; scrollbar-width: thin; scrollbar-color: rgba(196, 200, 206, .35) transparent; }
+  .nk-cx::-webkit-scrollbar { display: block; width: 8px; }
+  .nk-cx::-webkit-scrollbar-thumb { background: rgba(196, 200, 206, .35); border-radius: 4px; }
+  .nk-cx .nk-cx-acc { overflow: visible !important; }
+}

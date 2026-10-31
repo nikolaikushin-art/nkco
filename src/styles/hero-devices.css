@@ -1,0 +1,116 @@
+/* v596 · home hero: device scenes (tablets / phones showing the OMS) + centre "squircle" reveal when a slide opens.
+   Everything is sized from the slide itself (container units), so tablets and phones always fill the slide. */
+.bcg-stage { position: absolute; inset: 0; z-index: 1; pointer-events: none; container-type: size; opacity: 0; visibility: hidden; }
+.bcg-scene { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; gap: 2.2cqw; padding: 0 3cqw; }
+.bcg-panel.is-active .bcg-stage { visibility: visible; opacity: 1; animation: bcgReveal 1s cubic-bezier(.2, .7, .2, 1) .12s both; }
+@keyframes bcgReveal {
+  from { clip-path: inset(46% 46% 46% 46% round 40%); transform: scale(.9); opacity: 0; }
+  35%  { opacity: 1; }
+  to   { clip-path: inset(0% 0% 0% 0% round 0%); transform: none; opacity: 1; }
+}
+
+/* ---- device frames ---- */
+.dev { position: relative; flex: none; box-sizing: border-box; background: #0f1115; box-shadow: 0 3cqh 7cqh rgba(0, 0, 0, .5), inset 0 0 0 1px rgba(255, 255, 255, .16); margin-bottom: -5cqh; }
+.dev .glass { position: relative; width: 100%; height: 100%; overflow: hidden; background: #f4f5f7; container-type: inline-size; }
+.dev.tab { padding: clamp(7px, 1.5cqw, 16px); border-radius: clamp(14px, 3cqw, 30px); }
+.dev.tab .glass { border-radius: clamp(8px, 1.6cqw, 16px); }
+.dev .cam { position: absolute; z-index: 3; top: clamp(2px, .55cqw, 6px); left: 50%; width: clamp(3px, .5cqw, 6px); height: clamp(3px, .5cqw, 6px); border-radius: 50%; background: #2c3038; transform: translateX(-50%); }
+.dev.ph { padding: clamp(4px, .9cqw, 9px); border-radius: clamp(18px, 4.4cqw, 40px); aspect-ratio: 9 / 19; }
+.dev.ph .glass { border-radius: clamp(14px, 3.4cqw, 32px); }
+.dev .notch { position: absolute; z-index: 3; top: clamp(7px, 1.5cqh, 14px); left: 50%; width: 26%; height: clamp(5px, 1.2cqh, 11px); border-radius: 99px; background: #0f1115; transform: translateX(-50%); }
+
+/* ---- scene layouts ---- */
+.t-huge  { width: min(86cqw, 112cqh); aspect-ratio: 4 / 3; }
+.p-3a, .p-3b, .p-3c { height: 70cqh; }
+.t-small-p { height: 74cqh; aspect-ratio: 3 / 4; }
+.p-one { height: 74cqh; margin-left: 2cqw; }
+.t-mid { width: min(62cqw, 82cqh); aspect-ratio: 4 / 3; }
+.p-front { height: 64cqh; margin-left: -1.2cqw; z-index: 2; }
+.t-tall { height: 76cqh; aspect-ratio: 3 / 4; }
+.p-side { height: 56cqh; }
+
+/* ---- caption moves to the top of an open slide so the devices own the rest ---- */
+@media (min-width: 901px) {
+  /* the devices live below the caption, never behind it */
+  .bcg-stage { top: 206px; }
+  .bcg-cap { top: 28px; bottom: auto; transform: translateY(-12px); }
+  .bcg-panel.is-active .bcg-cap { transform: none; }
+  .bcg-panel.is-active::after { background: linear-gradient(to bottom, rgba(10, 14, 24, .86), rgba(10, 14, 24, .55)); }
+  .bcg-panel.is-active .bcg-stretch { bottom: 0; }
+}
+@media (max-width: 900px) { .bcg-stage { display: none; } }
+@media (prefers-reduced-motion: reduce) { .bcg-panel.is-active .bcg-stage { animation: none; } }
+
+/* ---- OMS screens (all sizes in em, scaled from the screen width) ---- */
+.scr { width: 100%; height: 100%; display: flex; box-sizing: border-box; font: 400 calc(var(--f) * 1cqw)/1.25 'Inter', system-ui, sans-serif; color: #16171a; background: #f4f5f7; overflow: hidden; text-align: left; }
+.scr-l { --f: 1.5; }
+.scr-p { --f: 2.55; flex-direction: column; padding: 1.2em 1.3em; gap: .9em; }
+.scr-ph { --f: 4.7; flex-direction: column; padding: 2.6em .9em .9em; gap: .7em; }
+.scr small { display: block; font-size: .8em; font-weight: 500; letter-spacing: .02em; color: #6b7078; }
+.scr b { font-weight: 600; }
+.oms-side { flex: none; width: 15.5em; box-sizing: border-box; display: flex; flex-direction: column; gap: .35em; padding: 1.2em .9em; background: #1b1e24; color: #aab0b9; font-size: .92em; }
+.oms-logo { color: #fff; font-family: 'Newsreader', Georgia, serif; font-size: 1.3em; letter-spacing: .01em; margin-bottom: .9em; }
+.oms-logo i { font: 600 .55em 'Inter', sans-serif; letter-spacing: .18em; color: #329AB2; margin-left: .4em; }
+.oms-side span { display: flex; align-items: center; gap: .7em; padding: .6em .7em; border-left: 2px solid transparent; }
+.oms-side span u { display: block; width: .8em; height: .8em; border: 1.5px solid currentColor; border-radius: .2em; opacity: .7; }
+.oms-side span.on { color: #fff; background: rgba(255, 255, 255, .07); border-left-color: #329AB2; }
+.oms-side em { margin-top: auto; font-size: .72em; font-style: normal; line-height: 1.4; color: #7d848e; }
+.oms-main { flex: 1; min-width: 0; box-sizing: border-box; display: flex; flex-direction: column; gap: .85em; padding: 1.1em 1.3em; }
+.oms-top { flex: none; display: flex; align-items: center; gap: .8em; }
+.oms-top b { font: 500 1.45em/1.1 'Newsreader', Georgia, serif; white-space: nowrap; }
+.oms-search { flex: 1; min-width: 0; padding: .55em .9em; background: #fff; border: 1px solid #e3e5e8; border-radius: .45em; color: #8b9098; font-size: .8em; white-space: nowrap; overflow: hidden; }
+.scr-p .oms-top, .scr-ph .oms-top { justify-content: space-between; }
+.oms-av { flex: none; display: grid; place-items: center; width: 2.3em; height: 2.3em; border-radius: 50%; background: #16171a; color: #fff; font-size: .75em; font-weight: 600; margin-left: auto; }
+.oms-kpis { flex: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; }
+.oms-kpis-2 { grid-template-columns: 1fr 1fr; }
+.oms-kpi { background: #fff; border: 1px solid #e6e8eb; border-radius: .6em; padding: .75em .85em; border-top: 2px solid #329AB2; }
+.oms-kpi b { display: block; font-size: 1.65em; line-height: 1.15; margin: .15em 0; letter-spacing: -.01em; }
+.oms-kpi i { font-style: normal; font-size: .75em; color: #6b7078; }
+.oms-card { background: #fff; border: 1px solid #e6e8eb; border-radius: .6em; padding: .8em .9em; }
+.oms-two { flex: none; display: grid; grid-template-columns: 1.25fr 1fr; gap: .8em; }
+.oms-bars { display: flex; align-items: flex-end; gap: .5em; height: 7.2em; margin-top: .7em; }
+.oms-bars span { flex: 1; background: #d3d8de; border-radius: .2em .2em 0 0; }
+.oms-bars span.hi { background: #329AB2; }
+.oms-flow p { margin: .55em 0 0; display: grid; gap: .25em; }
+.oms-flow b { font-size: .8em; font-weight: 500; }
+.oms-flow i, .oms-row i, .oms-task i, .oms-step i { display: block; height: .4em; background: #e8ebee; border-radius: 9em; overflow: hidden; }
+.oms-flow s, .oms-row s, .oms-task s, .oms-step s { display: block; height: 100%; background: #329AB2; }
+.oms-table { flex: 1 1 0; min-height: 0; overflow: hidden; }
+.oms-row { display: grid; grid-template-columns: 2.3fr 1fr .85fr 1.1fr; align-items: center; gap: .8em; padding: .55em 0; border-top: 1px solid #edeff1; font-size: .82em; }
+.oms-row:first-of-type { margin-top: .5em; }
+.oms-row span { color: #6b7078; }
+.oms-row em { font-style: normal; font-size: .85em; padding: .2em .6em; border-radius: 9em; background: #e8f4f7; color: #1f6c80; text-align: center; }
+.oms-row em[data-s="Review"] { background: #f5f5f7; color: #6e6240; }
+.oms-row em[data-s="Scoping"] { background: #eceef1; color: #4a5058; }
+.oms-board { flex: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: .8em; }
+.oms-col { background: #eceef1; border-radius: .6em; padding: .7em; }
+.oms-col small em { font-style: normal; color: #8b9098; margin-left: .3em; }
+.oms-task { background: #fff; border-radius: .45em; padding: .65em .7em; margin-top: .55em; box-shadow: 0 1px 2px rgba(22, 23, 26, .06); display: grid; gap: .3em; }
+.oms-task b { font-size: .85em; }
+.oms-task span { font-size: .72em; color: #7b8088; }
+.oms-list { flex: none; }
+.oms-list p { display: flex; align-items: center; gap: .7em; margin: .65em 0 0; font-size: .9em; }
+.oms-list u { display: grid; place-items: center; flex: none; width: 2em; height: 2em; border-radius: 50%; background: #e8f4f7; color: #1f6c80; font-size: .9em; text-decoration: none; font-weight: 600; }
+.oms-list span { margin-left: auto; color: #7b8088; font-size: .85em; }
+.scr-p .oms-chart { flex: none; }
+.scr-p .oms-table { font-size: .95em; }
+.scr-p .oms-row, .scr-ph .oms-row { grid-template-columns: 2.4fr 1fr; }
+.scr-p .oms-row span, .scr-ph .oms-row span, .scr-p .oms-row i, .scr-ph .oms-row i { display: none; }
+.scr-ph .oms-kpi b { font-size: 1.5em; }
+.scr-ph .oms-bars { height: 6em; }
+.scr-ph .oms-row { font-size: .9em; }
+.oms-appr { display: grid; gap: .3em; padding: .75em .85em; }
+.oms-appr b { font-size: .95em; }
+.oms-appr span { font-size: .78em; color: #7b8088; }
+.oms-appr div { display: flex; gap: .5em; margin-top: .3em; }
+.oms-appr em { font-style: normal; font-size: .8em; padding: .35em .9em; border-radius: .4em; background: #16171a; color: #fff; }
+.oms-appr em.g { background: #eceef1; color: #16171a; }
+.oms-step { display: grid; gap: .45em; padding: .8em .85em; }
+.oms-step b { font-size: .95em; }
+.oms-doc { display: flex; align-items: center; gap: .7em; font-size: .9em; padding: .8em .85em; }
+.oms-doc u { flex: none; width: 1.3em; height: 1.6em; border: 1.5px solid #329AB2; border-radius: .2em; }
+
+@media (min-width: 901px) and (max-width: 1180px) { .bcg-stage { top: 236px; } }
+
+/* v606 · hero device screens: no "Active mandates" tables (footer thumbnail and OMS showcase keep theirs) */
+.bcg-stage .scr:not(.rn) .oms-table { display: none !important; }

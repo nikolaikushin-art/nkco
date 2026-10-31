@@ -1,0 +1,205 @@
+/* v675 · tablets, clean (loaded last).
+   1) Hero scenes: every device sits on its own space. No negative margins, no overlap, no bottom bleed, nothing cropped.
+      Widths are capped by BOTH the stage width (cqw, sum of a scene is always <= 94cqw incl. gaps) and its height (cqh),
+      so a scene can never grow past the slide, whatever the screen.
+   2) Screens: KPI sparkline no longer sits on the value, sidebars no longer truncate labels.
+   3) Showcase / capability tablets: phones stand beside the tablet with a clear gap instead of covering it. */
+
+/* ---------- 1 · hero scene layout ---------- */
+.bcg-scene { align-items: center; justify-content: center; gap: 2.4cqw; padding: 1cqh 3cqw 4cqh; box-sizing: border-box; }
+.bcg-scene > .dev { margin: 0 !important; z-index: auto !important; flex: none; }
+
+/* device sizes: landscape 4:3, portrait 3:4, phone 9:19 */
+.bcg-scene > .dev.tab.t-main, .bcg-scene > .dev.tab.t-main-b { width: min(44cqw, 100cqh); }
+.bcg-scene > .dev.tab.t-mid  { width: min(40cqw, 92cqh); }
+.bcg-scene > .dev.tab.t-side { width: min(28cqw, 70cqh); }
+.bcg-scene > .dev.tab.t-por  { width: min(25cqw, 62cqh); height: auto; aspect-ratio: 3 / 4; }
+.bcg-scene > .dev.ph { height: min(70cqh, 52cqw); }
+.bcg-scene > .dev.ph.p-side { height: min(58cqh, 44cqw); }
+
+/* per-scene balance (sum of widths + gaps stays under the stage) */
+.bcg-scene[data-scene="0"] > .dev.tab.t-main { width: min(38cqw, 96cqh); }
+.bcg-scene[data-scene="0"] > .dev.tab.t-side { width: min(26cqw, 66cqh); }
+.bcg-scene[data-scene="1"] > .dev.tab.t-main { width: min(46cqw, 100cqh); }
+.bcg-scene[data-scene="1"] > .dev.tab.t-por  { width: min(24cqw, 66cqh); }
+.bcg-scene[data-scene="2"] > .dev.tab.t-mid  { width: min(44cqw, 100cqh); }
+.bcg-scene[data-scene="2"] > .dev.tab.t-por  { width: min(26cqw, 70cqh); }
+.bcg-scene[data-scene="3"] > .dev.tab.t-main { width: min(44cqw, 100cqh); }
+.bcg-scene[data-scene="3"] > .dev.tab.t-side { width: min(30cqw, 76cqh); }
+.bcg-scene[data-scene="4"] > .dev.tab.t-mid  { width: min(36cqw, 84cqh); }
+.bcg-scene[data-scene="4"] > .dev.tab.t-por  { width: min(22cqw, 62cqh); }
+.bcg-scene[data-scene="4"] > .dev.ph { height: min(60cqh, 40cqw); }
+
+/* a quiet, even lift: soft contact shadow, no hard drops, no bleed into neighbours */
+.bcg-scene > .dev.tab {
+  box-shadow:
+    0 .2cqh .4cqh rgba(0, 0, 0, .28),
+    0 1.6cqh 3.2cqh rgba(0, 0, 0, .34),
+    0 0 6cqh rgba(60, 100, 150, .12),
+    inset 0 0 0 clamp(1px, .2cqw, 2px) #000;
+}
+@keyframes aplFloatClean { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-.45cqh); } }
+.bcg-panel.is-active .bcg-scene .dev.tab { animation: aplFloatClean 9s ease-in-out 2.2s infinite; }
+.bcg-panel.is-active .bcg-scene .dev.tab:nth-child(2) { animation-delay: 3.1s; }
+.bcg-panel.is-active .bcg-scene .dev.tab:nth-child(3) { animation-delay: 4s; }
+
+/* ---------- 2 · screens ---------- */
+/* KPI: label, value, then delta left + sparkline right on the same bottom row, so they never collide */
+.dev .scr.rn .oms-kpi { padding: .8em .95em .8em; min-width: 0; overflow: hidden; }
+.dev .scr.rn .oms-kpi b { white-space: nowrap; overflow: hidden; text-overflow: clip; }
+.dev .scr.rn .oms-kpi i { display: block; max-width: calc(100% - 3.4em); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dev .oms-spark { top: auto; bottom: .85em; right: .9em; width: 2.6em; height: 1.1em; opacity: .55; }
+.dev .scr.rn .oms-kpi small { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* sidebars: wider so "Appointments", "Customs hold", "Delivered today" read in full */
+.rn-main { width: 12.8em; }
+.rn-mod { width: 13.4em; }
+.rn-mi { gap: .45em; }
+.rn-mi > span, .rn-it > span { text-overflow: clip; }
+.rn-head b { font-size: 1em; }
+
+/* tables never run under the audit strip */
+.dev .scr.rn .oms-table { padding-bottom: .5em; }
+.dev .scr.rn .rn-work { padding-bottom: .6em; }
+
+/* ---------- 3 · showcase and capability stages: phones beside the tablet, with a gap ---------- */
+.oms-show-stage { align-items: center; gap: 2.4%; }
+.oms-show-stage .os-tab { width: 62%; }
+.oms-show-stage .os-ph { width: 14.5%; }
+.oms-show-stage .os-ph-l, .oms-show-stage .os-ph-r { margin: 0; }
+.oms-show-stage .dev { box-shadow: 0 2.2% 5% rgba(10, 20, 40, .2), 0 18px 40px rgba(10, 20, 40, .22), inset 0 0 0 1px rgba(255, 255, 255, .12); }
+.cv-del-dev { align-items: center; gap: 4%; }
+.cv-del-dev .cv-tab-p { width: 62%; }
+.cv-del-dev .cv-ph { width: 28%; margin: 0; }
+
+@media (max-width: 1100px) {
+  .bcg-scene { gap: 1.8cqw; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bcg-panel.is-active .bcg-scene .dev.tab { animation: none; }
+}
+
+/* board: two whole cards per column, never a card cut in half */
+.dev .scr.rn .oms-board { flex: 1.5 1 0; }
+.dev .scr.rn .oms-col > .oms-task:nth-child(n+4) { display: none; }
+.dev .scr.rn .oms-col { display: flex; flex-direction: column; gap: .5em; padding: .65em; }
+.dev .scr.rn .oms-task { margin-top: 0; }
+.dev .scr.rn .oms-task b, .dev .scr.rn .oms-task span { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.dev .scr.rn .oms-kpi small { letter-spacing: .05em; font-size: .58em; }
+
+/* value never touches the sparkline; portrait tables show whole rows only; home indicator gets its own safe strip */
+.dev .scr.rn .oms-kpi b { font-size: 1.32em; letter-spacing: -.04em; }
+.dev .scr-p.rn .oms-row:nth-of-type(n+7) { display: none; }
+.dev.tab .glass { padding-bottom: clamp(6px, 1.2cqw, 15px); background: #f5f5f7; }
+.dev.tab .home-bar { bottom: .45cqw; }
+.ft-oms .dev.tab .glass { padding-bottom: 0; }
+
+/* landscape tables: whole rows only (the board layout has less room) */
+.dev .scr-l.rn .oms-row:nth-of-type(n+6) { display: none; }
+.dev .scr-l.rn .oms-board ~ .oms-table .oms-row:nth-of-type(n+5) { display: none; }
+
+/* =====================================================================
+   v675 · home section 2 (six-industry showcase): same advanced iPad Pro frame on every industry (the industry colour, type and
+   navigation stay inside the screen), phones stand beside the tablet with a clear gap, shadows are no longer cut by the track.
+   ===================================================================== */
+.crm-track { overflow-x: clip; overflow-y: visible; padding: 2.2vw 0 4.4vw; margin: 0 -32px; }
+html body .crm-slide { align-items: center; gap: 2.4%; }
+html body .crm-slide .os-tab { width: 61%; }
+html body .crm-slide .os-ph { width: 14%; margin: 0; }
+html body .crm-slide[data-sk] .dev.tab {
+  --bz: clamp(5px, 1.05cqw, 12px);
+  padding: var(--bz); background: #050506; border-radius: clamp(16px, 3.1cqw, 34px);
+  box-shadow: 0 .4vw .8vw rgba(0, 0, 0, .26), 0 2vw 4.2vw rgba(0, 0, 0, .3), inset 0 0 0 clamp(1px, .2cqw, 2px) #000;
+}
+html body .crm-slide[data-sk] .dev.ph {
+  padding: clamp(4px, .9cqw, 9px); background: #050506; border-radius: clamp(18px, 4.4cqw, 40px);
+  box-shadow: 0 .3vw .6vw rgba(0, 0, 0, .26), 0 1.6vw 3.2vw rgba(0, 0, 0, .28), inset 0 0 0 1px rgba(255, 255, 255, .12);
+}
+html body .crm-slide[data-sk] .dev .cam { background: radial-gradient(circle at 35% 35%, #3f5a78 0, #10151c 55%, #000 100%); }
+html body .crm-slide[data-sk] .dev .notch { background: #050506; }
+html body .crm-slide[data-sk] .dev.tab .glass { border-radius: clamp(9px, 2cqw, 22px); }
+.crm-pick { margin-top: 1.2vw; }
+
+/* ---------- section 2 · two sidebars (workspaces + menu), both open/close ---------- */
+.crm-two { --ease: cubic-bezier(.32, .72, 0, 1); }
+.crm-two .crm-wk, .crm-two .oms-side { flex: none; box-sizing: border-box; display: flex; flex-direction: column; gap: .15em; overflow: hidden; transition: width .6s var(--ease), padding .6s var(--ease); }
+.crm-two .crm-wk { width: 11.4em; padding: 0 .65em .7em; background: #f5f5f7; border-right: 1px solid rgba(60, 60, 67, .14); font-size: .8em; color: #66666e; }
+.crm-two.a-shut .crm-wk { width: 4.6em; }
+.crm-wk-h, .crm-md-h { display: flex; align-items: center; gap: .5em; height: 3.6em; margin: 0 -.65em .5em; padding: 0 .75em; border-bottom: 1px solid rgba(60, 60, 67, .14); flex: none; }
+.crm-wk-h b { flex: 1; min-width: 0; font: 600 1em/1.1 -apple-system, 'SF Pro Display', 'Inter', sans-serif; letter-spacing: -.01em; color: #1d1d1f; white-space: nowrap; overflow: hidden; }
+.crm-tog { all: unset; box-sizing: border-box; flex: none; display: grid; place-items: center; width: 2em; height: 2em; margin-left: auto; border-radius: .65em; color: #66666e; cursor: pointer; transition: background .2s, color .2s, transform .3s; }
+.crm-tog:hover { background: rgba(118, 118, 128, .14); color: #1d1d1f; }
+.crm-tog:active { transform: scale(.9); }
+.crm-tog:focus-visible { outline: 2px solid var(--ac, #0b2b47); outline-offset: 1px; }
+.crm-wk-g { padding: .5em .55em .25em; font: 600 .62em/1 -apple-system, 'Inter', sans-serif; letter-spacing: .09em; text-transform: uppercase; color: #86868b; white-space: nowrap; overflow: hidden; }
+.crm-wk > button { all: unset; box-sizing: border-box; position: relative; flex: none; display: flex; align-items: center; gap: .65em; padding: .38em .45em; border-radius: .75em; font: 500 1em/1.2 -apple-system, 'Inter', sans-serif; color: #66666e; white-space: nowrap; cursor: pointer; transition: background .25s, color .25s; }
+.crm-wk > button > i { flex: none; display: grid; place-items: center; width: 1.9em; height: 1.9em; border-radius: .6em; background: #e4e4ea; color: #66666e; transition: background .25s, color .25s; }
+.crm-wk > button > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.crm-wk > button:hover { background: rgba(118, 118, 128, .1); }
+.crm-wk > button.on { color: #101014; font-weight: 600; background: rgba(11, 43, 71, .1); }
+.crm-wk > button.on > i { background: var(--ac, #0b2b47); color: #fff; box-shadow: 0 .3em .8em -.3em rgba(0, 0, 0, .5); }
+.crm-wk > button:focus-visible { outline: 2px solid var(--ac, #0b2b47); outline-offset: -2px; }
+.crm-wk-foot { margin-top: auto; display: flex; align-items: center; gap: .6em; padding: .6em .3em 0; border-top: 1px solid rgba(60, 60, 67, .14); white-space: nowrap; overflow: hidden; }
+.crm-wk-foot .oms-av { flex: none; margin: 0; width: 2.2em; height: 2.2em; font-size: .8em; }
+.crm-wk-foot b { font-weight: 500; line-height: 1.2; min-width: 0; }
+.crm-wk-foot b small { display: block; font-size: .8em; font-weight: 400; color: #86868b; }
+.crm-two.a-shut .crm-wk-h { justify-content: center; padding: 0; }
+.crm-two.a-shut .crm-wk-h .rn-glyph, .crm-two.a-shut .crm-wk-h b, .crm-two.a-shut .crm-wk-g, .crm-two.a-shut .crm-wk > button > span, .crm-two.a-shut .crm-wk-foot b { display: none; }
+.crm-two.a-shut .crm-wk-h .crm-tog { margin: 0; }
+.crm-two.a-shut .crm-wk > button { justify-content: center; padding: .38em 0; }
+.crm-two.a-shut .crm-wk-foot { justify-content: center; padding-inline: 0; }
+
+/* menu sidebar: same light Apple look for every industry (colour comes from the industry accent) */
+html body .crm-slide .crm-two .oms-side { width: 12.8em; padding: 0 .65em .7em; background: #fbfbfd; color: #66666e; border-right: 1px solid rgba(60, 60, 67, .14); box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; font-size: .86em; }
+html body .crm-slide .crm-two.b-shut .oms-side { width: 4.6em; }
+html body .crm-slide .crm-two .oms-logo { flex: 1; min-width: 0; margin: 0; color: var(--ink); font: 600 1em/1.1 var(--hf); white-space: nowrap; overflow: hidden; }
+html body .crm-slide .crm-two .oms-logo i { display: block; margin: 0; font: 600 .62em/1.1 -apple-system, 'Inter', sans-serif; letter-spacing: .1em; text-transform: uppercase; color: var(--ac); }
+html body .crm-slide .crm-two .oms-side button:not(.crm-tog) { display: flex; align-items: center; gap: .6em; width: 100%; flex: none; padding: .5em .55em; border-radius: .7em; color: #66666e; font-weight: 500; background: none; }
+html body .crm-slide .crm-two .oms-side button:not(.crm-tog):hover { background: rgba(118, 118, 128, .1); color: var(--ink); }
+html body .crm-slide .crm-two .oms-side button.on:not(.crm-tog) { background: #fff; color: var(--ink); font-weight: 600; box-shadow: 0 0 0 .5px rgba(0, 0, 0, .06), 0 1px 3px rgba(0, 0, 0, .08); }
+html body .crm-slide .crm-two .oms-side button.on svg { color: var(--ac); }
+html body .crm-slide .crm-two .oms-side button span { display: block; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+html body .crm-slide .crm-two.b-shut .oms-side button:not(.crm-tog) { justify-content: center; padding-inline: 0; }
+html body .crm-slide .crm-two.b-shut .oms-side button:not(.crm-tog) span, html body .crm-slide .crm-two.b-shut .oms-logo { display: none; }
+html body .crm-slide .crm-two.b-shut .crm-md-h { justify-content: center; padding: 0; }
+html body .crm-slide .crm-two.b-shut .crm-md-h .crm-tog { margin: 0; }
+
+/* ---------- large screens (27" iMac, 4K): tablets use the whole screen ---------- */
+@media (min-width: 1600px) {
+  .oms-show-stage { width: min(calc(100% - 64px), 2480px); }
+  html body .crm-slide .os-tab { width: 70%; }
+  html body .crm-slide .os-ph { width: 11.5%; }
+  .oms-show-head { max-width: 900px; }
+  .oms-show-points { max-width: min(1500px, calc(100% - 96px)); }
+
+  .bcg-scene { gap: 1.6cqw; padding-inline: 1cqw; }
+  .bcg-scene > .dev.tab.t-main, .bcg-scene > .dev.tab.t-main-b { width: min(48cqw, 114cqh); }
+  .bcg-scene > .dev.tab.t-mid  { width: min(44cqw, 104cqh); }
+  .bcg-scene > .dev.tab.t-side { width: min(31cqw, 80cqh); }
+  .bcg-scene > .dev.tab.t-por  { width: min(27cqw, 72cqh); }
+  .bcg-scene[data-scene="0"] > .dev.tab.t-main { width: min(40cqw, 108cqh); }
+  .bcg-scene[data-scene="0"] > .dev.tab.t-side { width: min(28cqw, 76cqh); }
+  .bcg-scene[data-scene="1"] > .dev.tab.t-main { width: min(52cqw, 114cqh); }
+  .bcg-scene[data-scene="1"] > .dev.tab.t-por  { width: min(26cqw, 74cqh); }
+  .bcg-scene[data-scene="2"] > .dev.tab.t-mid  { width: min(50cqw, 112cqh); }
+  .bcg-scene[data-scene="2"] > .dev.tab.t-por  { width: min(28cqw, 76cqh); }
+  .bcg-scene[data-scene="3"] > .dev.tab.t-main { width: min(48cqw, 112cqh); }
+  .bcg-scene[data-scene="3"] > .dev.tab.t-side { width: min(32cqw, 84cqh); }
+  .bcg-scene[data-scene="4"] > .dev.tab.t-mid  { width: min(42cqw, 100cqh); }
+  .bcg-scene[data-scene="4"] > .dev.tab.t-por  { width: min(25cqw, 70cqh); }
+  .bcg-scene > .dev.ph { height: min(78cqh, 56cqw); }
+  .bcg-scene[data-scene="4"] > .dev.ph { height: min(64cqh, 42cqw); }
+}
+
+/* collapse buttons keep their own size (the showcase's generic sidebar-button rules made them full width) */
+html body .oms-show .crm-two .crm-tog { display: grid; place-items: center; flex: none; width: 2em; height: 2em; min-width: 2em; padding: 0; margin: 0 0 0 auto; border: 0; border-radius: .65em; background: none; color: #66666e; font-size: 1em; }
+html body .oms-show .crm-two .crm-tog:hover { background: rgba(118, 118, 128, .14); color: #1d1d1f; }
+html body .oms-show .crm-two.a-shut .crm-wk-h .crm-tog, html body .oms-show .crm-two.b-shut .crm-md-h .crm-tog { margin: 0; }
+.crm-two .crm-wk { width: 12.4em; }
+.crm-two.a-shut .crm-wk { width: 4.6em; }
+
+/* sidebar open/close glyph: Apple style (frame + divider), grey, darker on hover; hero tablets draw the same glyph */
+html body .oms-show .crm-two .crm-tog { color: #8e8e93; }
+html body .oms-show .crm-two .crm-tog:hover { color: #1d1d1f; }
+.crm-tog svg { display: block; }
+.dev .rn-collapse { width: 1.45em; height: 1.15em; border: 1.6px solid #8e8e93; border-radius: .38em; background: linear-gradient(90deg, transparent 0 33%, #8e8e93 33% 40%, transparent 40%); opacity: 1; }

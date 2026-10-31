@@ -1,0 +1,5 @@
+# v659 — Tablets on every page (tables removed again)
+- Removed the v656/v657 tables (DataGrid, per-page registers, Intelligence index tables, piece tables). The original tables are back as they were.
+- Every page now carries the working OMS tablet scene (tablet + two phones), not only Capabilities: all section pages (Expertise, Industries, Infrastructure, Opportunities, Overview, Capabilities) via PageSystem, and the Intelligence desk, category, collection, series and piece pages via the new `components/IntelTablet.jsx`. It sits after the first section of each page.
+- Each page's tablet is different: built from that page's own method, scope and deliverables; the sidebar order and the module it opens on rotate per page; owners, practices, statuses and due dates are seeded from the page title.
+- Tablets work (OmsGrid from v658): sort, search, filter chips, pagination, status pills that move on, add-row buttons, clickable workflow board, report period tabs, CSV export. The scene stops cycling once someone interacts.

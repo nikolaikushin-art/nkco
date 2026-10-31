@@ -1,0 +1,43 @@
+/* v290 · side margins +0.5 cm, and no dead white strip in the mega menu.
+   0.5 cm = 18.9 px, added on top of the previous margin (clamp(12px, 1.5vw, 24px)).
+   --nk-pad drives the header, the hero and every section, so they all move together. */
+:root { --nk-pad: clamp(31px, calc(1.5vw + 19px), 43px); }
+@media (max-width: 767px) {
+  :root { --nk-pad: 20px; }
+  .nk-container { padding-left: var(--nk-pad) !important; padding-right: var(--nk-pad) !important; }
+}
+
+/* mega menu: text lines up with the header (hamburger / search) instead of hugging the screen edge */
+.nk-md-rail-contact, .nk-md-explore, .nk-md-sec-btn, .nk-md-cat { padding-left: var(--nk-pad); }
+.nk-md-secs--solo .nk-md-sec-btn { padding-left: var(--nk-pad); }
+.nk-md-foot { padding-left: var(--nk-pad); padding-right: var(--nk-pad); }
+.nk-md-feat { padding-right: var(--nk-pad); }
+.nk-md-feat-body { padding-right: 0; }
+
+/* the list used to stop at 640px and leave a blank white band beside the photo column on wide screens:
+   it now fills the free width (capped so rows never get absurdly long) */
+.nk-md-tabs-wrap, .nk-md-body { max-width: min(100%, 980px); }
+
+@media (max-width: 1180px) {
+  .nk-md-main { padding-right: var(--nk-pad); }
+}
+
+/* right column of the menu: the photo takes whatever height the text leaves, so the column is filled to the
+   bottom edge of the panel and no blank white strip remains under "Read the insight" */
+.nk-md-feat { padding-bottom: 0; }
+.nk-md-feat-img { flex: 1 1 auto; aspect-ratio: auto; min-height: 160px; }
+.nk-md-feat-body { flex: 0 0 auto; padding-bottom: 20px; }
+
+/* v318 · mobile / tablet navigation panel: no pinstripe textile anywhere inside (panel, rows, expanded rows, footer block).
+   Flat colour only. Higher specificity + the --nk-pin variables zeroed so no older rule can bring the stripes back. */
+@media (max-width: 1023px) {
+  html body aside.nk-slide-panel,
+  html body aside.nk-slide-panel * ,
+  html body aside.nk-slide-panel *::before,
+  html body aside.nk-slide-panel *::after,
+  html body aside.nk-slide-panel::before,
+  html body aside.nk-slide-panel::after {
+    --nk-pin: none; --nk-pin-light: none; --nk-pin-d: none; --nk-pin-l: none;
+    background-image: none !important;
+  }
+}

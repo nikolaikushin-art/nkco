@@ -1,0 +1,2 @@
+- v661: Console, first module on every page tablet: saved views with live counts, focus filters, List/Board/Tasks/Insights, search + source/owner/sort, grouped list, bulk assign/advance/archive, new record. Modelled on the Unique Detailing leads screen, in NK&CO colours.
+- v662: Console Insights and Tasks fill the screen (no dead areas), labels no longer wrap or overlap, summary footer on every tab, Top scoring list in Insights.

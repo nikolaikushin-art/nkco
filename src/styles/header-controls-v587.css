@@ -1,0 +1,45 @@
+/* v587 · Centered-logo header with compact, matched titanium-white controls. */
+html body header[data-bcg] .nk-logo-img {
+  height: 36px !important;
+}
+
+html body header[data-bcg] .nk-header-actions {
+  background: #fffffd !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  padding: 6px !important;
+  height: 64px !important;
+  box-shadow: 0 2px 16px rgba(22, 23, 26, .10) !important;
+}
+
+html body header[data-bcg] .nk-square-hamburger,
+html body header[data-bcg] .nk-header-actions-right button {
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 52px !important;
+  width: 52px !important;
+  min-width: 52px !important;
+  height: 52px !important;
+  padding: 0 !important;
+  background: #eef0f2 !important;
+  background-image: none !important;
+  color: #16171a !important;
+  border: 0 !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+}
+
+html body header[data-bcg] .nk-square-hamburger:hover,
+html body header[data-bcg] .nk-header-actions-right button:hover {
+  background-color: #eceff3 !important;
+  color: #16171a !important;
+}
+
+/* Force the icon strokes dark as well as the button color; the global palette sets SVGs to white. */
+html body header[data-bcg] .nk-square-hamburger svg,
+html body header[data-bcg] .nk-header-actions-right button:not(.nk-lang-btn) svg {
+  color: #16171a !important;
+  stroke: #16171a !important;
+}

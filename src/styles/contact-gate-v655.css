@@ -1,0 +1,75 @@
+/* v655 · Contact gateway: one Capabilities-style menu before the form.
+   Same measures as the Capabilities menu (see contact-align-v654.css): serif column heading, hairline rows 42px, chevron, teal-line link at the foot.
+   Scoped to .nk-gw / .nk-dx-chosen. */
+
+.nk-dx-wrap .nk-dx-gate { display: flex; flex-direction: column; min-width: 0; }
+.nk-gw { flex: 1 1 auto; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(28px, 3vw, 56px); align-items: stretch; min-width: 0; }
+.nk-gw-col { display: flex; flex-direction: column; min-width: 0; }
+html body .nk-dx-wrap .nk-gw-h { margin: 0 0 14px; font-size: var(--dx-hs); line-height: 1.1; font-weight: 500; letter-spacing: -.005em; color: var(--lm-mute, #7b8088); }
+.nk-gw-rows { border-top: 1px solid var(--dx-hair); }
+.nk-gw-row { border-bottom: 1px solid var(--dx-hair); }
+html body .nk-dx-wrap .nk-gw-t { all: unset; box-sizing: border-box; width: 100%; min-height: 42px; display: flex; align-items: center; justify-content: space-between; gap: 12px; cursor: pointer; font-family: inherit; font-size: var(--dx-fs); line-height: 18px; color: var(--lm-ink, #16171a); padding: 0; }
+html body .nk-dx-wrap .nk-gw-t:focus-visible { outline: 2px solid var(--lm-accent, #329AB2); outline-offset: 2px; }
+.nk-gw-t svg { flex: none; color: var(--lm-ink, #16171a); transition: transform .18s ease; }
+.nk-gw-row[data-open] .nk-gw-t svg { transform: rotate(180deg); }
+.nk-gw-t:hover span { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.nk-gw-b { padding: 0 0 12px; }
+.nk-gw-b[hidden] { display: none; }
+.nk-gw-b p { margin: 0 0 8px; font-size: calc(var(--dx-fs) - 1px); line-height: 17px; color: var(--lm-mute, #7b8088); }
+html body .nk-dx-wrap .nk-gw-in { all: unset; box-sizing: border-box; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-family: inherit; font-size: calc(var(--dx-fs) - .5px); font-weight: 500; color: var(--lm-ink, #16171a); border-bottom: 1px solid var(--lm-accent, #329AB2); padding-bottom: 1px; }
+html body .nk-dx-wrap .nk-gw-in:hover svg { transform: translateX(3px); }
+.nk-gw-in svg { transition: transform .15s ease; }
+html body .nk-dx-wrap .nk-gw-in:focus-visible, html body .nk-dx-wrap .nk-gw-go:focus-visible { outline: 2px solid var(--lm-accent, #329AB2); outline-offset: 3px; }
+/* foot link: teal line + bold label, as "Explore Service Lines" */
+html body .nk-dx-wrap .nk-gw-go { all: unset; box-sizing: border-box; margin-top: auto; padding-top: 18px; display: inline-flex; align-items: center; gap: 18px; cursor: pointer; font-family: inherit; font-size: var(--dx-fs); font-weight: 600; line-height: 18px; color: var(--lm-ink, #16171a); }
+.nk-gw-go i { display: block; width: 38px; height: 2px; background: var(--lm-accent, #329AB2); transition: width .18s ease; }
+.nk-gw-go:hover i { width: 52px; }
+
+/* the form's first step: the chosen practice, same heading + teal hairline the gateway used */
+html body .nk-dx-wrap .nk-dx .nk-dx-chosen { display: flex; align-items: baseline; gap: 18px; padding: 0 0 12px; border-bottom: 1px solid var(--lm-accent, #329AB2); box-shadow: 0 1px 0 0 var(--lm-accent, #329AB2); min-width: 0; }
+html body .nk-dx-wrap .nk-dx .nk-dx-chosen-t { margin: 0; flex: none; font-size: var(--dx-hs); line-height: 1.1; font-weight: 500; letter-spacing: -.005em; color: var(--lm-ink, #16171a); }
+html body .nk-dx-wrap .nk-dx .nk-dx-chosen-s { flex: 1 1 auto; min-width: 0; font-size: var(--dx-fs); color: var(--lm-mute, #7b8088); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+html body .nk-dx-wrap .nk-dx button.nk-dx-chg { margin-left: auto; flex: none; border: 0 !important; background: none !important; padding: 0 !important; cursor: pointer; font: inherit; font-size: var(--dx-fs); color: var(--lm-ink, #16171a) !important; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+html body .nk-dx-wrap .nk-dx button.nk-dx-chg:hover { color: var(--lm-accent, #329AB2) !important; }
+
+@media (max-width: 899px) {
+  .nk-gw { grid-template-columns: 1fr; row-gap: 28px; }
+  .nk-gw-go { margin-top: 14px; }
+}
+
+/* ---- v655 · no dead cells ---- */
+/* the third cell beside Country: the website takes the two remaining */
+html body .nk-dx-wrap .nk-dx .nk-dx-f[data-span="2"] { grid-column: span 2; }
+@media (max-width: 899px) { html body .nk-dx-wrap .nk-dx .nk-dx-f[data-span="2"] { grid-column: auto; } }
+/* an odd last choice in a two or more column group spans the row */
+html body .nk-dx-wrap .nk-dx .nk-dx-cards[data-cols="2"] > .nk-dx-ch:last-child:nth-child(odd) { grid-column: 1 / -1; }
+html body .nk-dx-wrap .nk-dx .nk-dx-cards[data-cols="4"] > .nk-dx-ch:last-child:nth-child(4n+1) { grid-column: 1 / -1; }
+/* radios are round, checkboxes square */
+html body .nk-dx-wrap .nk-dx .nk-dx-ch[data-type="radio"] .nk-dx-mark { border-radius: 50%; }
+html body .nk-dx-wrap .nk-dx .nk-dx-ch[data-type="radio"] .nk-dx-mark i { border-radius: 50%; }
+/* the enquiry so far (Objectives, left column) */
+html body .nk-dx-wrap .nk-dx .nk-dx-recap .nk-dx-sub { font-family: var(--nk-text, 'Inter', system-ui, sans-serif); font-size: calc(var(--dx-fs) - .5px); line-height: 16px; font-weight: 400; letter-spacing: 0; color: var(--lm-mute, #7b8088); margin: 0; padding: 0 0 6px; border-bottom: 1px solid var(--dx-hair); }
+.nk-dx-recap dl { margin: 0; }
+.nk-dx-recap dl > div { display: flex; gap: 16px; min-height: 42px; align-items: center; border-bottom: 1px solid var(--dx-hair); font-size: var(--dx-fs); line-height: 18px; }
+.nk-dx-recap dt { flex: none; width: 96px; color: var(--lm-mute, #7b8088); }
+.nk-dx-recap dd { margin: 0; min-width: 0; color: var(--lm-ink, #16171a); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+/* review: the intro line no longer touches the first heading */
+html body .nk-dx-wrap .nk-dx .nk-dx-hintline--top { margin: 0 0 6px; }
+@media (max-width: 899px) { .nk-gw { padding-top: 18px; } }
+
+/* ---- v655b · every step is the same height; the last text box grows into any free space ---- */
+@media (min-width: 900px) {
+  html body .nk-dx-wrap .nk-dx-body { min-height: clamp(360px, 45vh, 410px); display: flex; flex-direction: column; }
+  html body .nk-dx-wrap .nk-dx-body > .nk-dx-split, html body .nk-dx-wrap .nk-dx-body > .nk-dx-block, html body .nk-dx-wrap .nk-dx-body > .nk-dx-rev { flex: 1 1 auto; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-split { align-items: stretch; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-col { display: flex; flex-direction: column; min-height: 0; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-col > .nk-dx-f[data-grow], html body .nk-dx-wrap .nk-dx .nk-dx-block > .nk-dx-f[data-grow] { flex: 1 1 auto; display: flex; flex-direction: column; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-f[data-grow] textarea.nk-dx-area { flex: 1 1 auto; min-height: 56px !important; resize: none; }
+}
+.nk-dx-recap dl > div { min-height: 36px; }
+@media (min-width: 900px) { html body .nk-dx-wrap .nk-dx .nk-dx-list--rich li { padding: 15px 0; } }
+/* rating / coverage rows share the free height of the column */
+@media (min-width: 900px) {
+  html body .nk-dx-wrap .nk-dx .nk-dx-seg-list { flex: 1 1 auto; display: flex; flex-direction: column; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-seg-list > .nk-dx-sr-row { flex: 1 1 auto; }
+}

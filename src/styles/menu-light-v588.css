@@ -1,0 +1,277 @@
+/* v588 · Menus open from the very top, in the hero's light palette (loaded LAST).
+   1. The panel is anchored at the top of the screen (top: 0) and runs full width. The white header bar
+      (hamburger / X, logo, search) sits ON the panel, so bar and menu read as one continuous white sheet.
+      The panel's own top padding equals the bar height, so no content hides behind the controls.
+   2. Colours follow the hero navigation: white sheet, #16171a ink, #f5f5f7 chips, hairlines in ink at low alpha.
+   Everything is driven by the variables below; change them here to retune the whole menu. */
+:root {
+  --nk-bar-h: 88px;              /* height of the white header bar (hero-bcg.css) */
+  --lm-bg: #ffffff;              /* sheet = header colour */
+  --lm-ink: #16171a;             /* text, rules, arrows */
+  --lm-dim: #5b6068;             /* secondary text */
+  --lm-mute: #7b8088;            /* idle tabs, tags, e-mail */
+  --lm-line: rgba(22, 23, 26, .14);
+  --lm-fill: #f5f5f7;            /* hover row, thumbnails, chips (same as the hero buttons) */
+  --lm-fill-2: #eceae5;
+}
+
+/* ---------- header: stays white while a menu is open ---------- */
+html body header.fixed[data-bcg],
+html body header.fixed[data-bcg][data-mega="open"],
+html body.nk-nav-open header.fixed[data-bcg],
+html body header.fixed[data-bcg][data-mega="open"]:has(:is(.nk-cx, .nk-md, .nk-md--dark, .nk-bm)) {
+  background: var(--lm-bg) !important; background-color: var(--lm-bg) !important; background-image: none !important;
+  color: var(--lm-ink) !important; border-bottom: 0 !important; box-shadow: none !important;
+}
+/* controls + logo sit above the panel */
+html body header[data-bcg] > .nk-container { position: relative !important; z-index: 60 !important; }
+html body header[data-bcg] .nk-logo-img { filter: brightness(0) !important; }
+
+/* ---------- panel: from the top edge, full width, light ---------- */
+html body header[data-bcg] .nk-mega-backdrop { top: 0 !important; z-index: 40 !important; background: rgba(22, 23, 26, .34) !important; }
+html body header[data-bcg] .nk-mega,
+html body header[data-bcg] .nk-mega:has(:is(.nk-cx, .nk-bm, .nk-md)) {
+  top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important;
+  z-index: 50 !important;
+  box-sizing: border-box !important;
+  padding-top: var(--nk-bar-h) !important;
+  height: auto !important; min-height: 0 !important;
+  max-height: 100vh !important; max-height: 100dvh !important;
+  background: var(--lm-bg) !important; background-color: var(--lm-bg) !important; background-image: none !important;
+  border: 0 !important; border-bottom: 1px solid var(--lm-line) !important;
+  box-shadow: 0 30px 60px -28px rgba(22, 23, 26, .35) !important;
+  color: var(--lm-ink) !important;
+  scrollbar-width: thin; scrollbar-color: rgba(22, 23, 26, .25) transparent;
+}
+html body header[data-bcg] .nk-mega .nk-mega-content,
+html body header[data-bcg] .nk-mega:has(:is(.nk-cx, .nk-bm, .nk-md)) .nk-mega-content {
+  background: transparent !important; background-color: transparent !important; max-height: none !important;
+}
+/* hairline under the bar, exactly where the menu's own top row begins */
+html body header[data-bcg] .nk-mega::before {
+  content: ""; position: absolute; left: 0; right: 0; top: calc(var(--nk-bar-h) - 1px); height: 1px; background: var(--lm-line); pointer-events: none;
+}
+/* the .nk-cx (top navigation) panel scrolls inside the sheet, so let the sheet do it */
+@media (min-width: 1100px) {
+  html body header[data-bcg] .nk-mega:has(.nk-cx) { max-height: 100dvh !important; }
+  html body header[data-bcg] .nk-mega:has(.nk-cx) .nk-cx { max-height: none; overflow: visible; }
+}
+
+/* ======================================================================================================
+   Hamburger / rail layout  (.nk-bm)
+   ====================================================================================================== */
+html body header[data-bcg] .nk-mega .nk-bm,
+html body .nk-bm {
+  --bm-ink: var(--lm-ink); --bm-dim: var(--lm-dim); --bm-mute: var(--lm-mute);
+  --bm-line: var(--lm-line); --bm-fill: var(--lm-fill);
+  background: var(--lm-bg) !important; color: var(--lm-ink) !important;
+}
+.nk-bm :focus-visible { outline-color: var(--lm-ink); }
+
+.nk-bm-sec::after, .nk-bm-head::after, .nk-bm-tab::after { background: var(--lm-ink); }
+.nk-bm-sec:hover, .nk-bm-sec[data-active="true"],
+.nk-bm-head:hover, .nk-bm-head[data-active="true"],
+.nk-bm-tab:hover, .nk-bm-tab[data-active="true"] { color: var(--lm-ink); }
+.nk-bm-go, .nk-bm-tabs-nav, .nk-bm-title, .nk-bm-row-name, .nk-bm-feat-title, .nk-bm-contact,
+.nk-bm-prev-title, .nk-bm-prev-rel li a { color: var(--lm-ink); }
+.nk-bm-row:hover .nk-bm-row-arrow, .nk-bm-row:focus-visible .nk-bm-row-arrow,
+.nk-bm-row[data-previewing] .nk-bm-row-arrow, .nk-bm-mail:hover, .nk-bm-back:hover, .nk-bm-back:focus-visible { color: var(--lm-ink); }
+html body header[data-bcg] .nk-bm .nk-bm-tabs-nav--l { background: linear-gradient(270deg, rgba(255, 255, 255, 0), var(--lm-bg) 62%) !important; }
+html body header[data-bcg] .nk-bm .nk-bm-tabs-nav--r { background: linear-gradient(90deg, rgba(255, 255, 255, 0), var(--lm-bg) 62%) !important; }
+.nk-bm-row:hover, .nk-bm-row:focus-visible { background: var(--lm-fill); }
+.nk-bm-row[data-previewing] { background: var(--lm-fill); box-shadow: inset 2px 0 0 var(--lm-ink); }
+.nk-bm .nk-bm-row:focus-visible { outline-color: rgba(22, 23, 26, .5); }
+.nk-bm-row-img, .nk-bm-feat-img, .nk-bm-prev-img { background: var(--lm-fill-2); }
+.nk-bm-row-img img, .nk-bm-feat-img img, .nk-bm-prev-img img { filter: saturate(.92); }
+.nk-bm-feat-img, .nk-bm-prev-img { border-top-color: var(--lm-ink); }
+.nk-bm-foot { background: var(--lm-bg) !important; border-top-color: var(--lm-line); }
+
+/* ======================================================================================================
+   Top-navigation columns  (.nk-cx)
+   ====================================================================================================== */
+html body header[data-bcg] .nk-mega .nk-cx {
+  --cx-line: var(--lm-line); --cx-dim: var(--lm-dim);
+  background: var(--lm-bg) !important; color: var(--lm-ink) !important;
+}
+.nk-cx-h, .nk-cx-tag { color: var(--lm-ink); }
+.nk-cx-sh { color: var(--lm-mute); }
+.nk-cx-go, .nk-cx-all, .nk-cx-btn, .nk-cx-office a, .nk-cx-contact { color: var(--lm-ink) !important; }
+.nk-cx-mail { color: var(--lm-mute) !important; }
+.nk-cx-mail:hover, .nk-cx-panel li a:hover { color: var(--lm-ink) !important; }
+.nk-cx-panel li a { color: var(--lm-dim) !important; }
+.nk-cx-viewall { color: var(--lm-mute) !important; }
+.nk-cx .nk-cx-panel li a { border-left-color: var(--lm-line); }
+.nk-cx .nk-cx-panel li a:hover, .nk-cx .nk-cx-panel li a:focus-visible { color: var(--lm-ink) !important; background: var(--lm-fill); border-left-color: var(--lm-ink); }
+.nk-cx-go i, .nk-cx-all i, .nk-cx .nk-cx-go i, .nk-cx .nk-cx-all i, .nk-cx .nk-cx-ar::before { background: var(--lm-ink); }
+.nk-cx .nk-cx-ar::after { border-top-color: var(--lm-ink); border-right-color: var(--lm-ink); }
+.nk-cx-foot { border-top-color: var(--lm-line); }
+.nk-cx .nk-cx-img, .nk-cx[data-section="expertise"] .nk-cx-img.nk-cx-band { border-top-color: var(--lm-ink); }
+.nk-cx .nk-cx-intro, .nk-cx[data-section="expertise"] .nk-cx-intro { border-right-color: var(--lm-line) !important; }
+.nk-cx[data-section="expertise"] .nk-cx-row { border-bottom-color: var(--lm-line) !important; }
+.nk-cx[data-section="infrastructure"]::-webkit-scrollbar-thumb, .nk-cx[data-section="expertise"]::-webkit-scrollbar-thumb { background: rgba(22, 23, 26, .25); }
+
+/* menu images: no dark-mode dimming on a light sheet */
+html body header[data-bcg] .nk-mega img { filter: saturate(.92); }
+
+/* ---------- below 1180px the slide-in panel is used; leave it as it is ---------- */
+@media (max-width: 1179px) {
+  html body header[data-bcg] .nk-mega { padding-top: var(--nk-bar-h) !important; }
+}
+
+/* ======================================================================================================
+   v590 · Header: [hamburger] ........ [LOGO][flag] ........ [search]   (logo stays in the middle, the flag hangs off its right edge)
+   Navigation: drawn in the home hero, in the spot where the headline used to be (Header.jsx portals it into #nk-nav-slot).
+   ====================================================================================================== */
+:root { --nk-navrow-h: 56px; --nk-panel-top: var(--nk-bar-h); }
+
+/* logo group: the logo alone, centred in the top bar */
+html body header[data-bcg] .nk-logo-group { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); display: flex; align-items: center; }
+html body header[data-bcg] .nk-logo-group > a { position: static !important; transform: none !important; }
+
+/* flag + search = ONE button: a single white pill, two chips with a hairline gap */
+html:not([dir="rtl"]) body header[data-bcg] .nk-header-actions.nk-header-actions-right:not(.nk-header-actions-left) { gap: 2px !important; padding: 6px !important; }
+html body header[data-bcg] .nk-header-actions-right .nk-lang-btn { width: 52px !important; min-width: 52px !important; border-radius: 8px 3px 3px 8px !important; }
+html body header[data-bcg] .nk-header-actions-right .nk-search-btn { border-radius: 3px 8px 8px 3px !important; }
+html body header[data-bcg] .nk-header-actions-right .nk-lang-btn svg { width: 38px; height: 27px; margin: 0 !important; }
+
+/* v592 · desktop: hamburger and flag/search stay in the top bar, level with the logo (exactly as when the hamburger menu is open);
+   the navigation row sits centred below them. No vertical offset any more. */
+@media (min-width: 1180px) {
+  html body header[data-bcg] .nk-header-actions,
+  html[data-nk-nav="slot"] body header[data-bcg] .nk-header-actions,
+  html[data-nk-nav="slot"] header[data-bcg] .nk-header-actions { transform: none !important; }
+}
+
+/* ---- navigation row (home hero, desktop only) ---- */
+.nk-navslot { display: none; }
+@media (min-width: 1180px) {
+  html body .bcg-hero { padding-top: var(--nk-bar-h); }
+  .nk-navslot { display: flex; justify-content: center; align-items: stretch; height: var(--nk-navrow-h); margin: 0 0 28px; position: relative; background: transparent; pointer-events: none; }
+  /* the headline stays in the page for search engines and screen readers, but is not drawn: the navigation takes its place */
+  .bcg-hero .bcg-h1 { position: absolute !important; width: 1px; height: 1px; margin: -1px !important; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+  .nk-navslot nav[aria-label="Primary"] { pointer-events: auto; display: flex; align-items: stretch; justify-content: center; column-gap: 44px; }
+  .nk-navslot .nk-nav-link {
+    position: relative; display: inline-flex; align-items: center; height: var(--nk-navrow-h); padding: 0; border: 0; background: transparent;
+    font-family: var(--nk-nav-font, 'Inter', system-ui, sans-serif); font-size: 17px; font-weight: 400; letter-spacing: 0; line-height: 1.2;
+    color: var(--lm-dim); cursor: pointer; transition: color 160ms ease;
+  }
+  .nk-navslot .nk-nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--lm-ink); transform: scaleX(0); transform-origin: left; transition: transform 260ms cubic-bezier(.2, .7, .2, 1); }
+  .nk-navslot .nk-nav-link:hover, .nk-navslot .nk-nav-link:focus-visible, .nk-navslot .nk-nav-link[data-active="true"] { color: var(--lm-ink); }
+  .nk-navslot .nk-nav-link:hover::after { transform: scaleX(1); opacity: .5; }
+  .nk-navslot .nk-nav-link[data-active="true"] { font-weight: 500; }
+  .nk-navslot .nk-nav-link[data-active="true"]::after { transform: scaleX(1); opacity: 1; }
+  .nk-navslot .nk-nav-link:focus-visible { outline: 2px solid var(--lm-ink); outline-offset: 4px; }
+
+  /* menu open from the top navigation: the row stays visible ABOVE the panel, so the panel leaves room for it */
+  /* the hero is an isolated stacking layer; release it while a menu is open so the row can rise above the header's panel */
+  html[data-nk-menu] .bcg-hero { isolation: auto; }
+  html[data-nk-menu] .nk-navslot { z-index: 45; }
+  html[data-nk-nav="slot"][data-nk-menu="top"] { --nk-panel-top: calc(var(--nk-bar-h) + var(--nk-navrow-h)); }
+  /* opened from the hamburger the panel carries its own section tabs, so the row steps aside (no duplicate) */
+  html[data-nk-menu="burger"] .nk-navslot { z-index: auto; }
+  html[data-nk-menu="burger"] .nk-navslot nav { visibility: hidden; }
+}
+/* panel top spacing + hairline follow --nk-panel-top */
+html body header[data-bcg] .nk-mega, html body header[data-bcg] .nk-mega:has(:is(.nk-cx, .nk-bm, .nk-md)) { padding-top: var(--nk-panel-top) !important; }
+html body header[data-bcg] .nk-mega::before { top: calc(var(--nk-panel-top) - 1px); }
+
+/* ======================================================================================================
+   v592 · Accent colour #329AB2 · underline closer to the text · hero uses the full window height
+   ====================================================================================================== */
+:root { --lm-accent: #329AB2; --lm-accent-soft: rgba(50, 154, 178, .10); }
+
+/* underline sits right under the text (was far below it) */
+.nk-bm-tab::after { bottom: 8px; background: var(--lm-accent); }
+@media (min-width: 1180px) {
+  .nk-navslot .nk-nav-link::after { bottom: 11px; background: var(--lm-accent); }
+  .nk-navslot .nk-nav-link:hover, .nk-navslot .nk-nav-link:focus-visible, .nk-navslot .nk-nav-link[data-active="true"] { color: var(--lm-ink); }
+}
+
+/* hamburger menu: every ink accent (active tab, rules, arrows, links, selected row) turns accent */
+.nk-bm-sec::after, .nk-bm-head::after, .nk-bm-tab::after { background: var(--lm-accent); }
+.nk-bm-sec:hover, .nk-bm-sec[data-active="true"],
+.nk-bm-head:hover, .nk-bm-head[data-active="true"],
+.nk-bm-tab:hover, .nk-bm-tab[data-active="true"] { color: var(--lm-accent); }
+.nk-bm-go, .nk-bm-contact, .nk-bm-prev-rel li a:hover { color: var(--lm-accent); }
+.nk-bm-row:hover .nk-bm-row-arrow, .nk-bm-row:focus-visible .nk-bm-row-arrow,
+.nk-bm-row[data-previewing] .nk-bm-row-arrow, .nk-bm-mail:hover, .nk-bm-back:hover, .nk-bm-back:focus-visible { color: var(--lm-accent); }
+.nk-bm-row:hover .nk-bm-row-name, .nk-bm-row[data-previewing] .nk-bm-row-name { color: var(--lm-accent); }
+.nk-bm-row[data-previewing] { background: var(--lm-accent-soft); box-shadow: inset 2px 0 0 var(--lm-accent); }
+.nk-bm-row:hover, .nk-bm-row:focus-visible { background: var(--lm-accent-soft); }
+.nk-bm-feat-img, .nk-bm-prev-img { border-top-color: var(--lm-accent); }
+.nk-bm :focus-visible { outline-color: var(--lm-accent); }
+
+/* top-navigation panels (.nk-cx) follow the same accent */
+.nk-cx-go, .nk-cx-all, .nk-cx-btn, .nk-cx-office a, .nk-cx-contact { color: var(--lm-accent) !important; }
+.nk-cx-go i, .nk-cx-all i, .nk-cx .nk-cx-go i, .nk-cx .nk-cx-all i, .nk-cx .nk-cx-ar::before { background: var(--lm-accent); }
+.nk-cx .nk-cx-ar::after { border-top-color: var(--lm-accent); border-right-color: var(--lm-accent); }
+.nk-cx .nk-cx-panel li a:hover, .nk-cx .nk-cx-panel li a:focus-visible { color: var(--lm-accent) !important; background: var(--lm-accent-soft); border-left-color: var(--lm-accent); }
+.nk-cx .nk-cx-img, .nk-cx[data-section="expertise"] .nk-cx-img.nk-cx-band { border-top-color: var(--lm-accent); }
+
+/* hamburger button itself: accent icon while the menu is open */
+html body header[data-bcg] .nk-square-hamburger[aria-expanded="true"],
+html body header[data-bcg] .nk-square-hamburger[aria-expanded="true"] svg { color: var(--lm-accent) !important; stroke: var(--lm-accent) !important; }
+
+/* home hero: fill the window, no dead band under the pictures (desktop) */
+@media (min-width: 1180px) {
+  html body .bcg-hero { box-sizing: border-box; min-height: 100vh; min-height: 100dvh; padding-bottom: 20px; display: flex; flex-direction: column; }
+  html body .bcg-hero .bcg-row { flex: 1 1 auto; height: auto; min-height: 460px; }
+  html body .bcg-hero .nk-navslot { flex: none; margin-bottom: 20px; }
+}
+
+/* ======================================================================================================
+   v593 · accent on LINES only (text stays ink) · header = [hamburger][logo] ........ [navigation][flag|search]
+   the navigation row under the bar is gone, so the hero pictures start right below the bar
+   ====================================================================================================== */
+/* text / icons back to ink */
+.nk-bm-sec:hover, .nk-bm-sec[data-active="true"], .nk-bm-head:hover, .nk-bm-head[data-active="true"],
+.nk-bm-tab:hover, .nk-bm-tab[data-active="true"], .nk-bm-go, .nk-bm-contact, .nk-bm-prev-rel li a:hover,
+.nk-bm-row:hover .nk-bm-row-arrow, .nk-bm-row:focus-visible .nk-bm-row-arrow, .nk-bm-row[data-previewing] .nk-bm-row-arrow,
+.nk-bm-mail:hover, .nk-bm-back:hover, .nk-bm-back:focus-visible,
+.nk-bm-row:hover .nk-bm-row-name, .nk-bm-row[data-previewing] .nk-bm-row-name { color: var(--lm-ink); }
+.nk-bm-row:hover, .nk-bm-row:focus-visible, .nk-bm-row[data-previewing] { background: var(--lm-fill); }
+.nk-cx-go, .nk-cx-all, .nk-cx-btn, .nk-cx-office a, .nk-cx-contact { color: var(--lm-ink) !important; }
+.nk-cx .nk-cx-panel li a:hover, .nk-cx .nk-cx-panel li a:focus-visible { color: var(--lm-ink) !important; background: var(--lm-fill); }
+.nk-cx .nk-cx-ar::after { border-top-color: var(--lm-ink); border-right-color: var(--lm-ink); }
+html body header[data-bcg] .nk-square-hamburger[aria-expanded="true"],
+html body header[data-bcg] .nk-square-hamburger[aria-expanded="true"] svg { color: var(--lm-ink) !important; stroke: var(--lm-ink) !important; }
+/* the little line before / after the links stays accent */
+.nk-bm-go > i, .nk-bm-go > b { background: var(--lm-accent); }
+.nk-bm-go > b::after { border-top-color: var(--lm-accent); border-right-color: var(--lm-accent); }
+
+@media (min-width: 1180px) {
+  html body header[data-bcg] > .nk-container { gap: 22px !important; }
+  /* logo right next to the hamburger */
+  html body header[data-bcg] .nk-logo-group { position: static !important; transform: none !important; left: auto; top: auto; flex: none; }
+  /* navigation in the bar, hugging the flag / search */
+  html body header[data-bcg] nav.nk-primary-nav { display: flex !important; align-items: stretch; margin-left: auto; margin-right: 26px; column-gap: 34px; height: 64px !important; }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link {
+    position: relative; display: inline-flex; align-items: center; height: 64px !important; padding: 0; border: 0; background: transparent !important;
+    font-family: var(--nk-nav-font, 'Inter', system-ui, sans-serif); font-size: 16px !important; font-weight: 400; line-height: 1.2; color: var(--lm-dim) !important; cursor: pointer; transition: color 160ms ease;
+  }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link::after { content: ""; position: absolute; left: 0; right: 0; bottom: 19px; height: 2px; background: var(--lm-accent); transform: scaleX(0); transform-origin: left; transition: transform 260ms cubic-bezier(.2, .7, .2, 1); }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link:hover, html body header[data-bcg] nav.nk-primary-nav .nk-nav-link:focus-visible,
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link[data-active="true"] { color: var(--lm-ink) !important; }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link[data-active="true"] { font-weight: 500; }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link:hover::after { transform: scaleX(1); opacity: .5; }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link[data-active="true"]::after { transform: scaleX(1); opacity: 1; }
+  html[data-nk-menu="burger"] header[data-bcg] nav.nk-primary-nav { visibility: hidden; }
+  /* actions keep their natural place (no auto margin: the navigation pushes them right) */
+  html body header[data-bcg] .nk-header-actions-right { margin-left: 0 !important; }
+  /* no row under the bar: pictures start right below it */
+  .nk-navslot { display: none !important; }
+  html body .bcg-hero { padding-top: calc(var(--nk-bar-h) - 4px); }
+}
+@media (max-width: 1179px) { html body header[data-bcg] nav.nk-primary-nav { display: none !important; } }
+
+@media (min-width: 1180px) {
+  html body header[data-bcg] nav.nk-primary-nav { position: relative !important; top: auto !important; left: auto !important; transform: none !important; align-self: center; }
+  html body header[data-bcg] .nk-header-actions-left { margin: 0 !important; }
+  html body header[data-bcg] > .nk-container { gap: 16px !important; }
+}
+@media (min-width: 1180px) {
+  html body header[data-bcg] nav.nk-primary-nav { margin-left: auto !important; margin-right: 26px !important; }
+}
+@media (min-width: 1180px) {
+  html:not([dir="rtl"]) body header[data-bcg] .nk-header-actions.nk-header-actions-right:not(.nk-header-actions-left) { margin-left: 0 !important; }
+}

@@ -1,0 +1,68 @@
+/* v318 · Top mega menu = clean accordion (category -> items) instead of the dark left rail. CBRE-style: light, serif headings, hairlines, big image on the right.
+   Only applies to .nk-md--acc (opened from the top navigation). The burger menu keeps its dark rail. */
+.nk-md--acc { --acc-w: clamp(300px, 24vw, 360px); --acc-img: clamp(480px, 40vw, 760px);
+  grid-template-columns: var(--acc-w) minmax(0, 1fr) var(--acc-img) !important; background: #fff; }
+.nk-md--acc[data-feat="none"] { grid-template-columns: var(--acc-w) minmax(0, 1fr) !important; }
+.nk-acc { grid-column: 1; grid-row: 1; min-height: 0; display: flex; flex-direction: column; padding: 26px 0 0 var(--nk-pad, 48px); border-right: 1px solid var(--md-hair); background: #fff; }
+.nk-acc-head { padding: 0 24px 14px 0; }
+.nk-acc-list { list-style: none; margin: 0; padding: 0; flex: 1 1 auto; min-height: 0; overflow-y: auto; scrollbar-width: thin; border-top: 1px solid var(--md-hair); }
+.nk-acc-cat { border-bottom: 1px solid var(--md-hair); margin-right: 24px; }
+.nk-acc-btn { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px; padding: 13px 0; color: var(--md-mute) !important; transition: color 160ms ease; }
+.nk-acc-btn > span { font-size: 21px; line-height: 1.2; font-weight: 500; }
+.nk-acc-btn:hover, .nk-acc-cat[data-open="true"] > .nk-acc-btn, .nk-acc-cat[data-current="true"] > .nk-acc-btn { color: var(--md-ink) !important; }
+.nk-acc-chev { flex: none; transition: transform 220ms ease; }
+.nk-acc-cat[data-open="true"] .nk-acc-chev { transform: rotate(180deg); }
+.nk-acc-panel { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 260ms cubic-bezier(.2,.7,.2,1); }
+.nk-acc-panel.is-open { grid-template-rows: 1fr; }
+.nk-acc-panel-inner { overflow: hidden; min-height: 0; }
+.nk-acc-items { list-style: none; margin: 0; padding: 0 0 12px; }
+.nk-acc-item { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 0 8px 14px; font-size: 14.5px; font-weight: 500; color: var(--md-body) !important; border-left: 2px solid transparent; transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease; }
+.nk-acc-item svg { opacity: 0; transition: opacity 160ms ease; flex: none; }
+.nk-acc-item:hover { color: var(--md-ink) !important; background: #f3f4f6; }
+.nk-acc-item:hover svg, .nk-acc-item[data-active="true"] svg { opacity: .7; }
+.nk-acc-item[data-active="true"] { color: var(--md-ink) !important; border-left-color: var(--md-ink); }
+.nk-acc-explore { flex: none; display: flex; align-items: center; gap: 10px; padding: 16px 0 18px; font: 500 11px/1.2 var(--nk-text, sans-serif); letter-spacing: .13em; text-transform: uppercase; color: var(--md-ink) !important; }
+.nk-acc-explore svg { transition: transform 200ms ease; }
+.nk-acc-explore:hover svg { transform: translateX(4px); }
+.nk-md--acc .nk-md-main { padding-top: 18px; padding-left: 40px; }
+.nk-md--acc .nk-md-body, .nk-md--acc .nk-md-tabs-wrap { max-width: 100%; }
+.nk-md--acc .nk-md-title { margin-top: 6px; }
+/* big image on the right: fills the whole column */
+.nk-md--acc .nk-md-feat, .nk-md--acc .nk-md-prev { padding: 0; }
+.nk-md--acc .nk-md-feat-img { flex: 1 1 auto; aspect-ratio: auto; min-height: 260px; }
+.nk-md--acc .nk-md-feat-body { padding: 20px 48px 22px 28px; }
+.nk-md--acc .nk-md-prev-card { margin: 0; }
+@media (max-width: 1360px) { .nk-md--acc { --acc-img: clamp(380px, 36vw, 480px); } }
+@media (max-width: 1180px) { .nk-md--acc { grid-template-columns: var(--acc-w) minmax(0, 1fr) !important; } }
+@media (prefers-reduced-motion: reduce) { .nk-acc * { transition: none !important; } }
+
+/* v319 · rich + all accordions: header block (title, intro, button), 3-level accordion, middle column removed, image takes the right half */
+.nk-md--acc { --acc-w: clamp(460px, 44vw, 620px); --acc-img: 1fr; grid-template-columns: var(--acc-w) minmax(0, 1fr) !important; }
+.nk-md--acc[data-feat="none"] { grid-template-columns: var(--acc-w) minmax(0, 1fr) !important; }
+.nk-md--acc .nk-md-main { display: none; }
+.nk-md--acc .nk-md-feat, .nk-md--acc .nk-md-prev { grid-column: 2; }
+.nk-md--acc .nk-md-feat-img { min-height: 320px; }
+.nk-acc { padding-top: 24px; border-right: 0; }
+.nk-acc-head { padding: 0 var(--nk-pad,48px) 14px 0; }
+.nk-acc-title { margin: 0 0 8px; font-size: clamp(36px, 3.4vw, 52px); line-height: 1; font-weight: 500; color: var(--md-ink); }
+.nk-acc-desc { margin: 0 0 14px; font-size: 14px; line-height: 1.55; color: var(--md-body); max-width: 440px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.nk-acc-cta { display: inline-flex; align-items: center; gap: 10px; padding: 11px 22px; background: var(--md-night); color: #fff !important; font-size: 14px; font-weight: 500; }
+.nk-acc-cta svg { transition: transform 200ms ease; }
+.nk-acc-cta:hover svg { transform: translateX(4px); }
+.nk-acc-list { margin-right: 0; }
+.nk-acc-cat { margin-right: var(--nk-pad,48px); }
+.nk-acc-btn { padding: 11px 0; }
+.nk-acc-btn > span { font-size: 20px; }
+.nk-acc-items { padding: 0 0 8px; }
+.nk-acc-it { border-top: 1px solid #eceef0; }
+.nk-acc-item { padding: 10px 0 10px 14px; font-size: 15px; }
+.nk-acc-item svg { opacity: .5; transition: transform 220ms ease; }
+.nk-acc-it[data-open="true"] > .nk-acc-item svg { transform: rotate(180deg); }
+.nk-acc-kids { list-style: none; margin: 0; padding: 0 0 10px 14px; }
+.nk-acc-kid { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 12px 8px 14px; font-size: 14px; color: var(--md-body) !important; border-left: 1px solid var(--md-hair); transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease; }
+.nk-acc-kid svg { flex: none; opacity: 0; transition: opacity 160ms ease; }
+.nk-acc-kid:hover, .nk-acc-kid[data-previewing] { background: #f3f4f6; color: var(--md-ink) !important; border-left-color: var(--md-ink); }
+.nk-acc-kid:hover svg, .nk-acc-kid[data-previewing] svg { opacity: .8; }
+.nk-acc-kid--all { font-weight: 500; color: var(--md-ink) !important; }
+.nk-acc-kid--all svg { opacity: .6; }
+@media (max-width: 1180px) { .nk-md--acc .nk-md-main { display: block; } }

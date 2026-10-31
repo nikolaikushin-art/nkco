@@ -1,0 +1,39 @@
+/* v615 · restored (old) home hero follows the CURRENT header bar.
+   The old hero was fitted for a 64px header; the bar is now --nk-bar-h (72px, header-small-v609.css). Pointing the hero's header height at it keeps the hero
+   exactly one window tall (Hero.jsx fits the picture, text and the three link boxes to the window), so the next section never shows under the boxes. */
+.nk4-hero { --nk-header-h: var(--nk-bar-h, 72px); }
+@media (min-width: 1024px) {
+  html body .nk4-hero { padding-top: var(--nk-bar-h, 72px); }
+}
+@media (max-width: 1023px) {
+  html body .nk4-hero { padding-top: calc(var(--nk-bar-h, 72px) + 4px); }
+}
+
+/* v615 · side edges: the hero's content (text, photos, link boxes) starts and ends on the same lines as the header's hamburger button (left) and search button (right).
+   Header: bar padding 20px + 5px control-box padding (header-small-v609.css) = 25px from each window edge. */
+html body .nk4-hero .nk-container { max-width: none !important; padding-left: 25px !important; padding-right: 25px !important; }
+
+/* v624 · phones / tablets (< 1024px): the three-photo strip no longer fills the whole screen.
+   The hero is as tall as its content; the photos get a fixed, shorter shape so the headline, buttons and player show right under them. */
+@media (max-width: 1023px) {
+  html body .nk4-hero { min-height: 0 !important; }
+  html body .nk4-hero .nk4-grid { flex: 0 0 auto !important; grid-template-rows: auto !important; align-items: start !important; }
+  html body .nk4-hero .nk4-media { display: block !important; }
+  html body .nk4-hero .nk4-frame, html body .nk4-hero .nk4-frame.nk4-frame-tri { flex: none !important; height: auto !important; min-height: 0 !important; aspect-ratio: 1 / 1 !important; max-height: 58vh; }
+}
+@media (min-width: 600px) and (max-width: 1023px) {
+  html body .nk4-hero .nk4-frame, html body .nk4-hero .nk4-frame.nk4-frame-tri { aspect-ratio: 16 / 9 !important; }
+}
+
+/* v626 · podcast player: no empty gap between the title and the "42 min · Listen · Transcript" row.
+   The meta row sits right under the title, and the cover takes the height of the text beside it instead of forcing it taller. */
+html body .nk4-hero .nk4-pod-meta { margin-top: 0; padding-top: calc(10 * var(--u, 1px)); }
+html body .nk4-hero .nk4-pod-thumb { min-height: 0; }
+html body .nk4-hero .nk4-pod-top { align-items: stretch; }
+html body .nk4-hero .nk4-pod-bar { margin-top: calc(14 * var(--u, 1px)); }
+
+/* v627 · podcast title on one line at its full size (no shrinking): the cover is made smaller instead, which gives the text more width. */
+@media (min-width: 768px) {
+  html body .nk4-hero .nk4-pod-top { grid-template-columns: calc(100 * var(--u, 1px)) minmax(0, 1fr); gap: calc(20 * var(--u, 1px)); }
+  html body .nk4-hero .nk4-pod-title { display: block; white-space: nowrap; text-wrap: nowrap; }
+}

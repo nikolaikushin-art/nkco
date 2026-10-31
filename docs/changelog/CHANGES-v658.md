@@ -1,0 +1,6 @@
+# v658 — Working OMS tablets, unique on every page
+- New `src/components/OmsGrid.jsx` (+ `src/styles/oms-grid-v658.css`): the grid inside every tablet now works. Click a header to sort, search, filter chips, pagination, click a row to select it, click a status pill to move it on (On track > Review > Scoping > Complete), and an add button that adds a real row. In memory only; nothing is stored or sent.
+- Home tablet (`OmsShowcase.jsx`): all six modules are working. Dashboard (mandates by practice, new mandate), CRM (clients by practice, new client also lands in Recent activity), Workflow (Board: click a card to move it a stage; List: sortable task table), Reporting (Q3 / Q2 / Year to date switch the KPIs and the board pack; Schedule toggles; Export CSV downloads), Documents (filter by type, upload adds a file), Finance (Invoices / Payments / Forecast are three different tables).
+- Page tablets (`CapVisual.jsx`): every grid is the working grid. The page title seeds owners, practice order, statuses and due dates, so each page's tablet is different. Method has a clickable board, Reporting has period tabs and CSV export.
+- The tablet stops cycling as soon as a visitor clicks or focuses inside it, so state is never lost.
+- DataGrid CSS hardened against page-level th/input styles.

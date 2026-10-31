@@ -1,0 +1,49 @@
+/* v641 · Header controls, final clean pass (loaded last).
+   Logo, hamburger, flag and search are plain marks on the bar: no ring, no tile, no shadow, no gloss.
+   All four share one vertical centre line; hover = quiet fade only; keyboard focus = thin square outline. */
+html body header[data-bcg] .nk-header-actions,
+html body header[data-bcg] .nk-header-actions-right { background: transparent !important; box-shadow: none !important; border: 0 !important; border-radius: 0 !important; padding: 0 !important; height: 44px !important; align-items: center !important; }
+
+html body header[data-bcg] .nk-square-hamburger,
+html body header[data-bcg] .nk-header-actions-right button,
+html body header[data-bcg] .nk-header-actions-right .nk-lang-btn,
+html body header[data-bcg] .nk-header-actions-right .nk-search-btn {
+  position: relative !important; top: 0 !important;
+  flex: 0 0 44px !important; width: 44px !important; min-width: 44px !important; height: 44px !important; padding: 0 !important;
+  display: inline-flex !important; align-items: center !important; justify-content: center !important;
+  background: transparent !important; background-color: transparent !important; background-image: none !important;
+  border: 0 !important; border-radius: 0 !important; box-shadow: none !important; outline: 0 !important;
+  transition: opacity .18s ease !important; -webkit-tap-highlight-color: transparent;
+}
+html body header[data-bcg] .nk-square-hamburger:hover,
+html body header[data-bcg] .nk-square-hamburger:active,
+html body header[data-bcg] .nk-square-hamburger:focus,
+html body header[data-bcg] .nk-header-actions-right button:hover,
+html body header[data-bcg] .nk-header-actions-right button:active,
+html body header[data-bcg] .nk-header-actions-right button:focus { background: transparent !important; background-color: transparent !important; box-shadow: none !important; border: 0 !important; border-radius: 0 !important; transform: none !important; }
+html body header[data-bcg] .nk-square-hamburger:hover,
+html body header[data-bcg] .nk-header-actions-right button:hover { opacity: .6 !important; }
+html body header[data-bcg] .nk-square-hamburger:focus-visible,
+html body header[data-bcg] .nk-header-actions-right button:focus-visible { outline: 2px solid #16171a !important; outline-offset: -4px !important; }
+
+/* icons: same optical weight, centred in their 44px cells */
+html body header[data-bcg] .nk-square-hamburger svg { width: 30px !important; height: 19px !important; stroke-width: 2.6px !important; transform: none !important; margin: 0 !important; }
+html body header[data-bcg] .nk-header-actions-right .nk-lang-btn svg { width: 28px !important; height: 20px !important; margin: 0 !important; filter: none !important; }
+html body header[data-bcg] .nk-header-actions-right .nk-search-btn svg { width: 24px !important; height: 24px !important; stroke-width: 2.6px !important; margin: 0 !important; }
+/* flag: flat, no gloss overlay */
+html body header[data-bcg] .nk-lang-btn svg rect[fill^="url"] { display: none !important; }
+
+/* logo: sits on the same centre line, 12px from the hamburger */
+html body header[data-bcg] .nk-logo-group { display: flex !important; align-items: center !important; height: 44px !important; }
+html body header[data-bcg] .nk-header-logo { display: flex !important; align-items: center !important; height: 44px !important; line-height: 0 !important; }
+html body header[data-bcg] .nk-logo-img { display: block !important; height: 28px !important; width: auto !important; margin: 0 !important; }
+
+/* edges: hamburger glyph starts on the 25px line, search glyph ends on it (cells are 44px, glyphs centred) */
+html body header[data-bcg] .nk-header-actions-left { margin-left: -2px !important; }
+html:not([dir="rtl"]) body header[data-bcg] .nk-header-actions.nk-header-actions-right:not(.nk-header-actions-left) { margin-right: -9px !important; gap: 6px !important; }
+@media (min-width: 1180px) {
+  html body header[data-bcg] > .nk-container { gap: 8px !important; align-items: center !important; }
+  html body header[data-bcg] .nk-logo-group { margin-left: 0 !important; }
+  html body header[data-bcg] nav.nk-primary-nav { align-self: center !important; height: 44px !important; }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link { height: 44px !important; align-items: center !important; }
+}

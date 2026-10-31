@@ -1,0 +1,96 @@
+/* v609 · smaller top navigation (loaded after menu-light-v588.css so it wins).
+   Bar 88 -> 72px, control box 64 -> 52px, buttons 52 -> 42px, logo 36 -> 28px. Menus and hero follow --nk-bar-h. */
+:root { --nk-bar-h: 72px; }
+html body header.fixed, html body header.fixed[data-mega="open"], html body header.fixed[data-bcg], html body header.fixed[data-bcg][data-mega="open"] { height: 72px !important; }
+html body header[data-bcg] .nk-container { height: 72px !important; }
+html body header[data-bcg] .nk-logo-img { height: 28px !important; }
+html body header[data-bcg] .nk-header-actions { height: 52px !important; padding: 5px !important; border-radius: 6px !important; }
+html body header[data-bcg] .nk-header-actions-right { padding: 5px !important; }
+html body header[data-bcg] .nk-square-hamburger,
+html body header[data-bcg] .nk-header-actions-right button { flex: 0 0 42px !important; width: 42px !important; min-width: 42px !important; height: 42px !important; border-radius: 6px !important; }
+html body header[data-bcg] .nk-square-hamburger svg { width: 28px !important; height: 18px !important; }
+html body header[data-bcg] .nk-header-actions-right button svg { width: 22px !important; height: 22px !important; stroke-width: 2.5px !important; }
+
+/* v618 · top navigation = same size as the hamburger menu tabs (.nk-bm-sec): 15px, weight 400 (active 500), 42px gap. */
+@media (min-width: 1180px) {
+  html body .nk-navslot nav[aria-label="Primary"] { column-gap: 26px !important; }
+  html body .nk-navslot .nk-nav-link { font-size: 15px !important; font-weight: 400 !important; letter-spacing: 0 !important; }
+  html body .nk-navslot .nk-nav-link[data-active="true"] { font-weight: 500 !important; }
+  html body header[data-bcg] nav.nk-primary-nav { column-gap: 26px !important; }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link { font-size: 15px !important; font-weight: 400 !important; letter-spacing: 0 !important; }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link[data-active="true"] { font-weight: 500 !important; }
+}
+
+/* v610 · footer practices list: names only, no activity codes */
+.ft-codes { display: grid !important; gap: 2px; }
+.ft-codes li { font: 400 16px/1.4 var(--sans, 'Inter', sans-serif); color: var(--soft, #c9ccd1); padding: 3px 0; }
+
+/* v611 · footer: the three practices as three cards (purpose, output, engagement, services) */
+.ft-prac { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; padding: 40px 0; border-top: 1px solid var(--rule-l, rgba(255,255,255,.16)); }
+.ft-prac-c { display: flex; flex-direction: column; gap: 14px; padding: 24px 22px 22px; background: rgba(255,255,255,.04); border-top: 2px solid #329AB2; }
+.ft-prac-c small { font: 600 11px/1 var(--sans, 'Inter', sans-serif); letter-spacing: .14em; text-transform: uppercase; color: var(--soft, #aeb3ba); }
+.ft-prac-c h3 { font: 500 24px/1.15 var(--disp, 'Newsreader', Georgia, serif); margin: 0; color: #fff; }
+.ft-prac-c h3 a { color: inherit; text-decoration: none; }
+.ft-prac-c dl { margin: 0; display: grid; gap: 9px; align-content: start; min-height: 108px; }
+.ft-prac-c dl div { display: grid; grid-template-columns: 82px 1fr; gap: 10px; font: 400 13.5px/1.4 var(--sans, 'Inter', sans-serif); }
+.ft-prac-c dt { color: var(--soft, #9aa0a8); }
+.ft-prac-c dd { margin: 0; color: #e8eaed; }
+.ft-prac-c ul { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule-l, rgba(255,255,255,.16)); }
+.ft-prac-c li a { display: block; padding: 9px 0; border-bottom: 1px solid var(--rule-l, rgba(255,255,255,.16)); font: 400 14px/1.3 var(--sans, 'Inter', sans-serif); color: #d9dce0; text-decoration: none; }
+.ft-prac-c li a:hover { color: #fff; padding-inline-start: 6px; }
+.ft-prac-go { margin-top: auto; display: inline-flex; align-items: center; gap: 10px; font: 600 12px/1 var(--sans, 'Inter', sans-serif); letter-spacing: .1em; text-transform: uppercase; color: #fff; text-decoration: none; }
+@media (max-width: 900px) { .ft-prac { grid-template-columns: 1fr; } }
+
+/* v612 · footer regulatory note: no empty left column; heading on top, the note runs full width in two columns */
+.ft-reg { display: block !important; padding-block: 28px 32px !important; }
+.ft-reg > div { margin: 0 0 14px; }
+.ft-reg h3 { font: 600 11px/1 var(--sans, 'Inter', sans-serif) !important; letter-spacing: .14em; text-transform: uppercase; color: var(--soft, #9aa0a8); margin: 0; }
+.ft-reg p { max-width: none !important; margin: 0; column-count: 2; column-gap: 56px; font-size: 13.5px; line-height: 1.7; }
+@media (max-width: 900px) { .ft-reg p { column-count: 1; } }
+
+/* v613 · regulatory note as a designed block: lead statement + five numbered boundary tiles */
+.ft-reg.ft-bound { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: 14px; padding-block: 32px 36px !important; }
+.ft-bound-lead { display: grid; grid-template-columns: 220px 1fr; gap: 32px; align-items: center; padding: 26px 28px; background: #f5f5f7; color: #16171a; border-top: 2px solid #329AB2; }
+.ft-bound-lead small { font: 600 11px/1.3 var(--sans, 'Inter', sans-serif); letter-spacing: .14em; text-transform: uppercase; color: #5b6068; }
+.ft-bound-lead p { margin: 0; max-width: none !important; column-count: 1 !important; font: 500 clamp(18px, 1.6vw, 24px)/1.35 var(--disp, 'Newsreader', Georgia, serif); color: #16171a; }
+.ft-bound-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.ft-bound-t { display: flex; flex-direction: column; gap: 10px; padding: 22px 20px 24px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.10); }
+.ft-bound-t b { font: 500 34px/1 var(--disp, 'Newsreader', Georgia, serif); color: #3fb0c8; }
+.ft-bound-t h4 { margin: 0; font: 600 12px/1.3 var(--sans, 'Inter', sans-serif); letter-spacing: .1em; text-transform: uppercase; color: #fff; padding-bottom: 10px; border-bottom: 1px solid rgba(255,255,255,.16); }
+.ft-bound-t p { margin: 0; max-width: none !important; column-count: 1 !important; font: 400 13px/1.55 var(--sans, 'Inter', sans-serif); color: #c3c7cd; }
+@media (max-width: 1100px) { .ft-bound-grid { grid-template-columns: repeat(2, 1fr); } .ft-bound-lead { grid-template-columns: 1fr; gap: 10px; } }
+@media (max-width: 600px) { .ft-bound-grid { grid-template-columns: 1fr; } }
+
+/* v614 · closing band + legal bar, laid out like the UNERA reference: eyebrow with rule, big serif line, short text, two underlined link rows on the right; thin legal bar below */
+.ft-last { background: #17191d; border-top: 1px solid rgba(255,255,255,.08); }
+.ft-last-in { display: flex; align-items: center; justify-content: space-between; gap: 48px; padding-block: 56px 60px; }
+.ft-last-t { max-width: 760px; }
+.ft-last-k { display: flex; align-items: center; gap: 14px; margin: 0 0 22px; font: 600 12px/1 var(--sans, 'Inter', sans-serif); letter-spacing: .16em; text-transform: uppercase; color: #8fb8c4; }
+.ft-last-k i { display: block; width: 44px; height: 2px; background: #329AB2; }
+.ft-last h2 { margin: 0; font: 500 clamp(32px, 3.6vw, 54px)/1.08 var(--disp, 'Newsreader', Georgia, serif); color: #fff; letter-spacing: -.01em; }
+.ft-last-d { margin: 20px 0 0; max-width: 620px; font: 400 16px/1.6 var(--sans, 'Inter', sans-serif); color: #a4a9b0; }
+.ft-last-l { list-style: none; margin: 0; padding: 0; width: min(400px, 100%); flex: 0 0 auto; }
+.ft-last-l li { border-bottom: 1px solid rgba(255,255,255,.2); }
+.ft-last-l a { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; font: 600 18px/1.2 var(--sans, 'Inter', sans-serif); color: #fff; text-decoration: none; }
+.ft-last-l a svg { color: #6fb7c9; transition: transform .25s ease; }
+.ft-last-l a:hover svg { transform: translateX(4px); }
+.ft-legal { background: #0f1114; border-top: 1px solid rgba(255,255,255,.08); }
+.ft-legal-in { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; padding-block: 22px; font: 400 14px/1.4 var(--sans, 'Inter', sans-serif); color: #9aa0a8; }
+.ft-legal nav { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 32px; }
+.ft-legal nav span, .ft-legal nav a, .ft-legal nav button { color: inherit; background: none; border: 0; padding: 0; font: inherit; cursor: pointer; text-decoration: none; }
+.ft-legal nav a:hover, .ft-legal nav button:hover { color: #fff; }
+.ft-legal .ft-top { display: inline-flex; align-items: center; gap: 8px; font-weight: 400; }
+@media (max-width: 900px) { .ft-last-in { flex-direction: column; align-items: stretch; gap: 32px; padding-block: 44px; } .ft-last-l { width: 100%; } }
+
+/* v619 · Infrastructure: the eyebrow "Operations Management System" sits below the heading */
+.hv-head.is-below h2 { margin: 0; }
+.hv-head.is-below .hv-eyebrow { margin-top: 18px; }
+
+/* v621 · Infrastructure: everything centred on one axis (label with a line on both sides, numbers centred in their boxes) */
+.hv-head.is-below .hv-eyebrow { justify-content: center; }
+.hv-head.is-below .hv-eyebrow::after { content: ""; width: 36px; height: 1px; background: #329AB2; }
+.hv-oms .hv-nums div { justify-items: center; text-align: center; }
+
+/* v622 · the flag/search box had 6px side padding (menu-light-v588.css, higher specificity than the 5px above), so the search button ended 26px from the window edge
+   while the hero ends at 25px. Same specificity here, loaded later: 5px, so the search button's right edge = the hero's right edge (25px), like the hamburger on the left. */
+html:not([dir="rtl"]) body header[data-bcg] .nk-header-actions.nk-header-actions-right:not(.nk-header-actions-left) { padding: 5px !important; }

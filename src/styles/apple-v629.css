@@ -1,0 +1,14 @@
+/* v629 · Apple-style grey page background and Apple-style top navigation (loaded last).
+   Background #f5f5f7 replaces the beige everywhere. Navigation: links kept on the right as before, smaller (13px), quiet grey, no underline. */
+:root { --nk-grey: #f5f5f7; }
+body, .bg-\[\#f5f5f7\] { background-color: #f5f5f7; }
+html body header[data-bcg], html body header.fixed[data-bcg] { background: rgba(245, 245, 247, .82) !important; -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
+@media (min-width: 1180px) {
+  html body header[data-bcg] nav.nk-primary-nav { flex: 0 0 auto !important; justify-content: flex-end !important; column-gap: 26px !important; margin-left: auto !important; margin-right: 26px !important; height: 72px !important; }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link { font-size: 13px !important; font-weight: 400 !important; letter-spacing: -.005em !important; color: rgba(29, 29, 31, .8) !important; padding: 0 !important; }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link:hover, html body header[data-bcg] nav.nk-primary-nav .nk-nav-link[data-active="true"] { color: #1d1d1f !important; font-weight: 400 !important; }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link::after { display: none !important; }
+  html body .nk-navslot nav[aria-label="Primary"] { column-gap: 26px !important; }
+  html body .nk-navslot .nk-nav-link { font-size: 13px !important; font-weight: 400 !important; color: rgba(29, 29, 31, .8) !important; }
+  html body .nk-navslot .nk-nav-link::after { display: none !important; }
+}

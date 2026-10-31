@@ -1,0 +1,60 @@
+/* v674 · Large screens (27" iMac, 4K, ultrawide): the top navigation and the dark band under the hero now scale with the hero.
+
+   Problem: the hero is scaled by --hf (hero-fit.css / Hero.jsx), but the header and the three-column band (.nk4-teasers) were drawn in fixed pixels
+   by later files (header-small-v609, header-clean-v641, apple-v629, colors-v499), which also beat the v471 scaling rules. On a 27" screen the
+   headline grew and the menu / band stayed laptop-sized.
+
+   Fix: ONE scale unit for the header, --nk-hs, using the same formula as the hero's CSS fallback (width/1440 or height/836, whichever is smaller),
+   never below 1px. So nothing changes below 1600px wide. The band reads --hf directly (it lives inside the hero and inherits the JS-fitted value),
+   floored at 1px. This file is loaded LAST and uses the same selectors as the rules it replaces. */
+
+@media (min-width: 1600px) {
+  :root {
+    /* v679 · the header no longer follows the hero 1:1. Raw hero scale (1px on a laptop, ~1.47px on a 27" iMac 2560x1440) is damped to 35% and capped at 1.2px,
+       so the bar and menu grow only a little on big screens:
+       1440 -> 1.00   1920x1080 -> ~1.02   2560x1440 -> ~1.16 (menu 15px, bar 84px)   3840x2160 -> 1.20 (menu 15.6px, bar 86px) */
+    --nk-hs-raw: max(1px, min(calc(100vw / 1440), calc((100dvh - 72px) / 836)));
+    --nk-hs: clamp(1px, calc(1px + (var(--nk-hs-raw) - 1px) * .35), 1.2px);
+    --nk-bar-h: calc(72 * var(--nk-hs));
+    /* menus / panels start under the bar with the same 8px-per-unit overlap as on a laptop (64 vs 72) */
+    --nk-header-h: calc(64 * var(--nk-hs));
+  }
+
+  /* ---------- header bar ---------- */
+  html body header.fixed, html body header.fixed[data-mega="open"], html body header.fixed[data-bcg], html body header.fixed[data-bcg][data-mega="open"],
+  html body header[data-bcg] .nk-container { height: var(--nk-bar-h) !important; }
+
+  html body header[data-bcg] .nk-logo-img { height: calc(28 * var(--nk-hs)) !important; }
+  html body header[data-bcg] .nk-logo-group, html body header[data-bcg] .nk-header-logo { height: calc(44 * var(--nk-hs)) !important; }
+
+  /* menu links */
+  html body header[data-bcg] nav.nk-primary-nav { height: calc(44 * var(--nk-hs)) !important; column-gap: calc(26 * var(--nk-hs)) !important; margin-right: calc(26 * var(--nk-hs)) !important; }
+  html body header[data-bcg] nav.nk-primary-nav .nk-nav-link { font-size: calc(13 * var(--nk-hs)) !important; height: calc(44 * var(--nk-hs)) !important; }
+  html body .nk-navslot nav[aria-label="Primary"] { column-gap: calc(26 * var(--nk-hs)) !important; }
+  html body .nk-navslot .nk-nav-link { font-size: calc(13 * var(--nk-hs)) !important; }
+
+  /* hamburger, flag, search: cells and icons scale together */
+  html body header[data-bcg] .nk-header-actions, html body header[data-bcg] .nk-header-actions-right { height: calc(44 * var(--nk-hs)) !important; }
+  html body header[data-bcg] .nk-square-hamburger,
+  html body header[data-bcg] .nk-header-actions-right button,
+  html body header[data-bcg] .nk-header-actions-right .nk-lang-btn,
+  html body header[data-bcg] .nk-header-actions-right .nk-search-btn { flex: 0 0 calc(44 * var(--nk-hs)) !important; width: calc(44 * var(--nk-hs)) !important; min-width: calc(44 * var(--nk-hs)) !important; height: calc(44 * var(--nk-hs)) !important; }
+  html body header[data-bcg] .nk-square-hamburger svg { width: calc(30 * var(--nk-hs)) !important; height: calc(19 * var(--nk-hs)) !important; stroke-width: calc(2.6 * var(--nk-hs)) !important; }
+  html body header[data-bcg] .nk-header-actions-right .nk-lang-btn svg { width: calc(28 * var(--nk-hs)) !important; height: calc(20 * var(--nk-hs)) !important; }
+  html body header[data-bcg] .nk-header-actions-right .nk-search-btn svg { width: calc(24 * var(--nk-hs)) !important; height: calc(24 * var(--nk-hs)) !important; stroke-width: calc(2.6 * var(--nk-hs)) !important; }
+
+  /* keep the icon edges on the hero's 25px side lines: the glyph sits (44 - glyph) / 2 inside its cell, which grew, so the outer margins give that back
+     (hamburger: 7px per unit, search: 10px per unit; at --nk-hs = 1px these are exactly the old -2px and -9px) */
+  html body header[data-bcg] .nk-header-actions-left { margin-left: calc(5px - 7 * var(--nk-hs)) !important; }
+  html:not([dir="rtl"]) body header[data-bcg] .nk-header-actions.nk-header-actions-right:not(.nk-header-actions-left) { margin-right: calc(1px - 10 * var(--nk-hs)) !important; gap: calc(6 * var(--nk-hs)) !important; }
+
+  /* hero starts below the taller bar */
+  html body .nk4-hero { padding-top: var(--nk-bar-h); }
+
+  /* ---------- dark band under the hero (three practices) ---------- */
+  html body .nk4-teaser { gap: calc(7 * var(--hf, 1px)); }
+  html body .nk4-teaser-eyebrow { font-size: max(14px, calc(14 * var(--hf, 1px))); }
+  html body .nk4-teaser-svc { font-size: max(19px, calc(19 * var(--hf, 1px))); padding: calc(5 * var(--hf, 1px)) 0; }
+  html body .nk4-teaser-link { font-size: max(10px, calc(10 * var(--hf, 1px))); gap: calc(7 * var(--hf, 1px)); }
+  html body .nk4-teaser-link svg { width: max(11px, calc(11 * var(--hf, 1px))); height: max(11px, calc(11 * var(--hf, 1px))); }
+}

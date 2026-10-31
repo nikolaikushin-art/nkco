@@ -1,0 +1,78 @@
+/* v669 · every industry gets its own tablet hardware, its own pipeline layout, and tidier chrome */
+
+/* ---- fixes: toast sits at the bottom, clipped avatars, two-line card titles ---- */
+.crm-slide .crm-toast { top: auto; bottom: .9em; transform: translate(-50%, 1.4em) scale(.92); }
+.crm-slide .crm-toast.on { transform: translate(-50%, 0) scale(1); }
+.crm-slide .crm-me .oms-av { margin: 0; justify-self: center; width: 2.6em; height: 2.6em; padding: 0; font-size: .72em; line-height: 1; letter-spacing: 0; overflow: hidden; white-space: nowrap; }
+.crm-slide .crm-me { overflow: hidden; }
+.crm-slide[data-nav="top"] .crm-me { display: none; }
+.crm-slide[data-nav="rail"] .crm-me { padding: .4em 0; }
+.crm-slide .crm-board .og-task b { white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; line-height: 1.22; }
+.crm-slide .crm-board .og-task span { white-space: normal; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
+
+/* ---- tablet and phone hardware per industry ---- */
+.crm-slide .dev { transition: none; }
+.crm-slide[data-sk="re"] .dev { background: linear-gradient(145deg, #2a313a, #14181d); border-radius: clamp(14px, 2.6cqw, 26px); }
+.crm-slide[data-sk="re"] .dev .cam { background: #4a8fa0; }
+.crm-slide[data-sk="ho"] .dev { background: linear-gradient(145deg, #efe0bd, #c9a867 55%, #e6d3a3); box-shadow: 0 3cqh 7cqh rgba(80, 55, 15, .35), inset 0 0 0 1px rgba(255, 255, 255, .55), inset 0 0 0 clamp(2px, .35cqw, 4px) #1b1510; border-radius: clamp(20px, 4cqw, 40px); }
+.crm-slide[data-sk="ho"] .dev.tab { padding: clamp(9px, 1.9cqw, 20px); }
+.crm-slide[data-sk="ho"] .dev .cam { background: #6d5526; }
+.crm-slide[data-sk="au"] .dev { background: #050506; border-radius: clamp(6px, 1.1cqw, 12px); box-shadow: 0 3cqh 7cqh rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(255, 255, 255, .1), inset 0 -3px 0 #e03a2f; }
+.crm-slide[data-sk="au"] .dev.tab { padding: clamp(5px, 1cqw, 11px) clamp(5px, 1cqw, 11px) clamp(9px, 1.7cqw, 18px); }
+.crm-slide[data-sk="au"] .dev.ph { border-radius: clamp(10px, 2.4cqw, 22px); }
+.crm-slide[data-sk="au"] .dev .cam { background: #e03a2f; }
+.crm-slide[data-sk="hc"] .dev { background: linear-gradient(160deg, #ffffff, #dfe9e5); box-shadow: 0 3cqh 7cqh rgba(20, 70, 55, .28), inset 0 0 0 1px rgba(255, 255, 255, .9), inset 0 0 0 clamp(2px, .3cqw, 3px) #cfe0d9; border-radius: clamp(22px, 4.4cqw, 44px); }
+.crm-slide[data-sk="hc"] .dev.tab { padding: clamp(9px, 2cqw, 22px); }
+.crm-slide[data-sk="hc"] .dev .cam { background: #9bb8ad; }
+.crm-slide[data-sk="hc"] .dev .notch { background: #cfe0d9; }
+.crm-slide[data-sk="lg"] .dev { background: linear-gradient(150deg, #4a2433, #1d0d14); border-radius: clamp(4px, .8cqw, 8px); box-shadow: 0 3cqh 7cqh rgba(30, 8, 16, .55), inset 0 0 0 1px rgba(214, 160, 120, .35), inset 0 0 0 clamp(4px, .7cqw, 8px) #1d0d14; }
+.crm-slide[data-sk="lg"] .dev.tab { padding: clamp(10px, 2.1cqw, 22px); }
+.crm-slide[data-sk="lg"] .dev.ph { border-radius: clamp(8px, 1.8cqw, 16px); }
+.crm-slide[data-sk="lg"] .dev .cam { background: #c9945f; }
+.crm-slide[data-sk="wm"] .dev { background: linear-gradient(145deg, #1c2e28, #07100d); border-radius: clamp(16px, 3.2cqw, 32px); box-shadow: 0 3cqh 7cqh rgba(0, 0, 0, .55), 0 0 0 clamp(1px, .2cqw, 2px) #c8a45a, inset 0 0 0 1px rgba(200, 164, 90, .45); }
+.crm-slide[data-sk="wm"] .dev.tab { padding: clamp(8px, 1.7cqw, 18px); }
+.crm-slide[data-sk="wm"] .dev .cam { background: #c8a45a; }
+
+/* ---- pipeline layouts ---- */
+.crm-board[data-lay] .oms-col { box-sizing: border-box; }
+.crm-board[data-lay] .og-task { margin-bottom: .5em; }
+
+/* re · property cards: skyline strip on every card */
+.crm-board[data-lay="cards"] .og-task { padding-top: 3em; position: relative; }
+.crm-board[data-lay="cards"] .og-task::before { content: ""; position: absolute; inset: .45em .45em auto; height: 2.1em; border-radius: calc(var(--rd) - .15em); background: linear-gradient(transparent 55%, rgba(22, 34, 45, .28)), repeating-linear-gradient(90deg, var(--soft) 0 .9em, #cfe6ec .9em 1.5em, #bcdce4 1.5em 2.3em, var(--soft) 2.3em 2.8em); }
+.crm-board[data-lay="cards"] .og-task b { font-family: var(--hf); font-weight: 600; }
+
+/* ho · room rack: tall rounded cards with gold edge, serif titles */
+.crm-board[data-lay="rack"] .oms-col { background: rgba(176, 138, 69, .09); border-radius: 1.4em; }
+.crm-board[data-lay="rack"] .oms-col > small { font-family: var(--hf); font-style: italic; font-size: 1.05em; }
+.crm-board[data-lay="rack"] .og-task { border-left: 3px solid var(--ac); border-radius: .9em; padding: .85em .9em; background: #fffdf8; }
+.crm-board[data-lay="rack"] .og-task b { font-family: var(--hf); font-weight: 500; font-size: 1.02em; }
+
+/* au · swim lanes: one horizontal lane per stage */
+.crm-board[data-lay="lanes"] { display: grid; grid-template-columns: 1fr; grid-auto-rows: minmax(0, 1fr); gap: .5em; }
+.crm-board[data-lay="lanes"] .oms-col { display: flex; flex-wrap: wrap; align-items: stretch; align-content: center; gap: .5em; padding: .5em .7em .5em 0; border-left: 4px solid var(--ac); border-radius: .3em; min-height: 0; }
+.crm-board[data-lay="lanes"] .oms-col > small { flex: 0 0 7.5em; align-self: center; padding-left: .8em; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; font-size: .72em; }
+.crm-board[data-lay="lanes"] .og-task { width: auto; flex: 1 1 10em; max-width: 17em; margin: 0; border-radius: .25em; border-top: 2px solid #0d0d0f; }
+
+/* hc · patient flow: 2 x 2 panels with numbered stages */
+.crm-board[data-lay="quad"] { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-auto-rows: minmax(0, 1fr); gap: .7em; counter-reset: st; }
+.crm-board[data-lay="quad"] .oms-col { counter-increment: st; border-radius: 1.3em; background: rgba(255, 255, 255, .7); overflow: auto; scrollbar-width: none; }
+.crm-board[data-lay="quad"] .oms-col > small::before { content: counter(st); display: inline-grid; place-items: center; width: 1.7em; height: 1.7em; margin-right: .5em; border-radius: 50%; background: var(--ac); color: #fff; font-size: .9em; font-weight: 700; }
+.crm-board[data-lay="quad"] .og-task { border-radius: 9em; padding: .55em 1em; background: var(--soft); box-shadow: none; }
+
+/* lg · matter ledger: one ruled row per matter under each stage heading */
+.crm-board[data-lay="ledger"] { display: block; }
+.crm-board[data-lay="ledger"] .oms-col { background: none; padding: 0; margin-bottom: .6em; min-height: 0; border-top: 2px solid var(--ac); border-radius: 0; }
+.crm-board[data-lay="ledger"] .oms-col > small { display: block; padding: .45em .2em; font-family: var(--hf); font-weight: 600; font-size: 1.05em; }
+.crm-board[data-lay="ledger"] .og-task { display: grid; grid-template-columns: 1.3fr 1fr; align-items: center; gap: 1em; margin: 0; padding: .5em .4em; border: 0; border-top: 1px solid rgba(43, 22, 32, .15); border-radius: 0; box-shadow: none; background: transparent; }
+.crm-board[data-lay="ledger"] .og-task:hover { background: var(--soft); transform: none; box-shadow: none; }
+.crm-board[data-lay="ledger"] .og-task span { text-align: right; }
+
+/* wm · mandate funnel: bands narrow stage by stage */
+.crm-board[data-lay="funnel"] { display: flex; flex-direction: column; align-items: center; gap: .5em; }
+.crm-board[data-lay="funnel"] .oms-col { display: flex; flex-wrap: wrap; align-items: center; gap: .5em; padding: .55em .8em; border-radius: .6em; border-top: 1px solid var(--ac); min-height: 0; background: linear-gradient(90deg, rgba(200, 164, 90, .22), rgba(200, 164, 90, .06)); }
+.crm-board[data-lay="funnel"] .oms-col:nth-child(1) { width: 100%; } .crm-board[data-lay="funnel"] .oms-col:nth-child(2) { width: 90%; } .crm-board[data-lay="funnel"] .oms-col:nth-child(3) { width: 80%; } .crm-board[data-lay="funnel"] .oms-col:nth-child(4) { width: 70%; }
+.crm-board[data-lay="funnel"] .oms-col > small { flex: 0 0 5.5em; font-family: var(--hf); font-size: 1.05em; }
+.crm-board[data-lay="funnel"] .og-task { width: auto; flex: 1 1 9em; max-width: 15em; margin: 0; background: #101a17; color: #f3ead3; }
+.crm-board[data-lay="funnel"] .og-task span { color: #c8b98d; }
+@media (max-width: 760px) { .crm-board[data-lay="quad"] { grid-template-columns: 1fr; } }

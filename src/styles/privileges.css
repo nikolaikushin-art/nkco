@@ -1,0 +1,94 @@
+/* Privileges pages (podcasts and instructional material). Built on the pg-* page system; only what that system lacks lives here.
+   Imported last in src/index.js. Delete this file and its import to remove the styling of the Privileges pages. */
+
+.pp-sec { --pp-line: #d6d5d0; --pp-ink: #32353a; --pp-mute: #5d626a; --pp-steel: #2b4a6b; }
+
+/* breadcrumb line inside the hero card */
+.pp-hero .pp-crumbs { font: 500 .7rem/1.7 Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--mute, #5d626a); }
+.pp-hero .pp-crumbs a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; }
+.pp-hero .pp-crumbs a:hover { color: #16171a; border-bottom-color: currentColor; }
+.pp-hero .pp-crumbs span { color: #16171a; }
+
+/* cards: one piece with a picture */
+.pp-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
+.pp-card { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--pp-line); color: var(--pp-ink); text-decoration: none; overflow: hidden; transition: border-color .2s ease; }
+.pp-card:hover { border-color: var(--pp-steel); }
+.pp-card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; filter: saturate(.88); }
+.pp-card > div { padding: 1.1rem 1.3rem 1.4rem; display: flex; flex-direction: column; gap: .35rem; flex: 1; }
+.pp-card h3 { font-size: 1.45rem; line-height: 1.2; }
+.pp-card p { font-size: .95rem; line-height: 1.55; color: var(--pp-mute); }
+.pp-tag { font: 500 .7rem/1.4 Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--pp-steel); }
+
+/* kpi row: five formats */
+.pp-kpi { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.pp-kpi h3 { font-size: 1.15rem; }
+.pp-kpi p { font-size: .88rem; }
+
+/* lists of pieces */
+.pp-group + .pp-group { margin-top: 2.4rem; }
+.pp-group > h3 { font-size: 1.7rem; margin-bottom: .8rem; }
+.pp-group > h3 a { color: inherit; text-decoration: none; }
+.pp-group > h3 a:hover { color: var(--pp-steel); }
+.pp-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--pp-line); }
+.pp-row { border-bottom: 1px solid var(--pp-line); }
+.pp-row > a { display: grid; grid-template-columns: 3.2rem minmax(0, 1fr) auto 1.6rem; gap: 1rem 1.4rem; align-items: center; padding: 1.15rem .4rem; color: var(--pp-ink); text-decoration: none; transition: background-color .2s ease; }
+.pp-row > a:hover { background: rgba(43, 74, 107, .06); }
+.pp-n { font: 400 1.5rem/1 "Cormorant Garamond", Georgia, serif; color: var(--pp-steel); }
+.pp-t { display: flex; flex-direction: column; gap: .25rem; min-width: 0; }
+.pp-t b { font-size: 1.4rem; font-weight: 400; line-height: 1.2; }
+.pp-t span { font-size: .95rem; line-height: 1.5; color: var(--pp-mute); max-width: 74ch; }
+.pp-t i { font: 500 .7rem/1.4 Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase; font-style: normal; color: var(--pp-steel); }
+.pp-m { display: inline-flex; align-items: center; gap: .4rem; font-size: .85rem; color: var(--pp-mute); white-space: nowrap; }
+.pp-a { color: var(--pp-steel); transition: transform .2s ease; }
+.pp-row > a:hover .pp-a { transform: translateX(3px); }
+.pp-row.is-current > a { background: #fff; box-shadow: inset 3px 0 0 var(--pp-steel); }
+.pp-row.is-current .pp-n { color: var(--pp-ink); }
+
+/* previous / next */
+.pp-pn { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; margin-top: 1.6rem; }
+.pp-pn a { display: flex; flex-direction: column; gap: .25rem; padding: 1.1rem 1.3rem; background: #fff; border: 1px solid var(--pp-line); color: var(--pp-ink); text-decoration: none; }
+.pp-pn a:hover { border-color: var(--pp-steel); }
+.pp-pn span { font: 500 .7rem/1.4 Inter, sans-serif; letter-spacing: .14em; text-transform: uppercase; color: var(--pp-steel); }
+.pp-pn b { font-size: 1.35rem; font-weight: 400; line-height: 1.2; }
+.pp-pn-next { text-align: right; align-items: flex-end; }
+
+/* media panel at the top of a piece page */
+.pp-media { display: grid; gap: 1.2rem; }
+.pp-stage { position: relative; min-height: clamp(260px, 34vw, 420px); display: flex; align-items: center; justify-content: center; background: #32353a center / cover no-repeat; color: #fff; overflow: hidden; }
+.pp-media-podcast .pp-stage { background: linear-gradient(135deg, #32353a, #2a2f36); }
+.pp-stage video { width: 100%; max-height: 520px; background: #000; }
+.pp-pending { display: grid; justify-items: center; gap: .7rem; padding: 2rem 1.4rem; text-align: center; max-width: 52ch; }
+.pp-pending b { font-size: clamp(1.6rem, 2.6vw, 2.3rem); font-weight: 400; line-height: 1.15; color: #f2f1ed; }
+.pp-pending > span:last-child { font-size: .9rem; color: rgba(255, 255, 255, .78); }
+.pp-bigicon { display: grid; place-items: center; width: 68px; height: 68px; border-radius: 50%; border: 1.5px solid rgba(255, 255, 255, .6); color: #fff; }
+.pp-audio { display: grid; justify-items: center; gap: 1rem; width: min(560px, 90%); }
+.pp-audio audio { width: 100%; }
+.pp-actions { display: flex; flex-wrap: wrap; align-items: center; gap: .9rem 1.6rem; }
+.pp-actions .pg-btn { display: inline-flex; align-items: center; background: #32353a; color: #fff; }
+.pp-actions .pg-btn:hover { background: #000; }
+.pp-actions .pg-lnk { display: inline-flex; align-items: center; gap: .4rem; color: var(--pp-steel); text-decoration: none; border-bottom: 1px solid currentColor; font-size: .95rem; }
+.pp-note { font-size: .9rem; color: var(--pp-mute); }
+
+/* podcast banner and subscribe */
+.pp-banner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem 2rem; margin-top: 1.4rem; padding: 1.5rem 1.7rem; background: #32353a; color: #fff; }
+.pp-banner b { display: block; font-size: 1.7rem; font-weight: 400; line-height: 1.15; }
+.pp-banner span { color: rgba(255, 255, 255, .8); font-size: .95rem; }
+.pp-banner .pg-btn { background: #c4c8ce; color: #16171a; }
+.pp-banner .pg-btn:hover { background: #fff; }
+.pp-sub { display: grid; grid-template-columns: minmax(0, 1.6fr) auto; gap: 1.5rem 3rem; align-items: center; }
+.pp-sub .pg-big { max-width: 58ch; }
+
+@media (max-width: 1100px) {
+  .pp-kpi { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width: 960px) {
+  .pp-cards, .pp-pn, .pp-sub { grid-template-columns: 1fr; }
+  .pp-kpi { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pp-row > a { grid-template-columns: 2.4rem minmax(0, 1fr) 1.4rem; }
+  .pp-m { grid-column: 2; grid-row: 2; }
+  .pp-a { grid-column: 3; grid-row: 1; }
+  .pp-pn-next { text-align: left; align-items: flex-start; }
+}
+@media (max-width: 560px) {
+  .pp-kpi { grid-template-columns: 1fr; }
+}

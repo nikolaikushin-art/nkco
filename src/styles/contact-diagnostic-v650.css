@@ -1,0 +1,280 @@
+/* v650 · Contact menu rebuilt to the same scale as the other menus (replaces v642-v649, which are folded in here).
+   What changed: title "Contact us" at the same size as "Capabilities" / "Opportunities"; descriptor line, picture (fixed ratio, teal top line)
+   and a footer row ("Contact the office" + e-mail) identical to the other menus; step titles at the size of the column headings;
+   no tracked-out capitals anywhere (step caption, sub-headings, review headings, buttons); rows 38px with 15px text like the menu rows;
+   the sheet is as tall as its content (no full-screen white area, no repeated in-step pictures).
+   Scoped to .nk-dx / .nk-mega[data-contact]; no other menu is touched. */
+
+/* ---------- sheet (same rules the other menus get in menu-light-v588.css) ---------- */
+html body header.fixed[data-bcg][data-mega="open"]:has(.nk-dx) {
+  background: var(--lm-bg, #fff) !important; background-color: var(--lm-bg, #fff) !important; background-image: none !important;
+  color: var(--lm-ink, #16171a) !important; border-bottom: 0 !important; box-shadow: none !important;
+  -webkit-backdrop-filter: none !important; backdrop-filter: none !important;
+}
+html body header[data-bcg] .nk-mega[data-contact] {
+  top: 0 !important; left: 0 !important; right: 0 !important; width: 100% !important; z-index: 50 !important; box-sizing: border-box !important;
+  padding-top: var(--nk-panel-top, var(--nk-bar-h, 88px)) !important;
+  height: auto !important; min-height: 0 !important; max-height: 100vh !important; max-height: 100dvh !important;
+  display: block !important; overflow-x: hidden !important; overflow-y: auto !important;
+  background: var(--lm-bg, #fff) !important; background-image: none !important;
+  border: 0 !important; border-bottom: 1px solid var(--lm-line, rgba(22, 23, 26, .14)) !important;
+  box-shadow: 0 30px 60px -28px rgba(22, 23, 26, .35) !important; color: var(--lm-ink, #16171a) !important;
+}
+html body header[data-bcg] .nk-mega[data-contact] .nk-mega-content { display: block !important; width: 100% !important; background: transparent !important; max-height: none !important; height: auto !important; }
+
+/* ---------- layout ---------- */
+.nk-dx-wrap { --dx-pad: 25px; width: 100%; box-sizing: border-box; background: var(--lm-bg, #fff); }
+.nk-dx {
+  --dx-ink: var(--lm-ink, #16171a); --dx-dim: var(--lm-dim, #5b6068); --dx-mute: var(--lm-mute, #7b8088);
+  --dx-line: var(--lm-line, rgba(22, 23, 26, .14)); --dx-fill: var(--lm-fill, #f5f5f7);
+  --dx-accent: var(--lm-accent, #329AB2); --dx-red: #b3261e;
+  display: grid; grid-template-columns: clamp(262px, 22vw, 312px) minmax(0, 1fr); width: 100%; box-sizing: border-box;
+  padding: 0 var(--dx-pad); background: var(--lm-bg, #fff); color: var(--dx-ink);
+  font-family: var(--nk-text, 'Inter', system-ui, sans-serif); animation: nkDxIn 240ms ease both;
+  min-height: 420px; grid-template-rows: minmax(0, 1fr);
+  max-height: calc(100dvh - var(--nk-panel-top, var(--nk-bar-h, 88px)) - 57px - 56px - 8px);
+}
+@keyframes nkDxIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- left rail: title, descriptor, picture (same anatomy as the other menus) ---------- */
+.nk-dx-rail { display: flex; flex-direction: column; min-height: 0; padding: 22px clamp(20px, 2.4vw, 36px) 22px 0; border-right: 1px solid var(--dx-line); overflow-y: auto; overflow-x: hidden; scrollbar-width: none; }
+.nk-dx-rail::-webkit-scrollbar { display: none; }
+.nk-dx-h { margin: 0; font-size: clamp(40px, 3.6vw, 58px); line-height: 1.04; letter-spacing: -.005em; color: var(--dx-ink); }
+.nk-dx-tag { margin: 10px 0 0; font-size: 15px; font-weight: 500; line-height: 1.35; color: var(--dx-ink); }
+.nk-dx-pic { flex: none; position: relative; overflow: hidden; width: 100%; aspect-ratio: 1.42 / 1; margin: 22px 0 0; border-top: 1px solid var(--dx-accent); background: linear-gradient(160deg, #d9dde1, #aeb6bd 60%, #8e98a1); }
+.nk-dx-pic img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* ---------- right: caption + bars / title / questions / action bar ---------- */
+.nk-dx-main { min-width: 0; min-height: 0; display: flex; flex-direction: column; padding-left: clamp(24px, 3vw, 48px); }
+.nk-dx-form { flex: 1 1 auto; min-height: 0; display: grid; grid-template-rows: minmax(0, 1fr) auto; background: var(--lm-bg, #fff); }
+.nk-dx-top { padding: 22px 0 0; }
+.nk-dx-count { margin: 0; font-size: 13px; line-height: 1; color: var(--dx-mute); }
+.nk-dx-bars { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 4px; margin-top: 10px; max-width: 580px; }
+.nk-dx-st { margin: 14px 0 0; font-size: clamp(22px, 1.9vw, 28px); line-height: 1.12; font-weight: 500; color: var(--dx-mute); outline: 0; letter-spacing: -.005em; }
+.nk-dx-lead { margin: 6px 0 0; padding-bottom: 12px; font-size: 14.5px; line-height: 1.45; color: var(--dx-dim); border-bottom: 1px solid var(--dx-line); }
+.nk-dx-body { position: relative; min-height: 0; overflow-y: auto; overflow-x: hidden; padding: 22px 6px 14px 0; scrollbar-width: thin; scrollbar-color: rgba(22, 23, 26, .25) transparent; animation: nkDxIn 200ms ease both; }
+.nk-dx-body > * + * { margin-top: 20px; }
+.nk-dx-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.nk-dx-bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 0 14px; border-top: 1px solid var(--dx-line); background: var(--lm-bg, #fff); }
+.nk-dx-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* step bars (buttons for the steps already reached) */
+html body .nk-dx button.nk-dx-bar1 { display: block; height: 3px; min-height: 0; padding: 0; margin: 0; border: 0; border-radius: 0; background: var(--dx-line) !important; cursor: default; box-shadow: none; position: relative; }
+html body .nk-dx button.nk-dx-bar1[data-on] { background: var(--dx-accent) !important; }
+html body .nk-dx button.nk-dx-bar1:not(:disabled) { cursor: pointer; }
+html body .nk-dx button.nk-dx-bar1:not(:disabled):hover { background: var(--dx-ink) !important; }
+html body .nk-dx button.nk-dx-bar1::after { content: ''; position: absolute; left: 0; right: 0; top: -9px; bottom: -9px; }
+
+/* ---------- footer row (same as the other menus) ---------- */
+.nk-dx-foot { display: flex; align-items: center; gap: 28px; margin: 0 var(--dx-pad); padding: 14px 0 15px; border-top: 1px solid var(--lm-line, rgba(22, 23, 26, .14)); font-size: 15px; background: var(--lm-bg, #fff); }
+.nk-dx-foot a { display: inline-flex; align-items: center; gap: 8px; color: var(--lm-ink, #16171a); text-decoration: none; }
+.nk-dx-foot a:hover span { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.nk-dx-foot .nk-dx-mail { color: var(--lm-mute, #7b8088); }
+.nk-dx-foot a:focus-visible { outline: 2px solid var(--lm-accent, #329AB2); outline-offset: 3px; }
+
+/* ---------- fields (underline style) ---------- */
+.nk-dx-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: clamp(28px, 3.4vw, 56px); row-gap: 12px; }
+.nk-dx-f { min-width: 0; display: flex; flex-direction: column; }
+.nk-dx-f[data-wide] { grid-column: 1 / -1; }
+.nk-dx-l, .nk-dx-g > legend { font-size: 13px; font-weight: 500; color: var(--dx-ink); padding: 0; margin: 0 0 2px; }
+.nk-dx-req { color: var(--dx-red); }
+.nk-dx-hint { color: var(--dx-mute); font-weight: 400; }
+.nk-dx-in { width: 100%; box-sizing: border-box; min-height: 36px; padding: 6px 0; font: inherit; font-size: 15px; color: var(--dx-ink); background: transparent; border: 0; border-bottom: 1px solid var(--dx-ink); border-radius: 0; outline: 0; appearance: none; -webkit-appearance: none; transition: box-shadow .18s ease, border-color .18s ease; }
+.nk-dx-in::placeholder { color: #9a9ea5; opacity: 1; }
+.nk-dx-area { resize: vertical; min-height: 52px; line-height: 1.45; border: 1px solid var(--dx-line); border-bottom: 1px solid var(--dx-ink); padding: 8px 10px; background: #fff; }
+.nk-dx-err { margin: 4px 0 0; font-size: 13px; line-height: 1.35; color: var(--dx-red); }
+.nk-dx-sel { position: relative; display: block; }
+.nk-dx-sel select { padding-right: 28px; cursor: pointer; }
+.nk-dx-sel svg { position: absolute; right: 2px; top: 50%; transform: translateY(-50%); pointer-events: none; color: var(--dx-ink); }
+.nk-dx-tel { display: grid; grid-template-columns: 104px minmax(0, 1fr); column-gap: 14px; }
+.nk-dx-dial select { padding-right: 0; text-overflow: clip; }
+
+/* ---------- practice choice (step 1): the menus' column headings, hairline under each, teal line when chosen ---------- */
+.nk-dx-g { border: 0; margin: 0; padding: 0; min-width: 0; }
+.nk-dx-g > legend { float: none; width: 100%; }
+.nk-dx-picks { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(24px, 2.6vw, 44px); }
+html body .nk-dx label.nk-dx-pk { position: relative; display: block; min-width: 0; cursor: pointer; padding: 0 0 6px !important; border-bottom: 1px solid var(--dx-line); transition: border-color .15s ease, box-shadow .15s ease; }
+.nk-dx-pk input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+html body .nk-dx .nk-dx-pk-t { display: block; font-size: clamp(20px, 1.7vw, 26px); line-height: 1.12; color: var(--dx-mute); padding: 0; transition: color .15s ease; }
+html body .nk-dx label.nk-dx-pk:hover { border-bottom-color: rgba(22, 23, 26, .45); }
+html body .nk-dx label.nk-dx-pk:hover .nk-dx-pk-t { color: var(--dx-ink); }
+html body .nk-dx label.nk-dx-pk[data-on] { border-bottom-color: var(--dx-accent); box-shadow: 0 1px 0 0 var(--dx-accent); }
+html body .nk-dx label.nk-dx-pk[data-on] .nk-dx-pk-t { color: var(--dx-ink); }
+html body .nk-dx label.nk-dx-pk:has(input:focus-visible) { outline: 2px solid var(--dx-accent); outline-offset: 4px; }
+html body .nk-dx .nk-dx-pick[data-err] label.nk-dx-pk:not([data-on]) { border-bottom-color: rgba(179, 38, 30, .55); }
+
+/* ---------- choice rows: flat rows like the menu lists, hairline under each, square marker on the right ---------- */
+.nk-dx-cards { display: grid; gap: 0 clamp(24px, 2.6vw, 44px); grid-template-columns: repeat(var(--c, 2), minmax(0, 1fr)); }
+.nk-dx-cards[data-cols="1"] { --c: 1; } .nk-dx-cards[data-cols="2"] { --c: 2; } .nk-dx-cards[data-cols="3"] { --c: 3; } .nk-dx-cards[data-cols="4"] { --c: 4; }
+.nk-dx-ch { position: relative; display: flex; align-items: center; gap: 12px; min-height: 38px; box-sizing: border-box; cursor: pointer; font-size: 15px; line-height: 1.3; color: var(--dx-ink); border-bottom: 1px solid var(--dx-line); transition: border-color .15s ease; }
+.nk-dx-ch input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.nk-dx-ct { order: 1; flex: 1 1 auto; min-width: 0; }
+.nk-dx-mark { order: 2; margin-left: auto; flex: none; display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; box-sizing: border-box; border: 1px solid #9aa0a7; border-radius: 0; background: transparent; color: #fff; transition: background-color .15s ease, border-color .15s ease; }
+.nk-dx-mark svg { width: 10px; height: 10px; }
+.nk-dx-mark i { width: 4px; height: 4px; background: #fff; display: block; }
+.nk-dx-ch:hover { border-bottom-color: rgba(22, 23, 26, .45); }
+.nk-dx-ch:hover .nk-dx-mark { border-color: var(--dx-ink); }
+.nk-dx-ch[data-on] { border-bottom-color: var(--dx-accent); box-shadow: 0 1px 0 0 var(--dx-accent); }
+.nk-dx-ch[data-on] .nk-dx-ct { font-weight: 500; }
+.nk-dx-ch[data-on] .nk-dx-mark { background: var(--dx-ink); border-color: var(--dx-ink); }
+.nk-dx-ch:has(input:focus-visible) { border-bottom-color: var(--dx-accent); box-shadow: 0 1px 0 0 var(--dx-accent); }
+.nk-dx-ch[data-invalid], .nk-dx-g[data-err] .nk-dx-ch:not([data-on]) { border-bottom-color: rgba(179, 38, 30, .6); }
+html body .nk-dx .nk-dx-g > legend { padding-bottom: 6px; margin-bottom: 0; border-bottom: 1px solid var(--dx-line); }
+
+/* two-column steps (business, objectives) */
+.nk-dx-split { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); column-gap: clamp(28px, 3.4vw, 56px); align-items: start; }
+.nk-dx-col { min-width: 0; }
+.nk-dx-block { animation: nkDxIn 220ms ease both; }
+.nk-dx-sub { margin: 0 0 8px; font-family: var(--nk-serif, 'Cormorant Garamond', Georgia, serif); font-size: 20px; font-weight: 500; line-height: 1.15; letter-spacing: 0; text-transform: none; color: var(--dx-mute); }
+.nk-dx-wait p { margin: 0; padding: 12px 14px; border: 1px dashed var(--dx-line); font-size: 14.5px; color: var(--dx-mute); }
+/* the rail carries the picture on every step, so the in-step pictures are not drawn */
+.nk-dx-stepimg { display: none; }
+
+/* ---------- review: three columns ---------- */
+.nk-dx-rev { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(24px, 2.6vw, 44px); align-items: start; }
+.nk-dx-rc { min-width: 0; }
+.nk-dx-rs { padding-top: 10px; margin-bottom: 10px; border-top: 1px solid var(--dx-line); }
+.nk-dx-rc > .nk-dx-rs:first-child { margin-top: 0; }
+.nk-dx-rs .nk-dx-rh { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; }
+.nk-dx-rs h4 { margin: 0; font-family: var(--nk-serif, 'Cormorant Garamond', Georgia, serif); font-size: 20px; font-weight: 500; line-height: 1.15; letter-spacing: 0; text-transform: none; color: var(--dx-mute); }
+.nk-dx-edit { background: none; border: 0; padding: 2px 0; cursor: pointer; font: inherit; font-size: 14px; color: var(--dx-accent); text-decoration: underline; text-underline-offset: 3px; }
+.nk-dx-edit:hover { color: var(--dx-ink); }
+.nk-dx-rs dl { margin: 6px 0 4px; display: grid; row-gap: 3px; }
+.nk-dx-rs dl > div { display: grid; grid-template-columns: minmax(70px, 38%) minmax(0, 1fr); column-gap: 12px; font-size: 13.5px; line-height: 1.3; }
+.nk-dx-rs dt { color: var(--dx-mute); }
+.nk-dx-rs dd { margin: 0; color: var(--dx-ink); overflow-wrap: anywhere; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; overflow: hidden; }
+.nk-dx-none { margin: 6px 0 4px; font-size: 14px; color: var(--dx-mute); }
+.nk-dx-note { margin: 0; flex: 1; text-align: center; padding: 0 12px; font-size: 12.5px; color: var(--dx-mute); }
+.nk-dx-fail { margin: 0 0 12px; padding: 9px 14px; font-size: 14px; line-height: 1.5; color: var(--dx-red); border: 1px solid rgba(179, 38, 30, .4); background: rgba(179, 38, 30, .05); }
+.nk-dx-fail a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- buttons: sentence case, same weight as the menus' "Explore ..." links ---------- */
+.nk-dx-btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 42px; padding: 0 22px; background: var(--dx-ink); color: #fff; border: 1px solid var(--dx-ink); font: inherit; font-size: 15px; font-weight: 600; letter-spacing: 0; text-transform: none; cursor: pointer; transition: background-color .18s ease; }
+.nk-dx-btn:hover { background: #32353a; }
+.nk-dx-btn:disabled { opacity: .6; cursor: progress; }
+.nk-dx-back { display: inline-flex; align-items: center; gap: 8px; padding: 8px 0; background: none; border: 0; font: inherit; font-size: 15px; color: var(--dx-ink); cursor: pointer; }
+.nk-dx-back:hover { color: var(--dx-accent); }
+.nk-dx :is(button, a, input, select, textarea):focus-visible { outline: 2px solid var(--dx-accent); outline-offset: 2px; }
+.nk-dx-in:focus-visible { outline: 0; }
+
+/* ---------- thank-you ---------- */
+.nk-dx-thanks { justify-content: center; padding-bottom: 16px; max-width: 760px; }
+.nk-dx-tick { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; background: var(--dx-accent); color: #fff; margin-bottom: 20px; }
+.nk-dx-th { margin: 0 0 16px; font-size: clamp(28px, 2.4vw, 36px); line-height: 1.1; color: var(--dx-ink); outline: 0; }
+.nk-dx-thanks p { margin: 0 0 12px; font-size: 15px; line-height: 1.55; color: var(--dx-dim); }
+.nk-dx-thanks p strong { color: var(--dx-ink); font-weight: 600; }
+.nk-dx-thanks .nk-dx-small { font-size: 13px; color: var(--dx-mute); margin-bottom: 20px; }
+.nk-dx-thanks .nk-dx-btn { align-self: flex-start; }
+
+/* ---------- hamburger on desktop: the same section tabs as every other menu, "Contact us" is the current one ---------- */
+.nk-dx-tabs { display: flex; align-items: stretch; gap: 42px; height: 57px; box-sizing: border-box; padding: 0 25px; overflow-x: auto; scrollbar-width: none; background: var(--lm-bg, #fff); border-bottom: 1px solid var(--lm-line, rgba(22, 23, 26, .14)); }
+.nk-dx-tabs::-webkit-scrollbar { display: none; }
+html body .nk-dx-tab { position: relative; display: inline-flex; align-items: center; flex: none; white-space: nowrap; padding: 0; background: none; border: 0; cursor: pointer; font: inherit; font-size: 15px; font-weight: 400; letter-spacing: 0; text-transform: none; color: #5b6068; transition: color .16s ease; }
+html body .nk-dx-tab::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--lm-accent, #329AB2); transform: scaleX(0); transform-origin: left; transition: transform .26s cubic-bezier(.2, .7, .2, 1); }
+html body .nk-dx-tab:hover { color: #16171a; }
+html body .nk-dx-tab[data-active="true"] { color: #16171a; font-weight: 500; }
+html body .nk-dx-tab[data-active="true"]::after { transform: scaleX(1); }
+html body .nk-dx-tab:hover::after { transform: scaleX(1); opacity: .5; }
+html body .nk-dx-tab[data-active="true"]:hover::after { opacity: 1; }
+html body .nk-dx-tab:focus-visible { outline: 2px solid var(--lm-accent, #329AB2); outline-offset: 3px; }
+
+/* ---------- laptops (short screens): one notch tighter ---------- */
+@media (max-height: 800px) and (min-width: 900px) {
+  .nk-dx { min-height: 380px; }
+  .nk-dx-top { padding-top: 16px; } .nk-dx-st { margin-top: 10px; } .nk-dx-lead { padding-bottom: 9px; }
+  .nk-dx-body { padding-top: 12px; } .nk-dx-body > * + * { margin-top: 14px; }
+  .nk-dx-pic { margin-top: 16px; }
+  .nk-dx-grid { row-gap: 8px; }
+  .nk-dx-ch { min-height: 34px; } .nk-dx-in { min-height: 34px; }
+  .nk-dx-foot { padding: 10px 0 11px; }
+}
+@media (max-height: 700px) and (min-width: 900px) { .nk-dx-count { display: none; } .nk-dx-bars { margin-top: 0; } .nk-dx-ch { min-height: 31px; } }
+
+/* ---------- tablet / phone: one column, the rail becomes a short header ---------- */
+@media (max-width: 899px) {
+  .nk-dx-wrap { --dx-pad: 20px; }
+  .nk-dx { display: flex; flex-direction: column; min-height: 0; height: calc(100dvh - var(--nk-panel-top, var(--nk-bar-h, 72px))); max-height: none; overflow: hidden; }
+  .nk-dx-rail { flex: none; padding: 14px 0 12px; border-right: 0; border-bottom: 1px solid var(--dx-line); }
+  .nk-dx-h { font-size: 30px; } .nk-dx-tag, .nk-dx-pic, .nk-dx-foot { display: none; }
+  .nk-dx-main { flex: 1 1 auto; padding-left: 0; min-height: 0; }
+  .nk-dx-grid, .nk-dx-rev, .nk-dx-picks { grid-template-columns: minmax(0, 1fr); }
+  .nk-dx-picks { row-gap: 14px; }
+  .nk-dx-split { display: block; } .nk-dx-split > * + * { margin-top: 20px; }
+  .nk-dx-cards[data-cols="2"], .nk-dx-cards[data-cols="3"], .nk-dx-cards[data-cols="4"] { --c: 1; }
+  .nk-dx-note { display: none; }
+  .nk-dx-btn { padding: 0 20px; }
+  .nk-dx-thanks { justify-content: flex-start; padding-top: 24px; overflow-y: auto; }
+}
+@media (prefers-reduced-motion: reduce) { .nk-dx, .nk-dx * { animation: none !important; transition: none !important; } }
+
+/* ---------- guard rails against site-wide form / button rules (final.css `form label`, `form :is(input, select, textarea)`, colours-v499) ---------- */
+html body .nk-dx label, html body .nk-dx legend { font: inherit !important; font-size: 13px !important; font-weight: 500 !important; letter-spacing: 0 !important; text-transform: none !important; color: var(--dx-ink) !important; }
+html body .nk-dx label.nk-dx-ch { font-size: 15px !important; font-weight: 400 !important; }
+html body .nk-dx label.nk-dx-ch[data-on] { font-weight: 500 !important; }
+html body .nk-dx label.nk-dx-pk { font-size: 15px !important; font-weight: 400 !important; }
+html body .nk-dx .nk-dx-hint { color: var(--dx-mute) !important; font-weight: 400 !important; }
+html body .nk-dx .nk-dx-req { color: var(--dx-red) !important; }
+html body .nk-dx .nk-dx-btn { background: var(--dx-ink) !important; color: #fff !important; border-color: var(--dx-ink) !important; font-size: 15px !important; font-weight: 600 !important; letter-spacing: 0 !important; text-transform: none !important; }
+html body .nk-dx .nk-dx-btn:hover:not(:disabled) { background: #32353a !important; }
+html body .nk-dx .nk-dx-back, html body .nk-dx .nk-dx-edit { text-transform: none !important; letter-spacing: 0 !important; background: none !important; }
+html body .nk-dx .nk-dx-back { color: var(--dx-ink) !important; }
+html body .nk-dx .nk-dx-edit { color: var(--dx-accent) !important; }
+html body .nk-dx .nk-dx-edit:hover { color: var(--dx-ink) !important; }
+html body .nk-dx .nk-dx-in { background: transparent !important; color: var(--dx-ink) !important; min-height: 36px !important; padding: 6px 0 !important; font-size: 15px !important; border-bottom: 1px solid var(--dx-ink) !important; }
+html body .nk-dx .nk-dx-area { background: #fff !important; }
+html body .nk-dx .nk-dx-f :is(input, select, textarea):focus { border-bottom-color: var(--dx-accent) !important; box-shadow: 0 1px 0 0 var(--dx-accent) !important; }
+html body .nk-dx .nk-dx-f[data-err] :is(input, select, textarea), html body .nk-dx .nk-dx-f[data-err] :is(input, select, textarea):focus { border-bottom-color: var(--dx-red) !important; box-shadow: 0 1px 0 0 var(--dx-red) !important; }
+html body .nk-dx textarea.nk-dx-area { border: 1px solid var(--dx-line) !important; border-bottom: 1px solid var(--dx-ink) !important; padding: 8px 10px !important; min-height: 52px !important; }
+html body .nk-dx .nk-dx-f[data-err] textarea.nk-dx-area { border-color: var(--dx-red) !important; }
+html body .nk-dx textarea.nk-dx-area:focus { border-color: var(--dx-accent) !important; }
+html body .nk-dx .nk-dx-hp { position: absolute !important; left: -9999px !important; border: 0 !important; }
+html body .nk-dx .nk-dx-ch { background: transparent !important; padding: 0 !important; }
+html body .nk-dx .nk-dx-ch:hover { background: transparent !important; }
+html body .nk-dx .nk-dx-body > * + * { margin-top: 20px !important; }
+html body .nk-dx .nk-dx-body > .nk-dx-rev { margin-top: 0 !important; }
+html body .nk-dx .nk-dx-col > * + * { margin-top: 20px !important; }
+@media (max-height: 800px) and (min-width: 900px) { html body .nk-dx .nk-dx-body > * + *, html body .nk-dx .nk-dx-col > * + * { margin-top: 14px !important; } html body .nk-dx .nk-dx-in { min-height: 34px !important; } }
+html body .nk-dx, html body .nk-dx-main, html body .nk-dx-form, html body .nk-dx-wrap { background: var(--lm-bg, #fff) !important; }
+
+/* ---------- v651 · rail text + link under the picture (same as Infrastructure); footer is a div (the site's global `footer` rule paints it dark) ---------- */
+.nk-dx-rl { margin: 16px 0 0; font-size: 14.5px; line-height: 1.5; color: var(--dx-dim); display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; animation: nkDxIn 220ms ease both; }
+.nk-dx-go { display: inline-flex; align-items: center; align-self: flex-start; margin-top: 16px; color: var(--dx-ink); text-decoration: none; font-size: 15px; font-weight: 600; white-space: nowrap; }
+.nk-dx-go i { flex: none; width: 40px; height: 2px; margin-right: 10px; background: var(--dx-accent); transition: width 320ms cubic-bezier(.2, .7, .2, 1), margin 320ms cubic-bezier(.2, .7, .2, 1), opacity 240ms ease; }
+.nk-dx-ar { position: relative; display: block; flex: none; width: 0; height: 16px; margin-left: 0; overflow: hidden; opacity: 0; transition: width 320ms cubic-bezier(.2, .7, .2, 1), margin 320ms cubic-bezier(.2, .7, .2, 1), opacity 240ms ease; }
+.nk-dx-ar::before { content: ""; position: absolute; left: 0; right: 2px; top: 50%; height: 2px; margin-top: -1px; background: var(--dx-accent); }
+.nk-dx-ar::after { content: ""; position: absolute; right: 3px; top: 50%; box-sizing: border-box; width: 8px; height: 8px; margin-top: -4px; border-top: 2px solid var(--dx-accent); border-right: 2px solid var(--dx-accent); transform: rotate(45deg); }
+.nk-dx-go:hover i, .nk-dx-go:focus-visible i { width: 0; margin-right: 0; opacity: 0; }
+.nk-dx-go:hover .nk-dx-ar, .nk-dx-go:focus-visible .nk-dx-ar { width: 44px; margin-left: 12px; opacity: 1; }
+html body .nk-dx a.nk-dx-go { color: var(--dx-ink) !important; }
+div.nk-dx-foot { background: var(--lm-bg, #fff) !important; color: var(--lm-ink, #16171a) !important; border-bottom: 0; position: static; overflow: visible; }
+div.nk-dx-foot::before, div.nk-dx-foot::after { content: none !important; display: none !important; }
+div.nk-dx-foot a { color: var(--lm-ink, #16171a) !important; }
+div.nk-dx-foot a.nk-dx-mail { color: var(--lm-mute, #7b8088) !important; }
+.nk-dx-wait p { margin: 0; }
+@media (max-height: 800px) and (min-width: 900px) { .nk-dx-pic { aspect-ratio: 1.8 / 1; } .nk-dx-rl { -webkit-line-clamp: 3; margin-top: 12px; } .nk-dx-go { margin-top: 12px; } }
+@media (max-width: 899px) { .nk-dx-rl, .nk-dx-go { display: none; } }
+
+/* v652 · no step header: the questions start at the top, level with the title in the left column, like the other menus.
+   The step title and intro stay for screen readers only; the step count sits in the action bar. */
+.nk-dx-count { font-size: 13px; color: var(--dx-mute); }
+@media (max-height: 800px) and (min-width: 900px) { .nk-dx-body { padding-top: 18px; } }
+
+/* ---------- v653 · same height as the other menus (fixed, content scrolls inside), 3-column contact grid, bespoke step-3 widgets ---------- */
+@media (min-width: 900px) {
+  html body .nk-dx { height: clamp(440px, 56dvh, 540px); min-height: 0; max-height: none; }
+  .nk-dx-pic { aspect-ratio: 1.75 / 1; margin-top: 18px; }
+}
+.nk-dx-grid[data-cols="3"] { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(20px, 2.4vw, 40px); }
+@media (min-width: 900px) and (max-width: 1099px) { .nk-dx-grid[data-cols="3"] { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 899px) { .nk-dx-grid[data-cols="3"] { grid-template-columns: minmax(0, 1fr); } }
+.nk-dx-split--even { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+.nk-dx-hint { font-family: var(--nk-text, 'Inter', system-ui, sans-serif); font-size: 13px; }
+.nk-dx-seg-list { display: grid; }
+.nk-dx-sr-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 40px; border-bottom: 1px solid var(--dx-line); }
+.nk-dx-sr-l { font-size: 15px; line-height: 1.3; color: var(--dx-ink); }
+.nk-dx-seg { display: inline-flex; flex: none; gap: 4px; }
+html body .nk-dx .nk-dx-seg button { min-width: 34px; height: 28px; padding: 0 10px; border: 1px solid #9aa0a7; border-radius: 0; background: #fff !important; color: var(--dx-ink) !important; font: inherit; font-size: 13.5px; letter-spacing: 0; text-transform: none; cursor: pointer; transition: background-color .15s ease, border-color .15s ease; }
+html body .nk-dx .nk-dx-seg button:hover { border-color: var(--dx-ink); }
+html body .nk-dx .nk-dx-seg button[data-on] { background: var(--dx-ink) !important; color: #fff !important; border-color: var(--dx-ink); }
+html body .nk-dx .nk-dx-seg button:focus-visible { outline: 2px solid var(--dx-accent); outline-offset: 2px; }
+@media (max-width: 899px) { .nk-dx-split--even { grid-template-columns: minmax(0, 1fr); } .nk-dx-sr-row { flex-wrap: wrap; padding: 6px 0; } }

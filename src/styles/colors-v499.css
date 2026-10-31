@@ -1,0 +1,288 @@
+/* v489 · palette "1 · Lighter pearl, slate bottom" (loaded LAST, applied site-wide)
+   top bar  #f5f5f7   header, pearl
+   middle   #fffffd   page, hero, cards
+   bottom   #32353a   band under the hero, footer, rail, dark panels
+   text     #16171A   all text on light surfaces
+   buttons  #1B1D21   filled buttons                                                              */
+:root {
+  --nk-top: #1d1f22; --nk-mid: #fffffd; --nk-slate: #32353a; --nk-btn: #1b1d21;
+  --nk-navy: #32353a; --nk-navy-2: #32353a; --nk-night: #32353a; --nk-night-deep: #32353a; --nk-night-lift: #1b1d21;
+  --nk-anthracite: #32353a; --nk-hero-bg: #32353a; --nk-aubergine: #32353a; --nk-aubergine-2: #1b1d21; --nk-aubergine-hover: #1b1d21;
+  --nk-char: #32353a; --nk-cream: #fffffd; --nk-cream-2: #fffffd;
+  --nk-white: #fffffd; --om-paper: #fffffd; --om-vellum: #fffffd; --om-phantom: #fffffd;
+  --nk-ink: #16171a; --nk-ink-2: #16171a; --nk-accent: #16171a; --md-night: #32353a; --md-ink: #16171a;
+  --nk-pin: none; --nk-pin-light: none; --nk-pin-d: none; --nk-pin-l: none;
+  --background: 60 100% 99%; --card: 60 100% 99%; --popover: 60 100% 99%;
+}
+html, body { background: #fffffd; color: #16171a; }
+
+/* Header: light pearl bar, dark type, dark button */
+html body header.fixed, html body header.fixed[data-mega="open"], html body.nk-nav-open header.fixed {
+  background-color: #1d1f22 !important; background-image: none !important; color: #fffffd !important;
+  border-bottom: 0 !important;
+}
+html body header .nk-square-hamburger, html body header .nk-header-actions button, html body header .nk-header-actions svg { background: transparent !important; background-image: none !important; color: #fffffd !important; border-color: transparent !important; }
+html body header .nk-logo-img { filter: none !important; }
+html body header .nk-logo-fallback, html body header .nk-logo-fallback span { color: #fffffd !important; }
+
+/* Mega menu + drawer: flat slate rail and preview, flat pearl panels, no stripes */
+html body .nk-md-rail, html body .nk-slide-panel { background-color: #32353a !important; background-image: none !important; }
+html body .nk-md-prev-card { background: #32353a; }
+html body .nk-mega:has(.nk-md), html body .nk-mega:has(.nk-md) .nk-mega-content { background-color: #fffffd !important; }
+html body .nk-slide-panel .nk-panel-cta { background: #fffffd !important; background-image: none !important; color: #16171a !important; border: 0 !important; box-shadow: none !important; }
+html body .nk-search-drop { background-color: #32353a !important; background-image: none !important; }
+
+/* Hero: pearl-white, near-black type, slate frame */
+.nk4-hero { background: #fffffd; color: #16171a; }
+.nk4-frame { background: #32353a; }
+.nk4-eyebrow, .nk4-h1, .nk4-sub { color: #16171a; }
+.nk4-read, html body .nk4-hero .nk4-actions .nk4-read { background: #1b1d21; color: #fffffd; padding: 18px 56px; letter-spacing: .06em; }
+.nk4-read:hover { background: #32353a; }
+.nk4-dots button { background: rgba(22,23,26,.22); } .nk4-dots button.is-on { background: #16171a; }
+.nk4-pod, .nk4-strap { border-top-color: rgba(22,23,26,.16); }
+.nk4-pod-kicker, .nk4-pod-meta, .nk4-pod-meta a, .nk4-pod-time { color: #16171a; opacity: .72; }
+.nk4-pod-title, .nk4-pod-meta .nk4-pod-all, .nk4-pod-meta a:hover { color: #16171a; opacity: 1; }
+.nk4-pod-meta .nk4-pod-all::before { background: #16171a; }
+.nk4-pod-play { border-color: #16171a; color: #16171a; } .nk4-pod-play:hover { background: rgba(22,23,26,.08); }
+.nk4-pod-track::before { background: rgba(22,23,26,.28); } .nk4-pod-fill, .nk4-pod-knob { background: #16171a; }
+.nk4-pod-thumb:focus-visible, .nk4-pod-title:focus-visible, .nk4-pod-meta a:focus-visible, .nk4-pod-play:focus-visible { outline-color: #1b1d21; }
+
+/* Band under the hero + footer: slate, pearl type */
+.nk4-teasers { background: #32353a; color: #fffffd; }
+.nk4-teaser { border-left-color: rgba(250,249,246,.28); }
+.nk4-teaser-eyebrow, .nk4-teaser-link { color: #9a9fa6; }
+.nk4-teaser:hover .nk4-teaser-link { color: #fffffd; }
+@media (max-width: 1023px) { .nk4-teaser, .nk4-teaser:first-child { border-bottom-color: rgba(250,249,246,.2); } }
+footer, footer.bg-\[\#32353a\] { background-color: #32353a !important; background-image: none !important; color: #fffffd; }
+
+/* v485 · clean, light grotesque for the top navigation, header button and hero text (matches the approved screenshot) */
+html body .nk4-hero .nk4-sub { font-weight: 400; letter-spacing: -.01em; }
+
+/* v487 · hero: text and picture start close under the header (about 14px, as in the approved screenshot), type a little larger.
+   Same --hf scale unit as hero-fit.css, so the one-window fit in Hero.jsx still works (it simply re-fits with the bigger type). */
+@media (min-width: 1024px) {
+  html body .nk4-hero { padding-top: var(--nk-header-h, 64px); }
+  html body .nk4-hero .nk4-grid { padding-top: calc(14 * var(--hf, 1px)); }
+  html body .nk4-hero .nk4-copy { justify-content: flex-start; padding-top: 0; }
+  html body .nk4-hero .nk4-eyebrow { font-size: max(14px, calc(17 * var(--hf, 1px))); line-height: 1.25; }
+  html body .nk4-hero .nk4-h1 { font-size: min(3.7vw, calc(61 * var(--hf, 1px))); margin-top: calc(12 * var(--hf, 1px)); }
+  html body .nk4-hero .nk4-sub { font-size: max(15px, min(1.5vw, calc(22.5 * var(--hf, 1px)))); margin-top: calc(18 * var(--hf, 1px)); }
+  html body .nk4-hero .nk4-read { font-size: max(14px, calc(17.5 * var(--hf, 1px))); }
+}
+@media (max-width: 1023px) {
+  html body .nk4-hero { padding-top: calc(64px + 4px); }
+  .nk4-eyebrow { font-size: 16px; }
+  .nk4-hero .nk4-h1 { font-size: clamp(36px, 8vw, 46px); }
+  .nk4-hero .nk4-sub { font-size: 17px; }
+}
+
+/* v488 · page rail laid over the picture (Profile · Consultancy · Services ...): brand palette instead of grey.
+   Bar = navy #32353a, text = cream #fffffd, active item = lighter cream tint with a cream underline. Also used on inner-page hero rails. */
+
+/* v499 · TOP BAR = the darkest tone on the site (#0F1012), always, in every state (top of page, scrolled, menu open, mobile) */
+html body header, html body header.fixed, html body header.fixed[data-mega="open"], html body.nk-nav-open header.fixed, html body header.fixed:has(.nk-md), html body header.fixed:has(.nk-cx) {
+  background: #1d1f22 !important; background-color: #1d1f22 !important; background-image: none !important; color: #fffffd !important; border-bottom: 0 !important; box-shadow: none !important;
+}
+html body header .nk-logo-img { filter: none !important; }
+html body header .nk-square-hamburger, html body header .nk-square-hamburger *, html body header .nk-header-actions > button, html body header .nk-header-actions > button svg { color: #fffffd !important; background: transparent !important; }
+
+/* v500 · "Read the corporate profile" (and the other filled hero buttons) = exactly the top-bar tone #1D1F22, not black; hover = slate */
+html body .nk4-read, html body .nk4-hero .nk4-actions .nk4-read, html body .nk4-hero .nk4-read { background: #1d1f22 !important; background-color: #1d1f22 !important; background-image: none !important; color: #fffffd !important; border: 0 !important; }
+html body .nk4-read:hover, html body .nk4-hero .nk4-read:hover { background: #32353a !important; background-color: #32353a !important; }
+
+/* v501 · the page rail over the picture (Profile · Consultancy · Services ...) = the top-bar tone #1D1F22, same as the top navigation */
+
+
+/* v502 · v484 look restored: header bar colour (nav, Contact Us, rail, Discuss your business now follow the original v484 rules) */
+html body header, html body header.fixed, html body header.fixed[data-mega="open"], html body.nk-nav-open header.fixed, html body header.fixed:has(.nk-md), html body header.fixed:has(.nk-cx) {
+  background: #1b1d21 !important; background-color: #1b1d21 !important; background-image: none !important;
+}
+html body header .nk-nav-link, html body header .nk-nav-link:hover, html body header .nk-nav-link[data-active="true"] { color: #fff; }
+.nk4-strap-btn { background: transparent; color: #1b1d21; border: 1px solid #1b1d21; }
+.nk4-strap-btn:hover { background: #1b1d21; color: #fffffd; }
+:root { --nk-nav-font: 'Hanken Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; }
+html body .nk4-hero .nk4-sub, html body .nk4-hero .nk4-read { font-family: var(--nk-nav-font); }
+/* v505 · top nav, Contact Us and page rail share the top-navigation sans font, smaller like v484 */
+html body header .nk-nav-link, html body header nav[aria-label="Primary"] .nk-nav-link, html body header a.nk-contact-btn, html body .nk2-rail a { font-family: var(--nk-text) !important; }
+html body header .nk-nav-link { font-size: 13.5px; }
+html body header a.nk-contact-btn, html body .nk2-rail a { font-size: 12.5px !important; }
+html body header a.nk-contact-btn { background-color: #c4c8ce !important; color: #121316 !important; }
+html body header a.nk-contact-btn:hover { background-color: #ffffff !important; }
+
+/* v504 · hero buttons: same height, same type size, same family, aligned on one line */
+html body .nk4-hero .nk4-actions { align-items: center; gap: calc(16 * var(--hf, 1px)); }
+html body .nk4-hero .nk4-actions .nk4-read, html body .nk4-hero .nk4-actions .nk4-strap-btn {
+  box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; gap: 12px;
+  height: max(48px, calc(56 * var(--hf, 1px))); padding: 0 calc(24 * var(--hf, 1px)); margin: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif !important; font-size: max(13px, calc(13.5 * var(--hf, 1px))); font-weight: 500; line-height: 1;
+  letter-spacing: .07em; text-transform: uppercase; white-space: nowrap; flex: 0 0 auto; border: 1px solid #1d1f22;
+}
+html body .nk4-hero .nk4-actions .nk4-strap-btn { background: transparent; color: #1d1f22; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn:hover { background: #1d1f22; color: #fffffd; }
+
+/* v506 · darker top navigation, lighter grey for everything else (rail, bands, filled buttons) */
+:root { --nk-slate: #4d5966; --nk-btn: #4d5966; }
+html body header, html body header.fixed, html body header.fixed[data-mega="open"], html body.nk-nav-open header.fixed { background: #2a343f !important; background-color: #2a343f !important; background-image: none !important; }
+html body .nk2-rail, html body .nk4-frame .nk2-rail { background: #4d5966 !important; background-color: #4d5966 !important; border-color: rgba(255,255,255,.14) !important; }
+html body .nk2-rail a.is-active { background: #5b6773 !important; }
+html body .nk4-hero .nk4-actions .nk4-read { background: #4d5966 !important; border-color: #4d5966 !important; color: #fff !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn { border-color: #4d5966 !important; color: #2f3b47 !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn:hover { background: #4d5966 !important; color: #fff !important; }
+html body .nk2-hero-frame.nk4-frame, html body .nk4-teasers, html body footer.bg-\[\#32353a\] { background-color: #4d5966 !important; }
+html body .nk2-rail { background: #5b6773 !important; background-color: #5b6773 !important; }
+html body .nk2-rail a.is-active { background: #6a7682 !important; }
+
+/* v507 · bottom band (three teasers) and footer a step darker than the hero panel */
+html body .nk4-teasers, html body footer.bg-\[\#32353a\] { background-color: #3b4754 !important; }
+
+/* v508 · G-Wagon style rich graphite charcoal (neutral, slightly warm metallic) */
+:root { --nk-slate: #3c3f44; --nk-btn: #3c3f44; }
+html body header, html body header.fixed, html body header.fixed[data-mega="open"], html body.nk-nav-open header.fixed { background: linear-gradient(180deg, #34373c 0%, #2a2c30 100%) !important; background-color: #2d2f33 !important; border-bottom: 1px solid rgba(255,255,255,.08) !important; }
+html body .nk2-hero-frame.nk4-frame { background-color: #45484e !important; }
+html body .nk4-teasers, html body footer.bg-\[\#32353a\] { background: linear-gradient(180deg, #3c3f44 0%, #303236 100%) !important; background-color: #36383d !important; }
+html body .nk2-rail, html body .nk4-frame .nk2-rail { background: #53565c !important; background-color: #53565c !important; border-color: rgba(255,255,255,.14) !important; }
+html body .nk2-rail a.is-active { background: #64676d !important; }
+html body .nk4-hero .nk4-actions .nk4-read { background: #34373c !important; border-color: #34373c !important; color: #fff !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn { border-color: #34373c !important; color: #2a2c30 !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn:hover { background: #34373c !important; color: #fff !important; }
+/* charcoal palette: append to styles/colors-v499.css */
+:root { --nk-slate: #41464c; --nk-btn: #33373c; }
+html body header, html body header.fixed, html body header.fixed[data-mega="open"], html body.nk-nav-open header.fixed { background: #2a2d31 !important; background-color: #2a2d31 !important; background-image: none !important; border-bottom: 1px solid rgba(255,255,255,.08) !important; }
+html body .nk2-hero-frame.nk4-frame { background-color: #41464c !important; }
+html body .nk4-teasers, html body footer.bg-\[\#32353a\] { background: #33373c !important; background-color: #33373c !important; }
+html body .nk2-rail, html body .nk4-frame .nk2-rail { background: #50565d !important; background-color: #50565d !important; border-color: rgba(255,255,255,.14) !important; }
+html body .nk2-rail a.is-active { background: #62686f !important; }
+html body .nk4-hero .nk4-actions .nk4-read { background: #2a2d31 !important; border-color: #2a2d31 !important; color: #fff !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn { border-color: #2a2d31 !important; color: #2a2d31 !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn:hover { background: #2a2d31 !important; color: #fff !important; }
+
+/* dark blue charcoal + accent: append to styles/colors-v499.css */
+:root { --nk-slate: #38424f; --nk-btn: #2c3541; --nk-accent: #c4c8ce; }
+html body header, html body header.fixed, html body header.fixed[data-mega="open"], html body.nk-nav-open header.fixed { background: #232a35 !important; background-color: #232a35 !important; background-image: none !important; border-bottom: 1px solid rgba(196,200,206,.22) !important; }
+html body .nk2-hero-frame.nk4-frame { background-color: #38424f !important; }
+html body .nk4-teasers, html body footer.bg-\[\#32353a\] { background: #2c3541 !important; background-color: #2c3541 !important; }
+html body .nk2-rail, html body .nk4-frame .nk2-rail { background: #475262 !important; background-color: #475262 !important; border-color: rgba(255,255,255,.14) !important; }
+html body .nk2-rail a.is-active { background: #58647a !important; border-bottom-color: #c4c8ce !important; }
+html body .nk2-sec-white .nk2-h2::before, html body .nk2-sec .nk2-h2::before { background: #c4c8ce !important; }
+html body .nk4-hero .nk4-actions .nk4-read { background: #232a35 !important; border-color: #232a35 !important; color: #fff !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn { border-color: #232a35 !important; color: #232a35 !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn:hover { background: #232a35 !important; color: #fff !important; }
+
+/* greyer blue charcoal + accent: append to styles/colors-v499.css */
+:root { --nk-slate: #3e444d; --nk-btn: #30353d; --nk-accent: #c4c8ce; }
+html body header, html body header.fixed, html body header.fixed[data-mega="open"], html body.nk-nav-open header.fixed { background: #1f2328 !important; background-color: #1f2328 !important; background-image: none !important; border-bottom: 1px solid rgba(196,200,206,.22) !important; }
+html body .nk2-hero-frame.nk4-frame { background-color: #3e444d !important; }
+html body .nk4-teasers, html body footer.bg-\[\#32353a\] { background: #30353d !important; background-color: #30353d !important; }
+html body .nk2-rail, html body .nk4-frame .nk2-rail { background: #4c525c !important; background-color: #4c525c !important; border-color: rgba(255,255,255,.14) !important; }
+html body .nk2-rail a.is-active { background: #5d646f !important; border-bottom-color: #c4c8ce !important; }
+html body .nk2-sec-white .nk2-h2::before, html body .nk2-sec .nk2-h2::before { background: #c4c8ce !important; }
+html body .nk4-hero .nk4-actions .nk4-read { background: #272b32 !important; border-color: #272b32 !important; color: #fff !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn { border-color: #272b32 !important; color: #272b32 !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn:hover { background: #272b32 !important; color: #fff !important; }
+
+/* v509 · MENU OPEN: header keeps the top-navigation colour, menu body = the bottom/footer dark. Desktop + mobile.
+   v511 · all colours are variables now, so a palette from /palettes only has to set them (see palettes/11 ... 18).
+   --nk-menu-top    header, also with a menu open      --nk-menu-body   menu body, page rail, bottom band, footer
+   --nk-menu-body-2 opened rows / active rail tab      --nk-frame       hero picture frame        --nk-accent  lines, rail underline */
+:root { --nk-menu-top: #1f2328; --nk-menu-body: #30353d; --nk-menu-body-2: #3c424b; --nk-frame: #3e444d; --nk-accent: #c4c8ce; --nk-on-accent: #16171a; --m465-bg: var(--nk-menu-body); --m465-bg2: var(--nk-menu-body-2); }
+.nk-mega, .nk-slide-panel { --nk-hero-bg: var(--nk-menu-body); --dk-bg: var(--nk-menu-body); --dk-rail: var(--nk-menu-body); --dk-card: var(--nk-menu-body); }
+
+html body header, html body header.fixed, html body header.fixed[data-mega="open"], html body.nk-nav-open header.fixed,
+html body header.fixed[data-mega="open"]:has(:is(.nk-cx, .nk-md, .nk-md--dark, .nk-bm)) {
+  background: var(--nk-menu-top) !important; background-color: var(--nk-menu-top) !important; background-image: none !important;
+  border-bottom: 1px solid color-mix(in srgb, var(--nk-accent) 22%, transparent) !important;
+}
+html body .nk-mega:has(:is(.nk-cx, .nk-md--dark, .nk-bm)), html body .nk-mega:has(:is(.nk-cx, .nk-md--dark, .nk-bm)) .nk-mega-content,
+html body .nk-cx, html body .nk-bm, html body .nk-md--dark, html body .nk-md--dark .nk-md-main, html body .nk-md--dark .nk-md-feat, html body .nk-md--dark .nk-md-feat-body,
+html body .nk-md--dark .nk-md-rail, html body .nk-md-rail { background: var(--nk-menu-body) !important; background-color: var(--nk-menu-body) !important; background-image: none !important; }
+html body .nk-md-prev-card, html body .nk-md--dark .nk-md-prev-card { background: var(--nk-menu-body) !important; }
+html body .nk-bm-tabs-nav--l { background: linear-gradient(270deg, transparent, var(--nk-menu-body) 62%) !important; }
+html body .nk-bm-tabs-nav--r { background: linear-gradient(90deg, transparent, var(--nk-menu-body) 62%) !important; }
+
+@media (max-width: 1179px) {
+  html body.nk-nav-open header.fixed { background: var(--nk-menu-top) !important; background-color: var(--nk-menu-top) !important; }
+  html body aside.nk-slide-panel, html body aside.nk-slide-panel > div:last-child { background: var(--nk-menu-body) !important; background-color: var(--nk-menu-body) !important; background-image: none !important; }
+  html body aside.nk-slide-panel .nk-acc-body { background: var(--nk-menu-body-2) !important; background-image: none !important; }
+  html body aside.nk-slide-panel .nk-panel-cta { color: var(--nk-menu-body) !important; }
+}
+
+/* v510 · page rail, bottom band and footer = the menu body colour; hero frame and buttons follow the palette */
+html body .nk2-rail, html body .nk4-frame .nk2-rail { background: var(--nk-menu-body) !important; background-color: var(--nk-menu-body) !important; background-image: none !important; border-color: rgba(255,255,255,.12) !important; }
+html body .nk2-rail a.is-active { background: var(--nk-menu-body-2) !important; background-color: var(--nk-menu-body-2) !important; border-bottom-color: var(--nk-accent) !important; }
+html body .nk2-hero-frame.nk4-frame { background-color: var(--nk-frame) !important; }
+html body .nk4-teasers, html body footer.bg-\[\#32353a\] { background: var(--nk-menu-body) !important; background-color: var(--nk-menu-body) !important; }
+html body .nk2-sec-white .nk2-h2::before, html body .nk2-sec .nk2-h2::before { background: var(--nk-accent) !important; }
+html body .nk4-hero .nk4-actions .nk4-read { background: var(--nk-menu-top) !important; border-color: var(--nk-menu-top) !important; color: #fff !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn { border-color: var(--nk-menu-top) !important; color: var(--nk-menu-top) !important; }
+html body .nk4-hero .nk4-actions .nk4-strap-btn:hover { background: var(--nk-menu-top) !important; color: #fff !important; }
+
+/* v513 · top navigation = the hamburger menu's tabs (.nk-bm-sec): same size (15px), same font weight (400, active 500), idle = soft grey, white only on hover / active,
+   same 2px underline that slides in. No caret (the hamburger tabs have none). Colours are variables so a palette can change them. */
+:root { --nk-nav-idle: #b4b8be; --nk-nav-on: #ffffff; --nk-nav-line: #ffffff; }
+@media (min-width: 1024px) {
+  html body header nav[aria-label="Primary"] .nk-nav-link {
+    position: relative; align-self: stretch; height: 64px; display: inline-flex; align-items: center;
+    font-size: 15px !important; font-weight: 400 !important; letter-spacing: 0 !important; line-height: 1.2;
+    color: var(--nk-nav-idle) !important; background: transparent !important; background-image: none !important;
+    transition: color 160ms ease;
+  }
+  html body header nav[aria-label="Primary"] .nk-nav-link .nk-nav-caret { display: none !important; }
+  html body header nav[aria-label="Primary"] .nk-nav-link::after {
+    content: "" !important; position: absolute !important; left: 0 !important; right: 0 !important; bottom: 0 !important; height: 2px !important;
+    background: var(--nk-nav-line) !important; opacity: 1; transform: scaleX(0); transform-origin: left; transition: transform 260ms cubic-bezier(.2,.7,.2,1), opacity 200ms ease;
+  }
+  html body header nav[aria-label="Primary"] .nk-nav-link:hover, html body header nav[aria-label="Primary"] .nk-nav-link:focus-visible { color: var(--nk-nav-on) !important; background: transparent !important; }
+  html body header nav[aria-label="Primary"] .nk-nav-link[data-active="true"] { color: var(--nk-nav-on) !important; font-weight: 500 !important; background: transparent !important; }
+  html body header nav[aria-label="Primary"] .nk-nav-link:hover::after { transform: scaleX(1); opacity: .5; background: var(--nk-nav-line) !important; }
+  html body header nav[aria-label="Primary"] .nk-nav-link[data-active="true"]::after, html body header nav[aria-label="Primary"] .nk-nav-link[data-active="true"]:hover::after { transform: scaleX(1); opacity: 1; background: var(--nk-nav-line) !important; }
+}
+
+/* v515 · top navigation a little smaller (15px -> 14px). Change --nk-nav-size to tune. */
+:root { --nk-nav-size: 14px; }
+@media (min-width: 1024px) { html body header nav[aria-label="Primary"] .nk-nav-link { font-size: var(--nk-nav-size) !important; } }
+
+/* v553 · "Explore the practice" button = the exact top-navigation colour (var(--nk-menu-top), #1f2328); hover = menu body dark. */
+html body .nk4-hero .nk4-actions .nk4-read, html body .nk4-hero .nk4-read, html body .nk4-read { background: var(--nk-menu-top, #1f2328) !important; background-color: var(--nk-menu-top, #1f2328) !important; background-image: none !important; border-color: var(--nk-menu-top, #1f2328) !important; color: #fffffd !important; }
+html body .nk4-hero .nk4-actions .nk4-read:hover, html body .nk4-hero .nk4-read:hover, html body .nk4-read:hover { background: var(--nk-menu-body, #30353d) !important; background-color: var(--nk-menu-body, #30353d) !important; border-color: var(--nk-menu-body, #30353d) !important; }
+
+/* v555 · "View all podcasts" uses the same CTA as the mega-menu "Explore ..." links (see mega-intro-v362.css):
+   at rest  [2px line] Label ; on hover the line slides away and a line with an arrowhead draws out to the right of the label.
+   Colour follows currentColor, so it stays right on the light hero. */
+html body .nk4-pod-meta .nk4-pod-all { margin-left: auto; display: inline-flex; align-items: center; gap: 0; font-weight: 600; text-decoration: none; color: inherit; }
+html body .nk4-pod-meta .nk4-pod-all::before { content: none; display: none; }
+html body .nk4-pod-meta .nk4-pod-all .nk4-pod-ln { display: block; flex: none; width: 40px; height: 2px; margin-right: 10px; background: currentColor; font-style: normal; transition: width 320ms cubic-bezier(.2,.7,.2,1), margin 320ms cubic-bezier(.2,.7,.2,1), opacity 240ms ease; }
+html body .nk4-pod-meta .nk4-pod-all .nk4-pod-ar { position: relative; display: block; flex: none; width: 0; height: 16px; margin-left: 0; overflow: hidden; opacity: 0; transition: width 320ms cubic-bezier(.2,.7,.2,1), margin 320ms cubic-bezier(.2,.7,.2,1), opacity 240ms ease; }
+html body .nk4-pod-meta .nk4-pod-all .nk4-pod-ar::before { content: ""; position: absolute; left: 0; right: 2px; top: 50%; height: 2px; margin-top: -1px; background: currentColor; }
+html body .nk4-pod-meta .nk4-pod-all .nk4-pod-ar::after { content: ""; position: absolute; right: 3px; top: 50%; box-sizing: border-box; width: 8px; height: 8px; margin-top: -4px; border-top: 2px solid currentColor; border-right: 2px solid currentColor; transform: rotate(45deg); }
+html body .nk4-pod-meta .nk4-pod-all:hover, html body .nk4-pod-meta .nk4-pod-all:focus-visible { text-decoration: none; }
+html body .nk4-pod-meta .nk4-pod-all:hover .nk4-pod-ln, html body .nk4-pod-meta .nk4-pod-all:focus-visible .nk4-pod-ln { width: 0; margin-right: 0; opacity: 0; }
+html body .nk4-pod-meta .nk4-pod-all:hover .nk4-pod-ar, html body .nk4-pod-meta .nk4-pod-all:focus-visible .nk4-pod-ar { width: 44px; margin-left: 12px; opacity: 1; }
+@media (prefers-reduced-motion: reduce) { html body .nk4-pod-meta .nk4-pod-all .nk4-pod-ln, html body .nk4-pod-meta .nk4-pod-all .nk4-pod-ar { transition: none; } }
+
+/* v556 · teaser band: practice name, its top three services (each a link) and an Explore link. */
+html body .nk4-teaser { gap: 10px; }
+html body .nk4-teaser-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+html body .nk4-teaser-list li { border-top: 1px solid rgba(250,249,246,.16); }
+html body .nk4-teaser-list li:last-child { border-bottom: 1px solid rgba(250,249,246,.16); }
+html body .nk4-teaser-svc { display: block; padding: 7px 0; font-family: var(--nk-display); font-weight: 500; font-size: clamp(17px, 1.45vw, 23px); line-height: 1.2; letter-spacing: -.005em; color: #fffffd; text-decoration: none; transition: color .2s ease, padding-left .25s ease; }
+html body .nk4-teaser-svc:hover, html body .nk4-teaser-svc:focus-visible { color: #fff; padding-left: 8px; outline: 0; text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+html body .nk4-teaser-link { align-self: flex-start; text-decoration: none; }
+html body .nk4-teaser-link:hover, html body .nk4-teaser-link:focus-visible { color: #fffffd; }
+html body .nk4-teaser-eyebrow { color: #c4c8ce; }
+
+/* v559 · hero band under the three panels: services a little smaller and the band a little tighter, Explore kept (the entry page is unchanged). */
+html body .nk4-teaser { gap: 7px; }
+html body .nk4-teaser-svc { padding: 5px 0; font-size: clamp(15px, 1.2vw, 19px); line-height: 1.2; }
+html body .nk4-teaser-eyebrow { font-size: clamp(12px, .95vw, 14px); }
+html body .nk4-teaser-link { font-size: 9.5px; margin-top: 0; }
+@media (min-width: 1024px) {
+  html body .nk4-teasers-grid { padding-top: clamp(14px, 2.4vh, 26px); padding-bottom: clamp(14px, 2.4vh, 26px); }
+}
+
+/* v562 · hero photo panels: practice names a little smaller (was clamp(20px,1.9vw,31px)). */
+@media (min-width: 761px) { html body .nk4-tri-name { font-size: clamp(17px, 1.6vw, 26px); } }
+
+/* v567 · bottom band (three teasers) a step lighter than the menu/footer colour; matches the hero frame. Footer, menu and rail keep --nk-menu-body. */
+html body .nk4-teasers { background: #3d444e !important; background-color: #3d444e !important; }
+html body .nk4-teaser-link { color: #b3b8bf; }
+html body .nk4-teaser:hover .nk4-teaser-link { color: #fffffd; }

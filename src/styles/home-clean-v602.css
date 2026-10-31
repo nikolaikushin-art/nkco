@@ -1,0 +1,140 @@
+/* v602 · home page clean-up (loaded after home-visual.css).
+   1. every block sits in ONE centred column (--hv-w) instead of running edge to edge, so nothing drifts on wide screens
+   2. visuals are smaller and spacing is tighter: the page is about a third shorter
+   3. headings keep the colour of their section (a global h1-h6 colour rule was turning them dark on dark)
+   4. the engagement letter no longer tilts out of the column */
+.hv { --hv-w: min(1320px, calc(100% - 80px)); padding: 80px 0; }
+.hv h2, .hv h3 { color: inherit; }
+
+/* header */
+.hv-head { margin-bottom: 40px; }
+.hv-head h2 { font-size: clamp(30px, 3.4vw, 48px); margin-top: 18px; }
+.hv-head:not(:has(.hv-eyebrow)) h2 { margin-top: 0; }
+.hv-foot { margin-top: 36px; }
+
+/* the shared column */
+.hv-big, .hv-stage, .hv-tiles, .hv-mods, .hv-cmp-grid, .hv-codes, .hv-steps, .hv-meth-grid, .hv-eng-grid,
+.hv-feature, .hv-thumbs, .hv-mag, .hv-reg { width: var(--hv-w); max-width: none; margin-left: auto; margin-right: auto; padding-left: 0; padding-right: 0; box-sizing: border-box; }
+.hv-tabs, .hv-seg, .hv-filters, .hv-pills, .hv-chips { width: var(--hv-w); max-width: none; margin-left: auto; margin-right: auto; padding-left: 0; padding-right: 0; box-sizing: border-box; }
+.hv-reg { max-width: 1000px; }
+.hv-chips { margin-top: 28px; }
+.hv-seg { margin-top: 40px; margin-bottom: 20px; }
+.hv-filters { margin-top: -8px; margin-bottom: 28px; }
+.hv-pills { margin-top: 28px; }
+.hv-actions { margin-top: 32px; }
+
+/* 1 · profile */
+.hv-big { height: clamp(340px, 38vw, 520px); }
+.hv-facts { padding: 0 36px 32px; gap: 32px; }
+.hv-facts b { font-size: clamp(36px, 3.8vw, 58px); }
+.hv-facts span { font-size: 12px; }
+
+/* 2 · practices */
+.hv-tabs { margin-bottom: 16px; }
+.hv-tabs button { padding: 14px 22px; }
+.hv-stage { height: clamp(360px, 36vw, 500px); }
+.hv-stage-t { left: 40px; bottom: 104px; font-size: clamp(34px, 4.2vw, 62px); }
+.hv-stage-f { left: 40px; right: 40px; bottom: 30px; gap: 40px; }
+.hv-stage > .hv-btn { right: 40px; bottom: 30px; }
+
+/* 3 · compare */
+.hv-cmp-grid { grid-template-columns: 300px 1fr; gap: 32px; }
+.hv-qlist button { padding: 16px 0; font-size: 16px; }
+.hv-card3 { min-height: 280px; padding: 28px 24px; }
+.hv-card3 p { font-size: clamp(20px, 1.7vw, 26px); margin: 18px 0 24px; }
+
+/* 4 · explore */
+.hv-tiles { gap: 12px; }
+.hv-tile { height: clamp(240px, 22vw, 320px); }
+.hv-tile-in { left: 26px; right: 26px; bottom: 24px; }
+.hv-tile-in h3 { font-size: clamp(26px, 2.5vw, 38px); }
+
+/* 5 · OMS */
+.hv-nums { gap: 72px; margin-bottom: 40px; }
+.hv-nums b { font-size: clamp(52px, 6vw, 88px); }
+.hv-mods { gap: 12px; }
+.hv-mods li { min-height: 180px; padding: 26px; }
+.hv-mods strong { font-size: clamp(26px, 2.5vw, 36px); }
+
+/* 6 · scope */
+.hv-codes { gap: 12px; }
+.hv-codes article { padding: 30px 26px; }
+.hv-codes b { font-size: clamp(42px, 4.4vw, 66px); }
+.hv-codes h3 { font-size: 20px; }
+.hv-reg li { padding: 16px 0; }
+.hv-reg strong { font-size: 20px; }
+
+/* 7 · method */
+.hv-steps { gap: 12px; }
+.hv-steps button { gap: 18px; padding: 18px 16px 20px; }
+.hv-steps i { font-size: clamp(28px, 2.8vw, 42px); }
+.hv-meth-grid { gap: 12px; margin-top: 20px; grid-template-columns: 1.2fr 1fr; }
+.hv-meth-grid figure { min-height: 360px; }
+.hv-meth-card { padding: 34px 32px; gap: 14px; }
+.hv-meth-card b { font-size: clamp(48px, 5vw, 76px); }
+.hv-meth-card h3 { font-size: clamp(24px, 2.2vw, 34px); }
+
+/* 8 · engagement: the letter stays straight and inside the column */
+.hv-eng-grid { gap: 48px; grid-template-columns: .85fr 1.15fr; align-items: center; }
+.hv-paper { transform: none; padding: 36px 36px 40px; box-shadow: 0 24px 48px rgba(0, 0, 0, .35); }
+.hv-paper h3 { font-size: 28px; margin-bottom: 20px; padding-bottom: 14px; }
+.hv-paper ol { gap: 9px; font-size: 15px; }
+.hv-eng-side .hv-chips { width: auto; margin-bottom: 32px; }
+.hv-docs li { padding: 13px 16px; font-size: 14px; }
+
+/* 9 · spotlight */
+.hv-feature { height: clamp(320px, 33vw, 460px); }
+.hv-feature-in { left: 40px; right: 40px; bottom: 34px; gap: 18px; }
+.hv-feature-in h3 { font-size: clamp(28px, 3.2vw, 48px); }
+.hv-playbtn { right: 32px; top: 32px; width: 64px; height: 64px; }
+.hv-thumbs { gap: 12px; margin-top: 12px; }
+.hv-thumbs button { padding: 18px 16px 20px; }
+
+/* 10 · insights */
+.hv-mag { gap: 12px; grid-auto-rows: clamp(180px, 14vw, 230px); }
+.hv-mtxt { left: 18px; right: 18px; bottom: 16px; }
+.hv-mtxt strong { font-size: 18px; }
+.hv-mag li:first-child .hv-mtxt strong { font-size: clamp(24px, 2.2vw, 34px); }
+
+/* 11 · governing standard */
+.hv-std { min-height: min(600px, 78vh); padding: 88px 0; }
+.hv-std-in { width: var(--hv-w); max-width: none; padding: 0; gap: 28px; }
+.hv-std-in h2 { font-size: clamp(30px, 3.6vw, 54px); max-width: 980px; }
+.hv-std-in ul { margin-top: 12px; gap: 20px; }
+
+@media (max-width: 1000px) {
+  .hv { --hv-w: calc(100% - 32px); padding: 52px 0; }
+  .hv-head { margin-bottom: 28px; }
+  .hv-cmp-grid, .hv-meth-grid, .hv-eng-grid { grid-template-columns: 1fr; }
+  .hv-stage-t { left: 22px; bottom: 190px; } .hv-stage-f { left: 22px; right: 22px; } .hv-stage > .hv-btn { left: 22px; right: auto; }
+  .hv-feature-in { left: 22px; right: 22px; }
+  .hv-card3 { min-height: 0; }
+  .hv-std-in { width: var(--hv-w); }
+}
+
+/* closing contact block: same column and smaller heading as the sections above */
+.hx-contact .nk-container { width: min(1320px, calc(100% - 80px)); max-width: none; padding-left: 0; padding-right: 0; margin-left: auto; margin-right: auto; box-sizing: border-box; }
+.hx-contact .hx-h1 { font-size: clamp(34px, 4vw, 58px); max-width: 12em; }
+.hx-contact-grid { gap: 48px; }
+@media (max-width: 1000px) { .hx-contact .nk-container { width: calc(100% - 32px); } }
+
+/* footer: the OMS tablet fills the space under the Dubai block */
+.ft-oms { display: grid; gap: 6px; width: 100%; max-width: 320px; margin-top: 10px; color: inherit; text-decoration: none; }
+.ft-oms > span { display: block; margin-bottom: 8px; transition: transform .35s ease; }
+.ft-oms:hover > span, .ft-oms:focus-visible > span { transform: translateY(-4px); }
+.ft-oms .dev { margin: 0; width: 100%; aspect-ratio: 4 / 3; padding: 6px; border-radius: 12px; box-shadow: 0 18px 36px rgba(0, 0, 0, .45), inset 0 0 0 1px rgba(255, 255, 255, .16); }
+.ft-oms .dev .glass { border-radius: 6px; }
+.ft-oms .dev .cam { display: none; }
+.ft-oms > b { font: 500 22px/1.15 var(--disp); color: #fff; }
+.ft-oms > small { font: 400 14px/1.5 var(--sans); color: var(--soft); }
+.ft-oms > i { display: inline-flex; align-items: center; gap: 10px; margin-top: 8px; align-self: start; justify-self: start; font: 600 12px/1 var(--sans); font-style: normal; letter-spacing: .1em; text-transform: uppercase; color: #fff; border-bottom: 1px solid #329AB2; padding-bottom: 6px; }
+.ft-brand .ft-oms p { font: inherit; color: inherit; max-width: none; margin: .55em 0 0; }
+
+/* footer columns: equal length, equal rows, closing link pinned to the bottom */
+.ft-map { align-items: stretch; }
+.ft-col { display: flex; flex-direction: column; }
+.ft-col ul { flex: 1; display: flex; flex-direction: column; margin: 0; padding: 0; list-style: none; }
+.ft-col li a { display: flex; align-items: center; height: 46px; padding: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.ft-col li a:hover { padding-inline-start: 6px; }
+.ft-col .ft-more { margin-top: auto; }
+.ft-col li:last-child a { border-bottom: 1px solid var(--rule-l); }

@@ -1,0 +1,48 @@
+/* v477 · Podcast player in the hero, under the buttons. The original rule above the card and the dash before "View all podcasts" are kept.
+   No episode label or second play button on the cover, so the cover runs the full height of the text beside it.
+   Sizes are written as N * --nk-u (see hero-scale-v471.css) so the player scales on large screens like the rest of the hero. */
+.nk4-pod { --u: var(--nk-u, 1px); margin-top: 0; padding-top: calc(17 * var(--u)); border-top: 1px solid rgba(255,255,255,.16); }
+.nk4-hero .nk4-slide { margin-bottom: calc(28 * var(--nk-u, 1px)); } /* fixed gap, the player is NOT pushed to the bottom */
+/* slide bars removed: the slideshow still advances on its own and pauses on hover / focus */
+.nk4-pod-top { display: grid; grid-template-columns: calc(132 * var(--u)) minmax(0, 1fr); gap: calc(26 * var(--u)); align-items: stretch; }
+.nk4-pod-thumb { display: block; position: relative; min-height: calc(132 * var(--u)); background: #9bbbe0; overflow: hidden; }
+.nk4-pod-cover { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.nk4-pod-body { display: flex; flex-direction: column; min-width: 0; padding-top: calc(2 * var(--u)); }
+.nk4-pod-kicker { display: flex; gap: calc(10 * var(--u)); font: 400 calc(11 * var(--u))/1.3 var(--nk-text); letter-spacing: .16em; text-transform: uppercase; color: #aeb3b9; }
+.nk4-pod-kicker i, .nk4-pod-meta i { font-style: normal; }
+.nk4-pod-title { margin-top: calc(10 * var(--u)); font-family: var(--nk-display); font-weight: 500; font-size: calc(26 * var(--u)); line-height: 1.16; letter-spacing: -.01em; color: #fff; text-decoration: none; text-wrap: balance; }
+.nk4-pod-title:hover { text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; }
+.nk4-pod-meta { display: flex; flex-wrap: wrap; align-items: baseline; gap: calc(4 * var(--u)) calc(12 * var(--u)); margin-top: auto; padding-top: calc(12 * var(--u)); font: 400 calc(14 * var(--u))/1.3 var(--nk-text); color: #aeb3b9; }
+.nk4-pod-meta a { color: #aeb3b9; text-decoration: none; }
+.nk4-pod-meta a:hover { color: #fff; }
+.nk4-pod-meta .nk4-pod-all { margin-left: auto; display: inline-flex; align-items: center; gap: calc(16 * var(--u)); font-weight: 600; color: #fff; }
+.nk4-pod-meta .nk4-pod-all::before { content: ""; width: calc(28 * var(--u)); height: 1px; background: rgba(255,255,255,.7); }
+.nk4-pod-meta .nk4-pod-all:hover { text-decoration: underline; text-underline-offset: 4px; }
+.nk4-pod-bar { display: flex; align-items: center; gap: calc(16 * var(--u)); margin-top: calc(22 * var(--u)); }
+.nk4-pod-play { flex: 0 0 auto; display: inline-flex; align-items: center; justify-content: center; width: calc(32 * var(--u)); height: calc(32 * var(--u)); padding: 0; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; background: transparent; color: #fff; cursor: pointer; }
+.nk4-pod-play:hover { background: rgba(255,255,255,.14); }
+.nk4-pod-play svg { width: calc(14 * var(--u)); height: calc(14 * var(--u)); }
+.nk4-pod-time { flex: 0 0 auto; font: 400 calc(11 * var(--u))/1 var(--nk-text); color: #aeb3b9; font-variant-numeric: tabular-nums; }
+.nk4-pod-track { position: relative; flex: 1 1 auto; height: calc(14 * var(--u)); cursor: pointer; }
+.nk4-pod-track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: rgba(255,255,255,.28); }
+.nk4-pod-fill { position: absolute; left: 0; top: 50%; height: 1px; background: #fff; }
+.nk4-pod-knob { position: absolute; top: 50%; width: calc(7 * var(--u)); height: calc(7 * var(--u)); margin: calc(-3.5 * var(--u)) 0 0 calc(-3.5 * var(--u)); border-radius: 50%; background: #fff; }
+.nk4-pod-thumb:focus-visible, .nk4-pod-title:focus-visible, .nk4-pod-meta a:focus-visible, .nk4-pod-play:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+@media (max-width: 1023px) {
+  .nk4-pod { margin-top: 0; padding-top: 8px; }
+  .nk4-pod-top { grid-template-columns: 104px minmax(0, 1fr); gap: 18px; }
+  .nk4-pod-thumb { min-height: 104px; }
+  .nk4-pod-title { font-size: 20px; }
+}
+@media (max-width: 520px) { .nk4-pod-meta .nk4-pod-all { margin-left: 0; flex-basis: 100%; } }
+
+/* v483 · small screens: the podcast label stays on one line; on a landscape phone the picture is wide and short instead of filling the whole screen */
+@media (max-width: 460px) {
+  .nk4-pod-kicker { white-space: nowrap; letter-spacing: .08em; font-size: 10px; gap: 6px; }
+  .nk4-pod-top { grid-template-columns: 92px minmax(0, 1fr); gap: 14px; }
+  .nk4-pod-thumb { min-height: 92px; }
+  .nk4-pod-title { font-size: 18px; }
+}
+@media (max-width: 1023px) and (orientation: landscape) and (max-height: 520px) {
+  .nk4-hero .nk4-frame { aspect-ratio: 21 / 8; }
+}

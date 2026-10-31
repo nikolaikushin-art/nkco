@@ -1,0 +1,694 @@
+/* v362 · Capabilities mega menu (.nk-cx)
+   - the paragraph under the picture is gone
+   - the left column (title, tagline, picture) is narrower, so the three columns on the right get the room
+   - the picture fills the height between the tagline and the CTA, so it is close to square instead of a wide banner
+   - the "Explore all ..." CTA sits at the bottom of the left column, on the same line as the three "Discover ..." CTAs */
+.nk-cx { width: 100%; grid-template-columns: minmax(214px, 19%) minmax(0, 1fr) !important; gap: clamp(28px, 3vw, 56px) !important; }
+.nk-cx-h { font-size: clamp(40px, 3.6vw, 58px); } /* original title size, unchanged */
+.nk-cx-acc { gap: clamp(28px, 2.8vw, 56px) !important; }
+.nk-cx-lead { display: none !important; }
+.nk-cx-intro { align-self: stretch; }
+.nk-cx-img { flex: 1 1 0; height: 0; min-height: 160px; max-height: 420px; aspect-ratio: auto; object-fit: cover; }
+.nk-cx-go, .nk-cx-all { margin-top: 18px !important; padding-top: 0 !important; }
+.nk-cx-intro .nk-cx-go { margin-top: 18px !important; }
+
+/* v366 · Infrastructure: the tagline "Operations Management System (OMS)" is bold, as on the previous site */
+.nk-cx[data-section="infrastructure"] .nk-cx-tag { font-weight: 700; letter-spacing: -.005em; }
+/* Infrastructure has a longer title and tagline, so its left column is a little wider; the tagline may wrap to a second line */
+.nk-cx[data-section="infrastructure"] { grid-template-columns: minmax(268px, 24%) minmax(0, 1fr) !important; }
+.nk-cx[data-section="infrastructure"] .nk-cx-tag { white-space: normal; overflow: visible; text-overflow: clip; line-height: 1.3; }
+/* Infrastructure: only two dropdown rows per column, so all three "go" links sit at the bottom together with the one in the left column,
+   whether a row is open or not */
+.nk-cx[data-section="infrastructure"] .nk-cx-acc { align-content: stretch; overflow: visible; } /* the menu grows when a row opens */
+.nk-cx[data-section="infrastructure"] .nk-cx-colm { height: 100%; }
+.nk-cx[data-section="infrastructure"] .nk-cx-all { margin-top: auto !important; padding-top: 18px !important; }
+
+/* v370 · Infrastructure: 6 groups x 3 dropdowns = 3 columns x 2 rows on the right.
+   - the left column is exactly as wide as the big "Infrastructure" title, so the picture ends where the title ends
+     (tagline, picture and CTA take their width from the title instead of widening the column)
+   - the picture is cropped (object-fit: cover) and capped in height; the "Explore all capabilities" CTA sits at the bottom
+   - if the two rows become taller than the available height (a dropdown is open), the menu scrolls inside itself */
+.nk-cx[data-section="infrastructure"] { grid-template-columns: auto minmax(0, 1fr) !important; overflow-y: auto; scrollbar-width: none; }
+.nk-cx[data-section="infrastructure"]::-webkit-scrollbar { display: none; }
+.nk-cx[data-section="infrastructure"] .nk-cx-h { white-space: nowrap; }
+.nk-cx[data-section="infrastructure"] .nk-cx-tag,
+.nk-cx[data-section="infrastructure"] .nk-cx-img,
+.nk-cx[data-section="infrastructure"] .nk-cx-go { width: 0; min-width: 100%; box-sizing: border-box; }
+.nk-cx[data-section="infrastructure"] .nk-cx-img { max-height: 440px; object-position: center; }
+.nk-cx[data-section="infrastructure"] .nk-cx-go { margin-top: auto !important; padding-top: 18px !important; }
+.nk-cx[data-section="infrastructure"] .nk-cx-acc { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: clamp(22px, 3.2vh, 38px); column-gap: clamp(28px, 2.8vw, 56px); align-content: start; align-items: start; }
+.nk-cx[data-section="infrastructure"] .nk-cx-colm { height: auto; }
+/* each CTA stays right under its own three dropdowns, even when a neighbouring dropdown is open */
+.nk-cx[data-section="infrastructure"] .nk-cx-all { margin-top: 18px !important; padding-top: 0 !important; }
+
+/* v370b · Infrastructure: the panel is limited by the screen height (not by the hero), and scrolls inside itself when a dropdown is open,
+   so the second row of stages is never cut off on shorter screens */
+.nk-mega:has(.nk-cx[data-section="infrastructure"]) { max-height: calc(100dvh - var(--nk-header-h, 64px)) !important; }
+.nk-cx[data-section="infrastructure"] { overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(196,200,206,.35) transparent; }
+.nk-cx[data-section="infrastructure"]::-webkit-scrollbar { display: block; width: 8px; }
+.nk-cx[data-section="infrastructure"]::-webkit-scrollbar-thumb { background: rgba(196,200,206,.35); border-radius: 4px; }
+@media (max-height: 760px) {
+  .nk-cx[data-section="infrastructure"] .nk-cx-acc { row-gap: 18px; }
+  .nk-cx[data-section="infrastructure"] .nk-cx-sh { margin-bottom: 8px; }
+}
+
+/* v370c · Infrastructure: each stage's CTA stays directly under its own dropdowns. When a dropdown opens in one stage,
+   the CTAs of the neighbouring stages do not move down to the bottom of the row. */
+.nk-cx[data-section="infrastructure"] .nk-cx-colm { align-self: start; }
+.nk-cx[data-section="infrastructure"] .nk-cx-all { margin-top: 18px !important; padding-top: 0 !important; }
+
+/* v370c · Infrastructure tagline stays on one line, under the title */
+.nk-cx[data-section="infrastructure"] .nk-cx-tag { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* v370d · Infrastructure: tighter spacing, so the six stages read as one compact block (less air between the two rows and below the last row) */
+.nk-cx[data-section="infrastructure"] .nk-cx-acc { row-gap: clamp(2px, .6vh, 6px); }
+.nk-cx[data-section="infrastructure"] .nk-cx-all { margin-top: 12px !important; }
+.nk-cx[data-section="infrastructure"] .nk-cx-sh { margin-bottom: 10px; }
+.nk-cx[data-section="infrastructure"] { padding-bottom: clamp(10px, 1.6vh, 18px); }
+@media (max-height: 760px) {
+  .nk-cx[data-section="infrastructure"] .nk-cx-acc { row-gap: 2px; }
+  .nk-cx[data-section="infrastructure"] .nk-cx-sh { margin-bottom: 8px; }
+}
+
+/* v370e · Infrastructure: second row a little higher, with comfortable space kept below the last buttons */
+.nk-cx[data-section="infrastructure"] .nk-cx-acc { row-gap: 28px !important; }
+.nk-cx[data-section="infrastructure"] { padding-bottom: clamp(22px, 3.2vh, 32px); }
+
+/* v370f · Infrastructure left column: shorter landscape picture + a short paragraph, link still at the bottom */
+.nk-cx[data-section="infrastructure"] .nk-cx-img { flex: 0 0 auto; height: 178px; min-height: 0; max-height: none; }
+.nk-cx[data-section="infrastructure"] .nk-cx-lead.nk-cx-lead--show { display: block !important; width: 0; min-width: 100%; box-sizing: border-box; margin: 14px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--cx-dim, #b4b8be); -webkit-line-clamp: 4; }
+@media (max-width: 1366px) { .nk-cx[data-section="infrastructure"] .nk-cx-img { height: 156px; } }
+
+/* v370g · Infrastructure: the picture takes all the space left in the left column (between the tagline and the paragraph),
+   so it grows on taller menus and never pushes the menu taller than the six stages */
+.nk-cx[data-section="infrastructure"] .nk-cx-img,
+.nk-cx[data-section="infrastructure"] .nk-cx-img { flex: 1 1 0; height: 0; min-height: 150px; max-height: 340px; }
+@media (max-width: 1366px) { .nk-cx[data-section="infrastructure"] .nk-cx-img { min-height: 140px; } }
+.nk-cx[data-section="infrastructure"] .nk-cx-go { padding-top: 20px !important; }
+
+/* v371 · Infrastructure: when a dropdown opens, the menu grows taller. The picture now grows with it and fills the whole left column
+   (no max-height cap), so there is never an empty gap between the paragraph and the "Explore all Infrastructure" link. */
+.nk-cx[data-section="infrastructure"] .nk-cx-intro { align-self: stretch; height: auto; }
+.nk-cx[data-section="infrastructure"] .nk-cx-img { flex: 1 1 0; height: 0; min-height: 150px; max-height: none !important; object-fit: cover; object-position: center; }
+.nk-cx[data-section="infrastructure"] .nk-cx-lead.nk-cx-lead--show,
+.nk-cx[data-section="infrastructure"] .nk-cx-go { flex: 0 0 auto; }
+.nk-cx[data-section="infrastructure"] .nk-cx-go { margin-top: 18px !important; padding-top: 0 !important; }
+
+/* v372 · Infrastructure tagline "Operations Management System (OMS)": always one line, scaled with the "Infrastructure" title
+   (title = clamp(40px, 3.6vw, 58px); tagline is ~25% of it), never cut with "..." */
+.nk-cx[data-section="infrastructure"] .nk-cx-tag { font-size: clamp(10px, .9vw, 14.5px); white-space: nowrap; overflow: visible; text-overflow: clip; letter-spacing: -.01em; }
+
+/* v373 · All desktop mega menus (Capabilities, Infrastructure, Intelligence, Industries, ...): "Explore / Discover ..." links styled like CBRE.
+   At rest:  [short 2px line] Label
+   On hover: the line slides away and the label moves left, while a line with an arrowhead draws out to the RIGHT of the label:  Label ---->
+   (the arrow is the <b class="nk-cx-ar"> element after the label; the line is the <i> before it) */
+.nk-cx .nk-cx-go,
+.nk-cx .nk-cx-all { gap: 0; }
+.nk-cx .nk-cx-go i,
+.nk-cx .nk-cx-all i { flex: none; width: 40px; height: 2px; margin-right: 10px; background: #fff; transition: width 320ms cubic-bezier(.2,.7,.2,1), margin 320ms cubic-bezier(.2,.7,.2,1), opacity 240ms ease; }
+.nk-cx .nk-cx-go span,
+.nk-cx .nk-cx-all span { font-weight: 600; }
+.nk-cx .nk-cx-ar { position: relative; display: block; flex: none; width: 0; height: 16px; margin-left: 0; overflow: hidden; opacity: 0; transition: width 320ms cubic-bezier(.2,.7,.2,1), margin 320ms cubic-bezier(.2,.7,.2,1), opacity 240ms ease; }
+.nk-cx .nk-cx-ar::before { content: ""; position: absolute; left: 0; right: 2px; top: 50%; height: 2px; margin-top: -1px; background: #fff; }
+.nk-cx .nk-cx-ar::after { content: ""; position: absolute; right: 3px; top: 50%; box-sizing: border-box; width: 8px; height: 8px; margin-top: -4px; border-top: 2px solid #fff; border-right: 2px solid #fff; transform: rotate(45deg); }
+.nk-cx .nk-cx-go:hover i, .nk-cx .nk-cx-all:hover i,
+.nk-cx .nk-cx-go:focus-visible i, .nk-cx .nk-cx-all:focus-visible i { width: 0; margin-right: 0; opacity: 0; }
+.nk-cx .nk-cx-go:hover .nk-cx-ar, .nk-cx .nk-cx-all:hover .nk-cx-ar,
+.nk-cx .nk-cx-go:focus-visible .nk-cx-ar, .nk-cx .nk-cx-all:focus-visible .nk-cx-ar { width: 44px; margin-left: 12px; opacity: 1; }
+
+/* v374 · Accordion items get the same thin left line as the CTA lines (2px).
+   COLOURS: change them HERE, in one place, for every mega menu.
+     --nk-nav-line        the line on the selected / current item
+     --nk-nav-line-hover  the line while navigating (hover / keyboard focus)
+     --nk-nav-line-w      thickness (all menus) */
+:root { --nk-nav-line: #fff; --nk-nav-line-hover: rgba(255, 255, 255, .6); --nk-nav-line-w: 2px; }
+
+/* top menus: the dropdown's service lines. A faint guide line at rest, the hover colour on hover/focus, no text shift any more */
+.nk-cx .nk-cx-panel ul { padding-left: 14px; }
+.nk-cx .nk-cx-panel li a { padding: 7px 12px 7px 14px; border-left: var(--nk-nav-line-w) solid rgba(255, 255, 255, .14); transition: color 160ms ease, border-color 160ms ease, background-color 160ms ease; }
+.nk-cx .nk-cx-panel li a:hover,
+.nk-cx .nk-cx-panel li a:focus-visible { padding-left: 14px; color: #fff !important; border-left-color: var(--nk-nav-line-hover); background: rgba(255, 255, 255, .05); }
+.nk-cx .nk-cx-panel li a[aria-current], .nk-cx .nk-cx-panel li a[data-active="true"] { border-left-color: var(--nk-nav-line); }
+
+/* burger / rail items: same thin line on hover too (selected keeps the full-colour line) */
+.nk-md-cat:hover:not([data-active="true"]),
+.nk-md-secs--burger .nk-md-cat:hover:not([data-active="true"]) { box-shadow: inset var(--nk-nav-line-w) 0 0 var(--nk-nav-line-hover); }
+
+/* v374b · Narrow-screen (light) accordion: same 2px line width as the dark menus. It is dark on the light background, so it has its own colour variables. */
+:root { --nk-nav-line-light: #16171a; --nk-nav-line-light-hover: rgba(18, 19, 22, .55); }
+.nk-acc-item, .nk-acc-kid { border-left-width: var(--nk-nav-line-w); }
+.nk-acc-item:hover, .nk-acc-kid:hover { border-left-color: var(--nk-nav-line-light-hover); }
+.nk-acc-item[data-active="true"], .nk-acc-kid[data-previewing] { border-left-color: var(--nk-nav-line-light); }
+
+/* v382 · Opportunities: two wide columns (the third was removed), and the left column is as wide as the big "Opportunities" title so it is never cut off */
+.nk-cx[data-section="opportunities"] { grid-template-columns: auto minmax(0, 1fr) !important; }
+.nk-cx[data-section="opportunities"] .nk-cx-h { white-space: nowrap; }
+.nk-cx[data-section="opportunities"] .nk-cx-tag,
+.nk-cx[data-section="opportunities"] .nk-cx-img,
+.nk-cx[data-section="opportunities"] .nk-cx-lead,
+.nk-cx[data-section="opportunities"] .nk-cx-go { width: 0; min-width: 100%; box-sizing: border-box; }
+/* v383 · Opportunities: three columns again - Selling a Business, Buying a Business, Ownership Transitions */
+.nk-cx[data-section="opportunities"] .nk-cx-acc { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(28px, 2.8vw, 56px); }
+.nk-cx[data-section="opportunities"] .nk-cx-colm { min-width: 0; }
+.nk-cx[data-section="opportunities"] .nk-cx-sh { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+/* v383 · Opportunities tagline "Business Disposals & Acquisitions": scales with the title so it always stays on one line, never cut off */
+.nk-cx[data-section="opportunities"] .nk-cx-tag { font-size: clamp(11px, .95vw, 14px); letter-spacing: -.005em; white-space: nowrap; overflow: visible; text-overflow: clip; }
+
+/* v384 · Expertise: 8 categories as a 4 x 2 grid (like Infrastructure's 3 x 2). Left column keeps the big "Expertise" title, tagline and CTA.
+   Construction Firms and Real Estate Academy are not shown. The panel scrolls inside itself when it is taller than the screen. */
+.nk-cx[data-section="expertise"] { grid-template-columns: auto minmax(0, 1fr) !important; overflow-y: auto; scrollbar-width: thin; scrollbar-color: rgba(196,200,206,.35) transparent; }
+.nk-cx[data-section="expertise"]::-webkit-scrollbar { display: block; width: 8px; }
+.nk-cx[data-section="expertise"]::-webkit-scrollbar-thumb { background: rgba(196,200,206,.35); border-radius: 4px; }
+.nk-mega:has(.nk-cx[data-section="expertise"]) { max-height: calc(100dvh - var(--nk-header-h, 64px)) !important; }
+.nk-cx[data-section="expertise"] .nk-cx-h { white-space: nowrap; }
+.nk-cx[data-section="expertise"] .nk-cx-tag,
+.nk-cx[data-section="expertise"] .nk-cx-img,
+.nk-cx[data-section="expertise"] .nk-cx-go { width: 0; min-width: 100%; box-sizing: border-box; }
+.nk-cx[data-section="expertise"] .nk-cx-go { margin-top: auto !important; padding-top: 18px !important; }
+.nk-cx[data-section="expertise"] .nk-cx-tag { font-size: clamp(11px, .95vw, 14px); white-space: nowrap; overflow: visible; text-overflow: clip; }
+.nk-cx[data-section="expertise"] .nk-cx-acc { grid-template-columns: repeat(4, minmax(0, 1fr)); row-gap: clamp(18px, 2.4vh, 30px); column-gap: clamp(22px, 2vw, 40px); align-content: start; align-items: start; }
+.nk-cx[data-section="expertise"] .nk-cx-colm { height: auto; min-width: 0; }
+.nk-cx[data-section="expertise"] .nk-cx-sh { font-size: clamp(22px, 1.85vw, 30px); }
+.nk-cx[data-section="expertise"] .nk-cx-all { margin-top: 14px !important; padding-top: 0 !important; }
+/* v384b · Expertise: tagline and "Discover ..." links scale down on narrower screens so nothing is cut off */
+.nk-cx[data-section="expertise"] .nk-cx-tag { font-size: clamp(9.5px, .78vw, 14px); }
+.nk-cx[data-section="expertise"] .nk-cx-all span { font-size: clamp(11px, .88vw, 15px); }
+.nk-cx[data-section="expertise"] .nk-cx-all i { width: clamp(18px, 2vw, 40px); margin-right: clamp(6px, .6vw, 10px); }
+.nk-cx[data-section="expertise"] .nk-cx-sh { font-size: clamp(18px, 1.7vw, 30px); }
+/* v385 · Expertise: thinner columns. Each column is capped in width and the free space goes between them instead. */
+.nk-cx[data-section="expertise"] .nk-cx-acc { grid-template-columns: repeat(4, minmax(0, clamp(180px, 15vw, 244px))); justify-content: space-between; }
+/* v385b · fine-tune so the longer headings and "Discover ..." links still fit the thinner columns */
+.nk-cx[data-section="expertise"] .nk-cx-acc { grid-template-columns: repeat(4, minmax(0, clamp(190px, 16vw, 264px))); }
+.nk-cx[data-section="expertise"] .nk-cx-sh { font-size: clamp(16px, 1.3vw, 25px); }
+.nk-cx[data-section="expertise"] .nk-cx-all span { font-size: clamp(10px, .72vw, 12.5px); }
+.nk-cx[data-section="expertise"] .nk-cx-all i { width: clamp(14px, 1.4vw, 28px); margin-right: clamp(6px, .5vw, 9px); }
+/* v386 · Expertise: no wide empty strip between the columns. Thin columns sit close together, left-aligned. */
+.nk-cx[data-section="expertise"] .nk-cx-acc { justify-content: start; column-gap: clamp(24px, 2.2vw, 44px); }
+
+/* v387 · Expertise: two blocks stacked in each column (heading + 6 rows, then the next heading + 6 rows), chevron icons, no links between blocks, columns close together */
+.nk-cx-stack--flat { display: contents; }
+.nk-cx[data-section="expertise"] .nk-cx-stack { display: flex; flex-direction: column; gap: clamp(22px, 3vh, 34px); min-width: 0; }
+.nk-cx[data-section="expertise"] .nk-cx-acc { grid-template-columns: repeat(4, minmax(0, clamp(190px, 16vw, 264px))); justify-content: start; column-gap: clamp(18px, 1.5vw, 30px); row-gap: 0; }
+.nk-cx[data-section="expertise"] .nk-cx-sh { font-size: clamp(19px, 1.75vw, 29px); }
+/* v388 · Expertise: less space between the stacked blocks */
+.nk-cx[data-section="expertise"] .nk-cx-stack { gap: clamp(16px, 2.3vh, 22px); }
+/* v389 · Expertise: no dead area on the right. The four columns share the full width that is left of the title column. */
+.nk-cx[data-section="expertise"] .nk-cx-acc { grid-template-columns: repeat(4, minmax(0, 1fr)); justify-content: stretch; column-gap: clamp(24px, 2.2vw, 44px); }
+.nk-cx[data-section="expertise"] .nk-cx-sh { font-size: clamp(20px, 1.9vw, 32px); }
+.nk-cx[data-section="expertise"] .nk-cx-btn span { font-size: clamp(13px, .98vw, 17px); }
+
+/* v394 · Expertise: bigger picture, columns pushed to the right, short paragraph under the picture (as in Infrastructure) */
+.nk-cx[data-section="expertise"] { grid-template-columns: minmax(270px, 23%) minmax(0, 1fr) !important; gap: clamp(24px, 2.4vw, 48px) !important; }
+.nk-cx[data-section="expertise"] .nk-cx-intro { align-self: stretch; height: auto; }
+.nk-cx[data-section="expertise"] .nk-cx-img { flex: 1 1 0; height: 0; min-height: 260px; max-height: none !important; object-fit: cover; object-position: center; }
+.nk-cx[data-section="expertise"] .nk-cx-lead.nk-cx-lead--show { display: block !important; flex: 0 0 auto; width: 0; min-width: 100%; box-sizing: border-box; margin: 14px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--cx-dim, #b4b8be); -webkit-line-clamp: 4; }
+.nk-cx[data-section="expertise"] .nk-cx-go { flex: 0 0 auto; margin-top: 18px !important; padding-top: 0 !important; }
+.nk-cx[data-section="expertise"] .nk-cx-acc { justify-content: end; column-gap: clamp(20px, 1.8vw, 36px); }
+.nk-cx[data-section="expertise"] .nk-cx-tag { font-size: clamp(11px, .9vw, 14px); }
+
+/* v395 · Expertise: tighter rows so both blocks of every column fit on screen without cutting off at the bottom */
+.nk-cx[data-section="expertise"] .nk-cx-btn { padding: clamp(4px, .8vh, 8px) 0; line-height: 18px; }
+.nk-cx[data-section="expertise"] .nk-cx-row[data-open="true"] .nk-cx-btn { padding-bottom: 6px; }
+.nk-cx[data-section="expertise"] .nk-cx-sh { margin: 0 0 clamp(6px, 1vh, 10px); line-height: 1.05; }
+.nk-cx[data-section="expertise"] .nk-cx-stack { gap: clamp(10px, 1.6vh, 16px); }
+.nk-cx[data-section="expertise"] .nk-cx-panel li a { padding-top: 5px; padding-bottom: 5px; }
+.nk-cx[data-section="expertise"] { padding-bottom: clamp(12px, 2vh, 20px); }
+.nk-cx[data-section="expertise"] .nk-cx-img { min-height: 200px; }
+
+/* v397 · Expertise: all 6 services per category again; picture a little smaller than v394 (left column 23%), rows compact so both blocks fit */
+.nk-cx[data-section="expertise"] .nk-cx-acc { column-gap: clamp(16px, 1.4vw, 28px); justify-content: end; }
+
+/* v398 · Expertise balance: picture column 25%, rows a touch roomier (still fit at every screen height), headings sized so none is cut off */
+.nk-cx[data-section="expertise"] { grid-template-columns: minmax(290px, 25%) minmax(0, 1fr) !important; }
+.nk-cx[data-section="expertise"] .nk-cx-btn { padding: clamp(5px, 1vh, 10px) 0; }
+.nk-cx[data-section="expertise"] .nk-cx-sh { font-size: clamp(18px, 1.6vw, 28px); }
+.nk-cx[data-section="expertise"] .nk-cx-acc { column-gap: clamp(18px, 1.6vw, 32px); }
+
+/* v399 · Expertise: the picture is a wide strip (2.4:1, cropped from the centre), headings and rows stay on ONE line.
+   - Picture is a wide, short strip so it leaves room for the text.
+   - The picture column gets narrower on smaller screens so the four menu columns are wide enough for one-line text.
+   - If the screen is short, the panel scrolls rather than squeezing anything. */
+.nk-cx[data-section="expertise"] .nk-cx-img { flex: 0 0 auto; width: 100%; min-width: 100%; height: auto; min-height: 0; max-height: none !important; aspect-ratio: 2.4 / 1; object-fit: cover; object-position: 50% 50%; }
+.nk-cx[data-section="expertise"] .nk-cx-sh { white-space: nowrap; overflow: visible; text-overflow: clip; font-size: clamp(19px, 1.6vw, 28px); line-height: 1.12; }
+.nk-cx[data-section="expertise"] .nk-cx-btn { align-items: center; line-height: 1.25; padding: clamp(6px, 1vh, 10px) 0; }
+.nk-cx[data-section="expertise"] .nk-cx-btn span { white-space: nowrap; overflow: visible; text-overflow: clip; font-size: clamp(13px, .95vw, 16px); }
+.nk-cx[data-section="expertise"] .nk-cx-btn { gap: 8px; }
+.nk-cx[data-section="expertise"] .nk-cx-panel li a { white-space: nowrap; overflow: visible; text-overflow: clip; }
+.nk-cx[data-section="expertise"] .nk-cx-tag { white-space: normal; overflow: visible; font-size: clamp(12px, .95vw, 15px); }
+.nk-cx[data-section="expertise"] .nk-cx-h { white-space: nowrap; }
+.nk-cx[data-section="expertise"] .nk-cx-acc { align-content: start; overflow: visible; column-gap: clamp(14px, 1.3vw, 28px); }
+.nk-cx[data-section="expertise"] .nk-cx-intro { overflow: visible; }
+.nk-cx[data-section="expertise"] { padding-left: clamp(24px, 3vw, 48px); padding-right: clamp(24px, 3vw, 48px); gap: clamp(20px, 2vw, 40px) !important; }
+@media (max-width: 1400px) {
+  .nk-cx[data-section="expertise"] { grid-template-columns: minmax(200px, 18%) minmax(0, 1fr) !important; }
+}
+
+/* v400 · Expertise: the picture is tall again - it runs down the left column and fills all the height between the tagline and the paragraph / CTA
+   (no longer a wide 2.4:1 strip). It grows with the menu height, so it ends at the bottom of the panel next to the last row of services. */
+.nk-cx[data-section="expertise"] .nk-cx-intro { align-self: stretch; height: auto; display: flex; flex-direction: column; }
+.nk-cx[data-section="expertise"] .nk-cx-img { flex: 1 1 0; width: 100%; min-width: 100%; height: 0; min-height: 200px; max-height: none !important; aspect-ratio: auto; object-fit: cover; object-position: 50% 50%; }
+.nk-cx[data-section="expertise"] .nk-cx-lead.nk-cx-lead--show,
+.nk-cx[data-section="expertise"] .nk-cx-go { flex: 0 0 auto; }
+
+/* v401 · Expertise: the short paragraph is at most 3 lines, so the "Meet our experts" link always fits under it */
+.nk-cx[data-section="expertise"] .nk-cx-lead.nk-cx-lead--show { -webkit-line-clamp: 3; line-height: 1.45; margin-top: 12px; }
+
+/* v402 · Expertise: smaller picture, so the left column is no taller than the four menu columns and "Meet our experts" sits level with the last row of services */
+.nk-cx[data-section="expertise"] .nk-cx-img { min-height: 110px; }
+.nk-cx[data-section="expertise"] .nk-cx-go { margin-top: 14px !important; padding-bottom: 6px; }
+
+/* v403 · Expertise: a call-to-action under each of the 8 categories (same style as Infrastructure's "Explore Strategy" links) */
+.nk-cx[data-section="expertise"] .nk-cx-all { margin-top: 12px !important; padding-top: 0 !important; }
+.nk-cx[data-section="expertise"] .nk-cx-all span { font-size: clamp(12px, .95vw, 15px); white-space: nowrap; }
+.nk-cx[data-section="expertise"] .nk-cx-all i { width: clamp(28px, 2.4vw, 40px); margin-right: 10px; }
+.nk-cx[data-section="expertise"] .nk-cx-stack { gap: clamp(18px, 2.6vh, 28px); }
+.nk-cx[data-section="expertise"] .nk-cx-img { min-height: 140px; }
+
+/* v404 · Expertise: the picture gives up its height, so the left column is never taller than the four menu columns.
+   "Meet our experts" then sits on the same line as the bottom row of category links (Explore Holiday Homes / Management / Developers / Leasing). */
+.nk-cx[data-section="expertise"] .nk-cx-intro { min-height: 0; }
+.nk-cx[data-section="expertise"] .nk-cx-img { min-height: 0 !important; }
+.nk-cx[data-section="expertise"] .nk-cx-go { margin-top: 12px !important; padding-top: 0 !important; padding-bottom: 0 !important; }
+.nk-cx[data-section="expertise"] .nk-cx-lead.nk-cx-lead--show { margin-top: 12px; }
+
+/* v405 · Expertise: the picture is a smooth vertical colour band (terracotta - gold - sage - terracotta), no photo, no filter.
+   It fills the column height between the tagline and the paragraph, exactly like the reference. */
+.nk-cx[data-section="expertise"] .nk-cx-img.nk-cx-band {
+  filter: none !important;
+  border: 0; border-radius: 0;
+  background-image: linear-gradient(90deg,
+    #7f9d86 0%, #8d9b7c 3%, #c58a68 9%, #cc8d63 17%, #e3ad57 31%, #f0bb55 41%, #e9b857 49%,
+    #b3a96c 56%, #7b9f86 63%, #78a08a 72%, #84a18a 79%, #a8a07c 87%, #c58f6c 94%, #cc916f 100%);
+  background-color: #b9936a;
+}
+
+/* v407 · Expertise on phones / drawer: the colour band is a short wide strip (3:1) right under the tagline, not a tall block.
+   Desktop keeps the tall band that ends level with the bottom row of links. */
+@media (max-width: 1000px) {
+  .nk-cx[data-section="expertise"] .nk-cx-img.nk-cx-band { flex: 0 0 auto !important; width: 100%; height: auto !important; min-height: 0 !important; max-height: none !important; aspect-ratio: 3 / 1 !important; }
+}
+
+/* v408 · Expertise (desktop): the colour band is narrower. Its LEFT edge stays where it was (aligned with the title);
+   its RIGHT edge moves to the left, leaving a gap before the menu columns. Height is unchanged.
+   Tune it with one number: --cx-band-w (100% = full column width, as before). Phones / drawer keep the full-width 3:1 strip from v407. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-img.nk-cx-band {
+    --cx-band-w: 84%;
+    width: var(--cx-band-w) !important;
+    min-width: 0 !important;
+    max-width: var(--cx-band-w);
+    align-self: flex-start;
+  }
+}
+
+/* v409 · Expertise: "Explore ..." links now behave exactly like "Meet our experts".
+   On hover / keyboard focus the short line in front of the label collapses, so the label slides to the LEFT edge
+   and the line + arrowhead draws out to the right of it. (The Expertise-specific width rules above were more specific
+   than the general hover rule, so the line never collapsed and the label stayed pushed to the right.) */
+.nk-cx[data-section="expertise"] .nk-cx-all:hover i,
+.nk-cx[data-section="expertise"] .nk-cx-all:focus-visible i {
+  width: 0 !important;
+  margin-right: 0 !important;
+  opacity: 0;
+}
+
+/* v411 · Expertise (desktop): the short paragraph under the picture is removed, and the left column is only as wide as its
+   own content (the tagline "Real Estate Sector Specialisation"). All the room that frees up goes to the four category columns,
+   so they are wider. The colour band is now a % of that narrower column (84% = it ends just before the end of the tagline). */
+.nk-cx[data-section="expertise"] .nk-cx-lead,
+.nk-cx[data-section="expertise"] .nk-cx-lead.nk-cx-lead--show { display: none !important; }
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] { grid-template-columns: max-content minmax(0, 1fr) !important; gap: clamp(32px, 3.2vw, 64px) !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-tag { white-space: nowrap; width: auto; min-width: 0; } /* the tagline itself sets the column width, so it never spills into the gap */
+}
+
+/* v412 · Expertise (desktop): the colour band ends where the tagline "Real Estate Sector Specialisation" ends, plus a small extra.
+   The left column is exactly as wide as that tagline (v411), so 100% = the end of the tagline.
+   --cx-band-extra is the little bit past it; set it to 0px to finish exactly at the end of the word "Specialisation". */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-img.nk-cx-band {
+    --cx-band-extra: clamp(10px, 1vw, 18px);
+    --cx-band-w: calc(100% + var(--cx-band-extra));
+  }
+}
+
+/* v413 · Opportunities (desktop): picture and "Explore all Opportunities" link move up, like Capabilities.
+   The picture is smaller and no longer stretches to fill the column, so the link sits right under it instead of at the bottom.
+   Change the picture size with --cx-opp-img-ratio (width / height; a bigger number = a flatter, smaller picture). */
+.nk-cx[data-section="opportunities"] .nk-cx-intro { align-self: start; height: auto; }
+.nk-cx[data-section="opportunities"] .nk-cx-img {
+  --cx-opp-img-ratio: 2 / 1;
+  flex: 0 0 auto; height: auto; min-height: 0; max-height: none !important;
+  aspect-ratio: var(--cx-opp-img-ratio); object-fit: cover; object-position: center;
+}
+.nk-cx[data-section="opportunities"] .nk-cx-go { flex: 0 0 auto; margin-top: 18px !important; padding-top: 0 !important; }
+
+/* v414 · Expertise (desktop): like Infrastructure - a smaller colour band, then a short paragraph (about 4 lines), then the link.
+   The paragraph text is LEADS.expertise in components/mega/MegaRail.jsx. The band no longer stretches to fill the column;
+   change its height with --cx-exp-band-ratio (width / height; bigger number = flatter band). */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-intro { align-self: start; height: auto; }
+  .nk-cx[data-section="expertise"] .nk-cx-img.nk-cx-band {
+    --cx-exp-band-ratio: 2.1 / 1;
+    flex: 0 0 auto !important; height: auto !important; min-height: 0 !important;
+    aspect-ratio: var(--cx-exp-band-ratio) !important;
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-lead.nk-cx-lead--show {
+    display: -webkit-box !important; flex: 0 0 auto; width: 0; min-width: 100%; box-sizing: border-box;
+    margin: 14px 0 0; font-size: 13.5px; line-height: 1.5; color: var(--cx-dim, #b4b8be);
+    -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden;
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-go { margin-top: 18px !important; }
+}
+
+/* v415 · Expertise (desktop): 4 items per category (set in MegaRail.jsx, MAX_ROWS), paragraph = 3 lines, and wider category columns.
+   The left column is now a fixed share of the menu (the tagline may wrap onto two lines) instead of being as wide as the tagline,
+   and the gap between columns is smaller, so each of the four columns gets more room (closer to Infrastructure).
+   Tune: --cx-exp-left = width of the left column, --cx-exp-gap = space between the category columns. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] {
+    --cx-exp-left: clamp(230px, 17vw, 330px);
+    --cx-exp-gap: clamp(20px, 1.8vw, 36px);
+    grid-template-columns: var(--cx-exp-left) minmax(0, 1fr) !important;
+    gap: clamp(28px, 2.6vw, 52px) !important;
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-tag { white-space: normal; width: 0; min-width: 100%; line-height: 1.35; }
+  .nk-cx[data-section="expertise"] .nk-cx-img.nk-cx-band { --cx-band-w: 100%; }
+  .nk-cx[data-section="expertise"] .nk-cx-lead.nk-cx-lead--show { -webkit-line-clamp: 3; }
+  .nk-cx[data-section="expertise"] .nk-cx-acc { column-gap: var(--cx-exp-gap); }
+}
+
+/* v416 · Expertise (desktop): the colour band grows again and fills the left column all the way down, so "Meet our experts"
+   sits level with the "Explore ..." links of the bottom row (as in Infrastructure). Title, tagline, band, 3-line paragraph, link.
+   The column's height is set by the four-column menu; the band takes whatever is left. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-intro { align-self: stretch; height: auto; }
+  .nk-cx[data-section="expertise"] .nk-cx-img.nk-cx-band {
+    flex: 1 1 0 !important; height: 0 !important; min-height: 120px !important; aspect-ratio: auto !important;
+  }
+}
+
+/* v417 · Expertise (desktop): wider category columns and roomier rows, closer to Infrastructure and Capabilities.
+   - the left column is narrower (tagline wraps onto two lines) and the gaps are smaller, so the four columns share more width
+   - rows get a little more height and larger text, like the other menus
+   Tune: --cx-exp-left (left column), --cx-exp-gap (space between columns), --cx-exp-row (row padding), --cx-exp-fs (row text size). */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] {
+    --cx-exp-left: clamp(190px, 13.5vw, 250px);
+    --cx-exp-gap: clamp(18px, 1.6vw, 32px);
+    --cx-exp-row: clamp(8px, 1.3vh, 13px);
+    --cx-exp-fs: clamp(14px, 1.05vw, 17px);
+    gap: clamp(22px, 2vw, 38px) !important;
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-btn { padding: var(--cx-exp-row) 0; }
+  .nk-cx[data-section="expertise"] .nk-cx-btn span { font-size: var(--cx-exp-fs); }
+  .nk-cx[data-section="expertise"] .nk-cx-sh { font-size: clamp(22px, 1.9vw, 31px); }
+}
+
+/* v418 · Expertise (desktop): rows, titles and spacing are exactly the same size as Capabilities, top to bottom.
+   Same row height (18px line + 11.5px above and below), same row text size, same category-title size and the same space under it.
+   These values are copied from the Capabilities menu, so if you change Capabilities in menu-columns-v327.css, change them here too. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] {
+    --cx-exp-row: 11.5px;
+    --cx-exp-fs: clamp(12.5px, .92vw, 15px);
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-btn { font-size: var(--cx-exp-fs); line-height: 18px; padding: var(--cx-exp-row) 0; letter-spacing: -.005em; }
+  .nk-cx[data-section="expertise"] .nk-cx-btn span { font-size: var(--cx-exp-fs); }
+  .nk-cx[data-section="expertise"] .nk-cx-row[data-open="true"] .nk-cx-btn { padding-bottom: 8px; }
+  .nk-cx[data-section="expertise"] .nk-cx-sh { font-size: clamp(22px, 1.77vw, 28px); line-height: 1.1; margin: 0 0 14px; }
+  .nk-cx[data-section="expertise"] .nk-cx-all { margin-top: 18px !important; }
+}
+
+/* v419 · Expertise (desktop): back to the wider look of v417 (larger text and roomier rows, left to right).
+   The v418 "same as Capabilities" sizes are replaced. Tune with --cx-exp-row, --cx-exp-fs and the title size below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] {
+    --cx-exp-row: clamp(8px, 1.3vh, 13px);
+    --cx-exp-fs: clamp(14px, 1.05vw, 17px);
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-btn { line-height: 1.3; letter-spacing: 0; }
+  .nk-cx[data-section="expertise"] .nk-cx-sh { font-size: clamp(22px, 1.9vw, 31px); margin: 0 0 clamp(8px, 1.2vh, 12px); }
+  .nk-cx[data-section="expertise"] .nk-cx-all { margin-top: 14px !important; }
+}
+
+/* v420 · Expertise (desktop): up-down spacing like Infrastructure / Capabilities, left-right width as before (v417 / v419).
+   - vertical: same row height (18px line + 11.5px above and below), same title gap and same space above the "Explore ..." links
+   - horizontal: unchanged - narrow left column, small gaps, so the four columns stay wide; text size stays at the larger v419 size */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] {
+    --cx-exp-row: 11.5px;
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-btn { line-height: 18px; padding: var(--cx-exp-row) 0; }
+  .nk-cx[data-section="expertise"] .nk-cx-row[data-open="true"] .nk-cx-btn { padding-bottom: 8px; }
+  .nk-cx[data-section="expertise"] .nk-cx-sh { line-height: 1.1; margin: 0 0 14px; }
+  .nk-cx[data-section="expertise"] .nk-cx-all { margin-top: 18px !important; }
+}
+
+/* v421 · Expertise (desktop): tighter spacing between the sections, and the left column (title, tagline, picture) on one line, widened to the right.
+   - the left column is as wide as the tagline "Real Estate Sector Specialisation" on ONE line (nowrap); the colour band and the paragraph take that same width,
+     so the whole left block is wider and the four category columns start further to the right
+   - less space between the stacked sections (Agency -> Holiday Homes, etc.), and less space under each "Explore ..." link
+   Tune: --cx-exp-stack (space between stacked sections), --cx-exp-gap (space between the four columns), --cx-exp-lgap (space between left block and columns). */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] {
+    --cx-exp-stack: clamp(6px, 1vh, 10px);
+    --cx-exp-gap: clamp(14px, 1.2vw, 24px);
+    --cx-exp-lgap: clamp(18px, 1.6vw, 30px);
+    grid-template-columns: max-content minmax(0, 1fr) !important;
+    gap: var(--cx-exp-lgap) !important;
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-tag { white-space: nowrap; width: auto; min-width: 0; overflow: visible; text-overflow: clip; font-size: clamp(12px, .95vw, 15px); }
+  .nk-cx[data-section="expertise"] .nk-cx-h { white-space: nowrap; }
+  .nk-cx[data-section="expertise"] .nk-cx-img.nk-cx-band { --cx-band-w: 100%; --cx-band-extra: 0px; }
+  .nk-cx[data-section="expertise"] .nk-cx-acc { column-gap: var(--cx-exp-gap); }
+  .nk-cx[data-section="expertise"] .nk-cx-stack { gap: var(--cx-exp-stack); }
+  .nk-cx[data-section="expertise"] .nk-cx-all { margin-top: 12px !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-go { margin-top: 12px !important; }
+}
+
+/* v422 · Expertise (desktop): even less space between the sections, and the space that frees up goes to the colour band.
+   - tighter gaps: between stacked sections, above each "Explore ..." link, and under each category title
+   - the panel keeps its full height (down to the hero strip, --cx-h set in MegaRail.jsx) instead of shrinking with the columns,
+     so the left column stretches to the bottom: the colour band grows into the freed space, and "Meet our experts" sits at the bottom
+   Tune: --cx-exp-stack (space between stacked sections), --cx-exp-cta (space above each Explore link). Remove the min-height line to let the panel shrink again. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] {
+    --cx-exp-stack: clamp(2px, .5vh, 6px);
+    --cx-exp-cta: 8px;
+    min-height: var(--cx-h, 0px);
+    align-items: stretch;
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-stack { gap: var(--cx-exp-stack); }
+  .nk-cx[data-section="expertise"] .nk-cx-all { margin-top: var(--cx-exp-cta) !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-sh { margin: 0 0 10px; }
+  .nk-cx[data-section="expertise"] .nk-cx-intro { align-self: stretch; }
+  .nk-cx[data-section="expertise"] .nk-cx-acc { align-self: start; }
+}
+
+/* v423 · Expertise (desktop): smaller space between the sections, larger space between the left block (title / picture) and the first column.
+   - the 36px gap between the four columns came from an !important "gap" rule in the v362 header of this file, which the earlier variables could not override;
+     it is now overridden here (!important) with a smaller value
+   - the space between the stacked sections (last row -> Explore link -> next heading) is reduced as well
+   - the space between the left block and the first column is larger
+   Tune: --cx-exp-colgap (space between the four columns), --cx-exp-lgap (left block -> first column), --cx-exp-stack, --cx-exp-cta (vertical spaces). */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] {
+    --cx-exp-colgap: clamp(12px, 1.2vw, 20px);
+    --cx-exp-lgap: clamp(44px, 4.4vw, 84px);
+    --cx-exp-stack: 4px;
+    --cx-exp-cta: 4px;
+    gap: var(--cx-exp-lgap) !important;
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-acc { column-gap: var(--cx-exp-colgap) !important; row-gap: 0 !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-stack { gap: var(--cx-exp-stack); }
+  .nk-cx[data-section="expertise"] .nk-cx-all { margin-top: var(--cx-exp-cta) !important; line-height: 1; padding: 0 !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-all span { line-height: 1.2; }
+}
+
+/* v424 · Expertise (desktop): balance. v423 was a little too tight, so the spaces are set between v421 and v423.
+   - between the four columns: about 24px (was 36px originally, 15px in v423)
+   - between the left block and the first column: about 41px (was 26px originally, 57px in v423)
+   - vertical: the "Explore ..." link has about 11px of air above it and the next heading about 14px below it (v423 had almost none)
+   Tune with the same four variables as before. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] {
+    --cx-exp-colgap: clamp(18px, 1.9vw, 32px);
+    --cx-exp-lgap: clamp(34px, 3.2vw, 60px);
+    --cx-exp-stack: clamp(8px, 1.2vh, 14px);
+    --cx-exp-cta: 11px;
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-all { line-height: 1.2; }
+}
+
+/* v425 · Expertise (desktop): v424 was still too close in two places - the "Explore ..." link against the heading below it, and the long headings
+   ("Property Management" / "Property Developers") against each other. More air there, and the headings are a little smaller so they never touch.
+   Tune: --cx-exp-stack (Explore link -> next heading), --cx-exp-colgap (between columns), heading size in .nk-cx-sh below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] {
+    --cx-exp-colgap: clamp(28px, 2.6vw, 44px);
+    --cx-exp-lgap: clamp(36px, 3.4vw, 64px);
+    --cx-exp-stack: clamp(20px, 3vh, 30px);
+    --cx-exp-cta: 12px;
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-sh { font-size: clamp(19px, 1.55vw, 26px); }
+}
+
+/* v426 · Expertise (desktop): the row text (Lead Intelligence, Developer Alignment, ...) was bigger than in the other menus (17px vs 15px at the widest).
+   It now uses exactly the Capabilities / Infrastructure row size, so every mega menu reads the same.
+   Tune: --cx-exp-fs (row text size). Copied from .nk-cx-btn in menu-columns-v327.css - if you change it there, change it here too. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] {
+    --cx-exp-fs: clamp(12.5px, .92vw, 15px);
+  }
+  .nk-cx[data-section="expertise"] .nk-cx-btn,
+  .nk-cx[data-section="expertise"] .nk-cx-btn span { font-size: var(--cx-exp-fs); letter-spacing: -.005em; }
+}
+
+/* v428 · Expertise (desktop): rows are 34px (was 41px) and "Meet our experts" lines up with the bottom "Explore ..." links.
+   - row padding 8px (18px line + 8px above and below = 34px)
+   - the four category columns now stretch to the full panel height, so the rows share out the leftover space and the last
+     "Explore ..." links sit on the same line as "Meet our experts" (the colour band no longer has to be cut to match)
+   Tune: --cx-exp-row (row padding; rows grow a little on tall panels because they fill the height). */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] { --cx-exp-row: 8px; }
+  .nk-cx[data-section="expertise"] .nk-cx-acc { align-self: stretch; align-items: stretch; align-content: stretch; grid-template-rows: minmax(0, 1fr); }
+  .nk-cx[data-section="expertise"] .nk-cx-colm { flex: 1 1 0; display: flex; flex-direction: column; }
+  .nk-cx[data-section="expertise"] .nk-cx-rows { flex: 1 1 auto; display: flex; flex-direction: column; }
+  .nk-cx[data-section="expertise"] .nk-cx-row { flex: 1 1 auto; display: flex; flex-direction: column; }
+  .nk-cx[data-section="expertise"] .nk-cx-row .nk-cx-btn { flex: 1 1 auto; }
+}
+
+/* v429 · Expertise (desktop): 4 items per category again (set in MegaRail.jsx), left block (title, colour band, text, "Meet our experts") moved 24px to the right,
+   and more air between the two stacked sections. With 4 rows the rows share out the panel height, so they are taller than the 34px minimum.
+   Tune: margin-left on .nk-cx-intro (left block), --cx-exp-stack (space between the stacked sections). */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-intro { margin-left: 24px; }
+  .nk-cx[data-section="expertise"] { --cx-exp-stack: 52px; }
+}
+
+/* v430 · Expertise (desktop): "Compact" layout. The panel is only as tall as its content (no stretching to the hero), 34px rows,
+   shorter colour band, 34px between the two stacked sections. "Meet our experts" and the bottom "Explore ..." links end on the same line.
+   Tune: --cx-exp-row (row padding, 8px = 34px rows), --cx-exp-stack (space between sections), band height below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] { min-height: 0 !important; --cx-exp-row: 8px !important; --cx-exp-stack: 34px !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-acc { align-self: start !important; align-content: start !important; grid-template-rows: none !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-colm,
+  .nk-cx[data-section="expertise"] .nk-cx-rows,
+  .nk-cx[data-section="expertise"] .nk-cx-row { flex: 0 0 auto !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-band { flex: 0 0 auto !important; height: 230px !important; aspect-ratio: auto !important; }
+}
+
+/* v431 · Expertise (desktop): the short intro text is never cut with "..." - it ends on "management." and always shows in full (wraps to 4 lines on narrower screens). */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-lead.nk-cx-lead--show { display: block !important; -webkit-line-clamp: unset !important; overflow: visible !important; max-height: none !important; }
+}
+
+/* v432 · Expertise (desktop): refined institutional look, colour band kept.
+   - faint dividers, softer chevrons, "View all" links (fonts, sizes and colours of titles/headings/text are the same as the Infrastructure menu)
+   - left block lines up with the NK&CO logo, has a thin vertical line on its right; the colour band stays (230px high, full width of the block)
+   Tune: .nk-cx-intro margin-left (left edge), .nk-cx-band height (in the v430 block), --cx-exp-stack (space between sections). */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] { --cx-exp-stack: 38px !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-intro { margin-left: 62px !important; padding-right: 36px !important; margin-right: 8px; border-right: 1px solid rgba(255,255,255,.10) !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-band { width: 100% !important; margin-top: 22px !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-row { border-bottom-color: rgba(196,200,206,.13) !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-btn svg { opacity: .55; width: 16px !important; height: 16px !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-all,
+  .nk-cx[data-section="expertise"] .nk-cx-all * { font-weight: 400 !important; }
+}
+
+/* v433 · All mega menus (desktop): thin vertical line on the right of the left block (title / text), as in the Expertise menu.
+   Tune: border-right colour/opacity, padding-right (space between the left block and the columns). */
+@media (min-width: 1001px) {
+  .nk-cx .nk-cx-intro { padding-right: 36px; margin-right: 8px; border-right: 1px solid rgba(255,255,255,.10); }
+}
+
+/* v434 · Expertise (desktop): wider left block with a bigger image, the four columns start further to the right (Infrastructure fonts kept).
+   Tune: width of .nk-cx-intro (left block incl. its line), band height. The block shrinks on narrower screens so the columns keep their room. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-intro { width: clamp(270px, 22.9vw, 330px) !important; box-sizing: border-box !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-band { height: clamp(200px, 17.4vw, 250px) !important; }
+}
+
+/* v435 · Expertise (desktop): left block starts at the same left edge as the other menus (under the hamburger icon, like Infrastructure).
+   The 62px that freed up goes into the block, so the image is bigger; the four columns stay where they were in v434.
+   Tune: width / band height below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-intro { margin-left: 0 !important; width: clamp(332px, 27.2vw, 392px) !important; }
+  .nk-cx[data-section="expertise"] .nk-cx-band { height: clamp(220px, 19vw, 275px) !important; }
+}
+
+/* v436 · Expertise (desktop): image a little narrower (block 392 -> 360px at 1440 wide), the four sections get that room.
+   Tune: width below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-intro { width: clamp(310px, 25vw, 360px) !important; }
+}
+
+/* v437 · Expertise (desktop): one more small step - image a bit narrower (block 360 -> 332px at 1440 wide), sections a bit wider.
+   Tune: width below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-intro { width: clamp(290px, 23vw, 332px) !important; }
+}
+
+/* v438 · Expertise (desktop): image a bit narrower again (block 332 -> 308px at 1440 wide), sections a bit wider.
+   Tune: width below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-intro { width: clamp(270px, 21.4vw, 308px) !important; }
+}
+
+/* v439 · Capabilities (desktop): left block wider so the image is bigger to the right (213 -> 273px at 1440 wide); the columns move right to make room.
+   The tagline ("Institutional Intelligence in Practice") now also fits without "...".
+   Tune: width below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="capabilities"] { grid-template-columns: max-content minmax(0, 1fr) !important; }
+  .nk-cx[data-section="capabilities"] .nk-cx-intro { width: clamp(272px, 21.5vw, 360px) !important; box-sizing: border-box !important; }
+}
+
+/* v440 · Expertise (desktop): image a bit narrower again (block 308 -> 288px at 1440 wide), sections a bit wider.
+   Tune: width below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-intro { width: clamp(256px, 20vw, 288px) !important; }
+}
+
+/* v441 · Expertise (desktop): category headings (Agency & Brokerage, Holiday Homes ...) almost as big as in the Infrastructure menu (24px at 1440 wide vs 25.5px there; the longest name, "Property Management", still fits its column; smaller on narrower screens).
+   Tune: font-size below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="expertise"] .nk-cx-sh { font-size: clamp(19px, 1.67vw, 24px) !important; line-height: 1.1 !important; }
+}
+
+/* v442 · Opportunities (desktop): the image is a bit shorter so "Explore Opportunities" sits on the same line as the three "Discover ..." links.
+   The left block takes the height of the columns (it adds nothing to the row height itself) and the image takes whatever height is left (never below 90px). */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="opportunities"] .nk-cx-intro { align-self: stretch !important; height: 0 !important; min-height: 100% !important; }
+  .nk-cx[data-section="opportunities"] .nk-cx-img { flex: 1 1 0 !important; height: 0 !important; min-height: 90px !important; aspect-ratio: auto !important; object-fit: cover !important; }
+}
+
+/* v443 · Overview (desktop): three sections now (The Firm 7 items, How We Work 5 items, Get in Touch 3 items - see OVERVIEW_MENU in mock.js),
+   and the left block is wider so the image grows a little to the right and the tagline is no longer cut with "...".
+   Tune: width below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="overview"] { grid-template-columns: max-content minmax(0, 1fr) !important; }
+  .nk-cx[data-section="overview"] .nk-cx-intro { width: clamp(304px, 23.5vw, 360px) !important; box-sizing: border-box !important; }
+}
+
+/* v446 · accordion rows: one line each, same height in every menu (labels are kept to ~28 characters in src/data/menuDisplay.js; the ellipsis is only a safety net, the full text is in the tooltip) */
+.nk-cx:not([data-section="expertise"]) .nk-cx-panel li a { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.35; }
+
+/* v446 · accordion rows slightly larger (was clamp(12px,.85vw,14px), line-height 13px, 6px padding). Tune the three numbers here. */
+.nk-cx .nk-cx-panel li a { font-size: clamp(13px, .93vw, 15px); line-height: 1.3; padding-top: 7px; padding-bottom: 7px; }
+.nk-cx .nk-cx-panel li:last-child a { padding-bottom: 7px; }
+.nk-cx[data-section="expertise"] .nk-cx-panel li a { padding-top: 6px; padding-bottom: 6px; }
+
+/* v446 · Expertise and Infrastructure: the second row sits closer to the first row's links (was 38px / 28px).
+   Tune: --cx-exp-stack (Expertise) and row-gap (Infrastructure). */
+.nk-cx[data-section="expertise"] { --cx-exp-stack: 18px !important; }
+.nk-cx[data-section="infrastructure"] .nk-cx-acc { row-gap: 14px !important; }
+
+/* v519 · Intelligence (desktop): left block wider so the image sits further to the right and the tagline fits on its line; the columns move right to make room.
+   Tune: width below. */
+@media (min-width: 1001px) {
+  .nk-cx[data-section="intelligence"] { grid-template-columns: max-content minmax(0, 1fr) !important; }
+  .nk-cx[data-section="intelligence"] .nk-cx-intro { width: clamp(304px, 23.5vw, 360px) !important; box-sizing: border-box !important; }
+}

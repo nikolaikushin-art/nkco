@@ -1,0 +1,178 @@
+/* v654 · Contact menu = same anatomy as Capabilities / Infrastructure (.nk-cx).
+   Values are the ones measured on the live Capabilities menu:
+     left rail  clamp(272px, 21.5vw, 360px) incl. 36px right padding + hairline; 8px + clamp(28px, 3vw, 56px) before the columns
+     headings   Cormorant 500, clamp(22px, 1.77vw, 28px), colour --lm-mute, 14px above the hairline
+     rows/text  Inter clamp(12.5px, .92vw, 15px), colour --lm-ink, row 42px (11.5px + 18px line + 11.5px + 1px hairline)
+     hairlines  --lm-line, no heavy black underlines
+   The sheet is as tall as its content on desktop: nothing scrolls inside it. Scoped to .nk-dx. */
+
+.nk-dx-wrap {
+  --dx-pad: clamp(32px, 2.9vw, 44px);
+  --dx-fs: clamp(12.5px, .92vw, 15px);
+  --dx-hs: clamp(22px, 1.77vw, 28px);
+  --dx-hair: var(--lm-line, rgba(22, 23, 26, .14));
+  --dx-under: rgba(22, 23, 26, .30);
+}
+
+@media (min-width: 900px) {
+  /* ---- layout: rail + columns, height follows the content, no inner scroll ---- */
+  html body .nk-dx-wrap .nk-dx {
+    height: auto !important; min-height: 0 !important; max-height: none !important; overflow: visible;
+    grid-template-columns: clamp(272px, 21.5vw, 360px) minmax(0, 1fr); grid-template-rows: auto;
+    padding: clamp(16px, 1.5vw, 22px) var(--dx-pad) 0; align-items: stretch;
+  }
+  html body .nk-dx-wrap .nk-dx-rail { padding: 0 36px 0 0; border-right: 1px solid var(--dx-hair); overflow: visible; }
+  html body .nk-dx-wrap .nk-dx-main { padding-left: calc(8px + clamp(28px, 3vw, 56px)); }
+  html body .nk-dx-wrap .nk-dx-form { display: flex; flex-direction: column; }
+  html body .nk-dx-wrap .nk-dx-body { flex: none; overflow: visible !important; padding: 0 0 4px; min-height: 0; }
+  html body .nk-dx-wrap .nk-dx-bar { padding: 8px 0 0; margin-top: 12px; border-top: 0; }
+  .nk-dx-wrap .nk-dx-foot { margin-top: 16px; }
+
+  /* rail: title, descriptor, picture fills the free height, link at the bottom (same as .nk-cx-intro) */
+  html body .nk-dx-wrap .nk-dx-tag { margin-top: 12px; font-size: 15px; }
+  html body .nk-dx-wrap .nk-dx-pic { flex: 1 1 0; height: 0; min-height: 150px; max-height: 360px; aspect-ratio: auto; margin-top: 18px; }
+  html body .nk-dx-wrap .nk-dx-rl { margin-top: 14px; font-size: 13.5px; line-height: 1.5; -webkit-line-clamp: 3; }
+  html body .nk-dx-wrap .nk-dx-go { margin-top: 18px; padding-bottom: 2px; }
+}
+
+/* ---- headings = .nk-cx-sh ---- */
+html body .nk-dx-wrap .nk-dx .nk-dx-pk-t,
+html body .nk-dx-wrap .nk-dx .nk-dx-sub,
+html body .nk-dx-wrap .nk-dx .nk-dx-rs h4 {
+  font-family: var(--nk-serif, 'Cormorant Garamond', 'EB Garamond', Georgia, serif);
+  font-size: var(--dx-hs); line-height: 1.1; font-weight: 500; letter-spacing: -.005em; color: var(--lm-mute, #7b8088);
+}
+html body .nk-dx-wrap .nk-dx label.nk-dx-pk { padding: 0 0 14px !important; border-bottom: 1px solid var(--dx-hair); }
+html body .nk-dx-wrap .nk-dx label.nk-dx-pk[data-on] { border-bottom-color: var(--lm-accent, #329AB2); box-shadow: 0 1px 0 0 var(--lm-accent, #329AB2); }
+html body .nk-dx-wrap .nk-dx label.nk-dx-pk[data-on] .nk-dx-pk-t { color: var(--lm-ink, #16171a); }
+html body .nk-dx-wrap .nk-dx .nk-dx-sub { margin: 0 0 10px; font-size: clamp(18px, 1.4vw, 22px); }
+html body .nk-dx-wrap .nk-dx .nk-dx-picks { column-gap: clamp(28px, 3vw, 56px); }
+html body .nk-dx-wrap .nk-dx-body > * + * { margin-top: 16px !important; }
+html body .nk-dx-wrap .nk-dx .nk-dx-col > * + * { margin-top: 16px !important; }
+
+/* ---- labels: small, grey, same face as the rows ---- */
+html body .nk-dx-wrap .nk-dx label.nk-dx-l, html body .nk-dx-wrap .nk-dx legend.nk-dx-l, html body .nk-dx-wrap .nk-dx .nk-dx-g > legend {
+  font-size: calc(var(--dx-fs) - .5px) !important; font-weight: 400 !important; line-height: 16px; letter-spacing: 0 !important;
+  color: var(--lm-mute, #7b8088) !important; margin: 0 0 2px; padding: 0;
+}
+html body .nk-dx-wrap .nk-dx .nk-dx-g > legend { padding-bottom: 6px; margin: 0; border-bottom: 1px solid var(--dx-hair); }
+html body .nk-dx-wrap .nk-dx .nk-dx-hint { font-size: inherit !important; color: var(--lm-mute, #7b8088) !important; }
+html body .nk-dx-wrap .nk-dx .nk-dx-req { color: #b3261e !important; }
+
+/* ---- fields: one height, one baseline, light underline ---- */
+html body .nk-dx-wrap .nk-dx .nk-dx-grid { row-gap: 12px; column-gap: clamp(28px, 3vw, 56px); }
+html body .nk-dx-wrap .nk-dx .nk-dx-f .nk-dx-in, html body .nk-dx-wrap .nk-dx .nk-dx-sel .nk-dx-in, html body .nk-dx-wrap .nk-dx .nk-dx-tel .nk-dx-in {
+  height: 32px; min-height: 32px !important; padding: 0 !important; line-height: 30px; font-family: inherit;
+  font-size: var(--dx-fs) !important; color: var(--lm-ink, #16171a) !important; background: transparent !important;
+  border: 0 !important; border-bottom: 1px solid var(--dx-under) !important; border-radius: 0;
+}
+html body .nk-dx-wrap .nk-dx .nk-dx-f .nk-dx-in::placeholder { color: #9a9ea5; font-size: var(--dx-fs); }
+html body .nk-dx-wrap .nk-dx .nk-dx-sel select.nk-dx-in { padding-right: 24px !important; }
+html body .nk-dx-wrap .nk-dx .nk-dx-dial select.nk-dx-in { padding-right: 0 !important; }
+html body .nk-dx-wrap .nk-dx .nk-dx-sel svg { width: 14px; height: 14px; right: 0; }
+html body .nk-dx-wrap .nk-dx .nk-dx-tel { grid-template-columns: 84px minmax(0, 1fr); column-gap: 14px; }
+html body .nk-dx-wrap .nk-dx .nk-dx-f :is(input, select, textarea):hover { border-bottom-color: var(--lm-ink, #16171a) !important; }
+html body .nk-dx-wrap .nk-dx .nk-dx-f :is(input, select, textarea):focus { border-bottom-color: var(--lm-accent, #329AB2) !important; box-shadow: 0 1px 0 0 var(--lm-accent, #329AB2) !important; }
+html body .nk-dx-wrap .nk-dx .nk-dx-f[data-err] :is(input, select, textarea) { border-bottom-color: #b3261e !important; box-shadow: 0 1px 0 0 #b3261e !important; }
+html body .nk-dx-wrap .nk-dx textarea.nk-dx-area { height: auto; min-height: 56px !important; line-height: 1.45; padding: 8px 10px !important; border: 1px solid var(--dx-hair) !important; border-bottom: 1px solid var(--dx-under) !important; font-size: var(--dx-fs) !important; }
+html body .nk-dx-wrap .nk-dx .nk-dx-err { font-size: 12px; margin-top: 3px; }
+
+/* ---- choice rows + rating rows: the menu rows (42px, hairline, text 13px) ---- */
+html body .nk-dx-wrap .nk-dx label.nk-dx-ch { min-height: 42px; font-size: var(--dx-fs) !important; line-height: 18px; padding: 0 !important; border-bottom: 1px solid var(--dx-hair); }
+html body .nk-dx-wrap .nk-dx label.nk-dx-ch .nk-dx-ct { padding: 4px 0; }
+html body .nk-dx-wrap .nk-dx label.nk-dx-ch[data-on] { border-bottom-color: var(--lm-accent, #329AB2); }
+html body .nk-dx-wrap .nk-dx .nk-dx-cards { column-gap: clamp(28px, 3vw, 56px); }
+html body .nk-dx-wrap .nk-dx .nk-dx-mark { width: 13px; height: 13px; }
+html body .nk-dx-wrap .nk-dx .nk-dx-sr-row { min-height: 42px; border-bottom: 1px solid var(--dx-hair); }
+html body .nk-dx-wrap .nk-dx .nk-dx-sr-l { font-size: var(--dx-fs); line-height: 18px; }
+html body .nk-dx-wrap .nk-dx .nk-dx-seg button { height: 26px; min-width: 30px; font-size: calc(var(--dx-fs) - .5px); }
+html body .nk-dx-wrap .nk-dx .nk-dx-wait p { font-size: var(--dx-fs); border-color: var(--dx-hair); }
+
+html body .nk-dx-wrap .nk-dx .nk-dx-split--three { grid-template-columns: repeat(3, minmax(0, 1fr)); column-gap: clamp(28px, 3vw, 56px); }
+@media (max-width: 899px) { html body .nk-dx-wrap .nk-dx .nk-dx-split--three { display: block; } }
+
+/* ---- review ---- */
+html body .nk-dx-wrap .nk-dx .nk-dx-rs dl > div { font-size: var(--dx-fs); line-height: 18px; }
+html body .nk-dx-wrap .nk-dx .nk-dx-rs dl { row-gap: 5px; }
+html body .nk-dx-wrap .nk-dx .nk-dx-edit { font-size: var(--dx-fs); }
+html body .nk-dx-wrap .nk-dx .nk-dx-rs { border-top-color: var(--dx-hair); }
+
+/* ---- action bar ---- */
+html body .nk-dx-wrap .nk-dx .nk-dx-back, html body .nk-dx-wrap .nk-dx .nk-dx-go { font-size: var(--dx-fs); }
+html body .nk-dx-wrap .nk-dx .nk-dx-btn { min-height: 40px; font-size: var(--dx-fs) !important; }
+html body .nk-dx-wrap .nk-dx .nk-dx-note { font-size: 12.5px; }
+
+/* ---- scrollbar (phones only still scroll): light, thin ---- */
+.nk-dx-body, .nk-mega[data-contact] { scrollbar-width: thin; scrollbar-color: rgba(22, 23, 26, .22) transparent; }
+.nk-dx-body::-webkit-scrollbar, .nk-mega[data-contact]::-webkit-scrollbar { width: 6px; height: 6px; background: transparent; }
+.nk-dx-body::-webkit-scrollbar-thumb, .nk-mega[data-contact]::-webkit-scrollbar-thumb { background: rgba(22, 23, 26, .22); border-radius: 3px; }
+.nk-dx-body::-webkit-scrollbar-track, .nk-mega[data-contact]::-webkit-scrollbar-track { background: transparent; }
+
+
+/* ================= v654b · richer steps ================= */
+/* step header: serif title + one-line lead, hairline under (same rhythm as the column headings) */
+html body .nk-dx-wrap .nk-dx .nk-dx-hd { display: flex; align-items: baseline; gap: 22px; padding: 0 0 12px; border-bottom: 1px solid var(--dx-hair); min-width: 0; }
+html body .nk-dx-wrap .nk-dx .nk-dx-hd h3 { margin: 0; flex: none; outline: 0; font-size: var(--dx-hs); line-height: 1.1; font-weight: 500; letter-spacing: -.005em; color: var(--lm-ink, #16171a); white-space: nowrap; }
+html body .nk-dx-wrap .nk-dx .nk-dx-hd p { margin: 0; flex: 1 1 auto; min-width: 0; font-size: var(--dx-fs); line-height: 1.4; color: var(--lm-mute, #7b8088); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* progress stepper in the action bar: six labelled segments, finished ones clickable */
+html body .nk-dx-wrap .nk-dx .nk-dx-bar { gap: 20px; }
+html body .nk-dx-wrap .nk-dx .nk-dx-bar > span:first-child, html body .nk-dx-wrap .nk-dx .nk-dx-back { flex: none; min-width: 84px; }
+.nk-dx-steps { flex: 1 1 0; max-width: 640px; margin: 0 auto; display: flex; gap: 8px; min-width: 0; }
+html body .nk-dx-wrap .nk-dx button.nk-dx-stp { flex: 1 1 0; min-width: 0; display: block; padding: 0 !important; margin: 0; border: 0 !important; border-radius: 0; background: none !important; box-shadow: none; text-align: left; font: inherit; cursor: default; color: var(--lm-mute, #7b8088) !important; }
+html body .nk-dx-wrap .nk-dx button.nk-dx-stp i { display: block; height: 3px; margin: 0 0 7px; background: var(--dx-hair); transition: background-color .18s ease; }
+html body .nk-dx-wrap .nk-dx button.nk-dx-stp span { display: block; font-size: 12px; line-height: 16px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+html body .nk-dx-wrap .nk-dx button.nk-dx-stp[data-done] i { background: var(--lm-accent, #329AB2); }
+html body .nk-dx-wrap .nk-dx button.nk-dx-stp[data-done] { color: var(--lm-ink, #16171a) !important; }
+html body .nk-dx-wrap .nk-dx button.nk-dx-stp[data-cur] i { background: var(--lm-ink, #16171a); }
+html body .nk-dx-wrap .nk-dx button.nk-dx-stp[data-cur] { color: var(--lm-ink, #16171a) !important; }
+html body .nk-dx-wrap .nk-dx button.nk-dx-stp[data-cur] span { font-weight: 500; }
+html body .nk-dx-wrap .nk-dx button.nk-dx-stp:not(:disabled) { cursor: pointer; }
+html body .nk-dx-wrap .nk-dx button.nk-dx-stp:not(:disabled):hover span { text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+html body .nk-dx-wrap .nk-dx button.nk-dx-stp:disabled:not([data-cur]) { opacity: .75; }
+
+/* one-line note under a choice */
+html body .nk-dx-wrap .nk-dx label.nk-dx-ch .nk-dx-ct { padding: 6px 0; }
+html body .nk-dx-wrap .nk-dx .nk-dx-note-s { display: block; margin-top: 1px; font-size: calc(var(--dx-fs) - 1px); line-height: 16px; font-weight: 400 !important; color: var(--lm-mute, #7b8088); }
+
+/* numbered lists: "what we will ask next" and "what happens next" (same rows as the menus) */
+html body .nk-dx-wrap .nk-dx .nk-dx-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--dx-hair); }
+html body .nk-dx-wrap .nk-dx .nk-dx-list li { display: flex; gap: 16px; align-items: flex-start; padding: 11px 0; border-bottom: 1px solid var(--dx-hair); font-size: var(--dx-fs); line-height: 18px; color: var(--lm-ink, #16171a); }
+html body .nk-dx-wrap .nk-dx .nk-dx-list b { flex: none; width: 22px; font-size: 11.5px; font-weight: 500; letter-spacing: .04em; color: var(--lm-accent, #329AB2); font-variant-numeric: tabular-nums; }
+html body .nk-dx-wrap .nk-dx .nk-dx-list strong { display: block; font-weight: 500; }
+html body .nk-dx-wrap .nk-dx .nk-dx-list small { display: block; margin-top: 2px; font-size: calc(var(--dx-fs) - 1px); line-height: 17px; color: var(--lm-mute, #7b8088); }
+html body .nk-dx-wrap .nk-dx .nk-dx-hintline { margin: 12px 0 0; font-size: calc(var(--dx-fs) - 1px); line-height: 16px; color: var(--lm-mute, #7b8088); }
+html body .nk-dx-wrap .nk-dx .nk-dx-hintline--top { margin: 0 0 -4px; }
+html body .nk-dx-wrap .nk-dx .nk-dx-ask .nk-dx-sub, html body .nk-dx-wrap .nk-dx .nk-dx-next .nk-dx-sub { margin-bottom: 12px; }
+
+@media (max-width: 899px) {
+  html body .nk-dx-wrap .nk-dx .nk-dx-hd { flex-direction: column; gap: 4px; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-hd p { white-space: normal; }
+  html body .nk-dx-wrap .nk-dx button.nk-dx-stp span { display: none; }
+  html body .nk-dx-wrap .nk-dx button.nk-dx-stp[data-cur] { flex: 2 1 0; }
+  html body .nk-dx-wrap .nk-dx button.nk-dx-stp[data-cur] span { display: block; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-note { display: none; }
+}
+
+/* ---- phones: one column, as before (the sheet scrolls there) ---- */
+@media (max-width: 899px) {
+  .nk-dx-wrap { --dx-pad: 20px; }
+}
+
+/* step-3 column captions are small labels now (the step header carries the title) */
+html body .nk-dx-wrap .nk-dx .nk-dx-split--even .nk-dx-col:not(.nk-dx-next) > h4.nk-dx-sub {
+  font-family: var(--nk-text, 'Inter', system-ui, sans-serif); font-size: calc(var(--dx-fs) - .5px); line-height: 16px; font-weight: 400; letter-spacing: 0;
+  color: var(--lm-mute, #7b8088); margin: 0; padding: 0 0 6px; border-bottom: 1px solid var(--dx-hair);
+}
+html body .nk-dx-wrap .nk-dx .nk-dx-split--even .nk-dx-col > h4.nk-dx-sub .nk-dx-hint { font-size: inherit !important; }
+html body .nk-dx-wrap .nk-dx .nk-dx-hd { background: transparent !important; position: static; }
+
+/* short laptops: Review and the other tall steps give back a few pixels */
+@media (max-height: 760px) and (min-width: 900px) {
+  html body .nk-dx-wrap .nk-dx .nk-dx-hintline--top { display: none; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-hd { padding-bottom: 8px; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-rs { padding-top: 7px; margin-bottom: 6px; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-rs dl { margin: 4px 0 2px; row-gap: 3px; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-list li { padding: 8px 0; }
+  html body .nk-dx-wrap .nk-dx .nk-dx-body > * + *, html body .nk-dx-wrap .nk-dx .nk-dx-col > * + * { margin-top: 12px !important; }
+}
